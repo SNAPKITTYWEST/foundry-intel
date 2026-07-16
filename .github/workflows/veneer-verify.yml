@@ -5,6 +5,12 @@ on:
     branches: [master, main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    # ADR-301 daily production tick: 07:16 UTC, non-mutating.
+    - cron: '16 7 * * *'
+
+permissions:
+  contents: read
 
 jobs:
   verify:
@@ -20,30 +26,5 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build — depth order (0→9)
-        run: |
-          for pkg in source datalog lean constitution trust triple-lock contractivity worm bob-gate metatron; do
-            echo "Building @veneer/$pkg..."
-            npm run build --workspace=packages/$pkg --if-present
-          done
-
-      - name: Test
-        run: npm test --workspaces --if-present
-
-      - name: Datalog constraint gate
-        run: |
-          echo "Verifying constraints.dl has all 10 SYNTH facts..."
-          for i in $(seq 1 10); do
-            id=$(printf "SYNTH-%03d" $i)
-            grep -q "$id" packages/datalog/constraints.dl || \
-              grep -q "SYNTH-00$i\|SYNTH-0$i" packages/datalog/constraints.dl || \
-              (echo "MISSING: $id" && exit 1)
-          done
-          echo "All 10 SYNTH constraints present — PASS"
-
-      - name: Crux honesty check
-        run: |
-          echo "Verifying RH encoded as none (SYNTH-008)..."
-          grep -q "hodgeIndexHolds.*null\|hodge_index_holds.*none" \
-            packages/source/src/index.ts packages/datalog/src/index.ts 2>/dev/null || true
-          echo "SYNTH-008 crux check — PASS"
+      - name: Verify production gate
+        run: npm run verify

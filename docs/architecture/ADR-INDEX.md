@@ -30,6 +30,7 @@ All ADRs pass through the Law Engine (`docs/governance/law-engine.pl`) and recei
 | [ADR-PIRTM-002](adr/ADR-PIRTM-002-production-readiness.md) | Production Readiness Checklist for pirtm-compiler | Accepted | EVIDENCE |
 | **[ADR-200](adr/ADR-200-parr-sovereignty-protocol.md)** | **Parr Sovereignty Protocol — Constitutional Authority** | **Immutable** | **EVIDENCE** |
 | **[ADR-300](adr/ADR-300-grat-foundry-interlock.md)** | **GRAT Foundry Interlock — THE SHARED PRIMORDIAL FOUNDATION** | **Immutable** | **EVIDENCE** |
+| **[ADR-301](adr/ADR-301-daily-production-tick.md)** | **Daily Production Tick — Sedona Spine Hardening Clock** | **Accepted** | **EVIDENCE** |
 
 ---
 
@@ -87,6 +88,7 @@ ADR-200 (Parr Sovereignty Protocol — Ahmad Ali Parr)
         ADR-052 through ADR-062 (upstream)
         ADR-101 through ADR-PIRTM-002 (Veneer)
         ADR-300 (GRAT Foundry Interlock)
+        ADR-301 (Daily Production Tick — non-mutating verify clock)
             all grounded in ↓
             docs/math/ (Constitutional Core, Ξ-Constitution, Lean 4 theorems)
                 crux: hodgeIndexHolds = none (RH open, rfl witness)

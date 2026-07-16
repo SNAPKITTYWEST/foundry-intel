@@ -173,6 +173,13 @@ adr('ADR-300',
     'sha256:grat-foundry-interlock-contract-v1',
     'worm:ADR-300-seal').
 
+adr('ADR-301',
+    'Daily Production Tick Sedona Spine Hardening Clock',
+    builder,
+    'sha256:daily-production-tick-proof-v1',
+    'sha256:daily-production-tick-contract-v1',
+    'worm:ADR-301-seal').
+
 %% ── Trust hierarchy (from sovereign_kernel.pl) ───────────────────────────
 
 trust_level(none,      0).

@@ -31,9 +31,12 @@ const rootPackage = readJson('package.json')
 
 for (const path of [
   'package-lock.json',
+  '.github/workflows/veneer-verify.yml',
   'tsconfig.json',
   'tsconfig.package.json',
   'tools/production-smoke.mjs',
+  'tools/adr-production-tick.mjs',
+  'docs/architecture/adr/ADR-301-daily-production-tick.md',
   'docs/bridge/foundry-connector.md',
   'docs/protocols/xml-handoff-envelope.md',
   'docs/protocols/xml-handoff-envelope.xsd',
@@ -45,7 +48,7 @@ for (const path of [
   requireFile(path)
 }
 
-for (const script of ['build', 'test', 'lint', 'smoke', 'verify']) {
+for (const script of ['build', 'test', 'lint', 'smoke', 'verify', 'adr:tick']) {
   if (!rootPackage.scripts?.[script]) fail(`package.json missing ${script} script`)
 }
 

@@ -38,6 +38,9 @@
     "intel_typescript_config": "tsconfig.json",
     "intel_typescript_package_config": "tsconfig.package.json",
     "intel_lockfile": "package-lock.json",
+    "intel_verify_workflow": ".github/workflows/veneer-verify.yml",
+    "intel_adr_tick": "tools/adr-production-tick.mjs",
+    "intel_adr_tick_record": "docs/architecture/adr/ADR-301-daily-production-tick.md",
     "f1_receiver_doc": "docs/bridge/CLAUDE_HANDOFF.md",
     "f1_receiver_manifest": "docs/bridge/foundry-connector.json"
   },

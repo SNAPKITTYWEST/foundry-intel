@@ -95,6 +95,9 @@ prior_art_linked('ADR-200', 'banach1922').
 prior_art_linked('ADR-200', 'GRAT-ASSET-007').  % WORM Audit Chain
 prior_art_linked('ADR-300', 'GRAT-ASSET-001').
 prior_art_linked('ADR-300', 'GRAT-ASSET-008').
+prior_art_linked('ADR-301', 'GRAT-ASSET-007').  % WORM Audit Chain
+prior_art_linked('ADR-301', 'ADR-200').
+prior_art_linked('ADR-301', 'ADR-300').
 
 %% ── Expansion Eligibility (Datalog EDB) ─────────────────────────────────────
 %% expansion_eligible(ID) is asserted dynamically by the loop when an ADR
