@@ -1,0 +1,84 @@
+{
+  "count": 11,
+  "q5_total": "8 + 3*phi",
+  "note": "Q(phi) weights are metadata classifications, not independent mathematical proof claims.",
+  "records": [
+    {
+      "id": "ADR-052",
+      "title": "Universal Atomic Calculator / UAC Integration",
+      "description": "SPECIFIED. UAC quantum monad, QCFI thermodynamic window, MA-VQE branch pruning, HSEC entropy bounds, and call_49 mirror audit. Classification records architecture scope only.",
+      "status": "SPECIFIED",
+      "q5_weight": "1 + 0*phi"
+    },
+    {
+      "id": "ADR-053",
+      "title": "Lean 4 Formalization and Monorepo Architecture",
+      "description": "SPECIFIED. Monorepo Lake workspace for Lean theory expansion, shared axioms, and incremental build integration. Classification records architecture scope only.",
+      "status": "SPECIFIED",
+      "q5_weight": "1 + 0*phi"
+    },
+    {
+      "id": "ADR-054",
+      "title": "Rust/Kani Executable Formal Verification Mathlib-Free",
+      "description": "SPECIFIED. Rust/Kani mathlib-free pipeline replaces large Mathlib proof dependencies with executable symbolic harnesses. Kani confirms bounded executable obligations but does not replace Lean as specification authority.",
+      "status": "SPECIFIED",
+      "q5_weight": "1 + 0*phi"
+    },
+    {
+      "id": "ADR-055",
+      "title": "Riemann zeta computational implementation",
+      "description": "OPEN_CRUX. Odlyzko-Schoenhage, 256-bit MPFR, interval arithmetic. The crux stays none; hodgeIndexHolds remains Option Bool := none. Infrastructure evidence, not a proof of RH.",
+      "status": "OPEN_CRUX",
+      "q5_weight": "-1 + 1*phi"
+    },
+    {
+      "id": "ADR-056",
+      "title": "Collatz computational verification",
+      "description": "SPECIFIED. SIMD and GPU-oriented computational verification infrastructure for bounded trajectories. Classification records the verification pipeline; the conjecture is not claimed proved.",
+      "status": "SPECIFIED",
+      "q5_weight": "1 + 0*phi"
+    },
+    {
+      "id": "ADR-057",
+      "title": "Lean 4 Formal ADR Scaffolding",
+      "description": "SPECIFIED. ADRs as inductive dependent types with accepted_constraints_invariant, no_circular_supersession, and consequence_entailment obligations. Classification records theorem obligations, not completion of all Lean proofs.",
+      "status": "SPECIFIED",
+      "q5_weight": "1 + 0*phi"
+    },
+    {
+      "id": "ADR-058",
+      "title": "PIRTM Compiler Sig Library Phase B",
+      "description": "SPECIFIED. Multiplicity functor and Prime Successor Predicate enforcement, tree-sitter integration, and Kani multiplicity-conservation harness.",
+      "status": "SPECIFIED",
+      "q5_weight": "1 + 0*phi"
+    },
+    {
+      "id": "ADR-059",
+      "title": "Attested Convergence Envelope Runtime",
+      "description": "SPECIFIED. ACE runtime invariants, budget veto, FREEZE fail-closed semantics, and Kani ace_runtime_budget_veto harness.",
+      "status": "SPECIFIED",
+      "q5_weight": "1 + 0*phi"
+    },
+    {
+      "id": "ADR-060",
+      "title": "Dynamic Recursive Meta-Mathematics",
+      "description": "PROVEN_NO_SORRY. DRMM no sorry mandate, multi-scale Prime Successor Predicate, recursive operator T over lawful Hilbert state, and Rust/Kani runtime confirmation.",
+      "status": "PROVEN_NO_SORRY",
+      "q5_weight": "1 + 1*phi"
+    },
+    {
+      "id": "ADR-061",
+      "title": "ZMOS Production Implementation",
+      "description": "SPECIFIED. Operator algebra over prime-graded Hilbert spaces, spectral radius bounds, RG conditions, and Lean/Rust FFI parity requirements.",
+      "status": "SPECIFIED",
+      "q5_weight": "1 + 0*phi"
+    },
+    {
+      "id": "ADR-062",
+      "title": "Sigma Kernel Production Implementation",
+      "description": "SILENCE_PENDING. Dissonance detection, L_eff < 1.0, Delta R_sc <= tau_R = 47.07. Governance gap explicitly tracked until sigma_kernel_preserves_contraction, dissonance_detects_drift, and no_spectral_explosion are completed.",
+      "status": "SILENCE_PENDING",
+      "q5_weight": "0 + 1*phi"
+    }
+  ]
+}
