@@ -1,0 +1,38 @@
+{
+  "name": "@veneer/trust",
+  "version": "0.1.0",
+  "description": "Veneer Sedona Spine L4 — trust boundary, AlpGate, and SYNTH-001/005 enforcement.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@veneer/archivum": "workspace:^0.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.3",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/default-esm",
+    "testEnvironment": "node",
+    "testMatch": ["<rootDir>/tests/**/*.test.ts"],
+    "extensionsToTreatAsEsm": [".ts"],
+    "moduleNameMapper": { "^(\\.{1,2}/.*)\\.js$": "$1" }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@veneer/constitution",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "L0 constitutional validator: nine sequential checks, SYNTH-003 + SYNTH-007 enforced",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.0",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/default-esm",
+    "testEnvironment": "node",
+    "testMatch": ["<rootDir>/tests/**/*.test.ts"],
+    "testPathIgnorePatterns": ["<rootDir>/node_modules/"],
+    "extensionsToTreatAsEsm": [".ts"],
+    "moduleNameMapper": { "^(\\.{1,2}/.*)\\.js$": "$1" }
+  }
+}

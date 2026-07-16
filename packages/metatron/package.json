@@ -1,0 +1,45 @@
+{
+  "name": "@veneer/metatron",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Sedona Spine L9 — METATRON self-recognition, backward cube reader, phi-modulated activation, SOURCE feedback loop",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "@veneer/l0": "workspace:*",
+    "@veneer/l1": "workspace:*",
+    "@veneer/l2": "workspace:*",
+    "@veneer/l3": "workspace:*",
+    "@veneer/l4": "workspace:*",
+    "@veneer/l5": "workspace:*",
+    "@veneer/l6": "workspace:*",
+    "@veneer/l7": "workspace:*",
+    "@veneer/l8": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.3",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/default-esm",
+    "testEnvironment": "node",
+    "testMatch": ["<rootDir>/tests/**/*.test.ts"],
+    "testPathIgnorePatterns": ["<rootDir>/dist/", "<rootDir>/node_modules/"],
+    "extensionsToTreatAsEsm": [".ts"],
+    "moduleNameMapper": { "^(\\.{1,2}/.*)\\.js$": "$1" }
+  }
+}

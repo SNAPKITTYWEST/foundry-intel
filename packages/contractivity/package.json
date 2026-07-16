@@ -1,0 +1,9 @@
+{
+  "name": "@veneer/contractivity",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Geometric invariant layer — Banach fixed-point guarantee, φ-modulated activation, τ_r=47.07",
+  "main": "src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "@veneer/source": "2.0.0" }
+}
