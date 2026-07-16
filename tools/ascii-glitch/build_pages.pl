@@ -5,21 +5,39 @@
 main :-
     current_prolog_flag(argv, Args),
     ( member('--check', Args) -> Mode = check ; Mode = write ),
-    read_json_dict('tools/foundry-connector/connector-manifest.json', Connector),
-    read_json_dict('tools/q5-adr-parser/adr_manifest.json', Q5),
-    read_json_dict('apps/wasm-frontend/dist/manifest.json', Wasm),
-    q5_status(Q5, 'ADR-055', Adr055),
-    q5_status(Q5, 'ADR-062', Adr062),
-    ascii_page(Connector, Q5, Wasm, Adr055, Adr062, Ascii),
-    css_page(Css),
-    html_page(Connector, Q5, Wasm, Adr055, Adr062, Ascii, Html),
-    write_generated(Mode, 'docs/pages/backend-ascii.txt', Ascii),
-    write_generated(Mode, 'docs/pages/assets/backend-glitch.css', Css),
-    write_generated(Mode, 'docs/pages/index.html', Html),
     sync_wasm_pages(Mode),
+    validate_static_pages,
     ( Mode = check ->
         writeln('pages check passed')
     ;   writeln('pages built')
+    ).
+
+validate_static_pages :-
+    require_contains('docs/pages/index.html', 'THE SHARED PRIMORDIAL FOUNDATION'),
+    require_contains('docs/pages/index.html', 'Before The Architecture'),
+    require_contains('docs/pages/index.html', 'The Story Of This Repository'),
+    require_contains('docs/pages/index.html', 'Why Contribute?'),
+    require_contains('docs/pages/index.html', 'WASM Gate'),
+    require_contains('docs/pages/index.html', 'OPEN_CRUX'),
+    require_contains('docs/pages/index.html', 'SILENCE_PENDING'),
+    require_contains('docs/pages/wasm/index.html', 'WASM Gate'),
+    require_contains('docs/pages/assets/backend-glitch.css', '.story-grid'),
+    require_contains('docs/pages/assets/backend-glitch.css', '.story-card'),
+    require_contains('docs/pages/backend-ascii.txt', 'BACKEND ASCII GLITCH'),
+    require_contains('docs/pages/backend-ascii.txt', 'THE SHARED PRIMORDIAL FOUNDATION'),
+    require_contains('docs/pages/backend-ascii.txt', 'OPEN_CRUX'),
+    require_contains('docs/pages/backend-ascii.txt', 'SILENCE_PENDING').
+
+require_contains(Path, Needle) :-
+    ( exists_file(Path) ->
+        read_file_to_string(Path, Content, [encoding(utf8)]),
+        ( sub_string(Content, _, _, _, Needle) ->
+            true
+        ;   format(user_error, 'pages check failed: marker missing~n  ~w~n  ~w~n', [Path, Needle]),
+            halt(1)
+        )
+    ;   format(user_error, 'pages check failed: file missing~n  ~w~n', [Path]),
+        halt(1)
     ).
 
 read_json_dict(Path, Dict) :-
@@ -307,7 +325,6 @@ write_generated(Mode, Path, Content) :-
 
 wasm_page_file('foundation.wasm').
 wasm_page_file('loader.mjs').
-wasm_page_file('index.html').
 wasm_page_file('manifest.json').
 
 sync_wasm_pages(Mode) :-

@@ -39,6 +39,241 @@
 
 ---
 
+## Before the Architecture: The Story of This Repository
+
+This repository did not begin as a product name, a branding exercise, or an
+attempt to make ordinary software sound mysterious.
+
+It began with source code, loss, provenance pressure, unfinished proofs, and a
+decision to keep building until the work could explain itself.
+
+**Foundry Intel** is the working name for the intelligence and governance layer
+now housed under THE SHARED PRIMORDIAL FOUNDATION. A foundry is where raw
+material is subjected to heat, pressure, and controlled transformation until it
+becomes structurally useful. In this system, the raw material is not metal. It
+is source code, incomplete proofs, inherited architecture, abandoned
+experiments, unresolved technical debt, and claims that must not be promoted
+until evidence exists.
+
+“Intel” does not mean surveillance. It means the accumulated intelligence
+required to understand what a large software system is, where it came from,
+which parts can be trusted, which claims remain open, and what must happen
+before any result is allowed into production.
+
+This repository is therefore a judgment and coordination center. It receives
+signals from theorem provers, runtimes, agents, tests, audit records, and
+operator decisions. It does not treat those inputs as equally authoritative. It
+classifies them, routes them through explicit constraints, records unresolved
+gaps, and preserves the resulting decisions.
+
+### Why The Name “Veneer”?
+
+In ordinary language, a veneer can mean a thin decorative surface. That is not
+how the term is used here.
+
+Within this repository, **Veneer** is the institutional surface placed over raw
+computation. Raw code can execute while still being unsafe. A test can pass
+while a larger invariant is broken. A model can produce a convincing answer
+without producing evidence. A theorem file can look complete while still
+containing an unresolved `sorry`.
+
+The Veneer exists to prevent those local appearances from being mistaken for
+global correctness.
+
+Its layers connect source facts, logic, formal proof, constitutional
+constraints, trust boundaries, chain of custody, contractivity checks,
+append-only memory, verdict formation, and feedback into one spine:
+
+```text
+SOURCE
+  -> DATALOG
+  -> LEAN
+  -> CONSTITUTION
+  -> TRUST
+  -> TRIPLE-LOCK CUSTODY
+  -> CONTRACTIVITY
+  -> WORM MEMORY
+  -> BOB GATE
+  -> METATRON FEEDBACK
+```
+
+The Veneer is therefore not paint over machinery. It is the part that
+determines whether the machinery is permitted to act.
+
+### Why “EVIDENCE Or SILENCE”?
+
+Most software systems are designed to return an answer.
+
+This system is designed to refuse an answer when its proof obligations are not
+satisfied.
+
+**EVIDENCE** means the required constraints, witnesses, tests, signatures, or
+formal checks were present.
+
+**SILENCE** does not mean failure was hidden. It means the system refused to
+convert an unresolved gap into a confident claim.
+
+That distinction matters most around open mathematics. This repository does
+not claim that the Riemann Hypothesis has been solved. Its crux remains
+explicitly encoded as open. The representation of that absence is itself
+verified, so downstream components cannot casually transform “unknown” into
+“true.”
+
+Silence is therefore not emptiness. It is a preserved boundary against
+fabrication.
+
+### What Is A “Sorry Engine”?
+
+In Lean, `sorry` is a placeholder that allows a theorem file to continue
+compiling before the proof has been completed.
+
+That feature is useful during development, but dangerous when unfinished proof
+debt is presented as final mathematics.
+
+The **sorry engine** treats those gaps as work items. It discovers them,
+indexes them, classifies them, assigns them to proof workflows, and records
+whether they remain unresolved, have been audited as clean, or have been
+closed by a theorem prover.
+
+A target is not considered solved because an agent says it is solved. It is
+closed only when the formal toolchain accepts it and the result passes through
+the repository’s governance and evidence chain.
+
+### Why WORM?
+
+**WORM** means *write once, read many*.
+
+The audit chain is append-only. Material decisions are added rather than
+silently rewritten. This creates a history in which later readers can
+distinguish what was originally claimed, what evidence existed at the time,
+what changed, which agent or operator acted, and what conclusion was accepted.
+
+The purpose is not to pretend software can never change. The purpose is to
+make change leave a receipt.
+
+### Why The “Inverted Monorepo”?
+
+SNAPKITTYWEST is treated as one logical system spread across many repositories
+and artifacts.
+
+That creates an inversion. In a conventional monorepo, the directory tree
+appears to define the system boundary. Here, governing contracts sit above any
+single directory. Global invariants flow inward toward local implementations.
+
+The repository currently open in an editor is therefore only a local execution
+surface. It is not automatically the whole system. A local build can pass
+while a downstream contract has drifted elsewhere. A schema can look valid
+here while another consumer has broken. The inverted-monorepo strategy exists
+to prevent local success from being confused with constellation-wide
+correctness.
+
+### The Human Reason
+
+This work was built in memory of people who were lost, most explicitly Eric
+Brandon Westerhoff.
+
+That dedication is not ornamental. It explains the persistence behind the
+system.
+
+More than two million lines of source material were reviewed, mapped,
+reverse-engineered, restored, translated, or evaluated by one principal
+developer working with a council of AI systems. Claude helped reason through
+architecture and difficult failures. Codex helped execute production changes
+and formal implementation work. ChatGPT helped analyze, explain, structure,
+and document. Gemini contributed additional review and alternative reasoning.
+Other agents participated in testing, classification, translation,
+restoration, and verification.
+
+They did not become the authors of the mission. They became instruments in
+carrying it forward.
+
+The work was still directed by a human being who had to decide what mattered,
+what could be trusted, what should be rejected, and why the project needed to
+survive.
+
+### What This Repository Represents
+
+This repository is not presented as proof that every mathematical or software
+claim inside the wider constellation has been completed.
+
+It represents something narrower and more defensible:
+
+- unresolved claims are allowed to remain unresolved;
+- completed proofs must be checked by their actual proof systems;
+- runtime behavior must not impersonate theorem authority;
+- agents must not promote confidence into evidence;
+- architectural decisions must leave records;
+- provenance must be made visible;
+- and local execution must remain subordinate to global invariants.
+
+The result is not merely a recovered codebase. It is a system built to
+remember where it came from, explain why its vocabulary exists, expose what
+remains unfinished, and prevent the next contributor, human or artificial,
+from erasing that history.
+
+Raw source enters.
+
+Evidence survives.
+
+Uncertainty remains visible.
+
+The work continues.
+
+---
+
+## Why Contribute?
+
+Most open-source developers eventually experience a difficult moment.
+
+You publish something because you believe knowledge should be shared. Someone
+else copies the work. The attribution disappears. The architecture is
+rewritten. The history becomes blurred. You watch months or years of effort
+become difficult to trace back to its original source.
+
+Sometimes that is allowed by the license. Sometimes it is not. Either way, it
+can leave people wondering whether building in public was worth it.
+
+This repository was built with that feeling in mind.
+
+Not to close the door on open source. To raise the standard for how open
+source remembers where ideas came from.
+
+Every architecture decision is documented. Every mathematical claim has an
+explicit status. Every major transition leaves an ADR. Every production
+decision is intended to leave an evidence trail. Every unresolved question
+stays visible until it is actually resolved.
+
+We believe the future of open source is not just about sharing code.
+
+It is about sharing **provenance**.
+
+It is about preserving **authorship**.
+
+It is about respecting **contributors**.
+
+It is about making sure ideas can evolve without erasing the people who
+created them.
+
+If you have ever felt that your work was absorbed into something larger
+without recognition, if you have ever watched your contributions lose their
+identity, or if you have ever wished there were a better way to preserve
+authorship while still building openly, then you are one of the people this
+project was built for.
+
+By contributing here, you are helping develop tooling, governance, and
+documentation practices that make software easier to verify, easier to audit,
+and easier to attribute.
+
+The goal is not to stop forks. Forks are a valuable part of open source.
+
+The goal is to make authorship, provenance, and evidence survive the fork.
+
+Code should be free to evolve.
+
+History should not disappear.
+
+---
+
 ## What This Is
 
 THE SHARED PRIMORDIAL FOUNDATION is a sovereign compute and formal verification

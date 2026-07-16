@@ -198,45 +198,6 @@ a:focus-visible, button:focus-visible { outline: none; box-shadow: var(--focus-r
 .mint-hash b { color: var(--muted); }
 .mint-actions { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-4); }
 
-/* ── Story section ───────────────────────────────────────────────────────── */
-.story-section {
-  padding: var(--sp-6);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--panel);
-}
-.story-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--sp-4);
-}
-.story-card {
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  background: var(--bg-2);
-  padding: var(--sp-5);
-}
-.story-card-wide { grid-column: 1 / -1; }
-.story-card h3 {
-  margin: 0 0 var(--sp-3);
-  color: var(--amber);
-  font-size: 0.85rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.story-card p {
-  margin: 0 0 var(--sp-3);
-  color: var(--muted);
-  font-size: 0.84rem;
-  line-height: 1.65;
-}
-.story-card p:last-child { margin-bottom: 0; }
-.story-card code { color: var(--cyan); }
-.story-close {
-  color: var(--green) !important;
-  font-weight: 700;
-}
-
 /* ── Buttons ─────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-flex; align-items: center; gap: var(--sp-2);
@@ -506,7 +467,6 @@ input[type=number]:focus, input[type=text]:focus {
 @media (max-width: 900px) {
   .two-col   { grid-template-columns: 1fr; }
   .three-col { grid-template-columns: 1fr 1fr; }
-  .story-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .shell { width: calc(100vw - var(--sp-6)); }

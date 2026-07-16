@@ -213,7 +213,6 @@ for (const pattern of [
 const pagesHtml = readFileSync(join(root, 'docs/pages/index.html'), 'utf8')
 const pagesAscii = readFileSync(join(root, 'docs/pages/backend-ascii.txt'), 'utf8')
 for (const pattern of [
-  /Backend ASCII Glitch/i,
   /THE SHARED PRIMORDIAL FOUNDATION/,
   /WASM/i,
   /OPEN_CRUX/,
@@ -221,6 +220,18 @@ for (const pattern of [
 ]) {
   if (!pattern.test(pagesHtml)) fail(`Pages HTML missing marker: ${pattern}`)
   if (!pattern.test(pagesAscii)) fail(`Pages ASCII missing marker: ${pattern}`)
+}
+for (const pattern of [
+  /Before The Architecture/i,
+  /The Story Of This Repository/i,
+  /Why Contribute\?/i,
+  /Policy as geometry/i,
+  /WORM Chain/i
+]) {
+  if (!pattern.test(pagesHtml)) fail(`Pages HTML missing marker: ${pattern}`)
+}
+if (!/BACKEND ASCII GLITCH/i.test(pagesAscii)) {
+  fail('Pages ASCII missing backend ASCII glitch marker')
 }
 
 console.log('foundry connector check passed')
