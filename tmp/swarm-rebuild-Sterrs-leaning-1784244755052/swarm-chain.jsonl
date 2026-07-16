@@ -1,0 +1,8 @@
+{"seq":0,"event":"SWARM_START","ts":"2026-07-16T23:32:35.054Z","target":"Sterrs/leaning","dry_run":false}
+{"seq":1,"event":"SCOUT_COMPLETE","ts":"2026-07-16T23:32:36.475Z","files_fetched":5,"tree_size":102}
+{"seq":2,"event":"ANALYSIS_COMPLETE","ts":"2026-07-16T23:32:49.206Z","math_verdict":"EVIDENCE","proof_verdict":"EVIDENCE","arch_verdict":"EVIDENCE"}
+{"seq":3,"event":"CRITIQUE_COMPLETE","ts":"2026-07-16T23:33:00.824Z","verdict":"EVIDENCE"}
+{"seq":4,"event":"SYNTHESIS_COMPLETE","ts":"2026-07-16T23:33:16.952Z","verdict":"EVIDENCE"}
+{"seq":5,"event":"REBUILD_COMPLETE","ts":"2026-07-16T23:33:33.136Z","verdict":"EVIDENCE"}
+{"seq":6,"event":"REPORT_COMPLETE","ts":"2026-07-16T23:33:40.315Z","target":"Sterrs/leaning"}
+{"seq":7,"event":"SWARM_COMPLETE","ts":"2026-07-16T23:33:40.316Z","target":"Sterrs/leaning","stages":6,"files_out":["analysis-math.md","analysis-proof.md","analysis-arch.md","critique.md","rebuild-plan.md","rebuild-main.lean","PR-DESCRIPTION.md","swarm-chain.jsonl"],"worm_entries":7}
