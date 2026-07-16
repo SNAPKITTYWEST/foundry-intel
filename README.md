@@ -179,6 +179,14 @@ npm run build --workspace @veneer/wasm-frontend
 npm test --workspace @veneer/wasm-frontend
 ```
 
+Publication and language metrics:
+
+- `docs/pages/index.html` is the backend ASCII/glitch Pages root.
+- `docs/pages/wasm/index.html` is the Pages dock copied from the tracked WASM build.
+- `.gitattributes` marks generated Pages output, WASM host glue, and legacy `.mjs`
+  tooling so GitHub language metrics do not overstate JavaScript while the
+  Prolog/domain-native refactor continues.
+
 Dev server (serves `dist/` on `http://localhost:4242`):
 
 ```sh
