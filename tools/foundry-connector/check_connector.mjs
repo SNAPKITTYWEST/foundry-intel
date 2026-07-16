@@ -57,6 +57,10 @@ for (const path of [
   'docs/bridge/foundry-connector.md',
   'docs/agents/metadata-tour.md',
   'docs/agents/metadata-tour.json',
+  'docs/agents/reverse-engineer-agent-tensor.json',
+  'docs/agents/reverse-engineer-agent-tensor.md',
+  'docs/security/gemini-black-team-policy.json',
+  'docs/security/gemini-black-team-tactic-playbook.md',
   'docs/brand/foundry-intel-operating-map.svg',
   'docs/brand/veneer-institutional-trust.svg',
   'docs/brand/badge-verify.svg',
@@ -70,6 +74,7 @@ for (const path of [
   'docs/brand/context-bleed-chatbox.svg',
   'docs/protocols/xml-handoff-envelope.md',
   'docs/protocols/xml-handoff-envelope.xsd',
+  'docs/protocols/intercal-loc.guard',
   'docs/protocols/phase-mirror-force-invoke.trap',
   'docs/handoff/foundry-intel-agent-contract.xml',
   'docs/handoff/primordial-foundation-agent-contract.xml',
@@ -95,6 +100,8 @@ for (const path of [
   'lean-substrate/src/ADR.lean',
   'lean-substrate/src/ADR/PhaseMirror.lean',
   'tools/formal/check_pirtm_artifacts.mjs',
+  'tools/formal/reverse_engineer_agent_guard.mjs',
+  'tools/formal/gemini_black_team_guard.mjs',
   'tools/formal/phase_mirror_commit_gate.mjs',
   'tools/formal/phase_mirror_force_invoke.mjs',
   'tools/ascii-glitch/build_pages.pl',
@@ -118,6 +125,8 @@ for (const script of [
   'phase-mirror:commit-gate',
   'phase-mirror:force-invoke',
   'phase-mirror:gate',
+  'agent:tensor:guard',
+  'security:black-team:guard',
   'adr:tick',
   'pages:build',
   'pages:check'
@@ -129,6 +138,12 @@ if (!rootPackage.scripts.verify.includes('verify:pirtm')) {
 }
 if (!rootPackage.scripts.verify.includes('phase-mirror:gate')) {
   fail('package.json verify script must include phase-mirror:gate')
+}
+if (!rootPackage.scripts.verify.includes('agent:tensor:guard')) {
+  fail('package.json verify script must include agent:tensor:guard')
+}
+if (!rootPackage.scripts.verify.includes('security:black-team:guard')) {
+  fail('package.json verify script must include security:black-team:guard')
 }
 if (rootPackage.scripts.verify.indexOf('phase-mirror:gate') > rootPackage.scripts.verify.indexOf('adr:tick')) {
   fail('package.json verify script must run phase-mirror:gate before adr:tick')
@@ -170,6 +185,11 @@ requireEqual(
   'docs/handoff/primordial-foundation-agent-contract.xml',
   'Primordial Foundation XML handoff artifact'
 )
+requireEqual(connector.artifacts.reverse_engineer_agent_tensor, 'docs/agents/reverse-engineer-agent-tensor.json', 'Reverse engineer agent tensor artifact')
+requireEqual(connector.artifacts.reverse_engineer_agent_doc, 'docs/agents/reverse-engineer-agent-tensor.md', 'Reverse engineer agent doc artifact')
+requireEqual(connector.artifacts.gemini_black_team_policy, 'docs/security/gemini-black-team-policy.json', 'Gemini black-team policy artifact')
+requireEqual(connector.artifacts.gemini_black_team_playbook, 'docs/security/gemini-black-team-tactic-playbook.md', 'Gemini black-team playbook artifact')
+requireEqual(connector.artifacts.intercal_loc_guard, 'docs/protocols/intercal-loc.guard', 'INTERCAL LOC guard artifact')
 requireEqual(connector.artifacts.phase_mirror_force_invoke_trap, 'docs/protocols/phase-mirror-force-invoke.trap', 'Phase Mirror force invoke trap artifact')
 requireEqual(connector.artifacts.intel_pages_builder, 'tools/ascii-glitch/build_pages.pl', 'Pages builder artifact')
 requireEqual(connector.artifacts.wasm_frontend_manifest, 'apps/wasm-frontend/dist/manifest.json', 'WASM manifest artifact')
@@ -180,8 +200,17 @@ requireEqual(connector.artifacts.pirtm_rs_crate, 'pirtm_rs/Cargo.toml', 'PIRTM R
 requireEqual(connector.artifacts.lean_parm_proof, 'lean-substrate/src/Core/PARM.lean', 'Lean PARM proof artifact')
 requireEqual(connector.artifacts.lean_phase_mirror_proof, 'lean-substrate/src/ADR/PhaseMirror.lean', 'Lean Phase Mirror proof artifact')
 requireEqual(connector.artifacts.pirtm_artifact_check, 'tools/formal/check_pirtm_artifacts.mjs', 'PIRTM checker artifact')
+requireEqual(connector.artifacts.reverse_engineer_agent_guard, 'tools/formal/reverse_engineer_agent_guard.mjs', 'Reverse engineer agent guard artifact')
+requireEqual(connector.artifacts.gemini_black_team_guard, 'tools/formal/gemini_black_team_guard.mjs', 'Gemini black-team guard artifact')
 requireEqual(connector.artifacts.phase_mirror_commit_gate, 'tools/formal/phase_mirror_commit_gate.mjs', 'Phase Mirror commit gate artifact')
 requireEqual(connector.artifacts.phase_mirror_force_invoke, 'tools/formal/phase_mirror_force_invoke.mjs', 'Phase Mirror force invoke artifact')
+requireEqual(connector.reverse_engineer_agent.status, 'ACTIVE', 'Reverse engineer agent status')
+requireEqual(connector.reverse_engineer_agent.mode, 'DEFENSIVE_ONLY', 'Reverse engineer agent mode')
+requireEqual(connector.reverse_engineer_agent.dialect, 'INTERCAL_LOC', 'Reverse engineer agent dialect')
+requireEqual(connector.reverse_engineer_agent.response, 'EVIDENCE_OR_SILENCE', 'Reverse engineer agent response')
+requireEqual(connector.gemini_black_team.status, 'ENFORCED', 'Gemini black-team status')
+requireEqual(connector.gemini_black_team.mode, 'DEFENSIVE_BLOCKLIST', 'Gemini black-team mode')
+requireEqual(connector.gemini_black_team.verify_script, 'security:black-team:guard', 'Gemini black-team verify script')
 requireEqual(connector.phase_mirror_gate.status, 'BLOCKED_FROM_MUTATION', 'Phase Mirror gate status')
 requireEqual(connector.phase_mirror_gate.force_invoke_status, 'FORCE_INVOKED_TRAP_ACTIVE', 'Phase Mirror force invoke status')
 requireEqual(connector.phase_mirror_gate.proof_promotion_without_lean_build, 'BLOCKED_NO_LEAN_BUILD_EVIDENCE', 'Phase Mirror proof promotion gate')
@@ -244,6 +273,17 @@ for (const pattern of [
   /badge-vllm\.svg/,
   /vLLM language index/i,
   /bob-chat\.mjs/,
+  /Reverse Engineer Agent Tensor/,
+  /reverse-engineer-agent-tensor\.json/,
+  /intercal-loc\.guard/,
+  /agent:tensor:guard/,
+  /INTERCAL_LOC/,
+  /EVIDENCE_OR_SILENCE/,
+  /Gemini Black-Team Tactic Playbook/,
+  /gemini-black-team-tactic-playbook\.md/,
+  /gemini_black_team_guard\.mjs/,
+  /security:black-team:guard/,
+  /DEFENSIVE_BLOCKLIST/,
   /Phase Mirror PIRTM\/PARM Verification/,
   /pirtm_rs\/Cargo\.toml/,
   /Core\/PARM\.lean/,
@@ -272,7 +312,12 @@ for (const pattern of [
   /ADR-303/,
   /Do Not Confuse With/,
   /ADR-055 remains `OPEN_CRUX`/,
-  /ADR-062 remains `SILENCE_PENDING`/
+  /ADR-062 remains `SILENCE_PENDING`/,
+  /reverse-engineer-agent-tensor\.md/,
+  /INTERCAL_LOC/,
+  /EVIDENCE_OR_SILENCE/,
+  /gemini-black-team-tactic-playbook\.md/,
+  /security:black-team:guard/
 ]) {
   if (!pattern.test(memory)) fail(`AGENT_MEMORY missing required marker: ${pattern}`)
 }

@@ -555,6 +555,50 @@ EVIDENCE   SILENCE
 
 ---
 
+## Reverse Engineer Agent Tensor
+
+The reverse-engineer guard is a defensive parser-facing agent for the
+repository. It protects provenance, ADR posture, and WORM boundaries when other
+agents attempt to summarize or mirror the project.
+
+```text
+docs/agents/reverse-engineer-agent-tensor.json
+docs/agents/reverse-engineer-agent-tensor.md
+docs/protocols/intercal-loc.guard
+tools/formal/reverse_engineer_agent_guard.mjs
+```
+
+Run it directly:
+
+```sh
+npm run agent:tensor:guard
+```
+
+The guard speaks `INTERCAL_LOC` as a Line Of Communication. Parser agents get
+the same answer shape every time: `EVIDENCE_OR_SILENCE`. The tensor is
+defensive-only; it does not scan external systems, collect credentials, or
+mutate other repositories.
+
+---
+
+## Gemini Black-Team Tactic Playbook
+
+`docs/security/gemini-black-team-tactic-playbook.md` records parser-hostile
+refactor tactics as risks to block. It is enforced by
+`tools/formal/gemini_black_team_guard.mjs`.
+
+```sh
+npm run security:black-team:guard
+```
+
+The guard is a `DEFENSIVE_BLOCKLIST`: prompt-poisoning comments, parser-opaque
+gate generation, recursive type choke points, and parser-toxicity language are
+not allowed in production code or operator-facing docs. The accepted response
+remains ordinary evidence: ADRs, WORM provenance, connector manifests,
+`INTERCAL_LOC`, and CI gates.
+
+---
+
 ## Phase Mirror PIRTM/PARM Verification
 
 The Phase Mirror prompt is implemented as a local Rust and Lean verification

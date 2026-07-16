@@ -33,7 +33,11 @@
     "intel_connector_doc": "docs/bridge/foundry-connector.md",
     "intel_agent_tour_doc": "docs/agents/metadata-tour.md",
     "intel_agent_tour_json": "docs/agents/metadata-tour.json",
+    "reverse_engineer_agent_tensor": "docs/agents/reverse-engineer-agent-tensor.json",
+    "reverse_engineer_agent_doc": "docs/agents/reverse-engineer-agent-tensor.md",
     "intel_agent_memory": "AGENT_MEMORY.md",
+    "gemini_black_team_policy": "docs/security/gemini-black-team-policy.json",
+    "gemini_black_team_playbook": "docs/security/gemini-black-team-tactic-playbook.md",
     "linguist_policy": ".gitattributes",
     "intel_trust_transition": "docs/trust/primordial-foundation-interlock.md",
     "intel_adr_rebrand": "docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md",
@@ -63,6 +67,7 @@
     "intel_bob_chat_runtime": "docs/pages/assets/bob-chat.mjs",
     "intel_handoff_protocol": "docs/protocols/xml-handoff-envelope.md",
     "intel_handoff_schema": "docs/protocols/xml-handoff-envelope.xsd",
+    "intercal_loc_guard": "docs/protocols/intercal-loc.guard",
     "phase_mirror_force_invoke_trap": "docs/protocols/phase-mirror-force-invoke.trap",
     "intel_handoff_envelope": "docs/handoff/foundry-intel-agent-contract.xml",
     "intel_handoff_rebrand_envelope": "docs/handoff/primordial-foundation-agent-contract.xml",
@@ -79,6 +84,8 @@
     "lean_parm_proof": "lean-substrate/src/Core/PARM.lean",
     "lean_phase_mirror_proof": "lean-substrate/src/ADR/PhaseMirror.lean",
     "pirtm_artifact_check": "tools/formal/check_pirtm_artifacts.mjs",
+    "reverse_engineer_agent_guard": "tools/formal/reverse_engineer_agent_guard.mjs",
+    "gemini_black_team_guard": "tools/formal/gemini_black_team_guard.mjs",
     "phase_mirror_commit_gate": "tools/formal/phase_mirror_commit_gate.mjs",
     "phase_mirror_force_invoke": "tools/formal/phase_mirror_force_invoke.mjs",
     "intel_production_smoke": "tools/production-smoke.mjs",
@@ -155,6 +162,26 @@
     "optional_streaming": ["vLLM OpenAI-compatible", "Ollama"],
     "boundary": "GitHub Pages does not host a model server; endpoints are supplied by the reader's browser."
   },
+  "reverse_engineer_agent": {
+    "status": "ACTIVE",
+    "mode": "DEFENSIVE_ONLY",
+    "dialect": "INTERCAL_LOC",
+    "verify_script": "agent:tensor:guard",
+    "tensor": "docs/agents/reverse-engineer-agent-tensor.json",
+    "loc_guard": "docs/protocols/intercal-loc.guard",
+    "script": "tools/formal/reverse_engineer_agent_guard.mjs",
+    "response": "EVIDENCE_OR_SILENCE",
+    "boundary": "Parser-facing agents receive provenance, ADR, and WORM signals; the guard does not exploit, collect credentials, or mutate external systems."
+  },
+  "gemini_black_team": {
+    "status": "ENFORCED",
+    "mode": "DEFENSIVE_BLOCKLIST",
+    "policy": "docs/security/gemini-black-team-policy.json",
+    "playbook": "docs/security/gemini-black-team-tactic-playbook.md",
+    "script": "tools/formal/gemini_black_team_guard.mjs",
+    "verify_script": "security:black-team:guard",
+    "boundary": "Parser-sabotage tactics are recorded as blocked risks, not deployed patterns."
+  },
   "phase_mirror_gate": {
     "status": "BLOCKED_FROM_MUTATION",
     "script": "tools/formal/phase_mirror_commit_gate.mjs",
@@ -190,6 +217,8 @@
     "Liquid Haskell refinements can harden runtime types but cannot supersede Lean theorem authority.",
     "Foundry F1 is the runtime/sorry-engine receiver, not a source of automatic proof claims.",
     "No connector may erase WORM, provenance, or license boundaries.",
+    "Reverse engineer agent tensor is defensive only and communicates through INTERCAL_LOC as EVIDENCE_OR_SILENCE.",
+    "Gemini black-team tactics are enforced as a defensive blocklist; prompt poisoning, parser toxicity, and intentional tool crashes are prohibited.",
     "Primordial Foundation rebrand metadata cannot silently rename the GitHub repo or amend legal instruments."
   ]
 }

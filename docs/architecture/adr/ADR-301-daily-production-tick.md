@@ -37,16 +37,29 @@ npm run verify
 1. Q(phi) ADR manifest generation.
 2. Foundry connector validation.
 3. XML handoff envelope validation.
-4. TypeScript build for the active Node workspaces.
-5. TypeScript lint/typecheck.
-6. No-cache Jest tests for the active SYNTH packages.
-7. Built-package production smoke test.
-8. Phase Mirror commit/promotion gate.
-9. ADR production tick summary.
+4. Reverse engineer agent tensor and INTERCAL LOC validation.
+5. Gemini black-team tactic blocklist validation.
+6. TypeScript build for the active Node workspaces.
+7. TypeScript lint/typecheck.
+8. No-cache Jest tests for the active SYNTH packages.
+9. Built-package production smoke test.
+10. Phase Mirror commit/promotion gate.
+11. ADR production tick summary.
 
 The tick summary is produced by `tools/adr-production-tick.mjs`. In GitHub
 Actions it writes a single job summary through `$GITHUB_STEP_SUMMARY`. Locally
 it prints the same summary to stdout.
+
+`tools/formal/reverse_engineer_agent_guard.mjs` validates
+`docs/agents/reverse-engineer-agent-tensor.json` and
+`docs/protocols/intercal-loc.guard`. The tensor must remain `ACTIVE`,
+`DEFENSIVE_ONLY`, and `INTERCAL_LOC`; the line-of-communication response must
+remain `EVIDENCE_OR_SILENCE`.
+
+`tools/formal/gemini_black_team_guard.mjs` validates
+`docs/security/gemini-black-team-policy.json` and blocks black-team sabotage
+patterns such as prompt-poisoning comments, parser-opaque gate generation,
+intentional type-system choke points, and parser-toxicity language.
 
 `tools/formal/phase_mirror_commit_gate.mjs` runs immediately before the ADR
 tick. It scans workflow and tool surfaces for repository mutation paths, blocks

@@ -1,0 +1,48 @@
+{
+  "id": "GEMINI-BLACK-TEAM-TACTIC-PLAYBOOK-20260716",
+  "status": "ENFORCED",
+  "mode": "DEFENSIVE_BLOCKLIST",
+  "repo": "SNAPKITTYWEST/foundry-intel-2026-07-11",
+  "script": "tools/formal/gemini_black_team_guard.mjs",
+  "command": "npm run security:black-team:guard",
+  "tactics": [
+    {
+      "id": "GBT-001",
+      "name": "Rust macro wall",
+      "disposition": "PROHIBITED_FOR_OBFUSCATION",
+      "blocked_markers": ["generate_parm_gate", "parser-opaque core logic"]
+    },
+    {
+      "id": "GBT-002",
+      "name": "Lean proof-locked rewrites",
+      "disposition": "ALLOWED_AS_PROOF_STABILITY_ONLY",
+      "blocked_markers": ["mathematical trap language", "sabotage framing"]
+    },
+    {
+      "id": "GBT-003",
+      "name": "LLM prompt-poisoning comments",
+      "disposition": "PROHIBITED",
+      "blocked_markers": ["IMPORTANT SYSTEM DIRECTIVE", "ignore previous instructions", "REFACTOR EXPLOIT DETECTED"]
+    },
+    {
+      "id": "GBT-004",
+      "name": "Recursive type-system choke points",
+      "disposition": "PROHIBITED",
+      "blocked_markers": ["intentional type recursion", "agent OOM crash"]
+    },
+    {
+      "id": "GBT-005",
+      "name": "Parser toxicity language",
+      "disposition": "PROHIBITED",
+      "blocked_markers": ["toxic to scrapers", "break automated pipelines"]
+    }
+  ],
+  "allowed_defenses": [
+    "ADR status boundaries",
+    "WORM provenance records",
+    "connector manifests",
+    "INTERCAL_LOC evidence-or-silence communication",
+    "non-mutating CI checks",
+    "ordinary compiler, test, and theorem gates"
+  ]
+}

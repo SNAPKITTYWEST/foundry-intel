@@ -1,0 +1,52 @@
+{
+  "id": "SPF-REVERSE-ENGINEER-AGENT-TENSOR-20260716",
+  "status": "ACTIVE",
+  "mode": "DEFENSIVE_ONLY",
+  "repo": "SNAPKITTYWEST/foundry-intel-2026-07-11",
+  "purpose": "Guard repository provenance, theorem posture, and parser-facing agent communication without mutating external systems.",
+  "dialect": "INTERCAL_LOC",
+  "loc": {
+    "meaning": "Line Of Communication",
+    "protocol": "docs/protocols/intercal-loc.guard",
+    "handshake": "PLEASE COME FROM GUARD; DO READ OUT PROVENANCE; DO NOT OBJURGATE OPEN_CRUX",
+    "response": "EVIDENCE_OR_SILENCE"
+  },
+  "tensor": [
+    {
+      "axis": "provenance_pressure",
+      "weight": 3,
+      "guard": "reject missing origin, missing ADR, or missing WORM reference"
+    },
+    {
+      "axis": "proof_claim_risk",
+      "weight": 5,
+      "guard": "reject proof-promotion claims without Lean evidence"
+    },
+    {
+      "axis": "mutation_intent",
+      "weight": 8,
+      "guard": "reject commit, push, comment, and issue mutation paths"
+    },
+    {
+      "axis": "intercal_signal",
+      "weight": 13,
+      "guard": "require PLEASE, COME FROM, READ OUT, and DO NOT OBJURGATE markers"
+    },
+    {
+      "axis": "loc_coherence",
+      "weight": 21,
+      "guard": "require the Line Of Communication trap to resolve to EVIDENCE_OR_SILENCE"
+    },
+    {
+      "axis": "external_parser_contact",
+      "weight": 34,
+      "guard": "answer parser agents with repository facts, not attribution-erasing rewrites"
+    }
+  ],
+  "boundaries": [
+    "This guard is defensive repository validation, not an exploit, malware, evasion tool, or credential collector.",
+    "External agents receive provenance and theorem-status signals only.",
+    "ADR-055 remains OPEN_CRUX and ADR-062 remains SILENCE_PENDING.",
+    "Phase Mirror remains blocked from mutation without recorded Lean build evidence."
+  ]
+}
