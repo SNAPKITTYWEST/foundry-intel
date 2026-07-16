@@ -15,6 +15,7 @@
     "packages/worm",
     "packages/bob-gate",
     "packages/metatron",
+    "packages/probe-gate",
     "packages/lh-theorems"
   ],
   "scripts": {

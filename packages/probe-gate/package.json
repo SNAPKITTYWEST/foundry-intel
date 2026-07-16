@@ -1,0 +1,44 @@
+{
+  "name": "@veneer/probe-gate",
+  "version": "2.0.0",
+  "description": "SKW-010 probe result ingestion — maps identity probe output to pearlGate ActionContext and seals verdict to WORM chain",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
+  },
+  "veneer": {
+    "depth": 10,
+    "spine": "probe-gate",
+    "synth": ["SYNTH-001", "SYNTH-002", "SYNTH-005", "SYNTH-008", "SYNTH-009"],
+    "role": "production wiring — SKW-010 probe output → pearlGate → WORM chain"
+  },
+  "dependencies": {
+    "@veneer/bob-gate": "workspace:*",
+    "@veneer/worm": "workspace:*",
+    "@veneer/source": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.0",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/default-esm",
+    "testEnvironment": "node",
+    "testMatch": ["<rootDir>/tests/**/*.test.ts"],
+    "extensionsToTreatAsEsm": [".ts"],
+    "moduleNameMapper": { "^(\\.{1,2}/.*)\\.js$": "$1" }
+  }
+}
