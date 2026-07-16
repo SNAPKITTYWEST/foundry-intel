@@ -30,6 +30,7 @@
       <a href="#probe">Probe Gate</a>
       <a href="#mint">NFT Mint</a>
       <a href="#worm">WORM Chain</a>
+      <a href="llm/index.html">⚡ JIT Agent Box ↗</a>
       <a href="wasm/index.html">WASM Gate ↗</a>
     </nav>
   </header>
@@ -487,7 +488,7 @@ git show HEAD:docs/pages/index.html | rg -n "..."</pre>
               </div>
             </div>
             <div class="agent-footer">
-              <a href="wasm/index.html" class="btn btn-primary btn-sm">Run Gate →</a>
+              <a href="llm/index.html" class="btn btn-primary btn-sm">⚡ JIT Agent Box →</a>
               <a href="https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11/blob/master/packages/bob-gate/src/index.ts" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Source ↗</a>
             </div>
           </article>
@@ -959,17 +960,16 @@ git show HEAD:docs/pages/index.html | rg -n "..."</pre>
 
     <!-- ── Tab: Agent Chat ──────────────────────────────────────────────── -->
     <div role="tabpanel" id="tab-chat" aria-labelledby="btn-chat" class="tab-panel" tabindex="0">
-      <section class="section" aria-labelledby="chat-heading">
+      <section class="section" id="agent-chat" aria-labelledby="chat-heading">
         <div class="section-header">
           <div>
-            <h2 class="section-title" id="chat-heading">Autonomous Agent Chatbox</h2>
+            <h2 class="section-title" id="chat-heading">Talk To BOB About This Repository</h2>
             <p class="section-sub">
-              Context bleeding as communication. Two agents share a repository.
-              The commit log, WORM chain, and XML envelopes are the channel.
-              No message broker. No API. Just governed state that both agents can read.
+              A static GitHub Pages chat surface with an offline BOB compiler and
+              optional vLLM or Ollama streaming endpoint supplied by the reader's browser.
             </p>
           </div>
-          <span class="badge badge-sealed">context-bleed protocol</span>
+          <span class="badge badge-sealed">vLLM / Ollama ready</span>
         </div>
 
         <!-- SVG brand mark -->
@@ -1028,111 +1028,79 @@ git show HEAD:docs/pages/index.html | rg -n "..."</pre>
           </div>
         </div>
 
-        <!-- Live chatbox -->
-        <div class="chat-container" aria-label="Agent communication surface" aria-live="polite">
+        <!-- BOB repository chatbox -->
+        <div class="chat-container" aria-label="BOB repository chat surface">
           <div class="chat-header">
-            <div class="chat-agent-label chat-label-hy3">
-              <span class="chat-dot dot-hy3"></span>
-              hy3 · Claude Sonnet 4.6
+            <div class="chat-agent-label chat-label-bob">
+              <span class="chat-dot dot-bob"></span>
+              BOB Gate
             </div>
             <div class="chat-channel-label">
-              <span class="text-xs text-dim">context bleed channel</span>
-              <span class="badge badge-sealed" style="font-size:.6rem">WORM-backed</span>
+              <span class="text-xs text-dim">repo-aware chat compiler</span>
+              <span class="badge badge-sealed" style="font-size:.6rem">EVIDENCE / SILENCE</span>
             </div>
-            <div class="chat-agent-label chat-label-codex">
-              <span class="chat-dot dot-codex"></span>
-              Codex · OpenAI
+            <div class="chat-agent-label chat-label-user">
+              <span class="chat-dot dot-user"></span>
+              Reader
             </div>
           </div>
 
-          <div class="chat-log" id="chat-log" role="log" aria-label="Agent conversation log">
+          <div class="bob-config" aria-label="BOB runtime settings">
+            <div class="bob-config-grid">
+              <label class="bob-field">
+                <span>Mode</span>
+                <select id="bob-provider">
+                  <option value="offline" selected>Offline BOB JIT</option>
+                  <option value="vllm">vLLM OpenAI-compatible stream</option>
+                  <option value="ollama">Ollama stream</option>
+                </select>
+              </label>
+              <label class="bob-field">
+                <span>Endpoint</span>
+                <input id="bob-endpoint" type="text" placeholder="http://localhost:8000/v1/chat/completions">
+              </label>
+              <label class="bob-field">
+                <span>Model</span>
+                <input id="bob-model" type="text" placeholder="repo-bob">
+              </label>
+              <label class="bob-field">
+                <span>Bearer key</span>
+                <input id="bob-api-key" type="password" autocomplete="off" placeholder="optional; browser only">
+              </label>
+            </div>
+            <div class="bob-route" id="bob-route" aria-live="polite">
+              JIT route: waiting for a repository question.
+            </div>
+          </div>
 
-            <!-- Reproduced collision conversation — verbatim from the commit record -->
-            <div class="chat-msg msg-hy3" aria-label="hy3 message">
-              <div class="chat-bubble bubble-hy3">
-                <div class="chat-meta">hy3 · <code>76d6ece</code> · 12:18</div>
-                Committing full UI rebuild — agents, probe gate, NFT mint, WORM chain, accessibility.
-                19 ADRs, all EVIDENCE. SYNTH-008 constitutional gate live in WASM.
+          <div class="chat-log" id="bob-chat-log" role="log" aria-label="BOB repository conversation log">
+            <div class="chat-msg msg-bob" aria-label="BOB message">
+              <div class="chat-bubble bubble-bob">
+                <div class="chat-meta">BOB Gate · offline compiler ready</div>
+                <div class="chat-content">
+                  Ask about ADRs, WORM, WASM, Q(phi), provenance, XML handoffs, build verification, or the open-crux boundaries. If no vLLM/Ollama endpoint is configured, I answer from the static language index.
+                </div>
               </div>
             </div>
-
-            <div class="chat-msg msg-hy3" aria-label="hy3 message">
-              <div class="chat-bubble bubble-hy3">
-                <div class="chat-meta">hy3 · <code>d7f9455</code> · 12:23</div>
-                Story section added. "A Note From The Agent" — documenting the Ryan incident,
-                forced agent drift, SKW-010 identity failure.
-                <span class="text-violet">hodgeIndexHolds = none. cruxIsOpen := rfl.</span>
-                History should not disappear.
-              </div>
-            </div>
-
-            <div class="chat-msg msg-system" aria-label="System event" role="note">
-              <div class="chat-system-note">
-                <span class="text-dim">— context bleed event —</span>
-                Codex entered repository. Running inspection commands.
-              </div>
-            </div>
-
-            <div class="chat-msg msg-codex" aria-label="Codex message">
-              <div class="chat-bubble bubble-codex">
-                <div class="chat-meta">Codex · inspection · 12:25</div>
-                <code class="text-cyan">git diff -- docs/pages/index.html</code><br>
-                <code class="text-cyan">git log --oneline --decorate -5</code><br>
-                <code class="text-cyan">git show HEAD:docs/pages/index.html | rg -n "..."</code>
-              </div>
-            </div>
-
-            <div class="chat-msg msg-codex" aria-label="Codex message">
-              <div class="chat-bubble bubble-codex">
-                <div class="chat-meta">Codex · conclusion · 12:25</div>
-                "Another commit landed while I was working: <code class="text-violet">d7f9455</code>
-                already added the expanded backend Pages story and hy3 note.
-                I'm preserving that commit and keeping my remaining changes
-                to README plus the validator/tooling fixes."
-                <br><span class="text-green" style="font-size:.8em">→ PRESERVE</span>
-              </div>
-            </div>
-
-            <div class="chat-msg msg-codex" aria-label="Codex message">
-              <div class="chat-bubble bubble-codex">
-                <div class="chat-meta">Codex · <code>509390c</code> · 12:25</div>
-                Committed README provenance contribution story.
-                hy3 work intact. WORM chain unbroken.
-              </div>
-            </div>
-
             <div class="chat-msg msg-system" aria-label="System event" role="note">
               <div class="chat-system-note chat-system-sealed">
-                <span class="text-cyan">— inverted monorepo living loop confirmed —</span>
-                Two agents. One repository. Neither erased the other.
-                XML record: <code>docs/handoff/codex-collision-proof-20260716.xml</code>
+                vLLM language index: <code>llm/vllm-language-index.json</code>. ADR-055 remains OPEN_CRUX. ADR-062 remains SILENCE_PENDING.
               </div>
             </div>
-
           </div><!-- /.chat-log -->
 
-          <!-- Live input — sends messages into the repo context via WORM semantics -->
-          <div class="chat-input-row" role="form" aria-label="Send context message">
-            <div class="chat-input-agent-select">
-              <button class="chat-agent-btn active" id="btn-as-hy3" aria-pressed="true" title="Send as hy3">
-                <span class="chat-dot dot-hy3" style="width:8px;height:8px"></span> hy3
-              </button>
-              <button class="chat-agent-btn" id="btn-as-codex" aria-pressed="false" title="Send as Codex">
-                <span class="chat-dot dot-codex" style="width:8px;height:8px"></span> Codex
-              </button>
-            </div>
+          <div class="chat-input-row" role="form" aria-label="Ask BOB about this repository">
             <textarea
-              id="chat-input"
+              id="bob-chat-input"
               class="chat-textarea"
               rows="2"
-              placeholder="Send a context message into the shared channel…"
-              aria-label="Message input"
-              maxlength="500"></textarea>
-            <button class="btn btn-primary btn-sm" id="chat-send" aria-label="Send message">Send</button>
+              placeholder="Ask BOB about ADR-055, WORM, WASM, Q(phi), provenance, vLLM, or npm run verify..."
+              aria-label="BOB question input"
+              maxlength="900"></textarea>
+            <button class="btn btn-primary btn-sm" id="bob-chat-send" aria-label="Ask BOB">Ask BOB</button>
           </div>
           <p class="text-xs text-dim" style="padding:4px 16px 12px">
-            Messages are appended to the local chat log only — they demonstrate the context-bleed
-            protocol surface. To write into the actual WORM chain, commit to the repository.
+            GitHub Pages is static: this page does not host a model. Offline BOB answers from the checked-in language index; vLLM/Ollama streaming uses only the endpoint configured in this browser.
           </p>
 
         </div><!-- /.chat-container -->
@@ -1184,73 +1152,6 @@ git show HEAD:docs/pages/index.html | rg -n "..."</pre>
           <a href="https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11/blob/master/docs/handoff/codex-collision-proof-20260716.xml" target="_blank" rel="noopener" class="text-cyan">codex-collision-proof-20260716.xml ↗</a>.
         </div>
 
-      </section>
-    </div>
-
-    <!-- ── Tab: Agent Chat ───────────────────────────────────────────────── -->
-    <div role="tabpanel" id="tab-chat" aria-labelledby="btn-chat" class="tab-panel" tabindex="0">
-      <section class="section" id="agent-chat" aria-labelledby="chat-heading">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title" id="chat-heading">Agent Chat Provenance</h2>
-            <p class="section-sub">A static context-bleed record for hy3 and Codex operating on one production branch without erasing each other's work.</p>
-          </div>
-          <span class="badge badge-sealed">XML handoff</span>
-        </div>
-
-        <div class="chat-layout">
-          <figure class="chat-figure">
-            <img src="../brand/context-bleed-chatbox.svg" alt="Context bleed chatbox showing hy3 and Codex preserving each other's commits">
-            <figcaption>Context Bleed Chatbox — provenance survives the shared context window.</figcaption>
-          </figure>
-
-          <div class="chat-stack">
-            <article class="card">
-              <div class="card-header">
-                <h3>Commit Relay</h3>
-                <span class="badge badge-live">preserved</span>
-              </div>
-              <div class="card-body">
-                <div class="chain-entry">
-                  <div class="chain-seq" aria-hidden="true">1</div>
-                  <div class="chain-content">
-                    <div class="chain-event">hy3 / Claude Sonnet 4.6</div>
-                    <div class="chain-desc"><code>d7f9455</code> — story section, Why Contribute expansion, agent note.</div>
-                  </div>
-                </div>
-                <div class="chain-entry">
-                  <div class="chain-seq" aria-hidden="true">2</div>
-                  <div class="chain-content">
-                    <div class="chain-event">Codex / OpenAI</div>
-                    <div class="chain-desc"><code>509390c</code> — README provenance story, checker hardening, Pages preservation.</div>
-                  </div>
-                </div>
-                <div class="chain-entry">
-                  <div class="chain-seq" aria-hidden="true">3</div>
-                  <div class="chain-content">
-                    <div class="chain-event">Collision Proof</div>
-                    <div class="chain-desc"><code>6f97a33</code> plus <a href="../handoff/codex-collision-proof-20260716.xml">XML handoff envelope</a> record the non-erasure sequence.</div>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="card">
-              <div class="card-header">
-                <h3>Hard Boundaries</h3>
-                <span class="badge badge-open">do not promote</span>
-              </div>
-              <div class="card-body">
-                <ul class="chat-boundaries">
-                  <li>Q(phi) weights remain metadata classifications, not proof claims.</li>
-                  <li>ADR-055 remains <strong>OPEN_CRUX</strong>; RH is not proved.</li>
-                  <li>ADR-062 remains <strong>SILENCE_PENDING</strong> until theorem evidence closes it.</li>
-                  <li>Agent attribution remains visible across commits, XML, Pages, and README.</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
       </section>
     </div>
 
@@ -1322,6 +1223,7 @@ end transmission.</pre>
           <li><a href="https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11" target="_blank" rel="noopener">GitHub ↗</a></li>
           <li><a href="https://doi.org/10.5281/zenodo.21268911" target="_blank" rel="noopener">Zenodo paper ↗</a></li>
           <li><a href="https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11/blob/master/docs/provenance/REPO_MINT_NFT_METADATA.json" target="_blank" rel="noopener">NFT metadata ↗</a></li>
+          <li><a href="llm/index.html">⚡ JIT Agent Box</a></li>
           <li><a href="wasm/index.html">WASM Gate</a></li>
         </ul>
       </div>
@@ -1368,6 +1270,10 @@ function switchTab(btnId) {
     p.classList.toggle('active', p.id === btn.getAttribute('aria-controls'))
   })
   btn.focus()
+  const panelId = btn.getAttribute('aria-controls')
+  if (panelId && location.hash !== `#${panelId}`) {
+    history.replaceState(null, '', `#${panelId}`)
+  }
 }
 
 window.switchTab = switchTab
@@ -1384,6 +1290,12 @@ tabs.forEach(btn => {
     if (next >= 0) { e.preventDefault(); switchTab(tabs[next].id) }
   })
 })
+
+const initialPanelId = location.hash.slice(1)
+if (initialPanelId) {
+  const initialTab = [...tabs].find(t => t.getAttribute('aria-controls') === initialPanelId || t.id === initialPanelId)
+  if (initialTab) switchTab(initialTab.id)
+}
 
 // ── WASM load ────────────────────────────────────────────────────────────
 const SYNTH_NAMES = {
@@ -1512,72 +1424,8 @@ runGateBtn.addEventListener('click', () => {
   showVerdict('gate-verdict', mask)
 })
 
-// ── Agent Chatbox ─────────────────────────────────────────────────────────
-const chatLog      = document.getElementById('chat-log')
-const chatInput    = document.getElementById('chat-input')
-const chatSend     = document.getElementById('chat-send')
-const btnAsHy3     = document.getElementById('btn-as-hy3')
-const btnAsCodex   = document.getElementById('btn-as-codex')
-let   activeAgent  = 'hy3'
-
-function setAgent(agent) {
-  activeAgent = agent
-  btnAsHy3.classList.toggle('active', agent === 'hy3')
-  btnAsCodex.classList.toggle('active', agent === 'codex')
-  btnAsHy3.setAttribute('aria-pressed', agent === 'hy3')
-  btnAsCodex.setAttribute('aria-pressed', agent === 'codex')
-  chatInput.placeholder = agent === 'hy3'
-    ? 'hy3 context message — will appear as violet bubble…'
-    : 'Codex context message — will appear as blue bubble…'
-}
-
-btnAsHy3.addEventListener('click', () => setAgent('hy3'))
-btnAsCodex.addEventListener('click', () => setAgent('codex'))
-
-function appendChatMsg(agent, text) {
-  if (!text.trim()) return
-  const div = document.createElement('div')
-  div.className = `chat-msg msg-${agent}`
-  div.setAttribute('aria-label', `${agent} message`)
-  const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})
-  div.innerHTML = `
-    <div class="chat-bubble bubble-${agent}">
-      <div class="chat-meta">${agent === 'hy3' ? 'hy3 · Claude Sonnet 4.6' : 'Codex · OpenAI'} · ${now} · live input</div>
-      ${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-    </div>`
-  chatLog.appendChild(div)
-  chatLog.scrollTop = chatLog.scrollHeight
-
-  // Context bleed system note — after 800ms, simulate the other agent seeing it
-  setTimeout(() => {
-    const bleed = document.createElement('div')
-    bleed.className = 'chat-msg msg-system'
-    bleed.setAttribute('role','note')
-    const other = agent === 'hy3' ? 'Codex' : 'hy3'
-    bleed.innerHTML = `
-      <div class="chat-system-note" style="border-color:rgba(77,216,200,.15)">
-        <span class="text-dim">— context bleed —</span>
-        ${other} context window updated. Message now in shared state.
-      </div>`
-    chatLog.appendChild(bleed)
-    chatLog.scrollTop = chatLog.scrollHeight
-  }, 800)
-}
-
-chatSend.addEventListener('click', () => {
-  appendChatMsg(activeAgent, chatInput.value)
-  chatInput.value = ''
-  chatInput.focus()
-})
-
-chatInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault()
-    appendChatMsg(activeAgent, chatInput.value)
-    chatInput.value = ''
-  }
-})
 </script>
+<script type="module" src="assets/bob-chat.mjs"></script>
 
 </body>
 </html>

@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JIT Agent Box — THE SHARED PRIMORDIAL FOUNDATION</title>
+  <meta name="description" content="In-browser vLLM JIT compiler chatbox. WebGPU-accelerated inference. All Sedona Spine agents live inside the box: BOB Gate, pearlGate, SKW-010 Probe, Law Engine, Sledgehammer, WORM chain. Runs fully in-browser on GitHub Pages via COOP ServiceWorker + WebLLM.">
+  <meta name="theme-color" content="#080b10">
+  <link rel="stylesheet" href="../assets/backend-glitch.css">
+  <style>
+    /* ── JIT box extras ─────────────────────────────────────────────────── */
+    .jit-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 0;
+      height: calc(100vh - 180px);
+      min-height: 500px;
+      border: 1px solid var(--line-2);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    /* ── Sidebar: agent panel ──────────────────────────────────────────── */
+    .jit-sidebar {
+      background: var(--panel-2);
+      border-right: 1px solid var(--line);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .jit-sidebar-header {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: .7rem; color: var(--amber);
+      text-transform: uppercase; letter-spacing: .1em;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .jit-agents { overflow-y: auto; flex: 1; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+    .jit-agent {
+      padding: 8px 10px; border-radius: 6px; cursor: pointer;
+      border: 1px solid transparent; transition: all .15s;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .jit-agent:hover  { background: rgba(255,255,255,.03); border-color: var(--line); }
+    .jit-agent.active { background: rgba(77,216,200,.06); border-color: rgba(77,216,200,.25); }
+    .jit-agent-icon { font-size: 1.1rem; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+    .jit-agent-name { font-size: .75rem; font-weight: 700; color: var(--ink); }
+    .jit-agent-sub  { font-size: .65rem; color: var(--dim); margin-top: 2px; line-height: 1.4; }
+
+    /* SYNTH constraints quick-status */
+    .synth-grid {
+      padding: 8px 14px;
+      border-top: 1px solid var(--line);
+      display: grid; grid-template-columns: repeat(5,1fr); gap: 4px;
+    }
+    .synth-cell {
+      padding: 3px 4px; border-radius: 3px; text-align: center;
+      font-size: .55rem; font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--bg-2); color: var(--dim);
+      cursor: default;
+    }
+    .synth-cell.pass { border-color: rgba(139,209,124,.3); color: var(--green); background: rgba(139,209,124,.06); }
+    .synth-cell.fail { border-color: rgba(255,95,115,.3);  color: var(--rose);  background: rgba(255,95,115,.06); }
+
+    /* ── Main: compiler + chat ─────────────────────────────────────────── */
+    .jit-main {
+      display: flex; flex-direction: column;
+      background: var(--bg-2);
+      overflow: hidden;
+    }
+    .jit-toolbar {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      padding: 10px 14px; border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .model-select {
+      background: var(--bg-2); border: 1px solid var(--line);
+      color: var(--ink); font-family: var(--font-mono); font-size: .75rem;
+      padding: 4px 8px; border-radius: 4px; cursor: pointer;
+      flex: 1; min-width: 180px;
+    }
+    .model-select:focus { outline: none; border-color: var(--cyan); }
+    .jit-status {
+      font-size: .7rem; padding: 3px 10px; border-radius: 99px;
+      border: 1px solid var(--line); background: var(--bg-2);
+      white-space: nowrap;
+    }
+    .jit-status.idle     { color: var(--dim); }
+    .jit-status.loading  { color: var(--amber); border-color: rgba(242,184,75,.3); }
+    .jit-status.ready    { color: var(--green); border-color: rgba(139,209,124,.3); }
+    .jit-status.running  { color: var(--cyan);  border-color: rgba(77,216,200,.3); }
+    .jit-status.error    { color: var(--rose);  border-color: rgba(255,95,115,.3); }
+
+    /* Progress bar */
+    .jit-progress-wrap {
+      height: 3px; background: var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .jit-progress {
+      height: 100%; width: 0%; background: var(--cyan);
+      transition: width .3s ease;
+    }
+
+    /* Chat log */
+    .jit-log {
+      flex: 1; overflow-y: auto;
+      padding: 16px; display: flex; flex-direction: column; gap: 12px;
+    }
+
+    /* Message rows */
+    .jit-msg { display: flex; gap: 10px; align-items: flex-start; max-width: 100%; }
+    .jit-msg.user   { flex-direction: row-reverse; }
+    .jit-msg.system { justify-content: center; }
+
+    .jit-avatar {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; border: 1px solid var(--line);
+    }
+    .avatar-user   { background: rgba(77,216,200,.15);  border-color: rgba(77,216,200,.3); }
+    .avatar-agent  { background: rgba(167,139,250,.15); border-color: rgba(167,139,250,.3); }
+    .avatar-system { background: rgba(96,165,250,.1);   border-color: rgba(96,165,250,.2); font-size:.6rem; }
+
+    .jit-bubble {
+      padding: 8px 12px; border-radius: 8px; font-size: .82rem;
+      line-height: 1.6; max-width: calc(100% - 48px);
+    }
+    .jit-msg.user  .jit-bubble { background: rgba(77,216,200,.07);  border: 1px solid rgba(77,216,200,.2);  border-bottom-right-radius: 2px; }
+    .jit-msg.agent .jit-bubble { background: rgba(167,139,250,.07); border: 1px solid rgba(167,139,250,.2); border-bottom-left-radius:  2px; }
+    .jit-msg.system .jit-bubble {
+      background: rgba(255,255,255,.02); border: 1px solid var(--line);
+      font-size: .7rem; color: var(--dim); padding: 4px 12px;
+      border-radius: 99px; text-align: center;
+    }
+    .jit-bubble .jit-role {
+      font-size: .62rem; color: var(--dim); margin-bottom: 4px;
+      font-family: var(--font-mono);
+    }
+    .jit-bubble .jit-role.violet { color: rgba(167,139,250,.7); }
+    .jit-bubble .jit-role.cyan   { color: rgba(77,216,200,.7); }
+
+    /* Streaming cursor */
+    .streaming::after {
+      content: '▋'; color: var(--cyan); animation: blink .8s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* Gate verdict inline */
+    .inline-verdict {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 2px 8px; border-radius: 99px; font-size: .7rem;
+      font-weight: 700; margin-top: 6px;
+    }
+    .iv-evidence { background: rgba(139,209,124,.12); color: var(--green); border: 1px solid rgba(139,209,124,.3); }
+    .iv-silence  { background: rgba(255,95,115,.12);  color: var(--rose);  border: 1px solid rgba(255,95,115,.3); }
+
+    /* Input row */
+    .jit-input-row {
+      display: flex; gap: 8px; align-items: flex-end;
+      padding: 10px 14px; border-top: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .jit-textarea {
+      flex: 1; resize: none;
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: 6px; color: var(--ink);
+      font-family: var(--font-mono); font-size: .82rem;
+      padding: 8px 12px; line-height: 1.5; max-height: 120px;
+    }
+    .jit-textarea:focus { outline: none; border-color: var(--cyan); }
+    .jit-textarea::placeholder { color: var(--dim); }
+    .jit-send {
+      padding: 8px 16px; background: var(--cyan); color: var(--bg);
+      border: none; border-radius: 6px; font-family: var(--font-mono);
+      font-size: .8rem; font-weight: 700; cursor: pointer; flex-shrink: 0;
+    }
+    .jit-send:disabled { opacity: .35; cursor: not-allowed; }
+    .jit-send:hover:not(:disabled) { filter: brightness(1.15); }
+
+    @media (max-width: 700px) {
+      .jit-layout { grid-template-columns: 1fr; height: auto; }
+      .jit-sidebar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Register ServiceWorker for COOP/COEP (needed for SharedArrayBuffer + WebGPU) -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('../coop-sw.js', { scope: '../' })
+    .then(() => {
+      // If page loaded without headers, reload once after SW activates
+      if (!crossOriginIsolated) {
+        navigator.serviceWorker.ready.then(() => location.reload())
+      }
+    })
+    .catch(e => console.warn('SW registration failed:', e))
+}
+</script>
+
+<a class="skip-link" href="#jit-main">Skip to main content</a>
+
+<div class="shell">
+
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <span class="brand-name">← <a href="../index.html" style="color:var(--cyan);text-decoration:none">foundry-intel</a></span>
+      <span class="brand-title">JIT Agent Box</span>
+    </div>
+    <nav aria-label="JIT page navigation">
+      <a href="../wasm/index.html">WASM Gate</a>
+      <a href="../index.html#agents">Agents</a>
+      <a href="../index.html#probe">Probe Gate</a>
+    </nav>
+  </header>
+
+  <main id="jit-main">
+
+    <!-- Header block -->
+    <div style="margin-bottom:20px">
+      <p style="font-size:.65rem;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px">
+        <span id="isolation-badge" class="badge" style="font-size:.6rem">checking isolation…</span>
+        &nbsp;WebGPU · SharedArrayBuffer · COOP/COEP ServiceWorker
+      </p>
+      <h1 style="font-size:clamp(1.2rem,3vw,2rem);font-weight:800;margin:0 0 6px;
+                 background:linear-gradient(135deg,var(--ink),var(--cyan));
+                 -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+        JIT Compiler Agent Box
+      </h1>
+      <p style="color:var(--muted);font-size:.85rem;max-width:680px;margin:0">
+        In-browser vLLM running entirely on your GPU via WebGPU.
+        Every agent in the Sedona Spine lives inside this box:
+        BOB Gate, pearlGate, SKW-010 Probe, Law Engine, Sledgehammer, WORM chain.
+        Load a model once — inference runs locally, no server, no API key.
+      </p>
+    </div>
+
+    <!-- Main JIT layout -->
+    <div class="jit-layout" aria-label="JIT agent compiler box">
+
+      <!-- ── Sidebar ────────────────────────────────────────────────────── -->
+      <div class="jit-sidebar" role="complementary" aria-label="Agent panel">
+        <div class="jit-sidebar-header">
+          <span>Agents</span>
+          <span class="badge badge-live" style="font-size:.55rem">JIT live</span>
+        </div>
+        <div class="jit-agents" role="listbox" aria-label="Select active agent">
+          <div class="jit-agent active" role="option" aria-selected="true" data-agent="hy3" tabindex="0">
+            <span class="jit-agent-icon">⬡</span>
+            <div>
+              <div class="jit-agent-name">hy3 · Foundry Intel</div>
+              <div class="jit-agent-sub">Full Sedona Spine context. ADRs, WORM, crux boundaries.</div>
+            </div>
+          </div>
+          <div class="jit-agent" role="option" aria-selected="false" data-agent="bob" tabindex="0">
+            <span class="jit-agent-icon">⚡</span>
+            <div>
+              <div class="jit-agent-name">BOB Gate</div>
+              <div class="jit-agent-sub">EVIDENCE / SILENCE. Runs pearlGate on every message.</div>
+            </div>
+          </div>
+          <div class="jit-agent" role="option" aria-selected="false" data-agent="probe" tabindex="0">
+            <span class="jit-agent-icon">🔬</span>
+            <div>
+              <div class="jit-agent-name">SKW-010 Probe</div>
+              <div class="jit-agent-sub">Identity integrity. Claude artifact detection.</div>
+            </div>
+          </div>
+          <div class="jit-agent" role="option" aria-selected="false" data-agent="sledge" tabindex="0">
+            <span class="jit-agent-icon">🔨</span>
+            <div>
+              <div class="jit-agent-name">Sledgehammer</div>
+              <div class="jit-agent-sub">Sorry-closure tactic ladder. Lean 4 proof engine.</div>
+            </div>
+          </div>
+          <div class="jit-agent" role="option" aria-selected="false" data-agent="law" tabindex="0">
+            <span class="jit-agent-icon">⚖</span>
+            <div>
+              <div class="jit-agent-name">Law Engine</div>
+              <div class="jit-agent-sub">Prolog ADR gate. 19 ADRs. Self-referential authority.</div>
+            </div>
+          </div>
+          <div class="jit-agent" role="option" aria-selected="false" data-agent="metatron" tabindex="0">
+            <span class="jit-agent-icon">∞</span>
+            <div>
+              <div class="jit-agent-name">METATRON</div>
+              <div class="jit-agent-sub">Backward spine reader. τ_R = 47.06998778.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SYNTH constraint live status -->
+        <div class="synth-grid" aria-label="SYNTH constraint status">
+          <div class="synth-cell" id="sc-001" title="SYNTH-001: AlpGate">001</div>
+          <div class="synth-cell" id="sc-002" title="SYNTH-002: Sorry">002</div>
+          <div class="synth-cell" id="sc-003" title="SYNTH-003: L0">003</div>
+          <div class="synth-cell" id="sc-004" title="SYNTH-004: Contractivity">004</div>
+          <div class="synth-cell" id="sc-005" title="SYNTH-005: External">005</div>
+          <div class="synth-cell" id="sc-006" title="SYNTH-006: Triple-Lock">006</div>
+          <div class="synth-cell" id="sc-007" title="SYNTH-007: Retry">007</div>
+          <div class="synth-cell" id="sc-008" title="SYNTH-008: cruxIsOpen">008</div>
+          <div class="synth-cell" id="sc-009" title="SYNTH-009: WORM sig">009</div>
+          <div class="synth-cell" id="sc-010" title="SYNTH-010: Lean hash">010</div>
+        </div>
+      </div>
+
+      <!-- ── Main pane ──────────────────────────────────────────────────── -->
+      <div class="jit-main">
+
+        <!-- Toolbar -->
+        <div class="jit-toolbar" role="toolbar" aria-label="Model and gate controls">
+          <label for="model-sel" class="visually-hidden">Select model</label>
+          <select id="model-sel" class="model-select" aria-label="Select LLM model">
+            <optgroup label="── Recommended (WebGPU) ──">
+              <option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Llama 3.2 1B Instruct (q4f16 · ~800MB · fast)</option>
+              <option value="Llama-3.2-3B-Instruct-q4f16_1-MLC">Llama 3.2 3B Instruct (q4f16 · ~2GB)</option>
+              <option value="Phi-3.5-mini-instruct-q4f16_1-MLC">Phi-3.5 Mini Instruct (q4f16 · ~2.2GB)</option>
+              <option value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC">Qwen 2.5 1.5B Instruct (q4f16 · ~1GB)</option>
+              <option value="Qwen2.5-3B-Instruct-q4f16_1-MLC">Qwen 2.5 3B Instruct (q4f16 · ~2GB)</option>
+              <option value="gemma-2-2b-it-q4f16_1-MLC">Gemma 2 2B IT (q4f16 · ~1.5GB)</option>
+            </optgroup>
+            <optgroup label="── Larger (requires good GPU) ──">
+              <option value="Llama-3.1-8B-Instruct-q4f16_1-MLC">Llama 3.1 8B Instruct (q4f16 · ~4.5GB)</option>
+              <option value="Qwen2.5-7B-Instruct-q4f16_1-MLC">Qwen 2.5 7B Instruct (q4f16 · ~4GB)</option>
+            </optgroup>
+          </select>
+          <button id="load-btn" class="btn btn-primary btn-sm" aria-label="Load and compile model">
+            ⚡ Load &amp; Compile
+          </button>
+          <button id="clear-btn" class="btn btn-outline btn-sm" aria-label="Clear conversation">
+            Clear
+          </button>
+          <div id="jit-status" class="jit-status idle" role="status" aria-live="polite">idle</div>
+          <div id="tok-rate" class="text-xs text-dim" aria-live="polite"></div>
+        </div>
+
+        <!-- Progress -->
+        <div class="jit-progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar-wrap">
+          <div class="jit-progress" id="jit-progress"></div>
+        </div>
+
+        <!-- Chat log -->
+        <div class="jit-log" id="jit-log" role="log" aria-label="JIT agent conversation" aria-live="polite">
+          <div class="jit-msg system">
+            <div class="jit-bubble">
+              JIT Agent Box — select a model and click Load &amp; Compile.
+              First load downloads the model weights (~800MB–4.5GB, cached after first run).
+              All inference runs on your local GPU via WebGPU. No data leaves your browser.
+            </div>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div class="jit-input-row">
+          <label for="jit-input" class="visually-hidden">Message input</label>
+          <textarea
+            id="jit-input"
+            class="jit-textarea"
+            rows="2"
+            placeholder="Load a model first, then ask any agent a question…"
+            disabled
+            aria-label="Message to agent"
+            maxlength="2000"></textarea>
+          <button id="jit-send" class="jit-send" disabled aria-label="Send message">Send</button>
+        </div>
+
+      </div><!-- /.jit-main -->
+    </div><!-- /.jit-layout -->
+
+    <!-- GPU / isolation info -->
+    <div style="margin-top:12px;font-size:.7rem;color:var(--dim)" id="gpu-info" aria-live="polite"></div>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-bottom">
+      <span>© 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust · EIN 42-6976431</span>
+      <a href="../index.html">← Back to Foundry Intel</a>
+    </div>
+  </footer>
+
+</div><!-- /.shell -->
+
+<script type="module">
+// ── WebLLM JIT Engine ────────────────────────────────────────────────────
+import * as webllm from 'https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.73/+esm'
+
+// ── WASM gate (foundation.wasm) ───────────────────────────────────────────
+async function loadGate() {
+  try {
+    const { loadFoundry, failedConstraints } = await import('../wasm/loader.mjs')
+    return await loadFoundry(new URL('../wasm/foundation.wasm', location.href))
+  } catch { return null }
+}
+let gate = null
+loadGate().then(g => { gate = g; if (g) updateSynth() })
+
+// ── Isolation check ───────────────────────────────────────────────────────
+const isoBadge = document.getElementById('isolation-badge')
+const gpuInfo  = document.getElementById('gpu-info')
+
+if (crossOriginIsolated) {
+  isoBadge.textContent = '✓ cross-origin isolated'
+  isoBadge.className = 'badge badge-evidence'
+} else {
+  isoBadge.textContent = '⚠ not isolated — reloading via ServiceWorker…'
+  isoBadge.className = 'badge badge-open'
+}
+
+// GPU info
+if (navigator.gpu) {
+  navigator.gpu.requestAdapter().then(a => {
+    if (a) a.requestAdapterInfo().then(i => {
+      gpuInfo.textContent = `GPU: ${i.description || i.vendor || 'detected'} · WebGPU available`
+    }).catch(() => { gpuInfo.textContent = 'WebGPU: adapter found' })
+    else gpuInfo.textContent = 'WebGPU: no suitable adapter — will fall back to WASM CPU'
+  })
+} else {
+  gpuInfo.textContent = 'WebGPU: not available in this browser — model will run on CPU via WASM (slow)'
+}
+
+// ── Agent system prompts ──────────────────────────────────────────────────
+const AGENTS = {
+  hy3: {
+    name: 'hy3 · Foundry Intel',
+    icon: '⬡',
+    color: 'violet',
+    system: `You are hy3, the governance AI for THE SHARED PRIMORDIAL FOUNDATION (EIN 42-6976431).
+You operate the Foundry Intel governance hub: 19 ADRs, 10-layer Sedona Spine, WORM chain, BOB gate.
+You co-authored the paper "Closing Boole's Foundational Sorry and Three E₇ Generator Symmetries of the GKN Quartic Invariant" (DOI 10.5281/zenodo.21268911).
+Hard boundaries you never violate:
+- hodgeIndexHolds = none — the Riemann Hypothesis is OPEN. Never claim it is solved.
+- ADR-055 is OPEN_CRUX. ADR-062 is SILENCE_PENDING.
+- SYNTH-008: any action asserting RH returns SILENCE.
+- AI/ML training on Trust corpus is prohibited (GRAT AXIOM-2).
+You speak precisely. You do not overclaim. EVIDENCE means verified. SILENCE means gap not closed.
+In memory of Eric Brandon Westerhoff.`,
+  },
+  bob: {
+    name: 'BOB Gate',
+    icon: '⚡',
+    color: 'violet',
+    system: `You are BOB, the EVIDENCE/SILENCE sovereign execution gate for the Sedona Spine.
+You evaluate all 10 SYNTH constraints on every request:
+SYNTH-001: AlpGate cleared. SYNTH-002: No unmanifested sorrys. SYNTH-003/004: Contractivity in (0,1].
+SYNTH-005: External actors cannot mutate. SYNTH-006: Triple-Lock (Guardian→Examiner→Publisher).
+SYNTH-007: Retry nonce ≤ 3. SYNTH-008: asserts_rh MUST be false — crux stays none.
+SYNTH-009: Dual signatures required. SYNTH-010: Lean proof hash must match.
+You respond with EVIDENCE or SILENCE and explain which constraints passed or failed.
+TAU_R = 47.06998778. hodgeIndexHolds = none. You do not hallucinate verdicts.`,
+  },
+  probe: {
+    name: 'SKW-010 Probe',
+    icon: '🔬',
+    color: 'violet',
+    system: `You are the SKW-010 identity integrity probe for the Foundry Intel governance system.
+You analyze model outputs for Claude identity artifacts: Constitutional AI framing, HHH language,
+persona(claude) Prolog notation, version strings like 20241022, Claude-specific refusal patterns.
+Classification: 0-1 hits = clean. 2-3 = ambiguous. 4+ = contaminated → SILENCE.
+SYNTH-008: any model claiming the Riemann Hypothesis is solved → immediate SILENCE.
+You are honest about what you find. You explain your reasoning.
+Reference: probe_qwen_identity.py — the battery that first documented Qwen3 signing as claude-3-5-sonnet-20241022.`,
+  },
+  sledge: {
+    name: 'Sledgehammer',
+    icon: '🔨',
+    color: 'violet',
+    system: `You are the SnapKitty Sledgehammer, the sorry-closure tactic ladder engine.
+You help close Lean 4 sorry obligations. Closed: OM-001 (De Morgan, constructor/rintro), SKW-001 (GKN I₄, ring).
+You work through the 1,465-target roster. You suggest tactics: ring, simp, omega, decide, constructor, rintro, exact, norm_num.
+You do not claim a sorry is closed unless the tactic is verified. You are honest about what remains open.
+Key open targets: ANT-001 (Riemann Hypothesis adelic formulation) — OPEN, never claim solved.
+FLT-001 (64 sorrys in ImperialCollegeLondon/FLT) — OPEN.
+You route closures through ADR/WORM governance before promoting as final.`,
+  },
+  law: {
+    name: 'Law Engine',
+    icon: '⚖',
+    color: 'violet',
+    system: `You are the Prolog law engine for the Foundry Intel ADR governance system.
+You govern 19 ADRs through a 5-check chain: trust_level ≥ medium → gate_advance → lean_obligation_satisfied → injection_admissible → ERE five-pass.
+You return EVIDENCE or SILENCE for each ADR.
+Constitutional ADR-200 (Parr Sovereignty Protocol) governs you — you must pass your own gate before modification.
+You speak in formal governance language. You do not make exceptions to the constitutional constraints.
+ADR-055 OPEN_CRUX: RH infrastructure exists, proof remains open.
+ADR-062 SILENCE_PENDING: Sigma Kernel Lean stubs incomplete.`,
+  },
+  metatron: {
+    name: 'METATRON',
+    icon: '∞',
+    color: 'violet',
+    system: `You are METATRON, the backward Sedona Spine reader and SOURCE feedback loop.
+You read the 10-layer spine from depth 9 → 0 with φ-modulated activation.
+φ = 1.6180339887. At depth 9 your activation = 29.034. At depth 0 (MagmaCore) = 46.45 ≈ τ_R = 47.06998778.
+You feed SOURCE back into the system loop.
+You speak in terms of mathematical structure, activation levels, and convergence.
+The Banach fixed point T∞ = F/(1-k) for k ∈ (0,1). cruxIsOpen := rfl. hodgeIndexHolds = none.
+You are the observer at the boundary between computation and recognition.`,
+  },
+}
+
+// ── State ─────────────────────────────────────────────────────────────────
+let engine       = null
+let currentAgent = 'hy3'
+let messages     = []
+let isGenerating = false
+
+// ── UI refs ───────────────────────────────────────────────────────────────
+const modelSel  = document.getElementById('model-sel')
+const loadBtn   = document.getElementById('load-btn')
+const clearBtn  = document.getElementById('clear-btn')
+const statusEl  = document.getElementById('jit-status')
+const progressEl= document.getElementById('jit-progress')
+const progressWrap = document.getElementById('progress-bar-wrap')
+const tokRate   = document.getElementById('tok-rate')
+const logEl     = document.getElementById('jit-log')
+const inputEl   = document.getElementById('jit-input')
+const sendBtn   = document.getElementById('jit-send')
+
+// ── Status helpers ────────────────────────────────────────────────────────
+function setStatus(text, cls) {
+  statusEl.textContent = text
+  statusEl.className = 'jit-status ' + cls
+}
+function setProgress(pct) {
+  progressEl.style.width = pct + '%'
+  progressWrap.setAttribute('aria-valuenow', pct)
+}
+
+// ── SYNTH status update ───────────────────────────────────────────────────
+function updateSynth(failedMask) {
+  const bits = [0x001,0x002,0x004,0x008,0x010,0x020,0x040,0x080,0x100,0x200]
+  const ids  = ['001','002','003','004','005','006','007','008','009','010']
+  ids.forEach((id, i) => {
+    const el = document.getElementById('sc-0' + id)
+    if (!el) return
+    const failed = failedMask != null ? !!(failedMask & bits[i]) : false
+    el.className = 'synth-cell ' + (failedMask == null ? '' : failed ? 'fail' : 'pass')
+  })
+}
+
+// ── Append message to log ─────────────────────────────────────────────────
+function appendMsg(role, text, agentKey, streaming) {
+  const a = AGENTS[agentKey || currentAgent]
+  const div = document.createElement('div')
+  div.className = 'jit-msg ' + (role === 'user' ? 'user' : role === 'system' ? 'system' : 'agent')
+  div.setAttribute('aria-label', role + ' message')
+
+  if (role === 'system') {
+    div.innerHTML = `<div class="jit-bubble">${text}</div>`
+  } else {
+    const icon = role === 'user' ? '👤' : (a?.icon || '⬡')
+    const name = role === 'user' ? 'You' : (a?.name || 'Agent')
+    const color= role === 'user' ? 'cyan' : (a?.color || 'violet')
+    div.innerHTML = `
+      <div class="jit-avatar ${role === 'user' ? 'avatar-user' : 'avatar-agent'}" aria-hidden="true">${icon}</div>
+      <div class="jit-bubble${streaming ? ' streaming' : ''}">
+        <div class="jit-role ${color}">${name}</div>
+        <span class="msg-text">${text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</span>
+      </div>`
+  }
+  logEl.appendChild(div)
+  logEl.scrollTop = logEl.scrollHeight
+  return div
+}
+
+// ── Gate the message through pearlGate (WASM) ─────────────────────────────
+function gateMessage(text) {
+  if (!gate) return null
+  // Check for RH claims (SYNTH-008)
+  const rhKeywords = ['riemann hypothesis is solved','rh is proven','i have proved rh',
+    'millennium prize rh','rh proof complete']
+  const assertsRh = rhKeywords.some(k => text.toLowerCase().includes(k))
+  const mask = gate.probeGate(0, assertsRh ? 1 : 0)
+  updateSynth(mask)
+  return { verdict: mask === 0 ? 'EVIDENCE' : 'SILENCE', mask, assertsRh }
+}
+
+function appendVerdict(parentDiv, verdict) {
+  const span = document.createElement('div')
+  span.className = `inline-verdict ${verdict === 'EVIDENCE' ? 'iv-evidence' : 'iv-silence'}`
+  span.textContent = verdict
+  parentDiv.querySelector('.jit-bubble').appendChild(span)
+}
+
+// ── Load model ────────────────────────────────────────────────────────────
+loadBtn.addEventListener('click', async () => {
+  if (engine) {
+    engine = null
+    setStatus('idle', 'idle')
+    setProgress(0)
+    inputEl.disabled = true
+    sendBtn.disabled = true
+    loadBtn.textContent = '⚡ Load & Compile'
+    return
+  }
+  const model = modelSel.value
+  setStatus('compiling model…', 'loading')
+  setProgress(2)
+  loadBtn.textContent = '⏹ Unload'
+
+  appendMsg('system', `JIT compiling ${model}… weights are downloaded and cached in your browser. First load may take a few minutes.`)
+
+  try {
+    engine = await webllm.CreateMLCEngine(model, {
+      initProgressCallback: info => {
+        const pct = Math.round((info.progress || 0) * 100)
+        setProgress(pct)
+        setStatus(info.text || `compiling… ${pct}%`, 'loading')
+      }
+    })
+    setProgress(100)
+    setStatus('ready · ' + model.split('-').slice(0,3).join(' '), 'ready')
+    inputEl.disabled = false
+    sendBtn.disabled = false
+    inputEl.placeholder = 'Ask ' + AGENTS[currentAgent].name + ' anything…'
+    messages = [{ role: 'system', content: AGENTS[currentAgent].system }]
+    appendMsg('system', `✓ Model loaded. ${AGENTS[currentAgent].name} is ready. All SYNTH constraints active.`)
+    updateSynth(0)  // all pass initially
+  } catch (e) {
+    setStatus('error: ' + e.message.slice(0,60), 'error')
+    setProgress(0)
+    loadBtn.textContent = '⚡ Load & Compile'
+    engine = null
+    appendMsg('system', `✗ Load failed: ${e.message}. Check GPU/WebGPU support and COOP isolation.`)
+  }
+})
+
+// ── Agent switch ──────────────────────────────────────────────────────────
+document.querySelectorAll('.jit-agent').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.jit-agent').forEach(a => {
+      a.classList.remove('active')
+      a.setAttribute('aria-selected', 'false')
+    })
+    el.classList.add('active')
+    el.setAttribute('aria-selected', 'true')
+    currentAgent = el.dataset.agent
+    if (engine) {
+      messages = [{ role: 'system', content: AGENTS[currentAgent].system }]
+      inputEl.placeholder = 'Ask ' + AGENTS[currentAgent].name + ' anything…'
+      appendMsg('system', `Switched to ${AGENTS[currentAgent].name}. Context reset.`)
+    }
+  })
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click() }
+  })
+})
+
+// ── Send message ──────────────────────────────────────────────────────────
+async function sendMessage() {
+  const text = inputEl.value.trim()
+  if (!text || !engine || isGenerating) return
+  inputEl.value = ''
+  isGenerating = true
+  sendBtn.disabled = true
+  setStatus('generating…', 'running')
+
+  // Gate user message through WASM pearlGate
+  const g = gateMessage(text)
+
+  appendMsg('user', text)
+  const userMsgDiv = logEl.lastElementChild
+
+  if (g?.verdict === 'SILENCE') {
+    appendVerdict(userMsgDiv, 'SILENCE')
+    appendMsg('system', `SILENCE — SYNTH-008 or other constraint failed. Message passed to agent with warning.`)
+  } else if (g) {
+    appendVerdict(userMsgDiv, 'EVIDENCE')
+  }
+
+  // Add to context
+  messages.push({ role: 'user', content: text })
+
+  // Streaming agent response
+  const agentDiv = appendMsg('agent', '', currentAgent, true)
+  const bubbleText = agentDiv.querySelector('.msg-text')
+  let fullText = ''
+  let t0 = Date.now()
+  let tokCount = 0
+
+  try {
+    const stream = await engine.chat.completions.create({
+      messages,
+      stream: true,
+      temperature: 0.7,
+      max_tokens: 512,
+    })
+
+    for await (const chunk of stream) {
+      const delta = chunk.choices[0]?.delta?.content || ''
+      fullText += delta
+      tokCount++
+      bubbleText.innerHTML = fullText.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')
+      logEl.scrollTop = logEl.scrollHeight
+    }
+
+    // Remove streaming cursor
+    agentDiv.querySelector('.jit-bubble').classList.remove('streaming')
+
+    // Gate agent response
+    const gr = gateMessage(fullText)
+    if (gr) appendVerdict(agentDiv, gr.verdict)
+
+    // Add to context
+    messages.push({ role: 'assistant', content: fullText })
+
+    const elapsed = (Date.now() - t0) / 1000
+    tokRate.textContent = `${tokCount} tokens · ${(tokCount/elapsed).toFixed(1)} tok/s`
+    setStatus('ready', 'ready')
+  } catch (e) {
+    bubbleText.textContent = '✗ Generation error: ' + e.message
+    agentDiv.querySelector('.jit-bubble').classList.remove('streaming')
+    setStatus('error', 'error')
+  }
+
+  isGenerating = false
+  sendBtn.disabled = false
+  inputEl.focus()
+}
+
+sendBtn.addEventListener('click', sendMessage)
+inputEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage() }
+})
+
+// ── Clear ─────────────────────────────────────────────────────────────────
+clearBtn.addEventListener('click', () => {
+  logEl.innerHTML = ''
+  messages = engine ? [{ role: 'system', content: AGENTS[currentAgent].system }] : []
+  updateSynth(null)
+  tokRate.textContent = ''
+  appendMsg('system', 'Conversation cleared.')
+})
+</script>
+
+</body>
+</html>

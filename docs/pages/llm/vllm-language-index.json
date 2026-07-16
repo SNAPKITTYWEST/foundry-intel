@@ -1,0 +1,130 @@
+{
+  "id": "SPF-VLLM-LANGUAGE-INDEX-20260716",
+  "version": "1.0.0",
+  "runtime": {
+    "surface": "GitHub Pages static browser client",
+    "entrypoint": "docs/pages/assets/bob-chat.mjs",
+    "default_provider": "offline",
+    "streaming_providers": [
+      {
+        "id": "vllm",
+        "name": "vLLM OpenAI-compatible chat completions",
+        "default_endpoint": "http://localhost:8000/v1/chat/completions",
+        "stream_protocol": "server-sent events"
+      },
+      {
+        "id": "ollama",
+        "name": "Ollama chat",
+        "default_endpoint": "http://localhost:11434/api/chat",
+        "stream_protocol": "newline-delimited JSON"
+      }
+    ]
+  },
+  "languages": [
+    {
+      "id": "lean4",
+      "role": "formal theorem authority",
+      "repo_surface": "docs/math and external gkn-i4-e7-lean anchors"
+    },
+    {
+      "id": "prolog",
+      "role": "ADR and Pages generation logic",
+      "repo_surface": "tools/ascii-glitch and governance rules"
+    },
+    {
+      "id": "datalog",
+      "role": "source fact and policy mesh",
+      "repo_surface": "packages/datalog"
+    },
+    {
+      "id": "typescript",
+      "role": "workspace package implementation and WASM host typing",
+      "repo_surface": "packages and apps/wasm-frontend"
+    },
+    {
+      "id": "assemblyscript-wasm",
+      "role": "browser-executable BOB/probe/verifier gates",
+      "repo_surface": "apps/wasm-frontend/dist and docs/pages/wasm"
+    },
+    {
+      "id": "xml",
+      "role": "agent handoff envelopes",
+      "repo_surface": "docs/handoff"
+    },
+    {
+      "id": "janet-r-qphi",
+      "role": "Q(phi) ADR classification manifest",
+      "repo_surface": "tools/q5-adr-parser"
+    },
+    {
+      "id": "vllm-ollama",
+      "role": "optional browser-supplied model streaming adapter",
+      "repo_surface": "docs/pages/assets/bob-chat.mjs"
+    }
+  ],
+  "routes": [
+    {
+      "id": "repo_overview",
+      "label": "Repository Overview",
+      "triggers": ["repo", "overview", "foundation", "primordial", "foundry", "intel", "what is this"],
+      "offline_answer": "This repository is the Foundry Intel governance hub for THE SHARED PRIMORDIAL FOUNDATION. It coordinates ADRs, WORM records, Q(phi) metadata, WASM gates, theorem posture, XML handoffs, and provenance checks.",
+      "sources": ["README.md", "AGENT_MEMORY.md"]
+    },
+    {
+      "id": "adr_status",
+      "label": "ADR Status",
+      "triggers": ["adr", "adr-055", "adr-062", "open_crux", "silence_pending", "riemann", "sigma"],
+      "offline_answer": "ADR-055 remains OPEN_CRUX: the Riemann Hypothesis is not proved here. ADR-062 remains SILENCE_PENDING until the Sigma Kernel governance gap is closed by evidence.",
+      "sources": ["docs/architecture/adr-q5-theorem-classification.md", "tools/q5-adr-parser/ADR_REGISTRY.txt"]
+    },
+    {
+      "id": "worm_chain",
+      "label": "WORM Chain",
+      "triggers": ["worm", "seal", "append", "ledger", "receipt", "chain", "provenance"],
+      "offline_answer": "WORM means write once, read many. Material decisions are appended and preserved so later agents can audit what changed, who acted, and which evidence existed at the time.",
+      "sources": ["packages/worm/src/index.ts", "docs/pages/index.html"]
+    },
+    {
+      "id": "wasm_gate",
+      "label": "WASM Gate",
+      "triggers": ["wasm", "pearlgate", "probe", "synth", "bob gate", "browser"],
+      "offline_answer": "The WASM gate exposes pearlGate, the probe classifier, Banach checks, tau_R checks, and the 108-cycle canonical in the browser. The checked state is 21/21 foundation tests and 10/10 verifier tests.",
+      "sources": ["apps/wasm-frontend/README.md", "docs/pages/wasm/index.html"]
+    },
+    {
+      "id": "qphi_metadata",
+      "label": "Q(phi) Metadata",
+      "triggers": ["qphi", "q(phi)", "golden", "janet", "phi", "metadata", "weight"],
+      "offline_answer": "Q(phi) weights are metadata classifications. They help classify ADR posture; they are not independent mathematical proof claims.",
+      "sources": ["tools/q5-adr-parser/adr_manifest.json", "docs/architecture/adr-q5-theorem-classification.md"]
+    },
+    {
+      "id": "agent_handoff",
+      "label": "Agent Handoff",
+      "triggers": ["agent", "handoff", "xml", "codex", "claude", "hy3", "context bleed", "collision"],
+      "offline_answer": "Agent handoffs are XML envelopes under docs/handoff. The collision proof records hy3 and Codex sharing one repository without erasing each other's commits.",
+      "sources": ["docs/handoff/codex-collision-proof-20260716.xml", "docs/protocols/xml-handoff-envelope.md"]
+    },
+    {
+      "id": "vllm_runtime",
+      "label": "vLLM/Ollama Runtime",
+      "triggers": ["vllm", "ollama", "model", "stream", "endpoint", "jit", "compiler", "chat"],
+      "offline_answer": "GitHub Pages is static and does not host a model. This chat can stream to a vLLM OpenAI-compatible endpoint or an Ollama endpoint configured in the browser, then falls back to the offline BOB compiler if the endpoint is unavailable.",
+      "sources": ["docs/pages/assets/bob-chat.mjs", "docs/pages/llm/vllm-language-index.json"]
+    },
+    {
+      "id": "verify_build",
+      "label": "Verification",
+      "triggers": ["verify", "test", "build", "ci", "npm", "production", "pages"],
+      "offline_answer": "The production gate is npm run verify. It runs the Q(phi) manifest fallback, connector check, XML handoff check, Pages check, build, TypeScript lint, tests, smoke, and ADR tick.",
+      "sources": ["package.json", ".github/workflows/veneer-verify.yml", ".github/workflows/pages.yml"]
+    }
+  ],
+  "guardrails": [
+    "Do not claim RH is proved; ADR-055 remains OPEN_CRUX.",
+    "Do not close ADR-062 without evidence; it remains SILENCE_PENDING.",
+    "Treat Q(phi) weights as metadata classifications only.",
+    "Use EVIDENCE when repository support exists and SILENCE when evidence is missing.",
+    "GitHub Pages hosts only the static client; vLLM/Ollama endpoints are browser-supplied."
+  ]
+}
