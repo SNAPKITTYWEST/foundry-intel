@@ -1,0 +1,20 @@
+{
+  "id": "SPF-SOVEREIGN-NODE-BUILD-KEY-20260716",
+  "status": "ACTIVE",
+  "mode": "PUBLIC_BUILD_TRUST_ANCHOR",
+  "owner": "SNAPKITTYWEST",
+  "uid": "SNAPKITTYWEST Sovereign Node Build <snapkittywest@github.com>",
+  "algorithm": "Ed25519",
+  "fingerprint": "427AB4A1C0E64A7AB22B0F116ABDA4A46FDDCB60",
+  "key_id": "6ABDA4A46FDDCB60",
+  "generated_at": "2026-07-16T21:13:43.000Z",
+  "public_key_path": "docs/keys/sovereign-node-build-public.asc",
+  "public_key_sha256": "576245485b17accf4078c6507714e564311767dc15d4e1e16037949a29517123",
+  "rust_build_contract": {
+    "status": "ENFORCED",
+    "all_crates_require_build_script": true,
+    "secret_env_supported": "SOVEREIGN_NODE_KEY",
+    "private_key_committed": false
+  },
+  "boundary": "The committed artifact is a public OpenPGP key only. Private key material must remain outside the repository."
+}

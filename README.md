@@ -325,9 +325,41 @@ This repository is the governance and intelligence hub of that stack. It owns:
 - **Probe gate** — SKW-010 identity-integrity probe ingestion → WORM chain
 - **Sorry engine** — 1,465 indexed proof-debt targets, 13 ALP closures, OM-001 and SKW-001 solved
 - **Prior art registry** — 10 external citations, GRAT corpus, UOR framework DOI
+- **Sovereign node build key** — public OpenPGP trust anchor outside Rust crates, enforced by crate build scripts
+- **Autonomous hardening guards** — repo freeze, Phase Mirror block gate, reverse-engineer tensor, and black-team tactic guard
 
 The mathematical mission: close proof debt, package mathematical certainty honestly,
 and turn that work into support for the Eric Westerhoff mission.
+
+---
+
+## Current Operating Spine
+
+This is the live Foundry Intel repository:
+
+```text
+C:\Users\jessi\veneer-deploy
+https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11
+branch: master
+```
+
+The current production spine is:
+
+```text
+GKN Lean latch
+  -> Foundry Intel ADR / Q(phi) / XML / WORM governance
+  -> sovereign node public key guard
+  -> PIRTM Rust crate build script
+  -> backend ASCII Pages generator
+  -> WASM frontend dock
+  -> Phase Mirror mutation block
+  -> ADR-301 daily non-mutating tick
+```
+
+The repo is allowed to verify, render, lint, test, and publish Pages. It is not
+allowed to let autonomous agents mutate Phase Mirror, promote unresolved proofs,
+erase attribution, commit private key material, or convert `OPEN_CRUX` /
+`SILENCE_PENDING` into solved claims.
 
 ---
 
@@ -580,6 +612,62 @@ daily hardening workflow runs at `07:21 UTC`. Autonomous jobs may verify ADR
 posture and write CI summaries, but they cannot commit, push, comment, open
 issues, mutate Phase Mirror, or promote open cruxes.
 
+The daily gate includes:
+
+```text
+Q(phi) fallback manifest
+connector check
+XML handoff check
+repo freeze guard
+sovereign node key guard
+reverse-engineer tensor guard
+Gemini black-team guard
+Phase Mirror commit gate
+Phase Mirror force-invoke trap
+ADR-301 tick summary
+```
+
+---
+
+## Sovereign Node Build Key
+
+Rust crates use a repository-level public OpenPGP trust anchor outside the crate
+tree:
+
+```text
+docs/keys/sovereign-node-build-public.asc
+docs/keys/sovereign-node-build.json
+docs/keys/README.md
+tools/formal/sovereign_node_key_guard.mjs
+pirtm_rs/build.rs
+build.rs
+```
+
+Run it directly:
+
+```sh
+npm run sovereign:key:guard
+cargo test --manifest-path pirtm_rs/Cargo.toml
+```
+
+Public key identity:
+
+```text
+UID: SNAPKITTYWEST Sovereign Node Build <snapkittywest@github.com>
+KEY: 6ABDA4A46FDDCB60
+427AB4A1C0E64A7AB22B0F116ABDA4A46FDDCB60
+SHA256: 576245485b17accf4078c6507714e564311767dc15d4e1e16037949a29517123
+```
+
+`SOVEREIGN_NODE_KEY` remains supported as a local/private signal, but private
+key material must stay outside git. `.gitattributes` marks the public key files
+as tracked provenance anchors; `.gitignore` blocks private key material such as
+`docs/keys/private/`, `*.sec.asc`, `*private*.asc`, and `*.gpg`.
+
+Every Rust crate must carry a build script that resolves the repo-level public
+key before compilation. The committed key is public evidence only. Secret
+material stays outside the repository.
+
 ---
 
 ## Reverse Engineer Agent Tensor
@@ -789,12 +877,28 @@ npm run verify
 Q(phi) ADR manifest
   → connector validation
   → XML handoff validation
+  → repo freeze guard
+  → sovereign node public key guard
+  → reverse-engineer tensor guard
+  → Gemini black-team guard
   → backend Pages + WASM dock check
+  → PIRTM Rust artifact + cargo tests
   → TypeScript build
   → lint/typecheck
   → Jest workspace tests
   → production smoke
+  → Phase Mirror commit/force-invoke gates
   → ADR-301 daily tick
+```
+
+Fast operator checks:
+
+```sh
+npm run adr:harden:daily
+npm run sovereign:key:guard
+npm run verify:pirtm
+npm run pages:check
+npm run connector:check
 ```
 
 WASM only:
@@ -982,6 +1086,17 @@ foundry-intel-2026-07-11/
     src/Substrate.lean              Sedona Spine Lean substrate
     src/Topology.lean               Banach contraction, bare Lean 4 (no mathlib)
 
+  pirtm_rs/
+    Cargo.toml                      Rust crate manifest with build.rs gate
+    build.rs                        crate-local sovereign public key resolver
+    src/                            PIRTM/PARM runtime verification layer
+    tests/                          sovereign pipeline tests
+
+  docs/keys/
+    sovereign-node-build-public.asc public OpenPGP build trust anchor
+    sovereign-node-build.json       fingerprint + sha256 metadata
+    README.md                       key boundary and private-material rule
+
   docs/
     math/
       lean4-convergence-theorems.lean       4 zero-sorry theorems + cruxIsOpen
@@ -1023,7 +1138,10 @@ foundry-intel-2026-07-11/
   tools/
     q5-adr-parser/                  Q(phi) ADR parser (Janet/R/mjs)
     ascii-glitch/build_pages.pl     Prolog backend Pages generator
+    ascii-glitch/run_pages.mjs      SWI-Prolog launcher for Windows/CI parity
     foundry-connector/              connector manifest + validators
+    formal/sovereign_node_key_guard.mjs
+                                      public key + Rust crate build guard
     production-smoke.mjs            runtime smoke check
     adr-production-tick.mjs         ADR-301 daily tick
 
@@ -1101,7 +1219,9 @@ Rules:
 | `probe-gate` returns `SILENCE` | external trust / RH claim / missing witness / SYNTH failure | inspect failed constraint bitmask |
 | TypeScript can't resolve workspace | package not built | `npm run build` |
 | Liquid Haskell command missing | Cabal/LH not installed | report honestly; do not claim LH pass |
-| `swipl` not found | SWI-Prolog not installed | report; law engine check skipped |
+| `swipl` not found | SWI-Prolog is absent or not on PATH | `tools/ascii-glitch/run_pages.mjs` checks `SWIPL`, `swipl`, and `C:\Program Files\swipl\bin\swipl.exe` |
+| Sovereign key guard fails | public key, metadata, crate build script, or private-key ignore boundary drifted | restore `docs/keys/*`, `pirtm_rs/build.rs`, `.gitattributes`, and `.gitignore` |
+| Full verify stops at Pages | SWI-Prolog install/path problem or stale WASM dock | run `npm run pages:check`, then `npm run pages:build` only if generated Pages are intentionally stale |
 | Wrong repo path | check `pwd` | Foundry Intel is `C:\Users\jessi\veneer-deploy` |
 
 ---

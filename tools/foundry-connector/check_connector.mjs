@@ -47,6 +47,9 @@ for (const path of [
   'docs/architecture/adr/ADR-304-repo-freeze-autonomous-hardening.md',
   'docs/governance/repo-freeze-policy.json',
   'docs/governance/repo-freeze-policy.md',
+  'docs/keys/sovereign-node-build-public.asc',
+  'docs/keys/sovereign-node-build.json',
+  'docs/keys/README.md',
   'docs/trust/primordial-foundation-interlock.md',
   'docs/migration/primordial-foundation-umbrella-audit.md',
   'apps/wasm-frontend/README.md',
@@ -92,6 +95,7 @@ for (const path of [
   'docs/pages/wasm/loader.mjs',
   'docs/pages/wasm/index.html',
   'pirtm_rs/Cargo.toml',
+  'pirtm_rs/build.rs',
   'pirtm_rs/src/lib.rs',
   'pirtm_rs/src/main.rs',
   'pirtm_rs/src/rta.rs',
@@ -104,6 +108,7 @@ for (const path of [
   'lean-substrate/src/ADR/PhaseMirror.lean',
   'tools/formal/check_pirtm_artifacts.mjs',
   'tools/formal/repo_freeze_guard.mjs',
+  'tools/formal/sovereign_node_key_guard.mjs',
   'tools/formal/reverse_engineer_agent_guard.mjs',
   'tools/formal/gemini_black_team_guard.mjs',
   'tools/formal/phase_mirror_commit_gate.mjs',
@@ -132,6 +137,7 @@ for (const script of [
   'phase-mirror:gate',
   'repo:freeze:guard',
   'adr:harden:daily',
+  'sovereign:key:guard',
   'agent:tensor:guard',
   'security:black-team:guard',
   'adr:tick',
@@ -149,6 +155,9 @@ if (!rootPackage.scripts.verify.includes('phase-mirror:gate')) {
 if (!rootPackage.scripts.verify.includes('repo:freeze:guard')) {
   fail('package.json verify script must include repo:freeze:guard')
 }
+if (!rootPackage.scripts.verify.includes('sovereign:key:guard')) {
+  fail('package.json verify script must include sovereign:key:guard')
+}
 if (!rootPackage.scripts.verify.includes('agent:tensor:guard')) {
   fail('package.json verify script must include agent:tensor:guard')
 }
@@ -157,6 +166,9 @@ if (!rootPackage.scripts.verify.includes('security:black-team:guard')) {
 }
 if (!rootPackage.scripts['adr:harden:daily']?.includes('repo:freeze:guard')) {
   fail('package.json adr:harden:daily script must include repo:freeze:guard')
+}
+if (!rootPackage.scripts['adr:harden:daily']?.includes('sovereign:key:guard')) {
+  fail('package.json adr:harden:daily script must include sovereign:key:guard')
 }
 if (rootPackage.scripts.verify.indexOf('phase-mirror:gate') > rootPackage.scripts.verify.indexOf('adr:tick')) {
   fail('package.json verify script must run phase-mirror:gate before adr:tick')
@@ -206,6 +218,9 @@ requireEqual(connector.artifacts.reverse_engineer_agent_tensor, 'docs/agents/rev
 requireEqual(connector.artifacts.reverse_engineer_agent_doc, 'docs/agents/reverse-engineer-agent-tensor.md', 'Reverse engineer agent doc artifact')
 requireEqual(connector.artifacts.repo_freeze_policy, 'docs/governance/repo-freeze-policy.json', 'Repo freeze policy artifact')
 requireEqual(connector.artifacts.repo_freeze_doc, 'docs/governance/repo-freeze-policy.md', 'Repo freeze doc artifact')
+requireEqual(connector.artifacts.sovereign_node_public_key, 'docs/keys/sovereign-node-build-public.asc', 'Sovereign node public key artifact')
+requireEqual(connector.artifacts.sovereign_node_key_metadata, 'docs/keys/sovereign-node-build.json', 'Sovereign node key metadata artifact')
+requireEqual(connector.artifacts.sovereign_node_key_doc, 'docs/keys/README.md', 'Sovereign node key doc artifact')
 requireEqual(connector.artifacts.gemini_black_team_policy, 'docs/security/gemini-black-team-policy.json', 'Gemini black-team policy artifact')
 requireEqual(connector.artifacts.gemini_black_team_playbook, 'docs/security/gemini-black-team-tactic-playbook.md', 'Gemini black-team playbook artifact')
 requireEqual(connector.artifacts.intercal_loc_guard, 'docs/protocols/intercal-loc.guard', 'INTERCAL LOC guard artifact')
@@ -218,10 +233,12 @@ requireEqual(connector.artifacts.wasm_frontend_pages_root, 'docs/pages/wasm/inde
 requireEqual(connector.artifacts.intel_bob_chat_runtime, 'docs/pages/assets/bob-chat.mjs', 'BOB chat runtime artifact')
 requireEqual(connector.artifacts.intel_vllm_language_index, 'docs/pages/llm/vllm-language-index.json', 'vLLM language index artifact')
 requireEqual(connector.artifacts.pirtm_rs_crate, 'pirtm_rs/Cargo.toml', 'PIRTM Rust crate artifact')
+requireEqual(connector.artifacts.pirtm_rs_build_script, 'pirtm_rs/build.rs', 'PIRTM Rust build script artifact')
 requireEqual(connector.artifacts.lean_parm_proof, 'lean-substrate/src/Core/PARM.lean', 'Lean PARM proof artifact')
 requireEqual(connector.artifacts.lean_phase_mirror_proof, 'lean-substrate/src/ADR/PhaseMirror.lean', 'Lean Phase Mirror proof artifact')
 requireEqual(connector.artifacts.pirtm_artifact_check, 'tools/formal/check_pirtm_artifacts.mjs', 'PIRTM checker artifact')
 requireEqual(connector.artifacts.repo_freeze_guard, 'tools/formal/repo_freeze_guard.mjs', 'Repo freeze guard artifact')
+requireEqual(connector.artifacts.sovereign_node_key_guard, 'tools/formal/sovereign_node_key_guard.mjs', 'Sovereign node key guard artifact')
 requireEqual(connector.artifacts.reverse_engineer_agent_guard, 'tools/formal/reverse_engineer_agent_guard.mjs', 'Reverse engineer agent guard artifact')
 requireEqual(connector.artifacts.gemini_black_team_guard, 'tools/formal/gemini_black_team_guard.mjs', 'Gemini black-team guard artifact')
 requireEqual(connector.artifacts.phase_mirror_commit_gate, 'tools/formal/phase_mirror_commit_gate.mjs', 'Phase Mirror commit gate artifact')
@@ -233,6 +250,10 @@ requireEqual(connector.reverse_engineer_agent.response, 'EVIDENCE_OR_SILENCE', '
 requireEqual(connector.gemini_black_team.status, 'ENFORCED', 'Gemini black-team status')
 requireEqual(connector.gemini_black_team.mode, 'DEFENSIVE_BLOCKLIST', 'Gemini black-team mode')
 requireEqual(connector.gemini_black_team.verify_script, 'security:black-team:guard', 'Gemini black-team verify script')
+requireEqual(connector.sovereign_node_key.status, 'ACTIVE', 'Sovereign node key status')
+requireEqual(connector.sovereign_node_key.mode, 'PUBLIC_BUILD_TRUST_ANCHOR', 'Sovereign node key mode')
+requireEqual(connector.sovereign_node_key.verify_script, 'sovereign:key:guard', 'Sovereign node key verify script')
+requireEqual(connector.sovereign_node_key.secret_env_supported, 'SOVEREIGN_NODE_KEY', 'Sovereign node key env support')
 requireEqual(connector.phase_mirror_gate.status, 'BLOCKED_FROM_MUTATION', 'Phase Mirror gate status')
 requireEqual(connector.phase_mirror_gate.force_invoke_status, 'FORCE_INVOKED_TRAP_ACTIVE', 'Phase Mirror force invoke status')
 requireEqual(connector.phase_mirror_gate.proof_promotion_without_lean_build, 'BLOCKED_NO_LEAN_BUILD_EVIDENCE', 'Phase Mirror proof promotion gate')
@@ -304,6 +325,13 @@ for (const pattern of [
   /READ_ONLY_AUTONOMOUS/,
   /repo:freeze:guard/,
   /adr:harden:daily/,
+  /Sovereign Node Build Key/,
+  /sovereign-node-build-public\.asc/,
+  /sovereign-node-build\.json/,
+  /sovereign_node_key_guard\.mjs/,
+  /sovereign:key:guard/,
+  /SOVEREIGN_NODE_KEY/,
+  /427AB4A1C0E64A7AB22B0F116ABDA4A46FDDCB60/,
   /Reverse Engineer Agent Tensor/,
   /reverse-engineer-agent-tensor\.json/,
   /intercal-loc\.guard/,
@@ -348,6 +376,10 @@ for (const pattern of [
   /ADR-304-repo-freeze-autonomous-hardening\.md/,
   /READ_ONLY_AUTONOMOUS/,
   /repo:freeze:guard/,
+  /docs\/keys\/README\.md/,
+  /sovereign-node-build-public\.asc/,
+  /sovereign:key:guard/,
+  /SOVEREIGN_NODE_KEY/,
   /reverse-engineer-agent-tensor\.md/,
   /INTERCAL_LOC/,
   /EVIDENCE_OR_SILENCE/,

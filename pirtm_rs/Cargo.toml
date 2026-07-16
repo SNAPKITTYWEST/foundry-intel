@@ -5,6 +5,7 @@ edition = "2021"
 description = "PIRTM/PARM Phase Mirror Rust verification substrate"
 license = "Apache-2.0"
 publish = false
+build = "build.rs"
 
 [lib]
 name = "pirtm_rs"
@@ -15,4 +16,4 @@ name = "pirtm-rs"
 path = "src/main.rs"
 
 [lints.rust]
-unexpected_cfgs = { level = "allow", check-cfg = ['cfg(kani)'] }
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(kani)', 'cfg(sovereign_core)', 'cfg(sovereign_node_key_present)'] }

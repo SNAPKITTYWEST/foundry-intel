@@ -2,6 +2,7 @@
 import { appendFileSync, existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { evaluateRepoFreezeGuard } from './formal/repo_freeze_guard.mjs'
+import { evaluateSovereignNodeKeyGuard } from './formal/sovereign_node_key_guard.mjs'
 import { evaluateReverseEngineerAgentGuard } from './formal/reverse_engineer_agent_guard.mjs'
 import { evaluateGeminiBlackTeamGuard } from './formal/gemini_black_team_guard.mjs'
 import { evaluatePhaseMirrorCommitGate } from './formal/phase_mirror_commit_gate.mjs'
@@ -31,12 +32,15 @@ for (const path of [
   '.github/workflows/veneer-verify.yml',
   'tools/foundry-connector/connector-manifest.json',
   'tools/formal/repo_freeze_guard.mjs',
+  'tools/formal/sovereign_node_key_guard.mjs',
   'tools/formal/reverse_engineer_agent_guard.mjs',
   'tools/formal/gemini_black_team_guard.mjs',
   'tools/formal/phase_mirror_commit_gate.mjs',
   'tools/formal/phase_mirror_force_invoke.mjs',
   'docs/governance/repo-freeze-policy.json',
   'docs/governance/repo-freeze-policy.md',
+  'docs/keys/sovereign-node-build-public.asc',
+  'docs/keys/sovereign-node-build.json',
   'docs/agents/reverse-engineer-agent-tensor.json',
   'docs/security/gemini-black-team-policy.json',
   'docs/security/gemini-black-team-tactic-playbook.md',
@@ -57,13 +61,19 @@ if (connector.status !== 'CONNECTED') fail(`connector status is ${connector.stat
 if (!pkg.scripts?.verify?.includes('adr:tick')) fail('verify script must include adr:tick')
 if (!pkg.scripts?.verify?.includes('phase-mirror:gate')) fail('verify script must include phase-mirror:gate')
 if (!pkg.scripts?.verify?.includes('repo:freeze:guard')) fail('verify script must include repo:freeze:guard')
+if (!pkg.scripts?.verify?.includes('sovereign:key:guard')) fail('verify script must include sovereign:key:guard')
 if (!pkg.scripts?.verify?.includes('agent:tensor:guard')) fail('verify script must include agent:tensor:guard')
 if (!pkg.scripts?.verify?.includes('security:black-team:guard')) fail('verify script must include security:black-team:guard')
 if (!pkg.scripts?.['adr:harden:daily']?.includes('repo:freeze:guard')) fail('adr:harden:daily script must include repo:freeze:guard')
+if (!pkg.scripts?.['adr:harden:daily']?.includes('sovereign:key:guard')) fail('adr:harden:daily script must include sovereign:key:guard')
 
 const repoFreezeGuard = evaluateRepoFreezeGuard({ root })
 if (repoFreezeGuard.violations.length > 0) {
   fail(`Repo freeze guard violations: ${repoFreezeGuard.violations.join('; ')}`)
+}
+const sovereignNodeKeyGuard = evaluateSovereignNodeKeyGuard({ root })
+if (sovereignNodeKeyGuard.violations.length > 0) {
+  fail(`Sovereign node key guard violations: ${sovereignNodeKeyGuard.violations.join('; ')}`)
 }
 const reverseEngineerGuard = evaluateReverseEngineerAgentGuard({ root })
 if (reverseEngineerGuard.violations.length > 0) {
@@ -101,6 +111,7 @@ const summary = [
   `| Q(phi) total | \`${q5.q5_total}\` |`,
   `| Repo freeze | \`${repoFreezeGuard.status}\` |`,
   `| ADR hardening | \`${repoFreezeGuard.dailyHardening}\` |`,
+  `| Sovereign node key | \`${sovereignNodeKeyGuard.status}\` |`,
   `| Reverse engineer tensor | \`${reverseEngineerGuard.status}\` |`,
   `| INTERCAL LOC | \`${reverseEngineerGuard.locStatus}\` |`,
   `| Gemini black-team guard | \`${blackTeamGuard.status}\` |`,

@@ -38,6 +38,9 @@
     "intel_agent_memory": "AGENT_MEMORY.md",
     "repo_freeze_policy": "docs/governance/repo-freeze-policy.json",
     "repo_freeze_doc": "docs/governance/repo-freeze-policy.md",
+    "sovereign_node_public_key": "docs/keys/sovereign-node-build-public.asc",
+    "sovereign_node_key_metadata": "docs/keys/sovereign-node-build.json",
+    "sovereign_node_key_doc": "docs/keys/README.md",
     "gemini_black_team_policy": "docs/security/gemini-black-team-policy.json",
     "gemini_black_team_playbook": "docs/security/gemini-black-team-tactic-playbook.md",
     "linguist_policy": ".gitattributes",
@@ -80,6 +83,7 @@
     "intel_pages_builder": "tools/ascii-glitch/build_pages.pl",
     "intel_pages_workflow": ".github/workflows/pages.yml",
     "pirtm_rs_crate": "pirtm_rs/Cargo.toml",
+    "pirtm_rs_build_script": "pirtm_rs/build.rs",
     "pirtm_rs_rta": "pirtm_rs/src/rta.rs",
     "pirtm_rs_gates": "pirtm_rs/src/gates.rs",
     "pirtm_rs_uac_loss": "pirtm_rs/src/uac_loss.rs",
@@ -88,6 +92,7 @@
     "lean_phase_mirror_proof": "lean-substrate/src/ADR/PhaseMirror.lean",
     "pirtm_artifact_check": "tools/formal/check_pirtm_artifacts.mjs",
     "repo_freeze_guard": "tools/formal/repo_freeze_guard.mjs",
+    "sovereign_node_key_guard": "tools/formal/sovereign_node_key_guard.mjs",
     "reverse_engineer_agent_guard": "tools/formal/reverse_engineer_agent_guard.mjs",
     "gemini_black_team_guard": "tools/formal/gemini_black_team_guard.mjs",
     "phase_mirror_commit_gate": "tools/formal/phase_mirror_commit_gate.mjs",
@@ -198,6 +203,17 @@
     "schedule": "21 7 * * *",
     "boundary": "Autonomous jobs verify and harden ADR posture but cannot commit, push, comment, open issues, or promote cruxes."
   },
+  "sovereign_node_key": {
+    "status": "ACTIVE",
+    "mode": "PUBLIC_BUILD_TRUST_ANCHOR",
+    "public_key": "docs/keys/sovereign-node-build-public.asc",
+    "metadata": "docs/keys/sovereign-node-build.json",
+    "fingerprint": "427AB4A1C0E64A7AB22B0F116ABDA4A46FDDCB60",
+    "public_key_sha256": "576245485b17accf4078c6507714e564311767dc15d4e1e16037949a29517123",
+    "verify_script": "sovereign:key:guard",
+    "secret_env_supported": "SOVEREIGN_NODE_KEY",
+    "boundary": "Rust crates require the repo-level public OpenPGP key; private SOVEREIGN_NODE_KEY material remains outside git."
+  },
   "phase_mirror_gate": {
     "status": "BLOCKED_FROM_MUTATION",
     "script": "tools/formal/phase_mirror_commit_gate.mjs",
@@ -234,6 +250,7 @@
     "Foundry F1 is the runtime/sorry-engine receiver, not a source of automatic proof claims.",
     "No connector may erase WORM, provenance, or license boundaries.",
     "Repo freeze is active: autonomous jobs are read-only and fail closed on repository mutation paths.",
+    "Sovereign node public build key must remain tracked; private key material must remain ignored.",
     "Reverse engineer agent tensor is defensive only and communicates through INTERCAL_LOC as EVIDENCE_OR_SILENCE.",
     "Gemini black-team tactics are enforced as a defensive blocklist; prompt poisoning, parser toxicity, and intentional tool crashes are prohibited.",
     "Primordial Foundation rebrand metadata cannot silently rename the GitHub repo or amend legal instruments."

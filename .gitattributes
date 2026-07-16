@@ -10,3 +10,9 @@ tools/**/*.mjs linguist-generated=true
 apps/wasm-frontend/src/*.mjs linguist-generated=true
 apps/wasm-frontend/tools/*.mjs linguist-generated=true
 apps/wasm-frontend/dist/** linguist-generated=true
+
+# Sovereign node public build trust anchors.
+# These are tracked provenance artifacts; private keys stay ignored by .gitignore.
+docs/keys/sovereign-node-build-public.asc text eol=lf linguist-generated=false
+docs/keys/sovereign-node-build.json text eol=lf linguist-generated=false
+docs/keys/README.md text eol=lf linguist-generated=false

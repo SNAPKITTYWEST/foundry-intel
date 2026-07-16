@@ -7,6 +7,17 @@ pirtm_rs/target/
 .DS_Store
 Thumbs.db
 
+# Sovereign node private key material must never be committed.
+docs/keys/private/
+docs/keys/**/*.gpg
+docs/keys/**/*.kbx
+docs/keys/**/*.sec.asc
+docs/keys/**/*private*.asc
+docs/keys/**/*secret*.asc
+!docs/keys/sovereign-node-build-public.asc
+!docs/keys/sovereign-node-build.json
+!docs/keys/README.md
+
 !apps/
 !apps/wasm-frontend/
 !apps/wasm-frontend/dist/

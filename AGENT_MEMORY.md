@@ -89,6 +89,8 @@ ported into this repo with manifests and validation.
 17. `docs/security/gemini-black-team-tactic-playbook.md`
 18. `docs/governance/repo-freeze-policy.md`
 19. `docs/architecture/adr/ADR-304-repo-freeze-autonomous-hardening.md`
+20. `docs/keys/README.md`
+21. `docs/keys/sovereign-node-build-public.asc`
 
 ## Hard Boundaries
 
@@ -103,6 +105,9 @@ ported into this repo with manifests and validation.
 - Repo freeze is active. Autonomous jobs are `READ_ONLY_AUTONOMOUS`; they may
   verify and summarize but must not commit, push, comment, open issues, or
   promote cruxes.
+- Sovereign node public build key is tracked at
+  `docs/keys/sovereign-node-build-public.asc`. Do not delete it. Private key
+  material and `SOVEREIGN_NODE_KEY` values must remain outside git.
 - Reverse engineer agent tensor is defensive-only. It communicates through
   `INTERCAL_LOC` and resolves parser-facing contact as `EVIDENCE_OR_SILENCE`.
 - Gemini black-team tactics are a defensive blocklist. Do not add
@@ -134,6 +139,7 @@ npm run adr:q5:fallback
 npm run connector:check
 npm run handoff:check
 npm run repo:freeze:guard
+npm run sovereign:key:guard
 npm run agent:tensor:guard
 npm run security:black-team:guard
 npm run pages:check
