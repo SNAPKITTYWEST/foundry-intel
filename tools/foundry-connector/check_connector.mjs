@@ -70,6 +70,7 @@ for (const path of [
   'docs/brand/context-bleed-chatbox.svg',
   'docs/protocols/xml-handoff-envelope.md',
   'docs/protocols/xml-handoff-envelope.xsd',
+  'docs/protocols/phase-mirror-force-invoke.trap',
   'docs/handoff/foundry-intel-agent-contract.xml',
   'docs/handoff/primordial-foundation-agent-contract.xml',
   'docs/pages/index.html',
@@ -94,6 +95,8 @@ for (const path of [
   'lean-substrate/src/ADR.lean',
   'lean-substrate/src/ADR/PhaseMirror.lean',
   'tools/formal/check_pirtm_artifacts.mjs',
+  'tools/formal/phase_mirror_commit_gate.mjs',
+  'tools/formal/phase_mirror_force_invoke.mjs',
   'tools/ascii-glitch/build_pages.pl',
   '.github/workflows/pages.yml',
   'docs/architecture/adr-q5-theorem-classification.md',
@@ -103,11 +106,32 @@ for (const path of [
   requireFile(path)
 }
 
-for (const script of ['build', 'test', 'lint', 'smoke', 'verify', 'verify:pirtm', 'test:pirtm', 'check:pirtm', 'adr:tick', 'pages:build', 'pages:check']) {
+for (const script of [
+  'build',
+  'test',
+  'lint',
+  'smoke',
+  'verify',
+  'verify:pirtm',
+  'test:pirtm',
+  'check:pirtm',
+  'phase-mirror:commit-gate',
+  'phase-mirror:force-invoke',
+  'phase-mirror:gate',
+  'adr:tick',
+  'pages:build',
+  'pages:check'
+]) {
   if (!rootPackage.scripts?.[script]) fail(`package.json missing ${script} script`)
 }
 if (!rootPackage.scripts.verify.includes('verify:pirtm')) {
   fail('package.json verify script must include verify:pirtm')
+}
+if (!rootPackage.scripts.verify.includes('phase-mirror:gate')) {
+  fail('package.json verify script must include phase-mirror:gate')
+}
+if (rootPackage.scripts.verify.indexOf('phase-mirror:gate') > rootPackage.scripts.verify.indexOf('adr:tick')) {
+  fail('package.json verify script must run phase-mirror:gate before adr:tick')
 }
 
 requireEqual(agentTour.id, 'FOUNDRY-INTEL-AGENT-METADATA-TOUR-20260716', 'agent tour id')
@@ -146,6 +170,7 @@ requireEqual(
   'docs/handoff/primordial-foundation-agent-contract.xml',
   'Primordial Foundation XML handoff artifact'
 )
+requireEqual(connector.artifacts.phase_mirror_force_invoke_trap, 'docs/protocols/phase-mirror-force-invoke.trap', 'Phase Mirror force invoke trap artifact')
 requireEqual(connector.artifacts.intel_pages_builder, 'tools/ascii-glitch/build_pages.pl', 'Pages builder artifact')
 requireEqual(connector.artifacts.wasm_frontend_manifest, 'apps/wasm-frontend/dist/manifest.json', 'WASM manifest artifact')
 requireEqual(connector.artifacts.wasm_frontend_pages_root, 'docs/pages/wasm/index.html', 'WASM Pages artifact')
@@ -155,6 +180,11 @@ requireEqual(connector.artifacts.pirtm_rs_crate, 'pirtm_rs/Cargo.toml', 'PIRTM R
 requireEqual(connector.artifacts.lean_parm_proof, 'lean-substrate/src/Core/PARM.lean', 'Lean PARM proof artifact')
 requireEqual(connector.artifacts.lean_phase_mirror_proof, 'lean-substrate/src/ADR/PhaseMirror.lean', 'Lean Phase Mirror proof artifact')
 requireEqual(connector.artifacts.pirtm_artifact_check, 'tools/formal/check_pirtm_artifacts.mjs', 'PIRTM checker artifact')
+requireEqual(connector.artifacts.phase_mirror_commit_gate, 'tools/formal/phase_mirror_commit_gate.mjs', 'Phase Mirror commit gate artifact')
+requireEqual(connector.artifacts.phase_mirror_force_invoke, 'tools/formal/phase_mirror_force_invoke.mjs', 'Phase Mirror force invoke artifact')
+requireEqual(connector.phase_mirror_gate.status, 'BLOCKED_FROM_MUTATION', 'Phase Mirror gate status')
+requireEqual(connector.phase_mirror_gate.force_invoke_status, 'FORCE_INVOKED_TRAP_ACTIVE', 'Phase Mirror force invoke status')
+requireEqual(connector.phase_mirror_gate.proof_promotion_without_lean_build, 'BLOCKED_NO_LEAN_BUILD_EVIDENCE', 'Phase Mirror proof promotion gate')
 requireEqual(q5.count, connector.q5.count, 'Q(phi) ADR count')
 requireEqual(q5.q5_total, connector.q5.total, 'Q(phi) total')
 requireEqual(vllmIndex.id, 'SPF-VLLM-LANGUAGE-INDEX-20260716', 'vLLM language index id')
@@ -219,6 +249,12 @@ for (const pattern of [
   /Core\/PARM\.lean/,
   /ADR\/PhaseMirror\.lean/,
   /npm run verify:pirtm/,
+  /npm run phase-mirror:gate/,
+  /phase_mirror_commit_gate\.mjs/,
+  /phase_mirror_force_invoke\.mjs/,
+  /phase-mirror-force-invoke\.trap/,
+  /FORCE_INVOKED_TRAP_ACTIVE/,
+  /BLOCKED_NO_LEAN_BUILD_EVIDENCE/,
   /OPEN_CRUX/,
   /SILENCE_PENDING/,
   /Q\(phi\).*metadata/is,

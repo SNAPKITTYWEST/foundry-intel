@@ -63,6 +63,7 @@
     "intel_bob_chat_runtime": "docs/pages/assets/bob-chat.mjs",
     "intel_handoff_protocol": "docs/protocols/xml-handoff-envelope.md",
     "intel_handoff_schema": "docs/protocols/xml-handoff-envelope.xsd",
+    "phase_mirror_force_invoke_trap": "docs/protocols/phase-mirror-force-invoke.trap",
     "intel_handoff_envelope": "docs/handoff/foundry-intel-agent-contract.xml",
     "intel_handoff_rebrand_envelope": "docs/handoff/primordial-foundation-agent-contract.xml",
     "intel_pages_root": "docs/pages/index.html",
@@ -78,6 +79,8 @@
     "lean_parm_proof": "lean-substrate/src/Core/PARM.lean",
     "lean_phase_mirror_proof": "lean-substrate/src/ADR/PhaseMirror.lean",
     "pirtm_artifact_check": "tools/formal/check_pirtm_artifacts.mjs",
+    "phase_mirror_commit_gate": "tools/formal/phase_mirror_commit_gate.mjs",
+    "phase_mirror_force_invoke": "tools/formal/phase_mirror_force_invoke.mjs",
     "intel_production_smoke": "tools/production-smoke.mjs",
     "intel_typescript_config": "tsconfig.json",
     "intel_typescript_package_config": "tsconfig.package.json",
@@ -152,6 +155,16 @@
     "optional_streaming": ["vLLM OpenAI-compatible", "Ollama"],
     "boundary": "GitHub Pages does not host a model server; endpoints are supplied by the reader's browser."
   },
+  "phase_mirror_gate": {
+    "status": "BLOCKED_FROM_MUTATION",
+    "script": "tools/formal/phase_mirror_commit_gate.mjs",
+    "force_invoke_script": "tools/formal/phase_mirror_force_invoke.mjs",
+    "force_invoke_trap": "docs/protocols/phase-mirror-force-invoke.trap",
+    "verify_script": "phase-mirror:gate",
+    "force_invoke_status": "FORCE_INVOKED_TRAP_ACTIVE",
+    "proof_promotion_without_lean_build": "BLOCKED_NO_LEAN_BUILD_EVIDENCE",
+    "boundary": "Phase Mirror cannot auto-commit, push, comment, or promote scanner/Kani output into a kernel-verified Lean claim."
+  },
   "routing": [
     {
       "from": "GKN Lean latch",
@@ -173,6 +186,7 @@
     "ADR-055 remains an open crux until a zero-sorry Lean proof and supporting mathematical argument exist.",
     "ADR-062 remains SILENCE_PENDING until the Sigma Kernel governance gap is closed by evidence.",
     "PIRTM Rust/Kani executable checks do not supersede Lean theorem authority or ADR-055 open-crux boundaries.",
+    "Phase Mirror promotion is blocked from mutation and remains blocked without recorded Lean build evidence.",
     "Liquid Haskell refinements can harden runtime types but cannot supersede Lean theorem authority.",
     "Foundry F1 is the runtime/sorry-engine receiver, not a source of automatic proof claims.",
     "No connector may erase WORM, provenance, or license boundaries.",

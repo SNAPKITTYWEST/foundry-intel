@@ -41,11 +41,23 @@ npm run verify
 5. TypeScript lint/typecheck.
 6. No-cache Jest tests for the active SYNTH packages.
 7. Built-package production smoke test.
-8. ADR production tick summary.
+8. Phase Mirror commit/promotion gate.
+9. ADR production tick summary.
 
 The tick summary is produced by `tools/adr-production-tick.mjs`. In GitHub
 Actions it writes a single job summary through `$GITHUB_STEP_SUMMARY`. Locally
 it prints the same summary to stdout.
+
+`tools/formal/phase_mirror_commit_gate.mjs` runs immediately before the ADR
+tick. It scans workflow and tool surfaces for repository mutation paths, blocks
+Phase Mirror proof-promotion language, and reports Phase Mirror as
+`BLOCKED_FROM_MUTATION`. If Lean build evidence is absent, proof promotion
+remains `BLOCKED_NO_LEAN_BUILD_EVIDENCE`.
+
+`tools/formal/phase_mirror_force_invoke.mjs` then reads
+`docs/protocols/phase-mirror-force-invoke.trap` and validates the final
+regression trap. The ADR tick must see `FORCE_INVOKED_TRAP_ACTIVE` before it can
+emit a passing summary.
 
 ## Non-Mutating Rule
 
@@ -56,6 +68,7 @@ The daily tick must not:
 - post PR comments
 - post discussion comments
 - write repository files
+- mutate or auto-commit Phase Mirror state
 - promote open cruxes into proof claims
 
 Any future workflow that writes commits or comments requires a separate ADR.
@@ -84,6 +97,8 @@ npx veneer-probe-gate probe_results/example.json
 - ADR-062 remains `SILENCE_PENDING`.
 - Q(phi) weights remain metadata classifications only.
 - Liquid Haskell refinements do not supersede Lean proof authority.
+- Phase Mirror/PIRTM scanner checks do not become kernel-verified Lean claims
+  without recorded Lean build evidence.
 - WORM remains write-once/read-many ledger semantics.
 
 ## Consequences

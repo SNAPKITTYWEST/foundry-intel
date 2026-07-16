@@ -576,12 +576,24 @@ Run it directly:
 ```sh
 npm run verify:pirtm
 cargo test --manifest-path pirtm_rs/Cargo.toml
+npm run phase-mirror:gate
+npm run phase-mirror:force-invoke
 ```
 
 The Rust gate is executable and covered by tests. The Lean files are
 mathlib-free substrate files with no placeholder proof tokens; this environment
 does not have Lean/Lake on PATH, so `npm run verify:pirtm` enforces artifact
 presence and placeholder absence while Cargo verifies the executable layer.
+
+Phase Mirror is also guarded by `tools/formal/phase_mirror_commit_gate.mjs`.
+The gate is intentionally non-mutating: it blocks commit/push/comment paths in
+workflow and tool surfaces, rejects unverifiable proof-promotion language, and
+reports Phase Mirror proof promotion as `BLOCKED_NO_LEAN_BUILD_EVIDENCE` until
+real Lean build artifacts are present.
+
+The final forced gate is `tools/formal/phase_mirror_force_invoke.mjs`, backed by
+`docs/protocols/phase-mirror-force-invoke.trap`. It evaluates the regression
+trap and must report `FORCE_INVOKED_TRAP_ACTIVE` before the ADR tick can pass.
 
 ---
 
