@@ -36,6 +36,86 @@
 
 %% ── ADR Registry ─────────────────────────────────────────────────────────
 %% adr(ID, Title, Agent, ProofRef, ContractRef, WormSeal)
+%% Upstream ADRs (PhaseMirror/Foundry — merged 2026-07-16)
+
+adr('ADR-052',
+    'Universal Atomic Calculator UAC Integration',
+    builder,
+    'sha256:uac-integration-proof-v1',
+    'sha256:uac-integration-contract-v1',
+    'worm:ADR-052-seal').
+
+adr('ADR-053',
+    'Lean4 Formalization and Monorepo Architecture',
+    builder,
+    'sha256:lean4-monorepo-proof-v1',
+    'sha256:lean4-monorepo-contract-v1',
+    'worm:ADR-053-seal').
+
+adr('ADR-054',
+    'Rust Kani Executable Formal Verification Mathlib-Free',
+    builder,
+    'sha256:rust-kani-proof-v1',
+    'sha256:rust-kani-contract-v1',
+    'worm:ADR-054-seal').
+
+adr('ADR-055',
+    'Riemann Hypothesis Computational Implementation',
+    builder,
+    'sha256:riemann-zeta-proof-v1',
+    'sha256:riemann-zeta-contract-v1',
+    'worm:ADR-055-seal').
+
+adr('ADR-056',
+    'Collatz Conjecture Computational Verification',
+    builder,
+    'sha256:collatz-proof-v1',
+    'sha256:collatz-contract-v1',
+    'worm:ADR-056-seal').
+
+adr('ADR-057',
+    'Lean4 Formal ADR Scaffolding',
+    builder,
+    'sha256:lean4-adr-scaffolding-proof-v1',
+    'sha256:lean4-adr-scaffolding-contract-v1',
+    'worm:ADR-057-seal').
+
+adr('ADR-058',
+    'PIRTM Compiler Sig Library Phase B',
+    builder,
+    'sha256:pirtm-sig-proof-v1',
+    'sha256:pirtm-sig-contract-v1',
+    'worm:ADR-058-seal').
+
+adr('ADR-059',
+    'Attested Convergence Envelope ACE Runtime',
+    builder,
+    'sha256:ace-runtime-proof-v1',
+    'sha256:ace-runtime-contract-v1',
+    'worm:ADR-059-seal').
+
+adr('ADR-060',
+    'Dynamic Recursive Meta-Mathematics DRMM',
+    builder,
+    'sha256:drmm-proof-v1',
+    'sha256:drmm-contract-v1',
+    'worm:ADR-060-seal').
+
+adr('ADR-061',
+    'ZMOS Zeta-Multiplicity Operator System Production',
+    builder,
+    'sha256:zmos-production-proof-v1',
+    'sha256:zmos-production-contract-v1',
+    'worm:ADR-061-seal').
+
+adr('ADR-062',
+    'Sigma Kernel Production Implementation',
+    builder,
+    'sha256:sigma-kernel-proof-v1',
+    'sha256:sigma-kernel-contract-v1',
+    'worm:ADR-062-seal').
+
+%% Veneer ADRs (Sedona Spine — production hardening)
 
 adr('ADR-101',
     'Tree-sitter Grammar for PIRTM-lang',
