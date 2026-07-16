@@ -33,6 +33,8 @@
     "intel_connector_doc": "docs/bridge/foundry-connector.md",
     "intel_agent_tour_doc": "docs/agents/metadata-tour.md",
     "intel_agent_tour_json": "docs/agents/metadata-tour.json",
+    "intel_agent_memory": "AGENT_MEMORY.md",
+    "intel_operating_map": "docs/brand/foundry-intel-operating-map.svg",
     "intel_brand_banner": "docs/brand/veneer-institutional-trust.svg",
     "intel_brand_badges": [
       "docs/brand/badge-verify.svg",

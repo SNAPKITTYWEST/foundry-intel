@@ -11,6 +11,8 @@ START
   |
   +-- README.md
   |
+  +-- AGENT_MEMORY.md
+  |
   +-- docs/handoff/foundry-intel-agent-contract.xml
   |
   +-- tools/foundry-connector/connector-manifest.json
@@ -32,6 +34,16 @@ npm run verify
 The production gate runs Q(phi) generation, connector validation, XML envelope
 validation, workspace build, TypeScript lint, no-cache Jest tests, smoke, and
 the ADR-301 daily production tick.
+
+## Persistent Memory
+
+Before touching files, agents must read:
+
+`AGENT_MEMORY.md`
+
+That file pins the local path to `C:\Users\jessi\veneer-deploy`, identifies
+this repo as `SNAPKITTYWEST/foundry-intel-2026-07-11`, and explicitly warns not
+to confuse this governance hub with Foundry F1 or Shadow Orchestrator.
 
 ## User-Facing Runtime
 
@@ -84,3 +96,7 @@ The CLI maps probe output into `@veneer/bob-gate`, emits `EVIDENCE` or
 README badges are local SVG files under `docs/brand/`. They are part of the
 production connector check so the project does not depend on remote badge
 services for institutional trust presentation.
+
+The README operating map is:
+
+`docs/brand/foundry-intel-operating-map.svg`

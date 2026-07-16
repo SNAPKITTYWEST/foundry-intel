@@ -8,6 +8,7 @@
   },
   "entry_route": [
     "README.md",
+    "AGENT_MEMORY.md",
     "docs/handoff/foundry-intel-agent-contract.xml",
     "tools/foundry-connector/connector-manifest.json",
     "docs/architecture/ADR-INDEX.md"
@@ -40,7 +41,8 @@
     "trust_interlock": "docs/architecture/adr/ADR-300-grat-foundry-interlock.md",
     "daily_tick": "docs/architecture/adr/ADR-301-daily-production-tick.md",
     "connector": "docs/bridge/foundry-connector.md",
-    "xml_handoff": "docs/handoff/foundry-intel-agent-contract.xml"
+    "xml_handoff": "docs/handoff/foundry-intel-agent-contract.xml",
+    "agent_memory": "AGENT_MEMORY.md"
   },
   "boundaries": [
     "ADR-055 remains OPEN_CRUX",
@@ -52,6 +54,7 @@
   ],
   "brand": {
     "banner": "docs/brand/veneer-institutional-trust.svg",
+    "operating_map": "docs/brand/foundry-intel-operating-map.svg",
     "badges": [
       "docs/brand/badge-verify.svg",
       "docs/brand/badge-adr.svg",

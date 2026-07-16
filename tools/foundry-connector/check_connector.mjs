@@ -31,6 +31,7 @@ const rootPackage = readJson('package.json')
 const agentTour = readJson('docs/agents/metadata-tour.json')
 
 for (const path of [
+  'AGENT_MEMORY.md',
   'package-lock.json',
   '.github/workflows/veneer-verify.yml',
   'tsconfig.json',
@@ -41,6 +42,7 @@ for (const path of [
   'docs/bridge/foundry-connector.md',
   'docs/agents/metadata-tour.md',
   'docs/agents/metadata-tour.json',
+  'docs/brand/foundry-intel-operating-map.svg',
   'docs/brand/veneer-institutional-trust.svg',
   'docs/brand/badge-verify.svg',
   'docs/brand/badge-adr.svg',
@@ -91,6 +93,31 @@ for (const [id, status] of Object.entries(connector.q5.statuses)) {
 const doc = readFileSync(join(root, 'docs/architecture/adr-q5-theorem-classification.md'), 'utf8')
 if (!/metadata/i.test(doc) || !/open crux/i.test(doc)) {
   fail('Q(phi) classification doc must preserve metadata and open-crux language')
+}
+
+const readme = readFileSync(join(root, 'README.md'), 'utf8')
+for (const pattern of [
+  /AGENT_MEMORY\.md/,
+  /foundry-intel-2026-07-11/,
+  /C:\\Users\\jessi\\veneer-deploy/,
+  /foundry-intel-operating-map\.svg/,
+  /OPEN_CRUX/,
+  /SILENCE_PENDING/,
+  /Q\(phi\).*metadata/is,
+  /npm run verify/
+]) {
+  if (!pattern.test(readme)) fail(`README missing required memory/operator marker: ${pattern}`)
+}
+
+const memory = readFileSync(join(root, 'AGENT_MEMORY.md'), 'utf8')
+for (const pattern of [
+  /C:\\Users\\jessi\\veneer-deploy/,
+  /SNAPKITTYWEST\/foundry-intel-2026-07-11/,
+  /Do Not Confuse With/,
+  /ADR-055 remains `OPEN_CRUX`/,
+  /ADR-062 remains `SILENCE_PENDING`/
+]) {
+  if (!pattern.test(memory)) fail(`AGENT_MEMORY missing required marker: ${pattern}`)
 }
 
 console.log('foundry connector check passed')

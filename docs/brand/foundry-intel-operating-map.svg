@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Foundry Intel Operating Map</title>
+  <desc id="desc">Three-repo bridge map for GKN Lean, Foundry Intel governance, and Foundry F1 runtime receiver.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07131f"/>
+      <stop offset="0.55" stop-color="#101a2c"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="intel" x1="0" x2="1">
+      <stop offset="0" stop-color="#31d0ff"/>
+      <stop offset="1" stop-color="#c7f9ff"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffcf66"/>
+      <stop offset="1" stop-color="#fff4c2"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9bdcff"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="720" rx="28" fill="url(#bg)"/>
+  <path d="M0 120 C220 30 380 210 600 95 C780 0 1000 55 1200 20 L1200 0 L0 0 Z" fill="#173554" opacity="0.55"/>
+  <path d="M0 690 C240 610 430 720 620 640 C840 545 1010 670 1200 585 L1200 720 L0 720 Z" fill="#1d263a" opacity="0.9"/>
+
+  <text x="600" y="54" text-anchor="middle" fill="#f8fbff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800">Foundry Intel Operating Map</text>
+  <text x="600" y="86" text-anchor="middle" fill="#a7bdd6" font-family="Segoe UI, Arial, sans-serif" font-size="16">ADR governance, Q(phi) posture, XML agent handoff, Datalog/TS gates, WORM memory, BOB verdicts</text>
+
+  <g filter="url(#glow)">
+    <rect x="64" y="150" width="280" height="150" rx="18" fill="#0c2235" stroke="#4cc9f0" stroke-width="2"/>
+    <text x="204" y="185" text-anchor="middle" fill="#e9fbff" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">GKN Lean Latch</text>
+    <text x="94" y="222" fill="#b9d7e8" font-family="Consolas, monospace" font-size="15">repo: gkn-i4-e7-lean</text>
+    <text x="94" y="248" fill="#b9d7e8" font-family="Consolas, monospace" font-size="15">commit: de968509...</text>
+    <text x="94" y="274" fill="#b9d7e8" font-family="Consolas, monospace" font-size="15">Lean theorem anchors</text>
+
+    <rect x="460" y="126" width="280" height="200" rx="22" fill="#102b3b" stroke="url(#intel)" stroke-width="3"/>
+    <text x="600" y="163" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="800">Foundry Intel</text>
+    <text x="600" y="192" text-anchor="middle" fill="#9eeeff" font-family="Segoe UI, Arial, sans-serif" font-size="15">governance + intelligence hub</text>
+    <text x="490" y="226" fill="#dcf9ff" font-family="Consolas, monospace" font-size="15">Q(phi): 8 + 3*phi</text>
+    <text x="490" y="252" fill="#dcf9ff" font-family="Consolas, monospace" font-size="15">ADR-055: OPEN_CRUX</text>
+    <text x="490" y="278" fill="#dcf9ff" font-family="Consolas, monospace" font-size="15">ADR-062: SILENCE_PENDING</text>
+    <text x="490" y="304" fill="#dcf9ff" font-family="Consolas, monospace" font-size="15">verdict: EVIDENCE | SILENCE</text>
+
+    <rect x="856" y="150" width="280" height="150" rx="18" fill="#241f12" stroke="#ffd166" stroke-width="2"/>
+    <text x="996" y="185" text-anchor="middle" fill="#fff5d6" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Foundry F1 Receiver</text>
+    <text x="886" y="222" fill="#ffe4a3" font-family="Consolas, monospace" font-size="15">C++/C/NASM runtime</text>
+    <text x="886" y="248" fill="#ffe4a3" font-family="Consolas, monospace" font-size="15">sorry-engine receiver</text>
+    <text x="886" y="274" fill="#ffe4a3" font-family="Consolas, monospace" font-size="15">Claude handoff surface</text>
+  </g>
+
+  <path d="M344 225 L450 225" stroke="#9bdcff" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M740 225 L846 225" stroke="#9bdcff" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M996 300 C990 405 725 420 690 332" fill="none" stroke="#ffd166" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="812" y="410" fill="#ffe4a3" font-family="Segoe UI, Arial, sans-serif" font-size="16">evidence returns through ADR governance</text>
+
+  <g>
+    <rect x="90" y="420" width="220" height="120" rx="16" fill="#121f32" stroke="#2f4869"/>
+    <text x="200" y="452" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">XML Envelopes</text>
+    <text x="116" y="484" fill="#bbcadf" font-family="Consolas, monospace" font-size="14">docs/handoff/*.xml</text>
+    <text x="116" y="510" fill="#bbcadf" font-family="Consolas, monospace" font-size="14">agent prompt transport</text>
+
+    <rect x="360" y="420" width="220" height="120" rx="16" fill="#121f32" stroke="#2f4869"/>
+    <text x="470" y="452" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Datalog Eggs</text>
+    <text x="386" y="484" fill="#bbcadf" font-family="Consolas, monospace" font-size="14">10 SYNTH facts</text>
+    <text x="386" y="510" fill="#bbcadf" font-family="Consolas, monospace" font-size="14">evidence/silence rules</text>
+
+    <rect x="630" y="420" width="220" height="120" rx="16" fill="#121f32" stroke="#2f4869"/>
+    <text x="740" y="452" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">WORM Memory</text>
+    <text x="656" y="484" fill="#bbcadf" font-family="Consolas, monospace" font-size="14">dual-signed ledger</text>
+    <text x="656" y="510" fill="#bbcadf" font-family="Consolas, monospace" font-size="14">append-only evidence</text>
+
+    <rect x="900" y="420" width="220" height="120" rx="16" fill="#121f32" stroke="#2f4869"/>
+    <text x="1010" y="452" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">BOB Gate</text>
+    <text x="926" y="484" fill="#bbcadf" font-family="Consolas, monospace" font-size="14">pearlGate()</text>
+    <text x="926" y="510" fill="#bbcadf" font-family="Consolas, monospace" font-size="14">EVIDENCE | SILENCE</text>
+  </g>
+
+  <path d="M310 480 L350 480" stroke="#5fb3ff" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M580 480 L620 480" stroke="#5fb3ff" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M850 480 L890 480" stroke="#5fb3ff" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="130" y="600" width="940" height="58" rx="16" fill="#091423" stroke="#314866"/>
+  <text x="600" y="624" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Production command: npm run verify</text>
+  <text x="600" y="648" text-anchor="middle" fill="#a9bdd6" font-family="Consolas, monospace" font-size="14">Q(phi) -> connector -> XML -> build -> lint -> tests -> smoke -> ADR-301 tick</text>
+</svg>
