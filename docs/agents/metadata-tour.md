@@ -35,6 +35,19 @@ The production gate runs Q(phi) generation, connector validation, XML envelope
 validation, workspace build, TypeScript lint, no-cache Jest tests, smoke, and
 the ADR-301 daily production tick.
 
+## Trust/Rebrand Track
+
+Foundry Intel is preparing the public identity
+`THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care of Bel Esprit
+D'Accord`. The active transition files are:
+
+- `docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md`
+- `docs/trust/primordial-foundation-interlock.md`
+- `docs/handoff/primordial-foundation-agent-contract.xml`
+
+The GitHub repo is still `SNAPKITTYWEST/foundry-intel-2026-07-11` until an
+explicit rename is requested and performed.
+
 ## Persistent Memory
 
 Before touching files, agents must read:
@@ -62,7 +75,10 @@ The CLI maps probe output into `@veneer/bob-gate`, emits `EVIDENCE` or
 | Constitutional authority | `docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md` |
 | Trust interlock | `docs/architecture/adr/ADR-300-grat-foundry-interlock.md` |
 | Daily production tick | `docs/architecture/adr/ADR-301-daily-production-tick.md` |
+| Primordial Foundation rebrand | `docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md` |
+| Trust transition map | `docs/trust/primordial-foundation-interlock.md` |
 | Agent XML handoff | `docs/handoff/foundry-intel-agent-contract.xml` |
+| Primordial XML handoff | `docs/handoff/primordial-foundation-agent-contract.xml` |
 | Cross-repo connector | `docs/bridge/foundry-connector.md` |
 | Q(phi) classification | `docs/architecture/adr-q5-theorem-classification.md` |
 

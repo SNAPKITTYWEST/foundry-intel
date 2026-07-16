@@ -47,6 +47,7 @@ grat_corpus_asset('GRAT-ASSET-007', 'WORM Audit Chain — append-only SHA-256/Ed
 grat_corpus_asset('GRAT-ASSET-008', 'Prior Art Anchor — DEVFLOW-FINANCE 2026-04-14').
 grat_corpus_asset('GRAT-ASSET-009', 'QuantumPartitionBridge.lean — Legendre duality, zero sorry').
 grat_corpus_asset('GRAT-ASSET-010', 'RiemannMetatron.lean — zeta structural facts, zero sorry').
+grat_corpus_asset('GRAT-ASSET-011', 'Foundry Intel Governance Hub — Primordial Foundation transition spine').
 
 %% ── Prior Art Links — ADR ↔ External Citations ───────────────────────────────
 %% prior_art_linked(ADR_ID, CitationKey)
@@ -98,6 +99,10 @@ prior_art_linked('ADR-300', 'GRAT-ASSET-008').
 prior_art_linked('ADR-301', 'GRAT-ASSET-007').  % WORM Audit Chain
 prior_art_linked('ADR-301', 'ADR-200').
 prior_art_linked('ADR-301', 'ADR-300').
+prior_art_linked('ADR-302', 'GRAT-ASSET-011').  % Foundry Intel transition spine
+prior_art_linked('ADR-302', 'ADR-200').
+prior_art_linked('ADR-302', 'ADR-300').
+prior_art_linked('ADR-302', 'ADR-301').
 
 %% ── Expansion Eligibility (Datalog EDB) ─────────────────────────────────────
 %% expansion_eligible(ID) is asserted dynamically by the loop when an ADR

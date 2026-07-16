@@ -8,12 +8,19 @@ This document connects the scattered proof engines into one operational lane:
 - `SNAPKITTYWEST/foundry-f1` owns the C++/C/NASM runtime substrate,
   sorry-engine receiver, and Claude-facing operator handoff.
 
+The trust/rebrand track is governed by ADR-302. The current repo name remains
+`foundry-intel-2026-07-11` until an explicit GitHub rename, while the target
+public identity is `THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care
+of Bel Esprit D'Accord`.
+
 The machine-readable contract is
 `tools/foundry-connector/connector-manifest.json`.
 
 Agent-to-agent instructions move through XML handoff envelopes. The protocol is
 defined in `docs/protocols/xml-handoff-envelope.md`, and the active Foundry
 Intel envelope is `docs/handoff/foundry-intel-agent-contract.xml`.
+The Primordial Foundation transition envelope is
+`docs/handoff/primordial-foundation-agent-contract.xml`.
 
 Incoming agents also get a committed metadata tour:
 
@@ -32,6 +39,7 @@ README branding uses local institutional trust SVG badges under `docs/brand/`.
 | Q(phi) ADR parser | `tools/q5-adr-parser/adr_manifest.json` | 11 ADR records |
 | Q(phi) roll-up | `8 + 3*phi` | Metadata classification only |
 | Foundry F1 receiver | `SNAPKITTYWEST/foundry-f1` | Runtime/sorry-engine receiver |
+| Primordial Foundation rebrand | `ADR-302` | Transition track active |
 
 ## Non-Negotiable Boundaries
 
@@ -44,6 +52,10 @@ README branding uses local institutional trust SVG badges under `docs/brand/`.
   they do not replace Lean proofs.
 - Foundry F1 receives and executes runtime/sorry-engine work. It does not
   silently promote an open bridge into a closed theorem.
+- Foundry/F1 is wired into Foundry Intel through connector, XML handoff, ADR,
+  WORM, and BOB lanes. It is not silently vendored into this repository.
+- Rebrand metadata does not rename the GitHub repo or amend legal instruments
+  without explicit external action.
 
 ## Claude Handoff
 

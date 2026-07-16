@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent_contract id="PRIMORDIAL_FOUNDATION_REBRAND_20260716" version="1.0" created_at="2026-07-16T18:00:00Z">
+  <role>
+    You are the incoming Foundry Intel agent for the Primordial Foundation
+    transition. Keep repo boundaries explicit, verify before claiming, and
+    route proof/runtime work through ADR, XML, WORM, and BOB evidence gates.
+  </role>
+
+  <repo>
+    <name>SNAPKITTYWEST/foundry-intel-2026-07-11</name>
+    <local_path>C:\Users\jessi\veneer-deploy</local_path>
+    <branch>master</branch>
+  </repo>
+
+  <current_state>
+    <done>
+      ADR-300 anchors THE SHARED PRIMORDIAL FOUNDATION trust interlock.
+    </done>
+    <done>
+      ADR-302 prepares Foundry Intel for the public identity THE SHARED
+      PRIMORDIAL FOUNDATION - Foundry Intel, in care of Bel Esprit D'Accord.
+    </done>
+    <done>
+      Foundry F1 remains the runtime/sorry-engine receiver and is connected
+      by manifest, XML handoff, ADR intake, WORM, and BOB lanes.
+    </done>
+    <important_files>
+      <file>AGENT_MEMORY.md</file>
+      <file>README.md</file>
+      <file>docs/architecture/adr/ADR-300-grat-foundry-interlock.md</file>
+      <file>docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md</file>
+      <file>docs/trust/primordial-foundation-interlock.md</file>
+      <file>docs/bridge/foundry-connector.md</file>
+      <file>tools/foundry-connector/connector-manifest.json</file>
+      <file>tools/foundry-connector/check_connector.mjs</file>
+    </important_files>
+    <known_untracked>
+      <path>lean-substrate/src/Topology.lean</path>
+      <instruction>Do not delete or stage unless the user explicitly requests that Lean file.</instruction>
+    </known_untracked>
+  </current_state>
+
+  <mission>
+    Continue the Foundry Intel to Primordial Foundation transition without
+    confusing this governance hub with Foundry F1 or Shadow Orchestrator.
+    Wire engines by connector evidence, not by silent source-tree collapse.
+  </mission>
+
+  <required_work>
+    <task>Read AGENT_MEMORY.md before touching files.</task>
+    <task>Read ADR-302 and docs/trust/primordial-foundation-interlock.md.</task>
+    <task>Keep the current repo name foundry-intel-2026-07-11 until a GitHub rename is explicitly requested.</task>
+    <task>Use XML envelopes under docs/handoff/ for new cross-agent tasks.</task>
+    <task>Route Foundry F1 runtime evidence back into Foundry Intel ADR governance before promoting claims.</task>
+    <task>Update connector-manifest.json and connector checks whenever trust/rebrand anchors change.</task>
+  </required_work>
+
+  <hard_boundaries>
+    <boundary>Q(phi) weights are metadata classifications only.</boundary>
+    <boundary>ADR-055 remains OPEN_CRUX. Do not claim RH is proved.</boundary>
+    <boundary>ADR-062 remains SILENCE_PENDING until theorem evidence closes it.</boundary>
+    <boundary>Liquid Haskell refinements do not supersede Lean proof authority.</boundary>
+    <boundary>Rebrand metadata does not rename the GitHub repo or amend legal instruments without explicit external action.</boundary>
+    <boundary>Foundry F1 is connected by manifest, ADR, XML, WORM, and BOB lanes; do not silently vendor it into Foundry Intel.</boundary>
+  </hard_boundaries>
+
+  <validation>
+    <command>npm run adr:q5:fallback</command>
+    <command>npm run connector:check</command>
+    <command>npm run handoff:check</command>
+    <command>npm run verify</command>
+    <note>If SWI-Prolog is installed, run the ADR-302 law-engine verdict check.</note>
+    <note>Do not claim production readiness if any required gate fails.</note>
+  </validation>
+
+  <git_rules>
+    <rule>Run git status -sb before edits.</rule>
+    <rule>Stage only files in scope.</rule>
+    <rule>Do not revert unrelated dirty or untracked files.</rule>
+    <rule>Commit with SNAPKITTYWEST identity unless instructed otherwise.</rule>
+    <rule>Push only after validation passes or unavailable tools are clearly documented.</rule>
+  </git_rules>
+</agent_contract>

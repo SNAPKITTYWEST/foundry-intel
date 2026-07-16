@@ -4,13 +4,17 @@
   "repo": {
     "name": "SNAPKITTYWEST/foundry-intel-2026-07-11",
     "branch": "master",
-    "role": "Foundry Intel governance, connector, ADR, Q(phi), and production verification hub"
+    "role": "Foundry Intel governance, connector, ADR, Q(phi), and production verification hub",
+    "rebrand_target": "THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care of Bel Esprit D'Accord"
   },
   "entry_route": [
     "README.md",
     "AGENT_MEMORY.md",
     "docs/handoff/foundry-intel-agent-contract.xml",
     "tools/foundry-connector/connector-manifest.json",
+    "docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md",
+    "docs/trust/primordial-foundation-interlock.md",
+    "docs/handoff/primordial-foundation-agent-contract.xml",
     "docs/architecture/ADR-INDEX.md"
   ],
   "production_gate": {
@@ -40,8 +44,11 @@
     "constitution": "docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md",
     "trust_interlock": "docs/architecture/adr/ADR-300-grat-foundry-interlock.md",
     "daily_tick": "docs/architecture/adr/ADR-301-daily-production-tick.md",
+    "primordial_rebrand": "docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md",
+    "trust_transition": "docs/trust/primordial-foundation-interlock.md",
     "connector": "docs/bridge/foundry-connector.md",
     "xml_handoff": "docs/handoff/foundry-intel-agent-contract.xml",
+    "primordial_xml_handoff": "docs/handoff/primordial-foundation-agent-contract.xml",
     "agent_memory": "AGENT_MEMORY.md"
   },
   "boundaries": [
@@ -50,7 +57,9 @@
     "Q(phi) weights are metadata classifications, not proof claims",
     "Liquid Haskell refinements do not supersede Lean proof authority",
     "WORM means write-once/read-many ledger semantics",
-    "Daily production tick is non-mutating"
+    "Daily production tick is non-mutating",
+    "Foundry F1 is connected by connector/ADR/XML/WORM lanes, not silently vendored",
+    "Rebrand metadata does not rename the GitHub repo without explicit action"
   ],
   "brand": {
     "banner": "docs/brand/veneer-institutional-trust.svg",

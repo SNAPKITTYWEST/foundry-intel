@@ -10,6 +10,10 @@ agents. Read it before touching files.
 - Branch: `master`
 - Role: Foundry Intel governance, connector, ADR, Q(phi), XML handoff,
   Datalog, TypeScript workspace, Liquid Haskell lane, WORM and BOB gate hub.
+- Rebrand track: prepare Foundry Intel for
+  `THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care of Bel Esprit D'Accord`.
+  The current repo name remains `foundry-intel-2026-07-11` until an explicit
+  GitHub rename is requested and performed.
 
 ## Do Not Confuse With
 
@@ -44,6 +48,19 @@ foundry-f1
 Foundry Intel ADR governance receives evidence back before claims become final.
 ```
 
+Trust/rebrand spine:
+
+```text
+Bel Esprit D'Accord Irrevocable Trust
+  -> THE SHARED PRIMORDIAL FOUNDATION
+  -> Foundry Intel governance hub
+  -> Foundry F1 runtime receiver and GKN Lean theorem anchors by connector
+```
+
+ADR-302 is the active rebrand transition ADR. If a prompt says `GRAQT`, treat
+it as the ADR-300 GRAT trust interlock plus the ADR-302 transition track unless
+a later ADR defines a distinct mechanism.
+
 ## Must-Read Files
 
 1. `README.md`
@@ -54,6 +71,9 @@ Foundry Intel ADR governance receives evidence back before claims become final.
 6. `tools/foundry-connector/connector-manifest.json`
 7. `docs/architecture/ADR-INDEX.md`
 8. `docs/architecture/adr-q5-theorem-classification.md`
+9. `docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md`
+10. `docs/trust/primordial-foundation-interlock.md`
+11. `docs/handoff/primordial-foundation-agent-contract.xml`
 
 ## Hard Boundaries
 
@@ -65,6 +85,10 @@ Foundry Intel ADR governance receives evidence back before claims become final.
   authority.
 - WORM means append-only evidence memory.
 - XML envelopes are the agent communication protocol.
+- Foundry F1 is connected through manifests, ADRs, XML envelopes, and WORM/BOB
+  evidence return. Do not silently vendor or rename it into this repo.
+- Rebrand metadata does not rename the GitHub repo or amend trust instruments
+  without explicit external action.
 - Stage only files in scope. Do not revert unrelated dirty or untracked files.
 
 ## Production Gate

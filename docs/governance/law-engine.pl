@@ -180,6 +180,13 @@ adr('ADR-301',
     'sha256:daily-production-tick-contract-v1',
     'worm:ADR-301-seal').
 
+adr('ADR-302',
+    'Primordial Foundation Rebrand Foundry Intel in care of Bel Esprit D Accord',
+    sentinel,
+    'sha256:primordial-foundation-rebrand-proof-v1',
+    'sha256:primordial-foundation-rebrand-contract-v1',
+    'worm:ADR-302-seal').
+
 %% ── Trust hierarchy (from sovereign_kernel.pl) ───────────────────────────
 
 trust_level(none,      0).

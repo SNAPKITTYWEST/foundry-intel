@@ -55,6 +55,46 @@ connector check now treats memory and README pointers as production artifacts.
 
 ---
 
+## Trust And Rebrand Track
+
+Canonical spelling: **THE SHARED PRIMORDIAL FOUNDATION**.
+
+The current repository remains `SNAPKITTYWEST/foundry-intel-2026-07-11` until
+the GitHub repo is explicitly renamed. The transition target is:
+
+```text
+THE SHARED PRIMORDIAL FOUNDATION
+Foundry Intel, in care of Bel Esprit D'Accord
+```
+
+Operating trust map:
+
+```text
+Bel Esprit D'Accord Irrevocable Trust
+        |
+        v
+THE SHARED PRIMORDIAL FOUNDATION
+        |
+        +--> Foundry Intel governance hub (this repo)
+        +--> Foundry F1 runtime/sorry-engine receiver
+        +--> GKN Lean theorem anchors
+```
+
+The rebrand is governed by:
+
+- [`ADR-300`](docs/architecture/adr/ADR-300-grat-foundry-interlock.md)
+- [`ADR-302`](docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md)
+- [`docs/trust/primordial-foundation-interlock.md`](docs/trust/primordial-foundation-interlock.md)
+- [`docs/handoff/primordial-foundation-agent-contract.xml`](docs/handoff/primordial-foundation-agent-contract.xml)
+
+Foundry/F1 is wired into Foundry Intel through connector manifests, ADR intake,
+XML handoff envelopes, and WORM/BOB evidence return lanes. It is not silently
+vendored or renamed into this repository. If a prompt says `GRAQT`, treat it as
+the ADR-300 GRAT trust interlock plus the ADR-302 transition track unless a
+later ADR defines a distinct mechanism.
+
+---
+
 ## Repo Identity And Boundaries
 
 | Repo | Local Path | Role |
@@ -432,6 +472,7 @@ Constitutional anchors:
 | [`ADR-200`](docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md) | constitutional authority |
 | [`ADR-300`](docs/architecture/adr/ADR-300-grat-foundry-interlock.md) | trust/foundry interlock |
 | [`ADR-301`](docs/architecture/adr/ADR-301-daily-production-tick.md) | non-mutating daily hardening tick |
+| [`ADR-302`](docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md) | Primordial Foundation rebrand transition |
 
 Open-crux anchors:
 

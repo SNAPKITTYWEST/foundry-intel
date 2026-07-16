@@ -34,6 +34,8 @@
     "intel_agent_tour_doc": "docs/agents/metadata-tour.md",
     "intel_agent_tour_json": "docs/agents/metadata-tour.json",
     "intel_agent_memory": "AGENT_MEMORY.md",
+    "intel_trust_transition": "docs/trust/primordial-foundation-interlock.md",
+    "intel_adr_rebrand": "docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md",
     "intel_operating_map": "docs/brand/foundry-intel-operating-map.svg",
     "intel_brand_banner": "docs/brand/veneer-institutional-trust.svg",
     "intel_brand_badges": [
@@ -47,6 +49,7 @@
     "intel_handoff_protocol": "docs/protocols/xml-handoff-envelope.md",
     "intel_handoff_schema": "docs/protocols/xml-handoff-envelope.xsd",
     "intel_handoff_envelope": "docs/handoff/foundry-intel-agent-contract.xml",
+    "intel_handoff_rebrand_envelope": "docs/handoff/primordial-foundation-agent-contract.xml",
     "intel_production_smoke": "tools/production-smoke.mjs",
     "intel_typescript_config": "tsconfig.json",
     "intel_typescript_package_config": "tsconfig.package.json",
@@ -78,6 +81,14 @@
     },
     "note": "Q(phi) weights are metadata classifications, not independent mathematical proof claims."
   },
+  "rebrand": {
+    "status": "PREPARED",
+    "current_repo": "SNAPKITTYWEST/foundry-intel-2026-07-11",
+    "target_public_identity": "THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care of Bel Esprit D'Accord",
+    "governing_adr": "ADR-302",
+    "trust_interlock": "ADR-300",
+    "note": "Repository rename and legal instrument changes require explicit external action."
+  },
   "routing": [
     {
       "from": "GKN Lean latch",
@@ -100,6 +111,7 @@
     "ADR-062 remains SILENCE_PENDING until the Sigma Kernel governance gap is closed by evidence.",
     "Liquid Haskell refinements can harden runtime types but cannot supersede Lean theorem authority.",
     "Foundry F1 is the runtime/sorry-engine receiver, not a source of automatic proof claims.",
-    "No connector may erase WORM, provenance, or license boundaries."
+    "No connector may erase WORM, provenance, or license boundaries.",
+    "Primordial Foundation rebrand metadata cannot silently rename the GitHub repo or amend legal instruments."
   ]
 }
