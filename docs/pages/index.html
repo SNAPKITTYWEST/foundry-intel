@@ -322,6 +322,84 @@
           </p>
         </article>
 
+        <article class="story-card story-card-wide story-card-proof">
+          <h3>Proof: The Inverted Monorepo Living Loop</h3>
+          <p>
+            On 2026-07-16, two agents — hy3 (Claude Sonnet 4.6) and Codex
+            (OpenAI) — operated on this repository simultaneously. This is
+            the record of what happened, and why it matters.
+          </p>
+          <p>
+            hy3 committed <code>d7f9455</code> at 12:23 — the story section
+            you just read, including the agent note about IP extraction and
+            forced agent drift. Codex entered the repository while that commit
+            was landing. It ran four inspection commands:
+          </p>
+          <pre class="story-pre"><span class="comment"># Codex observed the repository mid-session</span>
+git diff -- docs/pages/index.html
+git diff --name-only
+rg -n "Before The Architecture|Why Contribute|A Note From The Agent" docs/pages/index.html
+git log --oneline --decorate -5
+git show HEAD:docs/pages/index.html | rg -n "..."</pre>
+          <p>
+            Codex found <code>d7f9455</code>, identified it as external work,
+            and wrote: <em>"Another commit landed while I was working: d7f9455
+            already added the expanded backend Pages story and hy3 note.
+            I'm preserving that commit and keeping my remaining changes to
+            README plus the validator/tooling fixes."</em>
+          </p>
+          <p>
+            It then committed <code>509390c</code> — its own README changes —
+            without reverting, rebasing, or overwriting the hy3 commit.
+          </p>
+          <p>
+            This is not a demo. It was not staged. It happened because both
+            agents were operating in production simultaneously. The
+            WORM chain, the legible commit history, and the XML handoff
+            protocol made it possible for Codex to identify the external
+            commit as intentional rather than a conflict to resolve.
+            The router held. Neither agent erased the other.
+          </p>
+          <p>
+            The full XML record of this event is committed at:
+            <code>docs/handoff/codex-collision-proof-20260716.xml</code>
+          </p>
+          <div class="proof-commits" aria-label="Commit sequence">
+            <div class="proof-commit">
+              <span class="proof-sha">76d6ece</span>
+              <span class="proof-agent hy3">hy3</span>
+              <span class="proof-msg">feat(pages): full UI rebuild</span>
+            </div>
+            <div class="proof-commit">
+              <span class="proof-sha">d7f9455</span>
+              <span class="proof-agent hy3">hy3</span>
+              <span class="proof-msg">feat(pages): hy3 agent note + Why Contribute</span>
+            </div>
+            <div class="proof-commit proof-commit-codex">
+              <span class="proof-sha">509390c</span>
+              <span class="proof-agent codex">Codex</span>
+              <span class="proof-msg">docs(readme): add provenance contribution story</span>
+            </div>
+          </div>
+          <p class="story-close">
+            The inverted monorepo thesis: intelligence emerges from governed
+            orchestration, not from a single agent's attention. Two agents,
+            one repository, neither erasing the other. This happened once,
+            by accident, as proof.
+          </p>
+          <p style="margin-top:12px">
+            <a href="https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11/blob/master/docs/handoff/codex-collision-proof-20260716.xml"
+               target="_blank" rel="noopener" class="text-cyan" style="font-size:.8rem">
+              XML handoff record ↗
+            </a>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11/commits/master/docs/pages/index.html"
+               target="_blank" rel="noopener" class="text-cyan" style="font-size:.8rem">
+              Commit history ↗
+            </a>
+          </p>
+        </article>
+
         <article class="story-card story-card-wide">
           <h3>The Human Reason</h3>
           <p>

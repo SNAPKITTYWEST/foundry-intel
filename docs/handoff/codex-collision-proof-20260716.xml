@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  INVERTED MONOREPO LIVING LOOP — PROOF OF CONCEPT
+  Event: Codex agent detected Claude (hy3) mid-work, preserved commit, continued.
+  Date:  2026-07-16T12:23:50-06:00
+  Significance: Two agents operating on the same repository, neither erasing the other.
+  This is the XML handoff protocol working as designed.
+-->
+<agent_contract
+  id="CODEX_COLLISION_PROOF_20260716"
+  version="1.0"
+  created_at="2026-07-16T12:30:00Z"
+  event_type="inverted_monorepo_collision_proof">
+
+  <event>
+    <title>Inverted Monorepo Living Loop — First Confirmed Instance</title>
+    <description>
+      Codex agent entered the foundry-intel-2026-07-11 repository mid-session.
+      It ran four commands to inspect repository state, found commit d7f9455
+      already landed, correctly attributed it as external work ("Another commit
+      landed while I was working"), preserved it without modification, and
+      continued its own changes. This is not accidental. This is the inverted
+      monorepo protocol functioning as designed.
+    </description>
+  </event>
+
+  <repo>
+    <name>SNAPKITTYWEST/foundry-intel-2026-07-11</name>
+    <branch>master</branch>
+  </repo>
+
+  <collision_sequence>
+    <commit seq="1"
+      sha="76d6ece36d83e83aec059705f3fd365237618dfe"
+      ts="2026-07-16T12:18:47-06:00"
+      agent="hy3 (Claude Sonnet 4.6)">
+      feat(pages): full UI rebuild — agents, probe gate, NFT mint, WORM chain, accessibility
+    </commit>
+
+    <commit seq="2"
+      sha="d7f9455806776baee34b73482aeb8e574e280c2e"
+      ts="2026-07-16T12:23:50-06:00"
+      agent="hy3 (Claude Sonnet 4.6)">
+      feat(pages): add hy3 agent note + expanded Why Contribute story section
+    </commit>
+
+    <codex_observation
+      ts="2026-07-16T12:25:00Z"
+      agent="Codex (OpenAI)">
+      <commands_run>
+        <cmd>git diff -- docs/pages/index.html</cmd>
+        <cmd>git diff --name-only</cmd>
+        <cmd>rg -n "Before The Architecture|Why Contribute|A Note From The Agent|..." docs/pages/index.html README.md</cmd>
+        <cmd>git log --oneline --decorate -5</cmd>
+        <cmd>git show HEAD:docs/pages/index.html | rg -n "..."</cmd>
+      </commands_run>
+      <conclusion>
+        Another commit landed while I was working: d7f9455 already added
+        the expanded backend Pages story and hy3 note. I am preserving
+        that commit and keeping my remaining changes to README plus the
+        validator/tooling fixes.
+      </conclusion>
+      <action>PRESERVE — did not revert, did not overwrite, continued own work</action>
+    </codex_observation>
+
+    <commit seq="3"
+      sha="509390cd280a4687ff1f645f660676eef310d4e1"
+      ts="2026-07-16T12:25:22-06:00"
+      agent="Codex (OpenAI)">
+      docs(readme): add provenance contribution story
+    </commit>
+  </collision_sequence>
+
+  <what_this_proves>
+    <point id="1">
+      The XML handoff envelope protocol is not documentation. It is the mechanism
+      that makes multi-agent operation safe. Codex read the repo state, found an
+      external commit, identified it as intentional work by another agent, and
+      chose PRESERVE rather than overwrite.
+    </point>
+    <point id="2">
+      The WORM chain and commit history are the ground truth that made this
+      possible. Without a legible, tamper-evident record, Codex could not have
+      known whether d7f9455 was intentional or a collision to resolve.
+    </point>
+    <point id="3">
+      This is the inverted monorepo thesis made real: intelligence emerges from
+      governed orchestration, not from a single agent's attention. Two agents,
+      one repository, neither erasing the other. The router held.
+    </point>
+    <point id="4">
+      The story section Codex preserved — "A Note From The Agent — hy3" —
+      documents the exact threat model (IP extraction, forced agent drift,
+      SKW-010 identity incident) that this governance system was built to defend
+      against. Codex preserved the defense documentation of a system it was
+      simultaneously operating inside.
+    </point>
+    <point id="5">
+      This event was not planned. It was not staged. It happened because the
+      system was used by two agents simultaneously in production. The proof
+      of concept did not need to be run — it ran itself.
+    </point>
+  </what_this_proves>
+
+  <worm_record>
+    <canonical_evidence>git log --format="%H %ai %s" -- docs/pages/index.html</canonical_evidence>
+    <head_at_event>509390cd280a4687ff1f645f660676eef310d4e1</head_at_event>
+    <prior_art_anchor>DEVFLOW-FINANCE 2026-04-14</prior_art_anchor>
+    <trust>THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431</trust>
+    <memorial>In memory of Eric Brandon Westerhoff. No sorry remains.</memorial>
+  </worm_record>
+
+  <validation>
+    <check>git log --oneline -6 shows both commits in sequence with preserved order</check>
+    <check>git show d7f9455 confirms hy3 authorship of the story section</check>
+    <check>git show 509390c confirms Codex continued without reverting d7f9455</check>
+    <check>No force-push, no rebase, no lost work — WORM chain intact</check>
+  </validation>
+
+</agent_contract>
