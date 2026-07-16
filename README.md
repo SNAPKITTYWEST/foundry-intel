@@ -1,38 +1,42 @@
-# Veneer — SnapKitty Production Prime Foundry Pearl
+# Veneer — Production Prime Foundry Pearl
 
 > **Policy as geometry. Every constraint is a theorem. Every execution is a proof.**
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-2.0.0-brightgreen.svg)](https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11/releases/tag/v2.0.0)
-[![Trust](https://img.shields.io/badge/Trust-Bel_Esprit_D'Accord-gold.svg)](#)
-[![WORM](https://img.shields.io/badge/WORM-161_seals-orange.svg)](#worm-ledger)
-[![Constraints](https://img.shields.io/badge/constraints-10_canonical-purple.svg)](#constraint-table)
+[![ADRs](https://img.shields.io/badge/ADRs-7_EVIDENCE-blue.svg)](docs/architecture/ADR-INDEX.md)
+[![WORM](https://img.shields.io/badge/WORM-161_seals-orange.svg)](#)
+[![Constraints](https://img.shields.io/badge/constraints-10_canonical-purple.svg)](docs/architecture/ADR-INDEX.md)
 
-Copyright © 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust · SnapKitty Collective  
-SPDX-License-Identifier: Apache-2.0
+**Author:** Ahmad Ali Parr  
+**Trust:** Bel Esprit D'Accord Irrevocable Trust  
+**Copyright:** © 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust  
+**SPDX-License-Identifier:** Apache-2.0
 
 ---
 
 ## What This Is
 
-The Production Prime Foundry Pearl is a multi-layer sovereign AI governance framework that encodes policy as geometry over the field with one element (𝔽₁), where every governed action must pass ten machine-checked constraints before BOB issues a verdict of **EVIDENCE** or **SILENCE** via a deterministic Datalog evaluation chain. The system is grounded in the Prime Materia Commons (foundry-intel, 2,149,256 lines), formally specified in Lean 4, enforced in Rust and TypeScript, and sealed to an append-only WORM G-Set CRDT at every layer transition. The Riemann Hypothesis appears as `hodgeIndexHolds = none` — structurally honest, never asserted.
+Veneer is a formal governance framework for autonomous systems. It encodes policy as geometry over the field with one element (𝔽₁): every governed action must pass ten machine-checked constraints before the BOB agent issues a verdict of **EVIDENCE** or **SILENCE**. The mathematical substrate is the Banach fixed-point theorem applied to prime-indexed Hilbert space; the formal specification is zero-sorry Lean 4; the enforcement is TypeScript and Soufflé-compatible Datalog; the memory is a dual-signed WORM G-Set CRDT. All architectural decisions are governed by a self-referential Prolog law engine and recorded in a constitutional ADR (ADR-200) authored by Ahmad Ali Parr.
 
 **Reverse-engineered from 2,149,256 lines of the Prime Materia Commons (Sedona Spine architecture).**  
-**10 canonical constraints. 10 packages. One spine.**
+**10 canonical constraints. 7 EVIDENCE-sealed ADRs. One spine.**
 
 ---
 
-## Five Pillars
+## Design Principles
 
 1. **Policy as Geometry** — Every governed action occupies a unique prime index in the MOC algebra over 𝔽₁. The 108-cycle (2² × 3³) is the canonical contractive word; admissibility is a zero-sorry theorem.
 
-2. **Contractivity as Safety** — Banach Fixed-Point invariant (0 < k ≤ 1.0, L_eff < 1.0) encoded in Lean 4, enforced in Rust, checked in Datalog, gated in TypeScript — four enforcement points sharing one numeric anchor (SYNTH-010).
+2. **Contractivity as Safety** — Banach Fixed-Point invariant (0 < k ≤ 1.0, L_eff < 1.0) enforced at four independent layers sharing one numeric anchor (τ_r = 47.06998778). Changing the constant in one layer without changing all four is a constitutional violation under ADR-200.
 
-3. **Honesty as Architecture** — Formal gaps are first-class citizens. RH encoded as `Option Bool := none`. 13-entry sorry manifest is a WORM record. The system cannot claim more certainty than it has.
+3. **Honesty as Architecture** — Formal gaps are first-class citizens. RH encoded as `Option Bool := none`. The sorry manifest is a WORM record. The system cannot claim more certainty than it has.
 
-4. **WORM as Memory** — Every verdict, every layer transition sealed to Archivum G-Set CRDT. Dual-signature. Grow-only. No deletion. No rollback. Genesis fixed at `SHA-256('SHADOW_GENESIS:WORM_CHAIN_INIT')`.
+4. **WORM as Memory** — Every verdict sealed to an Archivum G-Set CRDT. Dual-signature. Grow-only. Genesis fixed at `SHA-256('SHADOW_GENESIS:WORM_CHAIN_INIT')`. No deletion. No rollback.
 
 5. **Trust Boundary as Law** — `allowed(A) :- trust_level(A, internal), \+ vetoed(A)`. External actors structurally incapable of mutation. Triple-lock sequential chain. No single role can unilaterally ratify.
+
+6. **Law Engine as Constitution** — All ADRs pass through `docs/governance/law-engine.pl` (Prolog). ADR-200 (Parr Sovereignty Protocol) governs the engine itself. The engine is self-referential: it must pass its own gate before any modification can be committed.
 
 ---
 
@@ -142,18 +146,40 @@ Every EVIDENCE or SILENCE verdict is WORM-sealed and routed back to the SOURCE l
 
 ---
 
-## Open Source Statement
+## Architecture Decision Records
 
-This system is published as open source because sovereign governance infrastructure is only meaningful if it is auditable by the governed parties rather than vouched for by an institutional authority. The formal gap registry (SYNTH-002) and crux honesty constraint (SYNTH-008) are themselves proof that this commitment is not rhetorical: the Riemann Hypothesis appears as `Option Bool := none` with machine-checked rfl witnesses, visible to any reader of PearlInvariants.lean. Open publication means the adversarial window (SYNTH-007) is exercised by reality rather than internal simulation, and the WORM dual-signature requirement (SYNTH-009) means no single contributor — including the original author — can unilaterally rewrite governance history.
+All architectural decisions are recorded in `docs/architecture/adr/` and governed by `docs/governance/law-engine.pl`. The constitutional authority is ADR-200.
+
+| ADR | Title | Verdict |
+|---|---|---|
+| [ADR-101](docs/architecture/adr/ADR-101-tree-sitter-grammar.md) | Tree-sitter Grammar for PIRTM-lang | EVIDENCE |
+| [ADR-102](docs/architecture/adr/ADR-102-sig-type-engine.md) | Sig Type Engine and Multiplicity Conservation | EVIDENCE |
+| [ADR-103](docs/architecture/adr/ADR-103-ace-invariant-pass.md) | ACE Invariant Pass — Spectral Stability | EVIDENCE |
+| [ADR-104](docs/architecture/adr/ADR-104-compiler-governance-integration.md) | PIRTM Compiler Governance and Production Gating | EVIDENCE |
+| [ADR-PIRTM-001](docs/architecture/adr/ADR-PIRTM-001-lean4-convergence.md) | Lean 4 Formalization of Recursive Tensor Convergence | EVIDENCE |
+| [ADR-PIRTM-002](docs/architecture/adr/ADR-PIRTM-002-production-readiness.md) | Production Readiness Checklist for pirtm-compiler | EVIDENCE |
+| **[ADR-200](docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md)** | **Parr Sovereignty Protocol — Constitutional Authority** | **EVIDENCE** |
+
+Run the law engine:
+
+```sh
+swipl -g "consult('docs/governance/law-engine.pl'), run_all_adrs" -t halt
+```
+
+---
+
+## Open Publication
+
+This framework is published as open source because formal governance infrastructure is only meaningful if it is auditable by independent parties. The Riemann Hypothesis is encoded as `Option Bool := none` — visible to any reader of the Lean 4 source. The WORM dual-signature requirement means no single contributor, including the original author, can rewrite governance history.
 
 ---
 
 ## License
 
-Copyright © 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust · SnapKitty Collective
+Copyright © 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
 
 ---
 
-*v2.0.0 — Lights on. The Prime Materia Commons lives.*
+*v2.0.0*
