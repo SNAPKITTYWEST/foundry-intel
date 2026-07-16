@@ -1,0 +1,73 @@
+{
+  "artifact": "THE SHARED PRIMORDIAL FOUNDATION — Foundry Intel Full Repo Mint",
+  "description": "Canonical WORM-sealed fingerprint for the first repo-disk NFT mint of the Foundry Intel governance hub. This record seals the production state of the repository at commit ce704b2, including all compiled WASM artifacts, Lean theorems, law engine, sorry manifests, ADR corpus, and the combined README surface.",
+  "mint_series": "SPF-REPO-DISK-001",
+  "mint_type": "virtual-dom-disk",
+  "canonical_repo": "https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11",
+  "head_commit": "ce704b2ea0dd4fef79af67c369e4eec00501ae6b",
+  "head_commit_message": "docs: combined production README — foundry-f1 + foundry-intel unified",
+  "sealed_at": "2026-07-16T00:00:00Z",
+  "trust_name": "THE SHARED PRIMORDIAL FOUNDATION",
+  "ein": "42-6976431",
+  "grantor": "Ahmad Ali Parr",
+  "trustee": "Jessica L. Westerhoff, TTEE",
+  "trust_protector": "Ahmad Ali Parr",
+  "memorial": "In memory of Eric Brandon Westerhoff. No sorry remains.",
+  "prior_art_anchor": "DEVFLOW-FINANCE 2026-04-14",
+  "zenodo_doi": "10.5281/zenodo.21268911",
+  "artifacts": {
+    "foundation_wasm": {
+      "file": "apps/wasm-frontend/dist/foundation.wasm",
+      "bytes": 1170,
+      "sha256": "5d085f5e8a62151e7d9482b1466634aba2ab6265ccf48593437df1936ead8b81",
+      "description": "Sedona Spine pearlGate — 10 SYNTH constraints + probe-gate + Banach + 108-cycle. 21/21 tests pass."
+    },
+    "verifier_wasm": {
+      "file": "apps/wasm-frontend/dist/verifier.wasm",
+      "bytes": 4667,
+      "sha256": "e654846751e1eda560fc4851d6c1b549815de7178d99721f5ed5cfd8cbf20c57",
+      "description": "Goldilocks F_p (p=2^64-2^32+1) + SHA-256 (FIPS 180-4) + Lean verifier. Ported from Foundry F1 C++ substrate. 10/10 tests pass."
+    },
+    "lean4_convergence_theorems": {
+      "file": "docs/math/lean4-convergence-theorems.lean",
+      "sha256": "dd3748610c6d84a9194ecc388213533a08dc7fdf8b83fb6c14fa45e01b695bf2",
+      "description": "4 zero-sorry theorems: recursive_tensor_stability, computational_invariance, banach_fixed_point, cycle_108_canonical. cruxIsOpen := rfl."
+    },
+    "om001_sledged": {
+      "file": "sorry-engine/solved/OM-001_sledged.lean",
+      "sha256": "a812fd02b30c95fac780ad6b276a6dd00fcd310f1b0bb52dfdcbc5f36fc17ca0",
+      "description": "De Morgan's Law closed: constructor/rintro. Zero sorry. First closed sorry in SNAPKITTYWEST corpus."
+    },
+    "law_engine": {
+      "file": "docs/governance/law-engine.pl",
+      "sha256": "86a37cf7352ebefc8dc5071d5c072da43eb589ef4aa4628bf41acbc70de27619",
+      "description": "Prolog law engine — 19 ADRs registered. Self-referential: ADR-200 must pass its own gate."
+    },
+    "alp_sorry_manifest": {
+      "file": "sorry-engine/alp_sorry_manifest.json",
+      "sha256": "de72843c608a2c8e4a77aaa03939c7396086dc22810f2e4fecc63a9dd54e21fa",
+      "description": "13 ALP obligations — GRAT corpus assets, packaged as commercial certainty artifacts."
+    },
+    "readme": {
+      "file": "README.md",
+      "sha256": "4f7239a09b4044d1fc685b198c48d6275bc1542736a2fc1ca71c1d1577dbeba1",
+      "description": "Combined foundry-f1 + foundry-intel canonical README. Final artifact before foundry-f1 deletion."
+    }
+  },
+  "composite_fingerprint": "58782932baef3c3a714dbf6736f51909f3d0c154cdf233015324b8b4deb435f1",
+  "worm_receipt": "77151a6e98836559e0c072c29e8f0185ba7916ebfffd6a47988dfdda1adc7844",
+  "open_crux": {
+    "ADR-055": "OPEN_CRUX — Riemann Hypothesis unproven. hodgeIndexHolds = none.",
+    "ADR-062": "SILENCE_PENDING — Sigma Kernel Lean stubs incomplete."
+  },
+  "distribution": {
+    "model": "NFT donation distribution",
+    "description": "Virtual DOM disk containing the full repo state. Each mint is a timestamped WORM-sealed snapshot of the corpus. Proceeds support the mission in memory of Eric Brandon Westerhoff.",
+    "license": "Source Available — no use without written license. AI/ML training absolutely prohibited (GRAT AXIOM-2).",
+    "donation_surfaces": [
+      "https://collectivekitty.com/saint-errant",
+      "https://opencollective.com/saint-errant-digital-society"
+    ]
+  },
+  "canary_token": "SPF-REPO-DISK-001"
+}
