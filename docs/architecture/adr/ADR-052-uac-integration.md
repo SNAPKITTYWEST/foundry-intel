@@ -45,6 +45,21 @@ Use `call_49(S) = reverse(S)` to enforce mirror identity `C(C(X)) = X`. Zero-cos
 
 ---
 
+## Prior Art
+
+| Citation | Connection |
+|---|---|
+| **bakalov2001** — Bakalov & Kirillov, *Lectures on Tensor Categories and Modular Functors* | MTC structure for qudit architecture |
+| **drinfeld1987** — Drinfeld, *Quantum groups*, Proc. ICM | Quantum double; co-product ΔZ motivates QCFI algebra |
+| **freedman2002** — Freedman et al., *Topological quantum computation*, Bull. AMS | FLW theorem: anyonic braiding for universal QC; gate fidelity basis |
+| **thermal.axiom** (`resonance-math/axiom/thermal.axiom`) | `thermal_window_valid`: `lo(f) < hi(f)` ∀f∈[0,1] — replaces heuristic ε₀ |
+| **entropy.axiom** (`resonance-math/axiom/entropy.axiom`) | `von_neumann_reduces_to_shannon` — HSEC error quantification |
+| **GRAT-ASSET-009** — `QuantumPartitionBridge.lean` | Legendre duality F_β = ⟨H⟩_ρ − (1/β)·S_vN(ρ), zero sorry; UAC thermal model |
+
+See `docs/math/prior-art.md` §IV for the full cross-reference.
+
+---
+
 ## Law Engine Verdict
 
 ```

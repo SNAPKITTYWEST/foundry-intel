@@ -14,12 +14,15 @@
     "packages/contractivity",
     "packages/worm",
     "packages/bob-gate",
-    "packages/metatron"
+    "packages/metatron",
+    "packages/lh-theorems"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "test": "npm test --workspaces --if-present",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "adr:q5": "Rscript tools/q5-adr-parser/parse_adrs.R tools/q5-adr-parser/ADR_REGISTRY.txt tools/q5-adr-parser/adr_manifest.json tools/q5-adr-parser/golden_adr.janet",
+    "adr:q5:fallback": "node tools/q5-adr-parser/generate_manifest.mjs"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

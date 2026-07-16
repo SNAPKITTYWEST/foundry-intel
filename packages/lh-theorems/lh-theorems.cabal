@@ -1,0 +1,44 @@
+cabal-version:      3.4
+name:               lh-theorems
+version:            2.0.0
+synopsis:           Liquid Haskell refinement-type verification of Veneer theorems
+description:
+  Encodes all theorems from docs/math/ as Liquid Haskell refinement types.
+  Replaces runtime TypeScript checks in @veneer/contractivity, @veneer/trust,
+  and @veneer/bob-gate with compile-time proof obligations verified by LiquidHaskell.
+  .
+  SYNTH constraints covered: SYNTH-003, SYNTH-004, SYNTH-005, SYNTH-008.
+  .
+  Prior art: banach1922, rudin1976, GRAT DOI:10.5281/zenodo.21268911.
+license:            Apache-2.0
+license-file:       ../../LICENSE
+author:             Ahmad Ali Parr
+maintainer:         Bel Esprit D'Accord Irrevocable Trust
+category:           Mathematics, Formal Methods
+build-type:         Simple
+
+library
+  hs-source-dirs:   src
+  default-language: Haskell2010
+  ghc-options:      -Wall -Wno-unused-imports
+  build-depends:
+      base        >= 4.14 && < 5
+    , containers  >= 0.6
+    , text        >= 1.2
+  exposed-modules:
+      Veneer.Convergence
+    , Veneer.Contractivity
+    , Veneer.BobGate
+    , Veneer.Trust
+
+test-suite lh-theorems-test
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   test
+  main-is:          Main.hs
+  default-language: Haskell2010
+  build-depends:
+      base
+    , lh-theorems
+    , tasty           >= 1.4
+    , tasty-hunit     >= 0.10
+  ghc-options:      -Wall

@@ -42,6 +42,20 @@ Implement ζ(s) evaluation using the Odlyzko–Schönhage algorithm combined wit
 
 ---
 
+## Prior Art
+
+| Citation | Connection |
+|---|---|
+| **odlyzko1988** — Odlyzko & Schönhage, *Fast algorithms for multiple evaluations of the Riemann zeta function*, Trans. AMS 309:2 | Core algorithm — rectangular grid sum + Euler-Maclaurin + Gram series |
+| **titchmarsh1986** — Titchmarsh, *The Theory of the Riemann Zeta-Function*, Oxford | Gram point theory; Euler-Maclaurin remainder; interval arithmetic bounds |
+| **backlund1914** — Backlund, *Sur les zéros de la fonction ζ(s) de Riemann* | Argument principle for zero counting; validates `find_zeros_in_range` |
+| **GRAT-ASSET-010** — `RiemannMetatron.lean` | Zeta structural facts, logit gate + Gates Normalization theorem, zero sorry |
+| **DOI 10.5281/zenodo.21268911** — *Closing Boole's Foundational Sorry...* | GRAT corpus formal proof anchor; establishes sorry-closure methodology |
+
+See `docs/math/prior-art.md` §IV and `docs/math/riemann-zeta-finality.md` for full context.
+
+---
+
 ## Law Engine Verdict
 
 ```

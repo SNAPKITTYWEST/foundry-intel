@@ -32,6 +32,18 @@ Implement ACE invariant checks inside the Rust Engine (Sedona Spine), bound by h
 
 ---
 
+## Prior Art
+
+| Citation | Connection |
+|---|---|
+| **dawson2005** — Dawson & Nielsen, *The Solovay-Kitaev algorithm*, Quantum Inf. Comput. 6:1 | SK depth overhead justifies `circuit_budget ≤ 3` threshold |
+| **banach1922** — Banach, *Sur les opérations dans les ensembles abstraits* | Contractivity margin `r(Λ) < 1 − ε` — Banach fixed-point theorem |
+| **thermal.axiom** (`resonance-math/axiom/thermal.axiom`) | `ema_preserves_bounds` — EMA model for runtime budget adaptation |
+
+See `docs/math/prior-art.md` §IV for the full cross-reference.
+
+---
+
 ## Law Engine Verdict
 
 ```

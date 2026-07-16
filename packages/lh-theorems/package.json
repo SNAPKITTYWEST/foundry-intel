@@ -1,0 +1,19 @@
+{
+  "name": "@veneer/lh-theorems",
+  "version": "2.0.0",
+  "description": "Liquid Haskell refinement-type verification of Veneer theorems — replaces TypeScript runtime checks with compile-time proofs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "cabal build all",
+    "test": "cabal test all",
+    "check": "cabal check",
+    "lint": "hlint src/"
+  },
+  "veneer": {
+    "depth": 10,
+    "spine": "lh-theorems",
+    "synth": ["SYNTH-003", "SYNTH-004", "SYNTH-005", "SYNTH-008"],
+    "replaces": ["@veneer/contractivity (theorem layer)", "@veneer/trust (theorem layer)", "@veneer/bob-gate (theorem layer)"]
+  }
+}

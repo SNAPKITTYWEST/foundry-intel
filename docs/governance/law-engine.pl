@@ -166,6 +166,13 @@ adr('ADR-200',
     'sha256:parr-sovereignty-protocol-contract-v2',
     'worm:ADR-200-seal').
 
+adr('ADR-300',
+    'GRAT Foundry Interlock — THE SHARED PRIMORDIAL FOUNDATION',
+    sentinel,
+    'sha256:grat-foundry-interlock-proof-v1',
+    'sha256:grat-foundry-interlock-contract-v1',
+    'worm:ADR-300-seal').
+
 %% ── Trust hierarchy (from sovereign_kernel.pl) ───────────────────────────
 
 trust_level(none,      0).

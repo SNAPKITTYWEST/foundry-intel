@@ -29,6 +29,7 @@ All ADRs pass through the Law Engine (`docs/governance/law-engine.pl`) and recei
 | [ADR-PIRTM-001](adr/ADR-PIRTM-001-lean4-convergence.md) | Lean 4 Formalization of Recursive Tensor Convergence | Accepted | EVIDENCE |
 | [ADR-PIRTM-002](adr/ADR-PIRTM-002-production-readiness.md) | Production Readiness Checklist for pirtm-compiler | Accepted | EVIDENCE |
 | **[ADR-200](adr/ADR-200-parr-sovereignty-protocol.md)** | **Parr Sovereignty Protocol — Constitutional Authority** | **Immutable** | **EVIDENCE** |
+| **[ADR-300](adr/ADR-300-grat-foundry-interlock.md)** | **GRAT Foundry Interlock — THE SHARED PRIMORDIAL FOUNDATION** | **Immutable** | **EVIDENCE** |
 
 ---
 
@@ -61,6 +62,20 @@ swipl -g "consult('docs/governance/law-engine.pl'), adr_verdict('ADR-200', V, _)
 | [lean4-convergence-theorems.lean](../math/lean4-convergence-theorems.lean) | 4 zero-sorry theorems — Stability, Invariance, Fixed-Point, 108-cycle, Crux |
 | [transcendental-contractivity.lean](../math/transcendental-contractivity.lean) | sin/cos/log contractivity — Gram correction safety proof |
 | [riemann-zeta-finality.md](../math/riemann-zeta-finality.md) | Zeta finality statement — infrastructure + open crux |
+| [prior-art.md](../math/prior-art.md) | Prior art registry — all ADRs cross-referenced to external and GRAT corpus |
+| [SigmaKernel.lean](../math/SigmaKernel.lean) | Sigma Kernel Lean 4 types + theorem stubs (SILENCE_PENDING:ADR-062) |
+
+## Q(phi) ADR Classification
+
+The Q(phi) ADR parser lives in [`tools/q5-adr-parser/`](../../tools/q5-adr-parser/).
+It emits a JSON and CSV classification manifest for ADR-052 through ADR-062:
+
+- [`adr_manifest.json`](../../tools/q5-adr-parser/adr_manifest.json)
+- [`adr_manifest_index.csv`](../../tools/q5-adr-parser/adr_manifest_index.csv)
+- [`adr-q5-theorem-classification.md`](adr-q5-theorem-classification.md)
+
+These Q(phi) weights are metadata classifications only. They do not independently
+prove any underlying mathematics and do not alter the ADR-200 open-crux rule.
 
 ## Constitutional Hierarchy
 
@@ -71,7 +86,12 @@ ADR-200 (Parr Sovereignty Protocol — Ahmad Ali Parr)
         governs ↓
         ADR-052 through ADR-062 (upstream)
         ADR-101 through ADR-PIRTM-002 (Veneer)
+        ADR-300 (GRAT Foundry Interlock)
             all grounded in ↓
             docs/math/ (Constitutional Core, Ξ-Constitution, Lean 4 theorems)
                 crux: hodgeIndexHolds = none (RH open, rfl witness)
+            legal anchor ↓
+            THE SHARED PRIMORDIAL FOUNDATION (EIN 42-6976431)
+                DEVFLOW-FINANCE 2026-04-14 (prior art anchor)
+                DOI 10.5281/zenodo.21268911 (Boole closure)
 ```
