@@ -32,6 +32,7 @@ const agentTour = readJson('docs/agents/metadata-tour.json')
 
 for (const path of [
   'AGENT_MEMORY.md',
+  '.gitattributes',
   'package-lock.json',
   '.github/workflows/veneer-verify.yml',
   'tsconfig.json',
@@ -40,7 +41,10 @@ for (const path of [
   'tools/adr-production-tick.mjs',
   'docs/architecture/adr/ADR-301-daily-production-tick.md',
   'docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md',
+  'docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md',
   'docs/trust/primordial-foundation-interlock.md',
+  'docs/migration/primordial-foundation-umbrella-audit.md',
+  'apps/wasm-frontend/README.md',
   'docs/bridge/foundry-connector.md',
   'docs/agents/metadata-tour.md',
   'docs/agents/metadata-tour.json',
@@ -95,6 +99,8 @@ requireEqual(
 requireEqual(connector.handoff.status, 'READY_FOR_CLAUDE', 'Claude handoff status')
 requireEqual(connector.rebrand.status, 'PREPARED', 'Primordial Foundation rebrand status')
 requireEqual(connector.rebrand.governing_adr, 'ADR-302', 'Primordial Foundation governing ADR')
+requireEqual(connector.umbrella.status, 'MAIN_REPO', 'Primordial Foundation umbrella status')
+requireEqual(connector.umbrella.governing_adr, 'ADR-303', 'Primordial Foundation umbrella ADR')
 requireEqual(connector.pages.status, 'STATIC_READY', 'Pages status')
 requireEqual(connector.pages.aesthetic, 'backend-ascii-glitch', 'Pages aesthetic')
 requireEqual(
@@ -127,6 +133,9 @@ for (const pattern of [
   /THE SHARED PRIMORDIAL FOUNDATION/,
   /Bel Esprit D'Accord/,
   /ADR-302/,
+  /ADR-303/,
+  /apps\/wasm-frontend/,
+  /\.gitattributes/,
   /primordial-foundation-interlock\.md/,
   /primordial-foundation-agent-contract\.xml/,
   /docs\/pages\/index\.html/,
@@ -145,6 +154,7 @@ for (const pattern of [
   /SNAPKITTYWEST\/foundry-intel-2026-07-11/,
   /THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care of Bel Esprit D'Accord/,
   /ADR-302/,
+  /ADR-303/,
   /Do Not Confuse With/,
   /ADR-055 remains `OPEN_CRUX`/,
   /ADR-062 remains `SILENCE_PENDING`/
@@ -154,6 +164,7 @@ for (const pattern of [
 
 const adrIndex = readFileSync(join(root, 'docs/architecture/ADR-INDEX.md'), 'utf8')
 if (!/ADR-302/.test(adrIndex)) fail('ADR index missing ADR-302')
+if (!/ADR-303/.test(adrIndex)) fail('ADR index missing ADR-303')
 
 const trustTransition = readFileSync(join(root, 'docs/trust/primordial-foundation-interlock.md'), 'utf8')
 for (const pattern of [

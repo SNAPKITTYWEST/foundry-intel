@@ -7,14 +7,16 @@ main :-
     ( member('--check', Args) -> Mode = check ; Mode = write ),
     read_json_dict('tools/foundry-connector/connector-manifest.json', Connector),
     read_json_dict('tools/q5-adr-parser/adr_manifest.json', Q5),
+    read_json_dict('apps/wasm-frontend/dist/manifest.json', Wasm),
     q5_status(Q5, 'ADR-055', Adr055),
     q5_status(Q5, 'ADR-062', Adr062),
-    ascii_page(Connector, Q5, Adr055, Adr062, Ascii),
+    ascii_page(Connector, Q5, Wasm, Adr055, Adr062, Ascii),
     css_page(Css),
-    html_page(Connector, Q5, Adr055, Adr062, Ascii, Html),
+    html_page(Connector, Q5, Wasm, Adr055, Adr062, Ascii, Html),
     write_generated(Mode, 'docs/pages/backend-ascii.txt', Ascii),
     write_generated(Mode, 'docs/pages/assets/backend-glitch.css', Css),
     write_generated(Mode, 'docs/pages/index.html', Html),
+    sync_wasm_pages(Mode),
     ( Mode = check ->
         writeln('pages check passed')
     ;   writeln('pages built')
@@ -44,6 +46,19 @@ text_string(Value, Text) :-
     number(Value), !,
     number_string(Value, Text).
 
+wasm_artifact(Wasm, File, Artifact) :-
+    member(Artifact, Wasm.artifacts),
+    text_string(Artifact.file, Actual),
+    Actual = File.
+
+wasm_summary(Wasm, Summary) :-
+    wasm_artifact(Wasm, 'foundation.wasm', Artifact),
+    text_string(Artifact.sha256, Sha),
+    text_string(Wasm.tests, Tests),
+    sub_string(Sha, 0, 12, _, ShortSha),
+    format(string(Summary), 'foundation.wasm / ~w bytes / ~s / ~s',
+           [Artifact.bytes, ShortSha, Tests]).
+
 fit(Value, Width, Fitted) :-
     text_string(Value, Text),
     string_length(Text, Len),
@@ -65,18 +80,21 @@ block_row(Left, Right, Row) :-
     fit(Right, 32, R),
     format(string(Row), '| ~w | ~w |', [L, R]).
 
-ascii_page(Connector, Q5, Adr055, Adr062, Ascii) :-
+ascii_page(Connector, Q5, Wasm, Adr055, Adr062, Ascii) :-
     text_string(Adr055, Adr055Text),
     text_string(Adr062, Adr062Text),
+    wasm_summary(Wasm, WasmStatus),
     block_row(repo, Connector.repos.foundry_intel.repo, RepoRow),
     block_row(branch, Connector.repos.foundry_intel.branch, BranchRow),
     block_row(connector, Connector.status, ConnectorRow),
     block_row(pages, Connector.pages.status, PagesRow),
+    block_row('WASM', WasmStatus, WasmRow),
     block_row(rebrand, Connector.rebrand.status, RebrandRow),
     block_row('governing ADR', Connector.rebrand.governing_adr, GoverningRow),
     block_row('Q(phi) total', Q5.q5_total, Q5Row),
     block_row('ADR-055', Adr055, Adr055Row),
     block_row('ADR-062', Adr062, Adr062Row),
+    format(string(WasmLine), '  WASM = ~s', [WasmStatus]),
     format(string(Adr055Line), '  ADR-055 = ~s', [Adr055Text]),
     format(string(Adr062Line), '  ADR-062 = ~s', [Adr062Text]),
     atomic_list_concat([
@@ -91,6 +109,7 @@ ascii_page(Connector, Q5, Adr055, Adr062, Ascii) :-
         BranchRow,
         ConnectorRow,
         PagesRow,
+        WasmRow,
         RebrandRow,
         GoverningRow,
         Q5Row,
@@ -101,7 +120,7 @@ ascii_page(Connector, Q5, Adr055, Adr062, Ascii) :-
         'GKN-LEAN-LATCH     >>== theorem anchors ==>>',
         '       ||',
         '       \\\\/',
-        '[ FOUNDRY-INTEL ] -- ADR -- XML -- WORM -- BOB -- PAGES',
+        '[ FOUNDRY-INTEL ] -- ADR -- XML -- WORM -- BOB -- PAGES -- WASM',
         '       /\\\\',
         '       ||',
         'FOUNDRY-F1-RT      <<== runtime evidence ==<<',
@@ -118,9 +137,11 @@ ascii_page(Connector, Q5, Adr055, Adr062, Ascii) :-
         'glitch discipline:',
         '  0000 evidence enters       1111 silence blocks',
         '  0101 open crux stays open  1010 WORM stays append-only',
-        '  0110 pages render static   1001 frontend can dock later',
+        '  0110 pages render static   1001 frontend docked live',
+        '  1100 wasm mirror sealed    0011 manifest hashes checked',
         '',
         'do not promote:',
+        WasmLine,
         Adr055Line,
         Adr062Line,
         '  Q(phi) = metadata, not proof',
@@ -179,6 +200,7 @@ css_page(Css) :-
         '.fact span { color: var(--muted); text-align: right; overflow-wrap: anywhere; }',
         '.route { margin-top: 18px; border: 1px solid var(--line); border-radius: 8px; background: #0d131a; padding: 14px; color: var(--muted); }',
         '.route strong { color: var(--green); }',
+        '.route a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--cyan), transparent 50%); }',
         '@media (max-width: 840px) {',
         '  .topline { flex-direction: column; }',
         '  .grid { grid-template-columns: 1fr; }',
@@ -187,13 +209,15 @@ css_page(Css) :-
         '}'
     ], '\n', Css).
 
-html_page(Connector, Q5, Adr055, Adr062, Ascii, Html) :-
+html_page(Connector, Q5, Wasm, Adr055, Adr062, Ascii, Html) :-
     escape_html(Connector.repos.foundry_intel.repo, Repo),
     escape_html(Connector.status, ConnectorStatus),
     escape_html(Connector.rebrand.status, RebrandStatus),
     escape_html(Q5.q5_total, Q5Total),
     escape_html(Connector.rebrand.governing_adr, RebrandAdr),
     escape_html(Connector.handoff.status, HandoffStatus),
+    wasm_summary(Wasm, WasmSummary),
+    escape_html(WasmSummary, WasmSummarySafe),
     escape_html(Ascii, SafeAscii),
     format(string(TopRepo), '      <span>~s</span>', [Repo]),
     format(string(TopStamp), '      <span class="stamp">~s / ~s</span>', [ConnectorStatus, RebrandStatus]),
@@ -203,14 +227,15 @@ html_page(Connector, Q5, Adr055, Adr062, Ascii, Html) :-
     format(string(Adr062Fact), '          <div class="fact"><b>ADR-062</b><span>~s</span></div>', [Adr062]),
     format(string(RebrandFact), '          <div class="fact"><b>rebrand</b><span>~s</span></div>', [RebrandAdr]),
     format(string(HandoffFact), '          <div class="fact"><b>handoff</b><span>~s</span></div>', [HandoffStatus]),
+    format(string(WasmFact), '          <div class="fact"><b>wasm</b><span>~s</span></div>', [WasmSummarySafe]),
     atomic_list_concat([
         '<!doctype html>',
         '<html lang="en">',
         '<head>',
         '  <meta charset="utf-8">',
         '  <meta name="viewport" content="width=device-width, initial-scale=1">',
-        '  <title>Foundry Intel Backend ASCII Glitch</title>',
-        '  <meta name="description" content="Static backend ASCII/glitch page for Foundry Intel governance and Primordial Foundation transition.">',
+        '  <title>Primordial Foundation Backend ASCII + WASM</title>',
+        '  <meta name="description" content="Static backend ASCII/glitch page and WASM frontend ingress for Foundry Intel governance and Primordial Foundation transition.">',
         '  <link rel="stylesheet" href="assets/backend-glitch.css">',
         '</head>',
         '<body>',
@@ -220,7 +245,7 @@ html_page(Connector, Q5, Adr055, Adr062, Ascii, Html) :-
         TopStamp,
         '    </div>',
         '    <h1>Backend ASCII Glitch</h1>',
-        '    <p class="subtitle">Static Pages surface for the Foundry Intel governance hub. It renders the backend trust spine, connector state, and open-crux boundaries while the frontend can dock separately.</p>',
+        '    <p class="subtitle">Static Pages surface for the Foundry Intel governance hub. It renders the backend trust spine, connector state, open-crux boundaries, and the docked WASM frontend ingress.</p>',
         '    <section class="grid" aria-label="Backend page surface">',
         '      <div class="panel">',
         '        <h2>terminal signal</h2>',
@@ -232,13 +257,14 @@ html_page(Connector, Q5, Adr055, Adr062, Ascii, Html) :-
         Q5Fact,
         Adr055Fact,
         Adr062Fact,
+        WasmFact,
         RebrandFact,
         HandoffFact,
         '        </div>',
         '        <img class="map" src="../brand/foundry-intel-operating-map.svg" alt="Foundry Intel operating map">',
         '      </aside>',
         '    </section>',
-        '    <div class="route"><strong>route:</strong> GKN Lean latch -&gt; Foundry Intel ADR/Q(phi)/XML/WORM/BOB -&gt; Foundry F1 receiver -&gt; evidence returns before claims become final.</div>',
+        '    <div class="route"><strong>route:</strong> GKN Lean latch -&gt; Foundry Intel ADR/Q(phi)/XML/WORM/BOB -&gt; <a href="wasm/index.html">WASM frontend</a> -&gt; Foundry F1 receiver -&gt; evidence returns before claims become final.</div>',
         '  </main>',
         '</body>',
         '</html>'
@@ -276,4 +302,46 @@ write_generated(Mode, Path, Content) :-
             write(Stream, Normalized),
             close(Stream)
         )
+    ).
+
+wasm_page_file('foundation.wasm').
+wasm_page_file('loader.mjs').
+wasm_page_file('index.html').
+wasm_page_file('manifest.json').
+
+sync_wasm_pages(Mode) :-
+    forall(wasm_page_file(File), sync_wasm_file(Mode, File)).
+
+sync_wasm_file(write, File) :-
+    wasm_paths(File, Src, Dst),
+    ( exists_file(Src) ->
+        file_directory_name(Dst, Dir),
+        make_directory_path(Dir),
+        copy_file(Src, Dst)
+    ;   format(user_error, 'pages build failed: missing WASM source artifact~n  ~w~n', [Src]),
+        halt(1)
+    ).
+sync_wasm_file(check, File) :-
+    wasm_paths(File, Src, Dst),
+    ( exists_file(Src), exists_file(Dst) ->
+        read_binary_file(Src, SrcBytes),
+        read_binary_file(Dst, DstBytes),
+        ( SrcBytes = DstBytes ->
+            true
+        ;   format(user_error, 'pages check failed: WASM artifact is stale~n  ~w~n', [Dst]),
+            halt(1)
+        )
+    ;   format(user_error, 'pages check failed: missing WASM page artifact~n  ~w~n', [Dst]),
+        halt(1)
+    ).
+
+wasm_paths(File, Src, Dst) :-
+    format(string(Src), 'apps/wasm-frontend/dist/~s', [File]),
+    format(string(Dst), 'docs/pages/wasm/~s', [File]).
+
+read_binary_file(Path, Codes) :-
+    setup_call_cleanup(
+        open(Path, read, Stream, [type(binary)]),
+        read_stream_to_codes(Stream, Codes),
+        close(Stream)
     ).

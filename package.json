@@ -16,11 +16,12 @@
     "packages/bob-gate",
     "packages/metatron",
     "packages/probe-gate",
-    "packages/lh-theorems"
+    "packages/lh-theorems",
+    "apps/wasm-frontend"
   ],
   "scripts": {
-    "build": "npm run build --workspace @veneer/source && npm run build --workspace @veneer/datalog && npm run build --workspace @veneer/lean && npm run build --workspace @veneer/constitution && npm run build --workspace @veneer/trust && npm run build --workspace @veneer/triple-lock && npm run build --workspace @veneer/contractivity && npm run build --workspace @veneer/worm && npm run build --workspace @veneer/bob-gate && npm run build --workspace @veneer/metatron && npm run build --workspace @veneer/probe-gate",
-    "test": "npm test --workspace @veneer/constitution && npm test --workspace @veneer/trust && npm test --workspace @veneer/triple-lock && npm test --workspace @veneer/worm && npm test --workspace @veneer/bob-gate && npm test --workspace @veneer/lean && npm test --workspace @veneer/metatron && npm test --workspace @veneer/probe-gate",
+    "build": "npm run build --workspace @veneer/source && npm run build --workspace @veneer/datalog && npm run build --workspace @veneer/lean && npm run build --workspace @veneer/constitution && npm run build --workspace @veneer/trust && npm run build --workspace @veneer/triple-lock && npm run build --workspace @veneer/contractivity && npm run build --workspace @veneer/worm && npm run build --workspace @veneer/bob-gate && npm run build --workspace @veneer/metatron && npm run build --workspace @veneer/probe-gate && npm run build --workspace @veneer/wasm-frontend",
+    "test": "npm test --workspace @veneer/constitution && npm test --workspace @veneer/trust && npm test --workspace @veneer/triple-lock && npm test --workspace @veneer/worm && npm test --workspace @veneer/bob-gate && npm test --workspace @veneer/lean && npm test --workspace @veneer/metatron && npm test --workspace @veneer/probe-gate && npm test --workspace @veneer/wasm-frontend",
     "lint": "tsc -p tsconfig.json --noEmit",
     "smoke": "node tools/production-smoke.mjs",
     "verify": "npm run adr:q5:fallback && npm run connector:check && npm run handoff:check && npm run pages:check && npm run build && npm run lint && npm test && npm run smoke && npm run adr:tick",

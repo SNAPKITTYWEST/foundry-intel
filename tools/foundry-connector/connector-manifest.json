@@ -34,8 +34,12 @@
     "intel_agent_tour_doc": "docs/agents/metadata-tour.md",
     "intel_agent_tour_json": "docs/agents/metadata-tour.json",
     "intel_agent_memory": "AGENT_MEMORY.md",
+    "linguist_policy": ".gitattributes",
     "intel_trust_transition": "docs/trust/primordial-foundation-interlock.md",
     "intel_adr_rebrand": "docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md",
+    "intel_adr_umbrella": "docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md",
+    "intel_umbrella_audit": "docs/migration/primordial-foundation-umbrella-audit.md",
+    "wasm_frontend_ingress": "apps/wasm-frontend/README.md",
     "intel_operating_map": "docs/brand/foundry-intel-operating-map.svg",
     "intel_brand_banner": "docs/brand/veneer-institutional-trust.svg",
     "intel_brand_badges": [
@@ -93,6 +97,13 @@
     "governing_adr": "ADR-302",
     "trust_interlock": "ADR-300",
     "note": "Repository rename and legal instrument changes require explicit external action."
+  },
+  "umbrella": {
+    "status": "MAIN_REPO",
+    "canonical_identity": "THE SHARED PRIMORDIAL FOUNDATION",
+    "governing_adr": "ADR-303",
+    "wasm_frontend_ingress": "apps/wasm-frontend/",
+    "legacy_foundry_boundary": "Foundry F1 remains an external legacy receiver until artifacts are explicitly ported."
   },
   "pages": {
     "status": "STATIC_READY",

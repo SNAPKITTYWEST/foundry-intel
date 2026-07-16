@@ -8,7 +8,8 @@ agents. Read it before touching files.
 - Local path: `C:\Users\jessi\veneer-deploy`
 - GitHub repo: `SNAPKITTYWEST/foundry-intel-2026-07-11`
 - Branch: `master`
-- Role: Foundry Intel governance, connector, ADR, Q(phi), XML handoff,
+- Role: main umbrella monorepo for THE SHARED PRIMORDIAL FOUNDATION. Foundry
+  Intel remains the governance subsystem: connector, ADR, Q(phi), XML handoff,
   Datalog, TypeScript workspace, Liquid Haskell lane, WORM and BOB gate hub.
 - Rebrand track: prepare Foundry Intel for
   `THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care of Bel Esprit D'Accord`.
@@ -61,6 +62,10 @@ ADR-302 is the active rebrand transition ADR. If a prompt says `GRAQT`, treat
 it as the ADR-300 GRAT trust interlock plus the ADR-302 transition track unless
 a later ADR defines a distinct mechanism.
 
+ADR-303 makes this repository the Primordial Foundation umbrella monorepo.
+Old Foundry/F1 is a legacy external receiver until artifacts are explicitly
+ported into this repo with manifests and validation.
+
 ## Must-Read Files
 
 1. `README.md`
@@ -74,6 +79,9 @@ a later ADR defines a distinct mechanism.
 9. `docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md`
 10. `docs/trust/primordial-foundation-interlock.md`
 11. `docs/handoff/primordial-foundation-agent-contract.xml`
+12. `docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md`
+13. `docs/migration/primordial-foundation-umbrella-audit.md`
+14. `apps/wasm-frontend/README.md`
 
 ## Hard Boundaries
 
@@ -92,6 +100,8 @@ a later ADR defines a distinct mechanism.
   evidence return. Do not silently vendor or rename it into this repo.
 - Rebrand metadata does not rename the GitHub repo or amend trust instruments
   without explicit external action.
+- WASM frontend builds enter through `apps/wasm-frontend/dist/` with a manifest
+  and hashes before Pages publication.
 - Stage only files in scope. Do not revert unrelated dirty or untracked files.
 
 ## Production Gate

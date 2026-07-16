@@ -1,8 +1,9 @@
 # Foundry Intel Agent Metadata Tour
 
-This tour is the first stop for incoming agents. It is intentionally practical:
-read it, follow the route, run the gate, and report only what the repository
-can verify.
+This tour is the first stop for incoming agents. The repository is now the main
+umbrella monorepo for THE SHARED PRIMORDIAL FOUNDATION; Foundry Intel is the
+governance/intelligence subsystem inside it. Read this file, follow the route,
+run the gate, and report only what the repository can verify.
 
 ## Entry Route
 
@@ -49,6 +50,9 @@ D'Accord`. The active transition files are:
 The GitHub repo is still `SNAPKITTYWEST/foundry-intel-2026-07-11` until an
 explicit rename is requested and performed.
 
+ADR-303 governs the umbrella-monorepo transition. The WASM frontend ingress
+path is `apps/wasm-frontend/`.
+
 ## Persistent Memory
 
 Before touching files, agents must read:
@@ -88,7 +92,10 @@ signal, connector facts, Q(phi) posture, and open-crux boundaries.
 | Trust interlock | `docs/architecture/adr/ADR-300-grat-foundry-interlock.md` |
 | Daily production tick | `docs/architecture/adr/ADR-301-daily-production-tick.md` |
 | Primordial Foundation rebrand | `docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md` |
+| Umbrella monorepo transition | `docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md` |
 | Trust transition map | `docs/trust/primordial-foundation-interlock.md` |
+| Umbrella migration audit | `docs/migration/primordial-foundation-umbrella-audit.md` |
+| WASM frontend ingress | `apps/wasm-frontend/README.md` |
 | Agent XML handoff | `docs/handoff/foundry-intel-agent-contract.xml` |
 | Primordial XML handoff | `docs/handoff/primordial-foundation-agent-contract.xml` |
 | Cross-repo connector | `docs/bridge/foundry-connector.md` |

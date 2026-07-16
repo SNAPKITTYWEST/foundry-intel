@@ -6,6 +6,7 @@ on:
     paths:
       - 'docs/pages/**'
       - 'docs/brand/**'
+      - 'apps/wasm-frontend/**'
       - 'tools/ascii-glitch/**'
       - 'tools/foundry-connector/connector-manifest.json'
       - 'tools/q5-adr-parser/adr_manifest.json'
@@ -39,6 +40,9 @@ jobs:
 
       - name: Install
         run: npm ci
+
+      - name: Build WASM frontend
+        run: npm run build --workspace @veneer/wasm-frontend
 
       - name: Build backend ASCII Pages
         run: npm run pages:build

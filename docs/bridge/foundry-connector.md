@@ -13,6 +13,11 @@ The trust/rebrand track is governed by ADR-302. The current repo name remains
 public identity is `THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care
 of Bel Esprit D'Accord`.
 
+ADR-303 promotes this repository to the main umbrella monorepo for THE SHARED
+PRIMORDIAL FOUNDATION. Foundry Intel remains the governance subsystem, and
+Foundry F1 remains an external legacy receiver until specific artifacts are
+ported with manifests and validation.
+
 The machine-readable contract is
 `tools/foundry-connector/connector-manifest.json`.
 
@@ -40,6 +45,8 @@ README branding uses local institutional trust SVG badges under `docs/brand/`.
 | Q(phi) roll-up | `8 + 3*phi` | Metadata classification only |
 | Foundry F1 receiver | `SNAPKITTYWEST/foundry-f1` | Runtime/sorry-engine receiver |
 | Primordial Foundation rebrand | `ADR-302` | Transition track active |
+| Umbrella monorepo | `ADR-303` | Main repo transition active |
+| WASM frontend ingress | `apps/wasm-frontend/` | Waiting for built artifacts |
 
 ## Non-Negotiable Boundaries
 

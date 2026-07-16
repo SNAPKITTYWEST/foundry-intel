@@ -1,4 +1,4 @@
-# Foundry Intel — Production Prime Foundry Pearl
+# THE SHARED PRIMORDIAL FOUNDATION — Umbrella Monorepo
 
 > Policy as geometry. Every constraint is a theorem. Every execution is a proof.
 
@@ -23,8 +23,10 @@
 
 **Local path:** `C:\Users\jessi\veneer-deploy`
 
-**Role:** Foundry Intel governance, connector, ADR, Q(phi), XML handoff,
-Datalog, TypeScript workspace, Liquid Haskell lane, WORM and BOB gate hub.
+**Role:** Main umbrella monorepo for THE SHARED PRIMORDIAL FOUNDATION. Foundry
+Intel remains the governance/intelligence subsystem: connector, ADR, Q(phi),
+XML handoff, Datalog, TypeScript workspace, Liquid Haskell lane, WORM and BOB
+gate hub.
 
 **Author:** Ahmad Ali Parr
 
@@ -38,13 +40,15 @@ Datalog, TypeScript workspace, Liquid Haskell lane, WORM and BOB gate hub.
 
 ## Read This First
 
-Foundry Intel is not Foundry F1 and it is not Shadow Orchestrator.
+This repository is the main umbrella monorepo for THE SHARED PRIMORDIAL
+FOUNDATION. Foundry Intel is now the governance/intelligence subsystem inside
+that umbrella. It is not Foundry F1 and it is not Shadow Orchestrator.
 
-This repo is the **intelligence and governance hub**. It owns the ADR posture,
-the Q(phi) classifier, the XML agent-envelope protocol, the TypeScript/Datalog
-Sedona Spine workspaces, the Liquid Haskell refinement lane, the WORM evidence
-memory, the BOB `EVIDENCE | SILENCE` gate, and the connector contract that
-keeps GKN Lean, Foundry Intel, and Foundry F1 aligned.
+This repo owns the ADR posture, the Q(phi) classifier, the XML agent-envelope
+protocol, the TypeScript/Datalog Sedona Spine workspaces, the Liquid Haskell
+refinement lane, the WORM evidence memory, the BOB `EVIDENCE | SILENCE` gate,
+the WASM frontend ingress lane, and the connector contract that keeps GKN Lean,
+Foundry Intel, and Foundry F1 aligned.
 
 Persistent agent memory is committed here:
 
@@ -84,7 +88,9 @@ The rebrand is governed by:
 
 - [`ADR-300`](docs/architecture/adr/ADR-300-grat-foundry-interlock.md)
 - [`ADR-302`](docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md)
+- [`ADR-303`](docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md)
 - [`docs/trust/primordial-foundation-interlock.md`](docs/trust/primordial-foundation-interlock.md)
+- [`docs/migration/primordial-foundation-umbrella-audit.md`](docs/migration/primordial-foundation-umbrella-audit.md)
 - [`docs/handoff/primordial-foundation-agent-contract.xml`](docs/handoff/primordial-foundation-agent-contract.xml)
 
 Foundry/F1 is wired into Foundry Intel through connector manifests, ADR intake,
@@ -92,6 +98,30 @@ XML handoff envelopes, and WORM/BOB evidence return lanes. It is not silently
 vendored or renamed into this repository. If a prompt says `GRAQT`, treat it as
 the ADR-300 GRAT trust interlock plus the ADR-302 transition track unless a
 later ADR defines a distinct mechanism.
+
+---
+
+## WASM Frontend Ingress
+
+The frontend build enters the umbrella through:
+
+- [`apps/wasm-frontend/`](apps/wasm-frontend/)
+
+Expected production drop:
+
+```text
+apps/wasm-frontend/dist/
+  index.html
+  manifest.json
+  *.wasm
+```
+
+The repo currently has the ingress lane and `.gitignore` exceptions ready, but
+no `.wasm` artifact is tracked yet. Add the built WASM files there, then wire
+the manifest into Pages and `tools/foundry-connector/connector-manifest.json`.
+
+Language metrics are controlled by [`.gitattributes`](.gitattributes) while the
+remaining legacy Node glue is refactored into Prolog or domain-native tooling.
 
 ---
 
@@ -492,6 +522,7 @@ Constitutional anchors:
 | [`ADR-300`](docs/architecture/adr/ADR-300-grat-foundry-interlock.md) | trust/foundry interlock |
 | [`ADR-301`](docs/architecture/adr/ADR-301-daily-production-tick.md) | non-mutating daily hardening tick |
 | [`ADR-302`](docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md) | Primordial Foundation rebrand transition |
+| [`ADR-303`](docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md) | Primordial Foundation umbrella monorepo transition |
 
 Open-crux anchors:
 
@@ -730,10 +761,13 @@ console.log(verifyChain(appended.chain).valid)
 ```text
 foundry-intel-2026-07-11/
   AGENT_MEMORY.md                         persistent agent memory
+  .gitattributes                          GitHub Linguist metrics policy
   README.md                               this operator guide
   package.json                            workspace and verification scripts
   tsconfig.json                           root TS typecheck
   tsconfig.package.json                   package TS build base
+  apps/
+    wasm-frontend/                         controlled WASM frontend ingress
   packages/
     source/                               constants, sorry manifest, crux pointer
     datalog/                              10 SYNTH facts and evaluator

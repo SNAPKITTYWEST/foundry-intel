@@ -4,7 +4,7 @@
   "repo": {
     "name": "SNAPKITTYWEST/foundry-intel-2026-07-11",
     "branch": "master",
-    "role": "Foundry Intel governance, connector, ADR, Q(phi), and production verification hub",
+    "role": "THE SHARED PRIMORDIAL FOUNDATION umbrella monorepo with Foundry Intel governance subsystem",
     "rebrand_target": "THE SHARED PRIMORDIAL FOUNDATION - Foundry Intel, in care of Bel Esprit D'Accord"
   },
   "entry_route": [
@@ -13,7 +13,10 @@
     "docs/handoff/foundry-intel-agent-contract.xml",
     "tools/foundry-connector/connector-manifest.json",
     "docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md",
+    "docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md",
     "docs/trust/primordial-foundation-interlock.md",
+    "docs/migration/primordial-foundation-umbrella-audit.md",
+    "apps/wasm-frontend/README.md",
     "docs/handoff/primordial-foundation-agent-contract.xml",
     "docs/architecture/ADR-INDEX.md"
   ],
@@ -54,7 +57,10 @@
     "trust_interlock": "docs/architecture/adr/ADR-300-grat-foundry-interlock.md",
     "daily_tick": "docs/architecture/adr/ADR-301-daily-production-tick.md",
     "primordial_rebrand": "docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md",
+    "umbrella_monorepo": "docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md",
     "trust_transition": "docs/trust/primordial-foundation-interlock.md",
+    "umbrella_audit": "docs/migration/primordial-foundation-umbrella-audit.md",
+    "wasm_frontend_ingress": "apps/wasm-frontend/README.md",
     "connector": "docs/bridge/foundry-connector.md",
     "xml_handoff": "docs/handoff/foundry-intel-agent-contract.xml",
     "primordial_xml_handoff": "docs/handoff/primordial-foundation-agent-contract.xml",
