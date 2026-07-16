@@ -1,0 +1,43 @@
+{
+  "id": "SPF-REPO-FREEZE-20260716",
+  "status": "FROZEN",
+  "mode": "READ_ONLY_AUTONOMOUS",
+  "repo": "SNAPKITTYWEST/foundry-intel-2026-07-11",
+  "branch": "master",
+  "governing_adr": "ADR-304",
+  "daily_hardening": {
+    "status": "ACTIVE",
+    "workflow": ".github/workflows/adr-daily-hardening.yml",
+    "command": "npm run adr:harden:daily",
+    "schedule": "21 7 * * *",
+    "schedule_utc": "07:21 UTC daily",
+    "mutation": "FORBIDDEN"
+  },
+  "repository_permissions": {
+    "contents": "read",
+    "allowed_extra_workflow_permissions": ["pages: write", "id-token: write"]
+  },
+  "forbidden_actions": [
+    "git commit",
+    "git push",
+    "pull_request_target",
+    "pull request comments",
+    "issue creation",
+    "issue comments",
+    "repository file writes from scheduled automation",
+    "automatic crux promotion"
+  ],
+  "allowed_actions": [
+    "local explicit user commits",
+    "manual workflow_dispatch read-only verification",
+    "daily read-only ADR hardening",
+    "GitHub Pages deployment from the Pages workflow only"
+  ],
+  "boundaries": [
+    "Autonomous jobs must not commit, push, comment, open issues, or promote open cruxes.",
+    "ADR-055 remains OPEN_CRUX.",
+    "ADR-062 remains SILENCE_PENDING.",
+    "Phase Mirror remains blocked from mutation without recorded Lean build evidence.",
+    "Repo freeze does not prevent explicit user-directed commits; it blocks autonomous mutation paths."
+  ]
+}

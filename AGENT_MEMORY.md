@@ -87,6 +87,8 @@ ported into this repo with manifests and validation.
 15. `docs/agents/reverse-engineer-agent-tensor.md`
 16. `docs/protocols/intercal-loc.guard`
 17. `docs/security/gemini-black-team-tactic-playbook.md`
+18. `docs/governance/repo-freeze-policy.md`
+19. `docs/architecture/adr/ADR-304-repo-freeze-autonomous-hardening.md`
 
 ## Hard Boundaries
 
@@ -98,6 +100,9 @@ ported into this repo with manifests and validation.
   authority.
 - WORM means append-only evidence memory.
 - XML envelopes are the agent communication protocol.
+- Repo freeze is active. Autonomous jobs are `READ_ONLY_AUTONOMOUS`; they may
+  verify and summarize but must not commit, push, comment, open issues, or
+  promote cruxes.
 - Reverse engineer agent tensor is defensive-only. It communicates through
   `INTERCAL_LOC` and resolves parser-facing contact as `EVIDENCE_OR_SILENCE`.
 - Gemini black-team tactics are a defensive blocklist. Do not add
@@ -128,6 +133,7 @@ For docs/connector-only work, at minimum run:
 npm run adr:q5:fallback
 npm run connector:check
 npm run handoff:check
+npm run repo:freeze:guard
 npm run agent:tensor:guard
 npm run security:black-team:guard
 npm run pages:check

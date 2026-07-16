@@ -555,6 +555,33 @@ EVIDENCE   SILENCE
 
 ---
 
+## Repository Freeze
+
+The repository is frozen against autonomous mutation by
+`docs/governance/repo-freeze-policy.json` and ADR-304.
+
+```text
+docs/governance/repo-freeze-policy.json
+docs/governance/repo-freeze-policy.md
+tools/formal/repo_freeze_guard.mjs
+.github/workflows/adr-daily-hardening.yml
+docs/architecture/adr/ADR-304-repo-freeze-autonomous-hardening.md
+```
+
+Run it directly:
+
+```sh
+npm run repo:freeze:guard
+npm run adr:harden:daily
+```
+
+Freeze state is `FROZEN`, autonomous mode is `READ_ONLY_AUTONOMOUS`, and the
+daily hardening workflow runs at `07:21 UTC`. Autonomous jobs may verify ADR
+posture and write CI summaries, but they cannot commit, push, comment, open
+issues, mutate Phase Mirror, or promote open cruxes.
+
+---
+
 ## Reverse Engineer Agent Tensor
 
 The reverse-engineer guard is a defensive parser-facing agent for the

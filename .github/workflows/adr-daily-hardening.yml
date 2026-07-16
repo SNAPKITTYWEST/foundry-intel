@@ -1,0 +1,27 @@
+name: ADR Daily Hardening
+
+on:
+  workflow_dispatch:
+  schedule:
+    # ADR-304 autonomous hardening tick: 07:21 UTC, read-only.
+    - cron: '21 7 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  harden:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Harden ADR posture
+        run: npm run adr:harden:daily

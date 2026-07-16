@@ -44,6 +44,9 @@ for (const path of [
   'docs/architecture/adr/ADR-301-daily-production-tick.md',
   'docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md',
   'docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md',
+  'docs/architecture/adr/ADR-304-repo-freeze-autonomous-hardening.md',
+  'docs/governance/repo-freeze-policy.json',
+  'docs/governance/repo-freeze-policy.md',
   'docs/trust/primordial-foundation-interlock.md',
   'docs/migration/primordial-foundation-umbrella-audit.md',
   'apps/wasm-frontend/README.md',
@@ -100,11 +103,13 @@ for (const path of [
   'lean-substrate/src/ADR.lean',
   'lean-substrate/src/ADR/PhaseMirror.lean',
   'tools/formal/check_pirtm_artifacts.mjs',
+  'tools/formal/repo_freeze_guard.mjs',
   'tools/formal/reverse_engineer_agent_guard.mjs',
   'tools/formal/gemini_black_team_guard.mjs',
   'tools/formal/phase_mirror_commit_gate.mjs',
   'tools/formal/phase_mirror_force_invoke.mjs',
   'tools/ascii-glitch/build_pages.pl',
+  '.github/workflows/adr-daily-hardening.yml',
   '.github/workflows/pages.yml',
   'docs/architecture/adr-q5-theorem-classification.md',
   'tools/q5-adr-parser/ADR_REGISTRY.txt',
@@ -125,6 +130,8 @@ for (const script of [
   'phase-mirror:commit-gate',
   'phase-mirror:force-invoke',
   'phase-mirror:gate',
+  'repo:freeze:guard',
+  'adr:harden:daily',
   'agent:tensor:guard',
   'security:black-team:guard',
   'adr:tick',
@@ -139,11 +146,17 @@ if (!rootPackage.scripts.verify.includes('verify:pirtm')) {
 if (!rootPackage.scripts.verify.includes('phase-mirror:gate')) {
   fail('package.json verify script must include phase-mirror:gate')
 }
+if (!rootPackage.scripts.verify.includes('repo:freeze:guard')) {
+  fail('package.json verify script must include repo:freeze:guard')
+}
 if (!rootPackage.scripts.verify.includes('agent:tensor:guard')) {
   fail('package.json verify script must include agent:tensor:guard')
 }
 if (!rootPackage.scripts.verify.includes('security:black-team:guard')) {
   fail('package.json verify script must include security:black-team:guard')
+}
+if (!rootPackage.scripts['adr:harden:daily']?.includes('repo:freeze:guard')) {
+  fail('package.json adr:harden:daily script must include repo:freeze:guard')
 }
 if (rootPackage.scripts.verify.indexOf('phase-mirror:gate') > rootPackage.scripts.verify.indexOf('adr:tick')) {
   fail('package.json verify script must run phase-mirror:gate before adr:tick')
@@ -174,6 +187,10 @@ requireEqual(connector.rebrand.status, 'PREPARED', 'Primordial Foundation rebran
 requireEqual(connector.rebrand.governing_adr, 'ADR-302', 'Primordial Foundation governing ADR')
 requireEqual(connector.umbrella.status, 'MAIN_REPO', 'Primordial Foundation umbrella status')
 requireEqual(connector.umbrella.governing_adr, 'ADR-303', 'Primordial Foundation umbrella ADR')
+requireEqual(connector.repo_freeze.status, 'FROZEN', 'Repo freeze status')
+requireEqual(connector.repo_freeze.mode, 'READ_ONLY_AUTONOMOUS', 'Repo freeze mode')
+requireEqual(connector.repo_freeze.verify_script, 'repo:freeze:guard', 'Repo freeze verify script')
+requireEqual(connector.repo_freeze.daily_hardening_script, 'adr:harden:daily', 'Repo freeze daily hardening script')
 requireEqual(connector.wasm_frontend.status, 'BUILT', 'WASM frontend status')
 requireEqual(connector.wasm_frontend.workspace, '@veneer/wasm-frontend', 'WASM frontend workspace')
 requireEqual(connector.pages.status, 'STATIC_READY', 'Pages status')
@@ -187,11 +204,15 @@ requireEqual(
 )
 requireEqual(connector.artifacts.reverse_engineer_agent_tensor, 'docs/agents/reverse-engineer-agent-tensor.json', 'Reverse engineer agent tensor artifact')
 requireEqual(connector.artifacts.reverse_engineer_agent_doc, 'docs/agents/reverse-engineer-agent-tensor.md', 'Reverse engineer agent doc artifact')
+requireEqual(connector.artifacts.repo_freeze_policy, 'docs/governance/repo-freeze-policy.json', 'Repo freeze policy artifact')
+requireEqual(connector.artifacts.repo_freeze_doc, 'docs/governance/repo-freeze-policy.md', 'Repo freeze doc artifact')
 requireEqual(connector.artifacts.gemini_black_team_policy, 'docs/security/gemini-black-team-policy.json', 'Gemini black-team policy artifact')
 requireEqual(connector.artifacts.gemini_black_team_playbook, 'docs/security/gemini-black-team-tactic-playbook.md', 'Gemini black-team playbook artifact')
 requireEqual(connector.artifacts.intercal_loc_guard, 'docs/protocols/intercal-loc.guard', 'INTERCAL LOC guard artifact')
 requireEqual(connector.artifacts.phase_mirror_force_invoke_trap, 'docs/protocols/phase-mirror-force-invoke.trap', 'Phase Mirror force invoke trap artifact')
 requireEqual(connector.artifacts.intel_pages_builder, 'tools/ascii-glitch/build_pages.pl', 'Pages builder artifact')
+requireEqual(connector.artifacts.intel_adr_repo_freeze, 'docs/architecture/adr/ADR-304-repo-freeze-autonomous-hardening.md', 'ADR-304 artifact')
+requireEqual(connector.artifacts.intel_adr_hardening_workflow, '.github/workflows/adr-daily-hardening.yml', 'ADR hardening workflow artifact')
 requireEqual(connector.artifacts.wasm_frontend_manifest, 'apps/wasm-frontend/dist/manifest.json', 'WASM manifest artifact')
 requireEqual(connector.artifacts.wasm_frontend_pages_root, 'docs/pages/wasm/index.html', 'WASM Pages artifact')
 requireEqual(connector.artifacts.intel_bob_chat_runtime, 'docs/pages/assets/bob-chat.mjs', 'BOB chat runtime artifact')
@@ -200,6 +221,7 @@ requireEqual(connector.artifacts.pirtm_rs_crate, 'pirtm_rs/Cargo.toml', 'PIRTM R
 requireEqual(connector.artifacts.lean_parm_proof, 'lean-substrate/src/Core/PARM.lean', 'Lean PARM proof artifact')
 requireEqual(connector.artifacts.lean_phase_mirror_proof, 'lean-substrate/src/ADR/PhaseMirror.lean', 'Lean Phase Mirror proof artifact')
 requireEqual(connector.artifacts.pirtm_artifact_check, 'tools/formal/check_pirtm_artifacts.mjs', 'PIRTM checker artifact')
+requireEqual(connector.artifacts.repo_freeze_guard, 'tools/formal/repo_freeze_guard.mjs', 'Repo freeze guard artifact')
 requireEqual(connector.artifacts.reverse_engineer_agent_guard, 'tools/formal/reverse_engineer_agent_guard.mjs', 'Reverse engineer agent guard artifact')
 requireEqual(connector.artifacts.gemini_black_team_guard, 'tools/formal/gemini_black_team_guard.mjs', 'Gemini black-team guard artifact')
 requireEqual(connector.artifacts.phase_mirror_commit_gate, 'tools/formal/phase_mirror_commit_gate.mjs', 'Phase Mirror commit gate artifact')
@@ -273,6 +295,15 @@ for (const pattern of [
   /badge-vllm\.svg/,
   /vLLM language index/i,
   /bob-chat\.mjs/,
+  /Repository Freeze/,
+  /repo-freeze-policy\.json/,
+  /repo_freeze_guard\.mjs/,
+  /adr-daily-hardening\.yml/,
+  /ADR-304/,
+  /FROZEN/,
+  /READ_ONLY_AUTONOMOUS/,
+  /repo:freeze:guard/,
+  /adr:harden:daily/,
   /Reverse Engineer Agent Tensor/,
   /reverse-engineer-agent-tensor\.json/,
   /intercal-loc\.guard/,
@@ -313,6 +344,10 @@ for (const pattern of [
   /Do Not Confuse With/,
   /ADR-055 remains `OPEN_CRUX`/,
   /ADR-062 remains `SILENCE_PENDING`/,
+  /repo-freeze-policy\.md/,
+  /ADR-304-repo-freeze-autonomous-hardening\.md/,
+  /READ_ONLY_AUTONOMOUS/,
+  /repo:freeze:guard/,
   /reverse-engineer-agent-tensor\.md/,
   /INTERCAL_LOC/,
   /EVIDENCE_OR_SILENCE/,
@@ -325,10 +360,18 @@ for (const pattern of [
 const adrIndex = readFileSync(join(root, 'docs/architecture/ADR-INDEX.md'), 'utf8')
 if (!/ADR-302/.test(adrIndex)) fail('ADR index missing ADR-302')
 if (!/ADR-303/.test(adrIndex)) fail('ADR index missing ADR-303')
+if (!/ADR-304/.test(adrIndex)) fail('ADR index missing ADR-304')
 
 const verifyWorkflow = readFileSync(join(root, '.github/workflows/veneer-verify.yml'), 'utf8')
 if (!/rust-toolchain@stable/.test(verifyWorkflow)) {
   fail('Veneer verify workflow must install stable Rust for pirtm_rs')
+}
+const adrHardeningWorkflow = readFileSync(join(root, '.github/workflows/adr-daily-hardening.yml'), 'utf8')
+if (!/contents:\s*read/.test(adrHardeningWorkflow)) {
+  fail('ADR hardening workflow must use read-only contents permission')
+}
+if (!/npm run adr:harden:daily/.test(adrHardeningWorkflow)) {
+  fail('ADR hardening workflow must run npm run adr:harden:daily')
 }
 
 const trustTransition = readFileSync(join(root, 'docs/trust/primordial-foundation-interlock.md'), 'utf8')

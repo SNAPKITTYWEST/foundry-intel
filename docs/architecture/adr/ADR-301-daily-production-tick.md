@@ -37,18 +37,29 @@ npm run verify
 1. Q(phi) ADR manifest generation.
 2. Foundry connector validation.
 3. XML handoff envelope validation.
-4. Reverse engineer agent tensor and INTERCAL LOC validation.
-5. Gemini black-team tactic blocklist validation.
-6. TypeScript build for the active Node workspaces.
-7. TypeScript lint/typecheck.
-8. No-cache Jest tests for the active SYNTH packages.
-9. Built-package production smoke test.
-10. Phase Mirror commit/promotion gate.
-11. ADR production tick summary.
+4. Repository freeze validation.
+5. Reverse engineer agent tensor and INTERCAL LOC validation.
+6. Gemini black-team tactic blocklist validation.
+7. TypeScript build for the active Node workspaces.
+8. TypeScript lint/typecheck.
+9. No-cache Jest tests for the active SYNTH packages.
+10. Built-package production smoke test.
+11. Phase Mirror commit/promotion gate.
+12. ADR production tick summary.
 
 The tick summary is produced by `tools/adr-production-tick.mjs`. In GitHub
 Actions it writes a single job summary through `$GITHUB_STEP_SUMMARY`. Locally
 it prints the same summary to stdout.
+
+ADR-304 adds a repo-freeze guard and a separate read-only hardening workflow at
+`07:21 UTC` in `.github/workflows/adr-daily-hardening.yml`. The daily hardening
+workflow runs `npm run adr:harden:daily`; it is autonomous, but it remains
+non-mutating.
+
+`tools/formal/repo_freeze_guard.mjs` validates
+`docs/governance/repo-freeze-policy.json`, workflow permissions, package
+scripts, and autonomous mutation surfaces. It must report `FROZEN` before the
+ADR tick can pass.
 
 `tools/formal/reverse_engineer_agent_guard.mjs` validates
 `docs/agents/reverse-engineer-agent-tensor.json` and
@@ -82,6 +93,7 @@ The daily tick must not:
 - post discussion comments
 - write repository files
 - mutate or auto-commit Phase Mirror state
+- bypass the repository freeze
 - promote open cruxes into proof claims
 
 Any future workflow that writes commits or comments requires a separate ADR.

@@ -49,6 +49,7 @@ grat_corpus_asset('GRAT-ASSET-009', 'QuantumPartitionBridge.lean — Legendre du
 grat_corpus_asset('GRAT-ASSET-010', 'RiemannMetatron.lean — zeta structural facts, zero sorry').
 grat_corpus_asset('GRAT-ASSET-011', 'Foundry Intel Governance Hub — Primordial Foundation transition spine').
 grat_corpus_asset('GRAT-ASSET-012', 'Primordial Foundation Umbrella Monorepo — main repo transition').
+grat_corpus_asset('GRAT-ASSET-013', 'Repository Freeze and Autonomous ADR Hardening Clock').
 
 %% ── Prior Art Links — ADR ↔ External Citations ───────────────────────────────
 %% prior_art_linked(ADR_ID, CitationKey)
@@ -108,6 +109,10 @@ prior_art_linked('ADR-303', 'GRAT-ASSET-012').  % Umbrella monorepo transition
 prior_art_linked('ADR-303', 'ADR-200').
 prior_art_linked('ADR-303', 'ADR-300').
 prior_art_linked('ADR-303', 'ADR-302').
+prior_art_linked('ADR-304', 'GRAT-ASSET-013').  % repo freeze + ADR hardening clock
+prior_art_linked('ADR-304', 'ADR-200').
+prior_art_linked('ADR-304', 'ADR-301').
+prior_art_linked('ADR-304', 'ADR-303').
 
 %% ── Expansion Eligibility (Datalog EDB) ─────────────────────────────────────
 %% expansion_eligible(ID) is asserted dynamically by the loop when an ADR

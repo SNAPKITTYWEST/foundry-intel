@@ -195,6 +195,13 @@ adr('ADR-303',
     'sha256:primordial-foundation-umbrella-contract-v1',
     'worm:ADR-303-seal').
 
+adr('ADR-304',
+    'Repository Freeze and Autonomous ADR Hardening',
+    sentinel,
+    'sha256:repo-freeze-autonomous-hardening-proof-v1',
+    'sha256:repo-freeze-autonomous-hardening-contract-v1',
+    'worm:ADR-304-seal').
+
 %% ── Trust hierarchy (from sovereign_kernel.pl) ───────────────────────────
 
 trust_level(none,      0).
