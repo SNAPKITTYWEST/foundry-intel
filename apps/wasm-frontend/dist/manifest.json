@@ -1,0 +1,33 @@
+{
+  "name": "foundry-intel-wasm-frontend",
+  "version": "2.0.0",
+  "built": "deterministic",
+  "entry": "index.html",
+  "artifacts": [
+    {
+      "file": "foundation.wasm",
+      "bytes": 1170,
+      "sha256": "5d085f5e8a62151e7d9482b1466634aba2ab6265ccf48593437df1936ead8b81"
+    },
+    {
+      "file": "loader.mjs",
+      "bytes": 4205,
+      "sha256": "d44ac4fd645be0b2401877a2b190d9207954f869063000153aec9842c8996f93"
+    },
+    {
+      "file": "index.html",
+      "bytes": 2487,
+      "sha256": "48eb5a18924b6f9d32cd4f3097ea42b5d1b4c624f528817fd633f959a463a751"
+    }
+  ],
+  "constants": {
+    "TAU_R": 47.06998778,
+    "CYCLE_108": 108,
+    "RH_STATUS": "none"
+  },
+  "open_crux": {
+    "ADR-055": "OPEN_CRUX - RH unproven",
+    "ADR-062": "SILENCE_PENDING"
+  },
+  "tests": "21/21 pass"
+}

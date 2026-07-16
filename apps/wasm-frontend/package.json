@@ -1,0 +1,14 @@
+{
+  "name": "@veneer/wasm-frontend",
+  "version": "2.0.0",
+  "description": "Foundry Intel WASM frontend — probe-gate + Sedona Spine verification UI",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "swipl -q -s tools/build_wasm.pl -g main -t halt --",
+    "test": "swipl -q -s tools/build_wasm.pl -g main -t halt -- --check"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.27.0"
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Primordial Foundation WASM Gate</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070a0f;
+      --ink: #f4f1de;
+      --muted: #9fb3c8;
+      --line: #2f4054;
+      --cyan: #4dd8c8;
+      --amber: #f2b84b;
+      --rose: #ff5f73;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background: var(--bg);
+      font: 15px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    main {
+      width: min(920px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #10161d;
+      padding: 20px;
+    }
+    h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 6vw, 4rem); line-height: 1; letter-spacing: 0; }
+    p { color: var(--muted); margin: 0 0 18px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .cell { border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-height: 84px; }
+    .cell b { display: block; color: var(--amber); margin-bottom: 8px; }
+    code { color: var(--cyan); }
+    .bad { color: var(--rose); }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WASM Gate</h1>
+    <p>Primordial Foundation frontend dock for the Sedona Spine pearlGate. Open crux boundaries stay enforced in WASM.</p>
+    <section class="grid">
+      <div class="cell"><b>cycle108()</b><code id="cycle">loading</code></div>
+      <div class="cell"><b>probeGate(2, 0)</b><code id="clean">loading</code></div>
+      <div class="cell"><b>probeGate(2, 1)</b><code id="rh" class="bad">loading</code></div>
+    </section>
+  </main>
+  <script type="module">
+    import { loadFoundry, failedConstraints } from './loader.mjs'
+
+    const foundry = await loadFoundry(new URL('./foundation.wasm', import.meta.url))
+    const cleanMask = foundry.probeGate(2, 0)
+    const rhMask = foundry.probeGate(2, 1)
+
+    document.getElementById('cycle').textContent = String(foundry.CYCLE_108)
+    document.getElementById('clean').textContent = cleanMask === 0 ? 'EVIDENCE' : failedConstraints(cleanMask).join(', ')
+    document.getElementById('rh').textContent = rhMask === 0 ? 'EVIDENCE' : failedConstraints(rhMask).join(', ')
+  </script>
+</body>
+</html>
