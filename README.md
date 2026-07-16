@@ -555,6 +555,36 @@ EVIDENCE   SILENCE
 
 ---
 
+## Phase Mirror PIRTM/PARM Verification
+
+The Phase Mirror prompt is implemented as a local Rust and Lean verification
+surface:
+
+```text
+pirtm_rs/
+  src/rta.rs                 sovereign prime state topology + contraction fit
+  src/gates.rs               Monster-class gate model + Langlands L-value bounds
+  src/uac_loss.rs            UAC loss and Arithmetic Bindu attractor
+  tests/sovereign_pipeline.rs
+
+lean-substrate/src/Core/PARM.lean
+lean-substrate/src/ADR/PhaseMirror.lean
+```
+
+Run it directly:
+
+```sh
+npm run verify:pirtm
+cargo test --manifest-path pirtm_rs/Cargo.toml
+```
+
+The Rust gate is executable and covered by tests. The Lean files are
+mathlib-free substrate files with no placeholder proof tokens; this environment
+does not have Lean/Lake on PATH, so `npm run verify:pirtm` enforces artifact
+presence and placeholder absence while Cargo verifies the executable layer.
+
+---
+
 ## ADR Registry
 
 19 ADRs, all EVIDENCE-sealed by `docs/governance/law-engine.pl`.

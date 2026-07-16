@@ -1,5 +1,6 @@
 node_modules/
 dist/
+pirtm_rs/target/
 *.js.map
 *.d.ts.map
 .env

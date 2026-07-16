@@ -8,3 +8,12 @@ defaultTargets = ["Substrate"]
 # the morph notebook lifts it to Agda; datalog is the test binder.
 [[lean_lib]]
 name = "Substrate"
+srcDir = "src"
+
+[[lean_lib]]
+name = "Core"
+srcDir = "src"
+
+[[lean_lib]]
+name = "ADR"
+srcDir = "src"

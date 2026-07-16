@@ -1,0 +1,18 @@
+[package]
+name = "pirtm_rs"
+version = "0.1.0"
+edition = "2021"
+description = "PIRTM/PARM Phase Mirror Rust verification substrate"
+license = "Apache-2.0"
+publish = false
+
+[lib]
+name = "pirtm_rs"
+path = "src/lib.rs"
+
+[[bin]]
+name = "pirtm-rs"
+path = "src/main.rs"
+
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(kani)'] }

@@ -82,6 +82,18 @@ for (const path of [
   'docs/pages/wasm/foundation.wasm',
   'docs/pages/wasm/loader.mjs',
   'docs/pages/wasm/index.html',
+  'pirtm_rs/Cargo.toml',
+  'pirtm_rs/src/lib.rs',
+  'pirtm_rs/src/main.rs',
+  'pirtm_rs/src/rta.rs',
+  'pirtm_rs/src/gates.rs',
+  'pirtm_rs/src/uac_loss.rs',
+  'pirtm_rs/tests/sovereign_pipeline.rs',
+  'lean-substrate/src/Core.lean',
+  'lean-substrate/src/Core/PARM.lean',
+  'lean-substrate/src/ADR.lean',
+  'lean-substrate/src/ADR/PhaseMirror.lean',
+  'tools/formal/check_pirtm_artifacts.mjs',
   'tools/ascii-glitch/build_pages.pl',
   '.github/workflows/pages.yml',
   'docs/architecture/adr-q5-theorem-classification.md',
@@ -91,8 +103,11 @@ for (const path of [
   requireFile(path)
 }
 
-for (const script of ['build', 'test', 'lint', 'smoke', 'verify', 'adr:tick', 'pages:build', 'pages:check']) {
+for (const script of ['build', 'test', 'lint', 'smoke', 'verify', 'verify:pirtm', 'test:pirtm', 'check:pirtm', 'adr:tick', 'pages:build', 'pages:check']) {
   if (!rootPackage.scripts?.[script]) fail(`package.json missing ${script} script`)
+}
+if (!rootPackage.scripts.verify.includes('verify:pirtm')) {
+  fail('package.json verify script must include verify:pirtm')
 }
 
 requireEqual(agentTour.id, 'FOUNDRY-INTEL-AGENT-METADATA-TOUR-20260716', 'agent tour id')
@@ -136,6 +151,10 @@ requireEqual(connector.artifacts.wasm_frontend_manifest, 'apps/wasm-frontend/dis
 requireEqual(connector.artifacts.wasm_frontend_pages_root, 'docs/pages/wasm/index.html', 'WASM Pages artifact')
 requireEqual(connector.artifacts.intel_bob_chat_runtime, 'docs/pages/assets/bob-chat.mjs', 'BOB chat runtime artifact')
 requireEqual(connector.artifacts.intel_vllm_language_index, 'docs/pages/llm/vllm-language-index.json', 'vLLM language index artifact')
+requireEqual(connector.artifacts.pirtm_rs_crate, 'pirtm_rs/Cargo.toml', 'PIRTM Rust crate artifact')
+requireEqual(connector.artifacts.lean_parm_proof, 'lean-substrate/src/Core/PARM.lean', 'Lean PARM proof artifact')
+requireEqual(connector.artifacts.lean_phase_mirror_proof, 'lean-substrate/src/ADR/PhaseMirror.lean', 'Lean Phase Mirror proof artifact')
+requireEqual(connector.artifacts.pirtm_artifact_check, 'tools/formal/check_pirtm_artifacts.mjs', 'PIRTM checker artifact')
 requireEqual(q5.count, connector.q5.count, 'Q(phi) ADR count')
 requireEqual(q5.q5_total, connector.q5.total, 'Q(phi) total')
 requireEqual(vllmIndex.id, 'SPF-VLLM-LANGUAGE-INDEX-20260716', 'vLLM language index id')
@@ -195,6 +214,11 @@ for (const pattern of [
   /badge-vllm\.svg/,
   /vLLM language index/i,
   /bob-chat\.mjs/,
+  /Phase Mirror PIRTM\/PARM Verification/,
+  /pirtm_rs\/Cargo\.toml/,
+  /Core\/PARM\.lean/,
+  /ADR\/PhaseMirror\.lean/,
+  /npm run verify:pirtm/,
   /OPEN_CRUX/,
   /SILENCE_PENDING/,
   /Q\(phi\).*metadata/is,
@@ -220,6 +244,11 @@ for (const pattern of [
 const adrIndex = readFileSync(join(root, 'docs/architecture/ADR-INDEX.md'), 'utf8')
 if (!/ADR-302/.test(adrIndex)) fail('ADR index missing ADR-302')
 if (!/ADR-303/.test(adrIndex)) fail('ADR index missing ADR-303')
+
+const verifyWorkflow = readFileSync(join(root, '.github/workflows/veneer-verify.yml'), 'utf8')
+if (!/rust-toolchain@stable/.test(verifyWorkflow)) {
+  fail('Veneer verify workflow must install stable Rust for pirtm_rs')
+}
 
 const trustTransition = readFileSync(join(root, 'docs/trust/primordial-foundation-interlock.md'), 'utf8')
 for (const pattern of [
