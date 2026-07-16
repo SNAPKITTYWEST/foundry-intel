@@ -1,7 +1,7 @@
 {
   "name": "@veneer/probe-gate",
   "version": "2.0.0",
-  "description": "SKW-010 probe result ingestion — maps identity probe output to pearlGate ActionContext and seals verdict to WORM chain",
+  "description": "SKW-010 probe result ingestion (BARE glue) — maps identity probe output to datalog egg facts, delegates the verdict to @veneer/datalog (10 SYNTH spines), seals to WORM",
   "private": true,
   "type": "module",
   "main": "./dist/index.js",
@@ -23,10 +23,10 @@
     "depth": 10,
     "spine": "probe-gate",
     "synth": ["SYNTH-001", "SYNTH-002", "SYNTH-005", "SYNTH-008", "SYNTH-009"],
-    "role": "production wiring — SKW-010 probe output → pearlGate → WORM chain"
+    "role": "BARE production glue — SKW-010 probe output → datalog eggs → WORM chain"
   },
   "dependencies": {
-    "@veneer/bob-gate": "0.1.0",
+    "@veneer/datalog": "2.0.0",
     "@veneer/worm": "0.1.0",
     "@veneer/source": "2.0.0"
   },

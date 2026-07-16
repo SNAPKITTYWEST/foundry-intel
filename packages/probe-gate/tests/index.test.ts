@@ -111,7 +111,6 @@ describe("SYNTH-005 external trust boundary", () => {
     const ctx = probeToActionContext(makeResult({ probes_positive: 1 }));
     expect(ctx.trust_level).toBe("external");
     expect(ctx.mutating).toBe(false);
-    expect(ctx.has_server_binding).toBe(false);
   });
 
   it("refuses ALP clearance for contaminated external probes", () => {

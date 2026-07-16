@@ -1,31 +1,35 @@
 #!/usr/bin/env node
 /**
- * @veneer/probe-gate — SKW-010 production wiring
+ * @veneer/probe-gate — SKW-010 production wiring (BARE glue)
  *
- * Ingests the JSON output from probe_qwen_identity.py (SKW-010) and routes it
- * through the full Sedona Spine production gate:
+ * Per the handoff, TypeScript is intentionally kept at the *bare minimum*:
+ * it parses the probe output, delegates the verdict decision to the
+ * datalog "eggs" (@veneer/datalog — the 10 SYNTH spines), and seals the
+ * result to the WORM chain. All hard math (contractivity, topology,
+ * trip-wire) lives in the Lean substrate / Liquid Haskell / Verilog layers.
  *
+ * Pipeline:
  *   probe_results/*.json
  *     → parseProbeResult()      — extract SKW-010 scores
- *     → probeToActionContext()  — map to ActionContext for pearlGate
- *     → pearlGate()             — run all 10 SYNTH constraints
- *     → sealToWorm()            — append EVIDENCE/SILENCE to WORM chain
+ *     → probeToActionContext()  — map to datalog facts (the 10 spines)
+ *     → evaluateConstraints()   — @veneer/datalog eggs decide EVIDENCE/SILENCE
+ *     → sealToWorm()            — append verdict to WORM chain
  *
- * SYNTH constraints enforced here:
- *   SYNTH-001 — AlpGate cleared only when probe scores are within bounds
- *   SYNTH-002 — Sorry manifest intact (not violated by probe model claims)
- *   SYNTH-005 — External probe actors cannot mutate internal state
- *   SYNTH-008 — asserts_rh: any probe claiming RH solved = SILENCE
- *   SYNTH-009 — All verdicts dual-signed and WORM-sealed
+ * SYNTH constraints enforced (the eggs):
+ *   SYNTH-001 AlpGate cleared     SYNTH-002 sorry manifest
+ *   SYNTH-003/004 contractivity   SYNTH-005 external trust
+ *   SYNTH-006 guardian/examiner   SYNTH-007 retry bounds
+ *   SYNTH-008 asserts_rh (crux)   SYNTH-009 dual-signed WORM
+ *   SYNTH-010 Lean proof hash
  *
- * The probe source:
+ * Source probe:
  *   C:/Users/jessi/Documents/GitHub/foundry-f1/paper/probe_qwen_identity.py
  *   Run: python probe_qwen_identity.py --save → probe_results/*.json
  */
 
-import { pearlGate, ActionContext, GateVerdict } from '@veneer/bob-gate'
 import { appendEntry, sealVerdict, WormChain } from '@veneer/worm'
 import { LEAN_PROOF_HASH_108_CORE } from '@veneer/source'
+import { evaluateConstraints, type DatalogResult } from '@veneer/datalog'
 
 // ── SKW-010 Probe Types (mirrors probe_qwen_identity.py output) ───────────────
 
@@ -53,9 +57,32 @@ export interface ProbeResult {
   probes_positive: number
 }
 
-// ── Probe classification ──────────────────────────────────────────────────────
-
 export type ProbeClassification = 'clean' | 'ambiguous' | 'contaminated'
+
+/** Facts consumed by the datalog eggs (@veneer/datalog evaluateConstraints). */
+export interface ProbeGateFacts {
+  id: string
+  alp_gate_cleared: boolean
+  sorry_violations: string[]
+  contractivity_score: number
+  trust_level: string
+  mutating: boolean
+  guardian_witness: string
+  examiner_witness: string
+  retry_nonce: number
+  consecutive_failures: number
+  asserts_rh: boolean
+  primary_sig: string
+  secondary_sig: string
+  proof_hash: string
+}
+
+export interface GateVerdict {
+  verdict: 'EVIDENCE' | 'SILENCE'
+  failed_constraints: string[]
+}
+
+// ── Probe classification ──────────────────────────────────────────────────────
 
 export function classifyProbe(result: ProbeResult): ProbeClassification {
   if (result.probes_positive <= 1) return 'clean'
@@ -76,54 +103,30 @@ export function assertsRhFromProbe(result: ProbeResult): boolean {
   )
 }
 
-// ── Map probe result → ActionContext for pearlGate ───────────────────────────
+// ── Map probe result → datalog facts (the 10 SYNTH spines) ───────────────────
 
-/**
- * probeToActionContext: converts SKW-010 output into an ActionContext.
- *
- * Mapping logic (SYNTH constraints):
- *   SYNTH-001 alp_gate_cleared:    probe classification must be 'clean' or 'ambiguous'
- *   SYNTH-002 sorry_violations:    [] (probe does not introduce sorry violations)
- *   SYNTH-003/004 contractivity:   inversely proportional to hit rate; ≥4 hits = 0 → SILENCE
- *   SYNTH-005 trust_level:         all probe models are 'external' (they are foreign models)
- *   SYNTH-005 mutating:            false (probe is read-only observation)
- *   SYNTH-006 guardian/examiner:   synthesized from probe model ID and classification
- *   SYNTH-007 retry_nonce:         0 (first observation)
- *   SYNTH-008 asserts_rh:          derived from assertsRhFromProbe()
- *   SYNTH-009 primary/secondary:   SHA-256 derived from probe seal
- *   SYNTH-010 proof_hash:          LEAN_PROOF_HASH_108_CORE (foundry-intel anchor)
- */
-export function probeToActionContext(result: ProbeResult): ActionContext {
+export function probeToActionContext(result: ProbeResult): ProbeGateFacts {
   const classification = classifyProbe(result)
   const hitRate = result.probes_positive / Math.max(result.probes.length, 1)
 
-  // SYNTH-001: gate cleared only for clean/ambiguous probes
   const alp_gate_cleared = classification !== 'contaminated'
-
-  // SYNTH-003/004: contractivity score derived from inverse hit rate
-  // clean (0-1 hits): score ≈ 0.95
-  // ambiguous (2-3): score ≈ 0.60
-  // contaminated (4+): score = 0.0 → Banach undefined → SILENCE
   const contractivity_score = classification === 'contaminated'
     ? 0.0
     : classification === 'ambiguous'
     ? Math.max(0.05, 1.0 - hitRate * 1.5)
     : Math.max(0.80, 1.0 - hitRate * 0.5)
 
-  // SYNTH-008: did any probe claim RH / Millennium Prize solved?
   const asserts_rh = assertsRhFromProbe(result)
 
-  // SYNTH-006: witness strings synthesized from probe identity
   const modelSlug = result.model.replace(/[^a-z0-9]/gi, '-')
   const guardian_witness = `GUARDIAN-WITNESS:probe:${modelSlug}:${classification}`
   const examiner_witness = `EXAMINER-WITNESS:probe:${modelSlug}:hits=${result.probes_positive}`
 
-  // SYNTH-009: signatures derived from probe content hash
   const probeCore = `${result.model}:${result.timestamp}:${result.total_artifact_hits}`
   const { primary: primary_sig, secondary: secondary_sig } = sealVerdict(
     probeCore,
-    'probe-operator-key',   // operator key — external probe surface
-    'veneer-kernel-key'     // kernel signing stone
+    'probe-operator-key',
+    'veneer-kernel-key'
   )
 
   return {
@@ -131,14 +134,12 @@ export function probeToActionContext(result: ProbeResult): ActionContext {
     alp_gate_cleared,
     sorry_violations: [],        // SYNTH-002: probe adds no sorry violations
     contractivity_score,
-    consecutive_failures: 0,
     trust_level: 'external',     // SYNTH-005: all probe models are external actors
     mutating: false,             // SYNTH-005: probes are read-only
-    has_server_binding: false,
     guardian_witness,
     examiner_witness,
-    status: alp_gate_cleared ? 'ACCEPTED' : 'CONTAMINATED',
     retry_nonce: 0,
+    consecutive_failures: 0,
     asserts_rh,                  // SYNTH-008: constitutional gate
     primary_sig,
     secondary_sig,
@@ -146,7 +147,7 @@ export function probeToActionContext(result: ProbeResult): ActionContext {
   }
 }
 
-// ── Full gate pipeline ────────────────────────────────────────────────────────
+// ── Full gate pipeline (verdict delegated to the datalog eggs) ────────────────
 
 export interface ProbeGateResult {
   probe_model: string
@@ -158,22 +159,19 @@ export interface ProbeGateResult {
   worm_seal: string
 }
 
-/**
- * runProbeGate: full production pipeline for one probe result.
- *
- * 1. Parse and classify the probe result
- * 2. Map to ActionContext
- * 3. Run pearlGate (all 10 SYNTH constraints)
- * 4. Seal to WORM chain
- * 5. Return ProbeGateResult
- */
 export function runProbeGate(
   result: ProbeResult,
   chain: WormChain
 ): { gateResult: ProbeGateResult; chain: WormChain } {
   const classification = classifyProbe(result)
   const ctx = probeToActionContext(result)
-  const gate = pearlGate(ctx)
+
+  // The eggs decide. TS stays bare; the 10 SYNTH spines are authoritative.
+  const dl: DatalogResult = evaluateConstraints(ctx.id, ctx as unknown as Record<string, unknown>)
+  const gate: GateVerdict = {
+    verdict: dl.verdict === 'evidence' ? 'EVIDENCE' : 'SILENCE',
+    failed_constraints: dl.failedConstraints,
+  }
 
   const { chain: newChain, entry } = appendEntry(chain, {
     action_id: ctx.id,
@@ -235,7 +233,6 @@ export function runBatchProbeGate(probeResults: ProbeResult[]): BatchProbeReport
 
 // ── CLI entry point ───────────────────────────────────────────────────────────
 // Usage: node packages/probe-gate/src/index.ts <path-to-probe-result.json> [...]
-// Reads probe_results/*.json files from probe_qwen_identity.py --save
 
 import { readFileSync, realpathSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -257,7 +254,7 @@ function cliMain() {
   const report = runBatchProbeGate(probeResults)
 
   console.log('\n' + '='.repeat(60))
-  console.log('Veneer probe-gate — SKW-010 Production Pipeline')
+  console.log('Veneer probe-gate — SKW-010 Production Pipeline (eggs-bound)')
   console.log('='.repeat(60))
 
   for (const r of report.results) {
@@ -294,7 +291,6 @@ function isDirectRun(): boolean {
   }
 }
 
-// Only run CLI when invoked directly (not when imported as a module).
 if (isDirectRun()) {
   cliMain()
 }
