@@ -33,7 +33,8 @@ npm run verify
 
 The production gate runs Q(phi) generation, connector validation, XML envelope
 validation, workspace build, TypeScript lint, no-cache Jest tests, smoke, and
-the ADR-301 daily production tick.
+the ADR-301 daily production tick. It also checks the deterministic backend
+ASCII Pages surface.
 
 ## Trust/Rebrand Track
 
@@ -68,6 +69,17 @@ npx veneer-probe-gate probe_results/example.json
 The CLI maps probe output into `@veneer/bob-gate`, emits `EVIDENCE` or
 `SILENCE`, and seals the result through `@veneer/worm`.
 
+## Backend Pages Surface
+
+```sh
+npm run pages:build
+npm run pages:check
+```
+
+The generated static surface lives at `docs/pages/index.html`, with raw ASCII
+at `docs/pages/backend-ascii.txt`. It is backend governance aesthetics: ASCII
+signal, connector facts, Q(phi) posture, and open-crux boundaries.
+
 ## Institutional Anchors
 
 | Anchor | File |
@@ -81,6 +93,7 @@ The CLI maps probe output into `@veneer/bob-gate`, emits `EVIDENCE` or
 | Primordial XML handoff | `docs/handoff/primordial-foundation-agent-contract.xml` |
 | Cross-repo connector | `docs/bridge/foundry-connector.md` |
 | Q(phi) classification | `docs/architecture/adr-q5-theorem-classification.md` |
+| Backend ASCII Pages | `docs/pages/index.html` |
 
 ## Package Map
 

@@ -56,6 +56,11 @@ for (const path of [
   'docs/protocols/xml-handoff-envelope.xsd',
   'docs/handoff/foundry-intel-agent-contract.xml',
   'docs/handoff/primordial-foundation-agent-contract.xml',
+  'docs/pages/index.html',
+  'docs/pages/backend-ascii.txt',
+  'docs/pages/assets/backend-glitch.css',
+  'tools/ascii-glitch/build-pages.mjs',
+  '.github/workflows/pages.yml',
   'docs/architecture/adr-q5-theorem-classification.md',
   'tools/q5-adr-parser/ADR_REGISTRY.txt',
   'tools/q5-adr-parser/adr_manifest_index.csv'
@@ -63,7 +68,7 @@ for (const path of [
   requireFile(path)
 }
 
-for (const script of ['build', 'test', 'lint', 'smoke', 'verify', 'adr:tick']) {
+for (const script of ['build', 'test', 'lint', 'smoke', 'verify', 'adr:tick', 'pages:build', 'pages:check']) {
   if (!rootPackage.scripts?.[script]) fail(`package.json missing ${script} script`)
 }
 
@@ -90,11 +95,14 @@ requireEqual(
 requireEqual(connector.handoff.status, 'READY_FOR_CLAUDE', 'Claude handoff status')
 requireEqual(connector.rebrand.status, 'PREPARED', 'Primordial Foundation rebrand status')
 requireEqual(connector.rebrand.governing_adr, 'ADR-302', 'Primordial Foundation governing ADR')
+requireEqual(connector.pages.status, 'STATIC_READY', 'Pages status')
+requireEqual(connector.pages.aesthetic, 'backend-ascii-glitch', 'Pages aesthetic')
 requireEqual(
   connector.artifacts.intel_handoff_rebrand_envelope,
   'docs/handoff/primordial-foundation-agent-contract.xml',
   'Primordial Foundation XML handoff artifact'
 )
+requireEqual(connector.artifacts.intel_pages_builder, 'tools/ascii-glitch/build-pages.mjs', 'Pages builder artifact')
 requireEqual(q5.count, connector.q5.count, 'Q(phi) ADR count')
 requireEqual(q5.q5_total, connector.q5.total, 'Q(phi) total')
 
@@ -121,6 +129,8 @@ for (const pattern of [
   /ADR-302/,
   /primordial-foundation-interlock\.md/,
   /primordial-foundation-agent-contract\.xml/,
+  /docs\/pages\/index\.html/,
+  /backend ASCII/i,
   /OPEN_CRUX/,
   /SILENCE_PENDING/,
   /Q\(phi\).*metadata/is,
@@ -153,6 +163,18 @@ for (const pattern of [
   /Q\(phi\) weights remain metadata classifications only/
 ]) {
   if (!pattern.test(trustTransition)) fail(`trust transition doc missing marker: ${pattern}`)
+}
+
+const pagesHtml = readFileSync(join(root, 'docs/pages/index.html'), 'utf8')
+const pagesAscii = readFileSync(join(root, 'docs/pages/backend-ascii.txt'), 'utf8')
+for (const pattern of [
+  /Backend ASCII Glitch/i,
+  /THE SHARED PRIMORDIAL FOUNDATION/,
+  /OPEN_CRUX/,
+  /SILENCE_PENDING/
+]) {
+  if (!pattern.test(pagesHtml)) fail(`Pages HTML missing marker: ${pattern}`)
+  if (!pattern.test(pagesAscii)) fail(`Pages ASCII missing marker: ${pattern}`)
 }
 
 console.log('foundry connector check passed')

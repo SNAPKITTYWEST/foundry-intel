@@ -1,0 +1,55 @@
+:root {
+  color-scheme: dark;
+  --ink: #f4f1de;
+  --muted: #9fb3c8;
+  --line: #314155;
+  --panel: #10161d;
+  --panel-2: #141b24;
+  --bg: #080b10;
+  --amber: #f2b84b;
+  --cyan: #4dd8c8;
+  --rose: #ff5f73;
+  --green: #8bd17c;
+}
+
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); }
+body {
+  margin: 0;
+  min-height: 100%;
+  color: var(--ink);
+  background: #080b10;
+  font: 15px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image: repeating-linear-gradient(0deg, transparent 0 7px, #ffffff 8px);
+}
+
+.shell { width: min(1120px, calc(100vw - 32px)); margin: 0 auto; padding: 32px 0 48px; }
+.topline { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); }
+.stamp { color: var(--green); }
+h1 { margin: 18px 0 8px; font-size: clamp(2rem, 7vw, 5rem); line-height: 0.95; letter-spacing: 0; }
+.subtitle { max-width: 820px; color: var(--muted); font-size: 1rem; }
+.grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr); gap: 18px; margin-top: 26px; }
+.panel { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; overflow: hidden; }
+.panel h2 { margin: 0; padding: 12px 14px; color: var(--amber); font-size: 0.9rem; border-bottom: 1px solid var(--line); background: var(--panel-2); }
+pre { margin: 0; padding: 16px; overflow: auto; min-height: 420px; color: var(--cyan); text-shadow: 1px 0 var(--rose); }
+.map { width: 100%; display: block; background: #0c1117; }
+.facts { display: grid; grid-template-columns: 1fr; gap: 0; }
+.fact { display: flex; justify-content: space-between; gap: 14px; padding: 12px 14px; border-top: 1px solid var(--line); }
+.fact:first-child { border-top: 0; }
+.fact b { color: var(--ink); }
+.fact span { color: var(--muted); text-align: right; overflow-wrap: anywhere; }
+.route { margin-top: 18px; border: 1px solid var(--line); border-radius: 8px; background: #0d131a; padding: 14px; color: var(--muted); }
+.route strong { color: var(--green); }
+@media (max-width: 840px) {
+  .topline { flex-direction: column; }
+  .grid { grid-template-columns: 1fr; }
+  h1 { font-size: 2.25rem; }
+  pre { min-height: 300px; }
+}

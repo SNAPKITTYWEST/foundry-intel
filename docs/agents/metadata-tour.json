@@ -26,6 +26,7 @@
       "Q(phi) ADR manifest generation",
       "connector validation",
       "XML handoff envelope validation",
+      "backend ASCII Pages check",
       "TypeScript workspace build",
       "TypeScript lint/typecheck",
       "no-cache Jest tests",
@@ -40,6 +41,14 @@
       "package": "@veneer/probe-gate"
     }
   ],
+  "pages": {
+    "root": "docs/pages/index.html",
+    "ascii": "docs/pages/backend-ascii.txt",
+    "css": "docs/pages/assets/backend-glitch.css",
+    "builder": "tools/ascii-glitch/build-pages.mjs",
+    "workflow": ".github/workflows/pages.yml",
+    "aesthetic": "backend-ascii-glitch"
+  },
   "institutional_anchors": {
     "constitution": "docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md",
     "trust_interlock": "docs/architecture/adr/ADR-300-grat-foundry-interlock.md",

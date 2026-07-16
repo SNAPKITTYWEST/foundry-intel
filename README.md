@@ -341,7 +341,25 @@ This validates:
 - Claude handoff status
 - Foundry F1 receiver pointers
 
-### 7. Run The Liquid Haskell Lane
+### 7. Build The Backend ASCII Pages Surface
+
+```sh
+npm run pages:build
+npm run pages:check
+```
+
+Static Pages artifacts:
+
+- [`docs/pages/index.html`](docs/pages/index.html)
+- [`docs/pages/backend-ascii.txt`](docs/pages/backend-ascii.txt)
+- [`docs/pages/assets/backend-glitch.css`](docs/pages/assets/backend-glitch.css)
+- [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
+
+This is the backend aesthetics layer: deterministic ASCII/glitch governance
+signal, connector facts, Q(phi) posture, and open-crux boundaries. The frontend
+can dock to it later without taking over the ADR/WORM/BOB source of truth.
+
+### 8. Run The Liquid Haskell Lane
 
 ```sh
 npm run build:lh
@@ -365,6 +383,7 @@ README.md
   -> docs/handoff/foundry-intel-agent-contract.xml
   -> docs/bridge/foundry-connector.md
   -> tools/foundry-connector/connector-manifest.json
+  -> docs/pages/index.html
   -> docs/architecture/ADR-INDEX.md
   -> docs/architecture/adr-q5-theorem-classification.md
   -> npm run connector:check
@@ -730,6 +749,7 @@ foundry-intel-2026-07-11/
     lh-theorems/                          Liquid Haskell lane
   tools/
     q5-adr-parser/                        Q(phi) ADR parser
+    ascii-glitch/                          deterministic backend Pages generator
     foundry-connector/                    connector validators
     production-smoke.mjs                  runtime smoke check
     adr-production-tick.mjs               ADR-301 tick
@@ -741,6 +761,7 @@ foundry-intel-2026-07-11/
     governance/                           Prolog law engine
     handoff/                              XML agent envelopes
     math/                                 theorem/finality docs
+    pages/                                static backend ASCII/glitch Pages
     protocols/                            XML envelope protocol and schema
   notebooks/                              Lean/LH/Agda morph notebook and Agda
   lean-substrate/                         raw Lean substrate lane
@@ -757,6 +778,7 @@ git status -sb
 npm run adr:q5:fallback
 npm run connector:check
 npm run handoff:check
+npm run pages:check
 npm run build
 npm run lint
 npm test
@@ -770,6 +792,7 @@ minimum:
 ```sh
 npm run connector:check
 npm run handoff:check
+npm run pages:check
 git diff --check
 ```
 

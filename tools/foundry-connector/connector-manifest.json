@@ -50,6 +50,11 @@
     "intel_handoff_schema": "docs/protocols/xml-handoff-envelope.xsd",
     "intel_handoff_envelope": "docs/handoff/foundry-intel-agent-contract.xml",
     "intel_handoff_rebrand_envelope": "docs/handoff/primordial-foundation-agent-contract.xml",
+    "intel_pages_root": "docs/pages/index.html",
+    "intel_pages_ascii": "docs/pages/backend-ascii.txt",
+    "intel_pages_css": "docs/pages/assets/backend-glitch.css",
+    "intel_pages_builder": "tools/ascii-glitch/build-pages.mjs",
+    "intel_pages_workflow": ".github/workflows/pages.yml",
     "intel_production_smoke": "tools/production-smoke.mjs",
     "intel_typescript_config": "tsconfig.json",
     "intel_typescript_package_config": "tsconfig.package.json",
@@ -88,6 +93,15 @@
     "governing_adr": "ADR-302",
     "trust_interlock": "ADR-300",
     "note": "Repository rename and legal instrument changes require explicit external action."
+  },
+  "pages": {
+    "status": "STATIC_READY",
+    "root": "docs/pages/index.html",
+    "aesthetic": "backend-ascii-glitch",
+    "builder": "tools/ascii-glitch/build-pages.mjs",
+    "check": "npm run pages:check",
+    "workflow": ".github/workflows/pages.yml",
+    "note": "Static backend Pages surface for governance signals; frontend may dock separately."
   },
   "routing": [
     {

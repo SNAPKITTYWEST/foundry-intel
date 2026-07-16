@@ -8,7 +8,7 @@
 %%   swipl -g "consult('docs/governance/law-engine.pl'), run_all_adrs" -t halt
 %%
 %% The engine applies four checks in sequence (sovereign_kernel protocol):
-%%   1. trust_level ≥ medium
+%%   1. agent trust level ≥ medium
 %%   2. gate_advance: non-oracle, injection valid
 %%   3. lean_obligation_satisfied: theorem non-trivial
 %%   4. injection_admissible: proof_hash, contract_hash, worm_seal all present
@@ -23,6 +23,7 @@
     adr_verdict/3,
     adr_passes/2,
     run_all_adrs/0,
+    agent_trust/2,
     trust_level/2,
     trust_satisfies/2,
     gate_advance/3,
@@ -195,6 +196,10 @@ trust_level(medium,    2).
 trust_level(high,      3).
 trust_level(sovereign, 4).
 
+agent_trust(builder, medium).
+agent_trust(sentinel, sovereign).
+agent_trust(oracle, low).
+
 trust_satisfies(AgentTrust, Required) :-
     trust_level(AgentTrust, AV),
     trust_level(Required,   RV),
@@ -252,8 +257,8 @@ compute_seal(ID, Title, Seal) :-
     atom_concat(P0, Title, P1),
     atom_concat(P1, '-veneer-v2', P2),
     atom_string(P2, S),
-    sha_hash(S, Hash, [algorithm(sha256), encoding(hex)]),
-    atom_string(Seal, Hash).
+    sha_hash(S, HashBytes, [algorithm(sha256)]),
+    hash_atom(HashBytes, Seal).
 
 %% ── Core ADR verdict ─────────────────────────────────────────────────────
 %% adr_verdict(+ID, -Verdict, -Seal)
@@ -261,7 +266,8 @@ compute_seal(ID, Title, Seal) :-
 adr_verdict(ID, Verdict, Seal) :-
     adr(ID, Title, Agent, ProofHash, ContractHash, WormSeal),
     %% Check 1: trust
-    ( trust_satisfies(Agent, medium)
+    ( agent_trust(Agent, AgentTrust),
+      trust_satisfies(AgentTrust, medium)
     -> C1 = pass
     ;  C1 = fail('trust below medium')
     ),
