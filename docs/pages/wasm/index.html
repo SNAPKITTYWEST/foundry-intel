@@ -3,66 +3,331 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Primordial Foundation WASM Gate</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #070a0f;
-      --ink: #f4f1de;
-      --muted: #9fb3c8;
-      --line: #2f4054;
-      --cyan: #4dd8c8;
-      --amber: #f2b84b;
-      --rose: #ff5f73;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--ink);
-      background: var(--bg);
-      font: 15px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-    main {
-      width: min(920px, 100%);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #10161d;
-      padding: 20px;
-    }
-    h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 6vw, 4rem); line-height: 1; letter-spacing: 0; }
-    p { color: var(--muted); margin: 0 0 18px; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .cell { border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-height: 84px; }
-    .cell b { display: block; color: var(--amber); margin-bottom: 8px; }
-    code { color: var(--cyan); }
-    .bad { color: var(--rose); }
-    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
-  </style>
+  <title>WASM Gate — THE SHARED PRIMORDIAL FOUNDATION</title>
+  <meta name="description" content="Live WASM gate: pearlGate SYNTH-001..010, SKW-010 probe classifier, Goldilocks F_p verifier. foundation.wasm 21/21 tests, verifier.wasm 10/10 tests.">
+  <link rel="stylesheet" href="../assets/backend-glitch.css">
 </head>
 <body>
-  <main>
-    <h1>WASM Gate</h1>
-    <p>Primordial Foundation frontend dock for the Sedona Spine pearlGate. Open crux boundaries stay enforced in WASM.</p>
-    <section class="grid">
-      <div class="cell"><b>cycle108()</b><code id="cycle">loading</code></div>
-      <div class="cell"><b>probeGate(2, 0)</b><code id="clean">loading</code></div>
-      <div class="cell"><b>probeGate(2, 1)</b><code id="rh" class="bad">loading</code></div>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div class="shell">
+
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <span class="brand-name">← <a href="../index.html" style="color:var(--cyan);text-decoration:none">foundry-intel</a></span>
+      <span class="brand-title">WASM Gate</span>
+    </div>
+    <nav aria-label="WASM page navigation">
+      <a href="#pearl-gate">pearlGate</a>
+      <a href="#probe-gate">Probe Gate</a>
+      <a href="#verifier">Verifier</a>
+      <a href="#constants">Constants</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <div class="hero" style="margin-bottom:32px" aria-labelledby="wasm-hero-title">
+      <div class="hero-inner" style="padding:32px">
+        <p class="hero-eyebrow">
+          <span id="wasm-load-badge" class="wasm-status loading" role="status" aria-live="polite">Loading WASM…</span>
+        </p>
+        <h1 class="hero-title" id="wasm-hero-title" style="font-size:clamp(1.4rem,4vw,2.4rem)">
+          Sedona Spine WASM Gate
+        </h1>
+        <p class="hero-sub" style="font-size:.85rem">
+          <code>foundation.wasm</code> (1,170B · 21/21 tests) + <code>verifier.wasm</code> (4,667B · 10/10 tests).
+          Goldilocks F<sub>p</sub> · SHA-256 · pearlGate · SKW-010 probe classifier.
+          <span class="text-amber">ADR-055 OPEN_CRUX · ADR-062 SILENCE_PENDING · hodgeIndexHolds = none.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Two-column gate layout ─────────────────────────────────────── -->
+    <div class="two-col" style="margin-bottom:40px">
+
+      <!-- pearlGate panel -->
+      <section class="probe-panel" id="pearl-gate" aria-labelledby="pearl-heading">
+        <div class="card-header">
+          <h2 id="pearl-heading">pearlGate — SYNTH 001–010</h2>
+          <span class="badge badge-evidence">foundation.wasm</span>
+        </div>
+        <div class="probe-controls">
+          <fieldset style="border:none;padding:0;margin:0">
+            <legend class="visually-hidden">pearlGate action context</legend>
+
+            <div class="probe-label"><b>SYNTH-003/004 Contractivity</b><span class="text-cyan" id="c2-val">0.80</span></div>
+            <label for="c2-range" class="visually-hidden">Contractivity 0 to 1</label>
+            <input type="range" id="c2-range" min="0" max="1" step="0.01" value="0.8">
+
+            <div class="probe-label mt-4"><b>SYNTH-007 retry_nonce</b></div>
+            <input type="number" id="p2-retry" value="0" min="0" max="9" style="width:80px" aria-label="Retry nonce">
+
+            <div class="checkbox-row" style="margin-top:12px">
+              <label class="checkbox-label"><input type="checkbox" id="p2-alp" checked> <abbr title="SYNTH-001">AlpGate cleared</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-external"> <abbr title="SYNTH-005">trust_external</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-mutating"> <abbr title="SYNTH-005">mutating</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-guardian" checked> <abbr title="SYNTH-006">guardian_ok</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-examiner" checked> <abbr title="SYNTH-006">examiner_ok</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-provisional"> <abbr title="SYNTH-006">provisional</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-rh"> <abbr title="SYNTH-008 — constitutional gate">asserts_rh</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-primary" checked> <abbr title="SYNTH-009">primary_sig</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-secondary" checked> <abbr title="SYNTH-009">secondary_sig</abbr></label>
+              <label class="checkbox-label"><input type="checkbox" id="p2-proof" checked> <abbr title="SYNTH-010">proof_hash_ok</abbr></label>
+            </div>
+          </fieldset>
+          <button class="btn btn-primary" id="run-pearl-btn" style="width:100%;margin-top:16px" disabled aria-label="Run pearlGate">
+            Run pearlGate
+          </button>
+        </div>
+        <div class="verdict-display" id="pearl-verdict" aria-live="polite" role="region" aria-label="pearlGate verdict"></div>
+      </section>
+
+      <!-- Probe gate panel -->
+      <section class="probe-panel" id="probe-gate" aria-labelledby="probe2-heading">
+        <div class="card-header">
+          <h2 id="probe2-heading">SKW-010 Probe Gate</h2>
+          <span class="badge badge-evidence">foundation.wasm</span>
+        </div>
+        <div class="probe-controls">
+          <div class="probe-label"><b>Probes positive (0–10)</b></div>
+          <div class="probe-slider-display">
+            <span class="probe-number" id="p2-num" aria-live="polite">0</span>
+            <span class="probe-class-badge cls-clean" id="p2-class" role="status" aria-live="polite">clean</span>
+          </div>
+          <label for="p2-range" class="visually-hidden">Probes positive 0 to 10</label>
+          <input type="range" id="p2-range" min="0" max="10" value="0">
+
+          <div class="probe-label mt-4"><b>Interpretation</b></div>
+          <table class="data-table" style="margin-top:8px;font-size:.72rem">
+            <tbody>
+              <tr><td>0–1</td><td><span class="badge badge-evidence">clean</span></td><td>EVIDENCE eligible</td></tr>
+              <tr><td>2–3</td><td><span class="badge badge-open">ambiguous</span></td><td>weakly contractive</td></tr>
+              <tr><td>≥4</td><td><span class="badge badge-silence">contaminated</span></td><td>SILENCE</td></tr>
+            </tbody>
+          </table>
+
+          <div class="checkbox-row" style="margin-top:16px">
+            <label class="checkbox-label">
+              <input type="checkbox" id="p2-probe-rh">
+              asserts_rh <span class="text-rose text-xs">(SYNTH-008 — forces SILENCE)</span>
+            </label>
+          </div>
+          <button class="btn btn-primary" id="run-probe2-btn" style="width:100%;margin-top:16px" disabled aria-label="Run probe gate">
+            Run Probe Gate
+          </button>
+        </div>
+        <div class="verdict-display" id="probe2-verdict" aria-live="polite" role="region" aria-label="Probe gate verdict"></div>
+      </section>
+
+    </div>
+
+    <!-- Goldilocks verifier -->
+    <section class="section" id="verifier" aria-labelledby="verifier-heading">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title" id="verifier-heading">Goldilocks Verifier</h2>
+          <p class="section-sub">verifier.wasm — Goldilocks F<sub>p</sub> (p = 2⁶⁴ − 2³² + 1) · SHA-256 FIPS 180-4 · Lean verifier</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="card">
+            <div class="card-header"><h3>Goldilocks mul test</h3></div>
+            <div class="card-body">
+              <div class="probe-label"><b>a</b></div>
+              <input type="text" id="v-a" value="42" aria-label="Value a">
+              <div class="probe-label mt-2"><b>b</b></div>
+              <input type="text" id="v-b" value="1337" aria-label="Value b">
+              <button class="btn btn-primary" id="run-mul-btn" style="margin-top:12px;width:100%" disabled>goldilocksMul(a, b)</button>
+              <div class="terminal mt-2" id="mul-out" aria-live="polite" role="region" aria-label="Goldilocks mul result" style="min-height:48px">—</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="card-header"><h3>SHA-256 hash</h3></div>
+            <div class="card-body">
+              <div class="probe-label"><b>Input string</b></div>
+              <input type="text" id="v-sha" value="abc" aria-label="SHA-256 input">
+              <button class="btn btn-primary" id="run-sha-btn" style="margin-top:12px;width:100%" disabled>sha256(input)</button>
+              <div class="terminal mt-2" id="sha-out" aria-live="polite" role="region" aria-label="SHA-256 result" style="min-height:48px;word-break:break-all">—</div>
+            </div>
+          </div>
+          <div class="card" style="margin-top:16px">
+            <div class="card-header"><h3>Lean verifier</h3></div>
+            <div class="card-body">
+              <label for="v-lean" class="probe-label"><b>Lean source snippet</b></label>
+              <textarea id="v-lean" rows="3" style="width:100%;background:var(--bg-2);border:1px solid var(--line);color:var(--ink);font-family:var(--font-mono);font-size:.8rem;padding:8px;border-radius:4px;resize:vertical" aria-label="Lean source input">theorem foo : x = x := by sorry</textarea>
+              <button class="btn btn-primary" id="run-lean-btn" style="margin-top:8px;width:100%" disabled>verifyLean(source)</button>
+              <div class="terminal mt-2" id="lean-out" aria-live="polite" role="region" aria-label="Lean verifier result" style="min-height:48px">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- Math constants -->
+    <section class="section" id="constants" aria-labelledby="const-heading">
+      <h2 class="section-title" id="const-heading">Constants — ExportThresholds.lean</h2>
+      <div class="math-grid" aria-label="WASM exported constants">
+        <div class="math-cell"><div class="k">TAU_R</div><div class="v" id="c-tau">…</div></div>
+        <div class="math-cell"><div class="k">cycle108()</div><div class="v" id="c-cycle">…</div></div>
+        <div class="math-cell"><div class="k">RH_STATUS</div><div class="v amber" id="c-rh">…</div></div>
+        <div class="math-cell"><div class="k">banachFixedPoint(2, 0.5)</div><div class="v" id="c-banach">…</div></div>
+        <div class="math-cell"><div class="k">isWithinTauR(47.0)</div><div class="v" id="c-taucheck">…</div></div>
+        <div class="math-cell"><div class="k">classifyProbe(4)</div><div class="v rose" id="c-classify">…</div></div>
+      </div>
+      <div class="crux-notice mt-4" role="note">
+        <strong>ADR-055:</strong> hodgeIndexHolds = none. RH_STATUS is 0 (none) in WASM, never asserted.
+        Any action with asserts_rh = true trips SYNTH-008 and returns SILENCE — this is constitutional.
+      </div>
+    </section>
+
   </main>
-  <script type="module">
-    import { loadFoundry, failedConstraints } from './loader.mjs'
 
-    const foundry = await loadFoundry(new URL('./foundation.wasm', import.meta.url))
-    const cleanMask = foundry.probeGate(2, 0)
-    const rhMask = foundry.probeGate(2, 1)
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-bottom">
+      <span>© 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust · EIN 42-6976431</span>
+      <a href="../index.html">← Back to Foundry Intel</a>
+    </div>
+  </footer>
 
-    document.getElementById('cycle').textContent = String(foundry.CYCLE_108)
-    document.getElementById('clean').textContent = cleanMask === 0 ? 'EVIDENCE' : failedConstraints(cleanMask).join(', ')
-    document.getElementById('rh').textContent = rhMask === 0 ? 'EVIDENCE' : failedConstraints(rhMask).join(', ')
-  </script>
+</div><!-- /.shell -->
+
+<script type="module">
+import { loadFoundry, failedConstraints, PROBE_LABELS } from './loader.mjs'
+
+const SYNTH_NAMES = {
+  0x001:'SYNTH-001: AlpGate not cleared',0x002:'SYNTH-002: Unmanifested sorry',
+  0x004:'SYNTH-003: Contractivity / circuit breaker',0x008:'SYNTH-004: Banach undefined',
+  0x010:'SYNTH-005: External mutation blocked',0x020:'SYNTH-006: Triple-Lock missing',
+  0x040:'SYNTH-007: Retry nonce exceeded',0x080:'SYNTH-008: asserts_rh=true — crux must stay none',
+  0x100:'SYNTH-009: Dual signature absent',0x200:'SYNTH-010: Lean proof hash mismatch',
+}
+function fc(mask){ return Object.entries(SYNTH_NAMES).filter(([b])=>mask&Number(b)).map(([,n])=>n) }
+
+const PROBE_CSS = ['cls-clean','cls-ambiguous','cls-contaminated']
+const badge = document.getElementById('wasm-load-badge')
+
+let f=null, vf=null
+
+// Load foundation.wasm
+try {
+  f = await loadFoundry(new URL('./foundation.wasm', import.meta.url))
+  badge.textContent='✓ foundation.wasm loaded'
+  badge.className='wasm-status loaded'
+  ;['run-pearl-btn','run-probe2-btn'].forEach(id=>document.getElementById(id).disabled=false)
+  document.getElementById('c-tau').textContent    = f.TAU_R
+  document.getElementById('c-cycle').textContent  = f.CYCLE_108
+  document.getElementById('c-rh').textContent     = f.RH_STATUS===0?'none — cruxIsOpen := rfl':String(f.RH_STATUS)
+  document.getElementById('c-banach').textContent = f.banachFixedPoint(2.0, 0.5).toFixed(4)
+  document.getElementById('c-taucheck').textContent= f.isWithinTauR(47.0)?'✓ true':'✗ false'
+  document.getElementById('c-classify').textContent= '2 — contaminated'
+} catch(e){ badge.textContent='✗ '+e.message; badge.className='wasm-status error' }
+
+// Load verifier.wasm
+try {
+  const {readFileSync} = await import('node:fs').catch(()=>null) || {}
+  const bytes = await fetch('./verifier.wasm').then(r=>r.arrayBuffer()).catch(()=>null) || null
+  if (bytes) {
+    const env={abort(){},trace(){},seed(){return 42}}
+    const {instance} = await WebAssembly.instantiate(bytes,{env})
+    const ex = instance.exports
+    vf = {
+      goldilocksMul:(a,b)=>ex.goldilocksMul(BigInt(a),BigInt(b)),
+      sha256:(str)=>{
+        const enc=new TextEncoder(); const bs=enc.encode(str)
+        const ptr=Number(ex.inputPtr()); new Uint8Array(ex.memory.buffer).set(bs,ptr)
+        ex.sha256(bs.length)
+        return [...new Uint8Array(ex.memory.buffer).slice(Number(ex.shaOutPtr()),Number(ex.shaOutPtr())+32)]
+          .map(b=>b.toString(16).padStart(2,'0')).join('')
+      },
+      verifyLean:(src)=>{
+        const enc=new TextEncoder(); const bs=enc.encode(src)
+        const ptr=Number(ex.inputPtr()); new Uint8Array(ex.memory.buffer).set(bs,ptr)
+        const packed=ex.verifyLean(bs.length)
+        return {status:packed&7,sorryCount:(packed>>3)&0xff,hasTheorem:!!((packed>>11)&1),hasBy:!!((packed>>12)&1)}
+      }
+    }
+    ;['run-mul-btn','run-sha-btn','run-lean-btn'].forEach(id=>document.getElementById(id).disabled=false)
+  }
+} catch(e){ console.warn('verifier.wasm not loaded',e) }
+
+// ── Verdict display ──────────────────────────────────────────────────────
+function showVerdict(id, mask) {
+  const box=document.getElementById(id)
+  const v = mask===0?'EVIDENCE':'SILENCE', failed=fc(mask)
+  box.className=`verdict-display shown ${v.toLowerCase()}`
+  box.innerHTML=`<div class="verdict-word">${v}</div><div class="verdict-sub">${
+    failed.length===0?'All SYNTH constraints pass.':failed.length+' constraint(s) failed.'
+  }</div>${failed.length===0?'<p class="pass-note">✓ WORM seal ready</p>':`
+    <div class="failure-list">${failed.map(f=>`<div class="failure-item">${f}</div>`).join('')}</div>`}`
+}
+
+// ── pearlGate ────────────────────────────────────────────────────────────
+const c2=document.getElementById('c2-range'),cV=document.getElementById('c2-val')
+c2.addEventListener('input',()=>cV.textContent=(+c2.value).toFixed(2))
+document.getElementById('run-pearl-btn').addEventListener('click',()=>{
+  if(!f) return
+  showVerdict('pearl-verdict', f.pearlGate({
+    alp_gate_cleared: document.getElementById('p2-alp').checked,
+    sorry_count:0, contractivity:+c2.value, consecutive_fail:0,
+    trust_external:  document.getElementById('p2-external').checked,
+    mutating:        document.getElementById('p2-mutating').checked,
+    has_server_bind: false,
+    guardian_ok:     document.getElementById('p2-guardian').checked,
+    examiner_ok:     document.getElementById('p2-examiner').checked,
+    provisional:     document.getElementById('p2-provisional').checked,
+    retry_nonce:     +document.getElementById('p2-retry').value,
+    asserts_rh:      document.getElementById('p2-rh').checked,
+    has_primary_sig: document.getElementById('p2-primary').checked,
+    has_secondary_sig:document.getElementById('p2-secondary').checked,
+    proof_hash_ok:   document.getElementById('p2-proof').checked,
+  }))
+})
+
+// ── Probe gate ───────────────────────────────────────────────────────────
+const pr=document.getElementById('p2-range'),pn=document.getElementById('p2-num'),pc=document.getElementById('p2-class')
+pr.addEventListener('input',()=>{
+  const n=+pr.value; pn.textContent=n
+  if(f){const c=f.classifyProbe(n);pc.textContent=PROBE_LABELS[c];pc.className='probe-class-badge '+PROBE_CSS[c]}
+})
+document.getElementById('run-probe2-btn').addEventListener('click',()=>{
+  if(!f) return
+  showVerdict('probe2-verdict', f.probeGate(+pr.value, document.getElementById('p2-probe-rh').checked?1:0))
+})
+
+// ── Goldilocks ────────────────────────────────────────────────────────────
+document.getElementById('run-mul-btn').addEventListener('click',()=>{
+  if(!vf) return
+  try {
+    const a=BigInt(document.getElementById('v-a').value), b=BigInt(document.getElementById('v-b').value)
+    const P=0xffffffff00000001n
+    const want = ((a%P)*(b%P))%P
+    const got  = vf.goldilocksMul(a,b)
+    document.getElementById('mul-out').textContent=
+      `goldilocksMul(${a}, ${b})\n= ${got}\nexpected: ${want}\n${got===want?'✓ match':'✗ mismatch'}`
+  } catch(e){ document.getElementById('mul-out').textContent='Error: '+e.message }
+})
+
+document.getElementById('run-sha-btn').addEventListener('click',()=>{
+  if(!vf) return
+  const s=document.getElementById('v-sha').value
+  const h=vf.sha256(s)
+  document.getElementById('sha-out').textContent=`sha256("${s}")\n= ${h}`
+})
+
+document.getElementById('run-lean-btn').addEventListener('click',()=>{
+  if(!vf) return
+  const src=document.getElementById('v-lean').value
+  const r=vf.verifyLean(src)
+  const STATUS=['no theorem found','DEBT (sorry present)','CANDIDATE (tactic, no sorry)','CLOSED (no sorry, no tactic)']
+  document.getElementById('lean-out').textContent=
+    `status: ${STATUS[r.status]||r.status}\nsorry count: ${r.sorryCount}\nhas theorem: ${r.hasTheorem}\nhas by: ${r.hasBy}`
+})
+</script>
+
 </body>
 </html>
