@@ -47,9 +47,10 @@ text_string(Value, Text) :-
     number_string(Value, Text).
 
 wasm_artifact(Wasm, File, Artifact) :-
+    text_string(File, Expected),
     member(Artifact, Wasm.artifacts),
     text_string(Artifact.file, Actual),
-    Actual = File.
+    Actual = Expected.
 
 wasm_summary(Wasm, Summary) :-
     wasm_artifact(Wasm, 'foundation.wasm', Artifact),

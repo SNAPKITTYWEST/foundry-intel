@@ -29,6 +29,7 @@ const connector = readJson('tools/foundry-connector/connector-manifest.json')
 const q5 = readJson('tools/q5-adr-parser/adr_manifest.json')
 const rootPackage = readJson('package.json')
 const agentTour = readJson('docs/agents/metadata-tour.json')
+const wasmManifest = readJson('apps/wasm-frontend/dist/manifest.json')
 
 for (const path of [
   'AGENT_MEMORY.md',
@@ -45,6 +46,13 @@ for (const path of [
   'docs/trust/primordial-foundation-interlock.md',
   'docs/migration/primordial-foundation-umbrella-audit.md',
   'apps/wasm-frontend/README.md',
+  'apps/wasm-frontend/package.json',
+  'apps/wasm-frontend/assembly/foundation.ts',
+  'apps/wasm-frontend/tools/build_wasm.pl',
+  'apps/wasm-frontend/dist/manifest.json',
+  'apps/wasm-frontend/dist/foundation.wasm',
+  'apps/wasm-frontend/dist/loader.mjs',
+  'apps/wasm-frontend/dist/index.html',
   'docs/bridge/foundry-connector.md',
   'docs/agents/metadata-tour.md',
   'docs/agents/metadata-tour.json',
@@ -63,6 +71,10 @@ for (const path of [
   'docs/pages/index.html',
   'docs/pages/backend-ascii.txt',
   'docs/pages/assets/backend-glitch.css',
+  'docs/pages/wasm/manifest.json',
+  'docs/pages/wasm/foundation.wasm',
+  'docs/pages/wasm/loader.mjs',
+  'docs/pages/wasm/index.html',
   'tools/ascii-glitch/build_pages.pl',
   '.github/workflows/pages.yml',
   'docs/architecture/adr-q5-theorem-classification.md',
@@ -101,6 +113,8 @@ requireEqual(connector.rebrand.status, 'PREPARED', 'Primordial Foundation rebran
 requireEqual(connector.rebrand.governing_adr, 'ADR-302', 'Primordial Foundation governing ADR')
 requireEqual(connector.umbrella.status, 'MAIN_REPO', 'Primordial Foundation umbrella status')
 requireEqual(connector.umbrella.governing_adr, 'ADR-303', 'Primordial Foundation umbrella ADR')
+requireEqual(connector.wasm_frontend.status, 'BUILT', 'WASM frontend status')
+requireEqual(connector.wasm_frontend.workspace, '@veneer/wasm-frontend', 'WASM frontend workspace')
 requireEqual(connector.pages.status, 'STATIC_READY', 'Pages status')
 requireEqual(connector.pages.aesthetic, 'backend-ascii-glitch', 'Pages aesthetic')
 requireEqual(
@@ -109,8 +123,28 @@ requireEqual(
   'Primordial Foundation XML handoff artifact'
 )
 requireEqual(connector.artifacts.intel_pages_builder, 'tools/ascii-glitch/build_pages.pl', 'Pages builder artifact')
+requireEqual(connector.artifacts.wasm_frontend_manifest, 'apps/wasm-frontend/dist/manifest.json', 'WASM manifest artifact')
+requireEqual(connector.artifacts.wasm_frontend_pages_root, 'docs/pages/wasm/index.html', 'WASM Pages artifact')
 requireEqual(q5.count, connector.q5.count, 'Q(phi) ADR count')
 requireEqual(q5.q5_total, connector.q5.total, 'Q(phi) total')
+
+if (!rootPackage.workspaces?.includes('apps/wasm-frontend')) {
+  fail('root package workspaces missing apps/wasm-frontend')
+}
+for (const script of ['build', 'test']) {
+  if (!rootPackage.scripts?.[script]?.includes('@veneer/wasm-frontend')) {
+    fail(`package.json ${script} script must include @veneer/wasm-frontend`)
+  }
+}
+
+const wasmFiles = new Map(wasmManifest.artifacts.map((artifact) => [artifact.file, artifact]))
+for (const file of ['foundation.wasm', 'loader.mjs', 'index.html']) {
+  const artifact = wasmFiles.get(file)
+  if (!artifact) fail(`WASM manifest missing artifact ${file}`)
+  if (!artifact.bytes || !artifact.sha256) fail(`WASM manifest artifact incomplete: ${file}`)
+}
+requireEqual(wasmManifest.entry, 'index.html', 'WASM manifest entry')
+requireEqual(wasmManifest.tests, '21/21 pass', 'WASM manifest tests')
 
 const records = new Map(q5.records.map((record) => [record.id, record]))
 for (const [id, status] of Object.entries(connector.q5.statuses)) {
@@ -181,6 +215,7 @@ const pagesAscii = readFileSync(join(root, 'docs/pages/backend-ascii.txt'), 'utf
 for (const pattern of [
   /Backend ASCII Glitch/i,
   /THE SHARED PRIMORDIAL FOUNDATION/,
+  /WASM/i,
   /OPEN_CRUX/,
   /SILENCE_PENDING/
 ]) {

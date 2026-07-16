@@ -18,6 +18,11 @@ PRIMORDIAL FOUNDATION. Foundry Intel remains the governance subsystem, and
 Foundry F1 remains an external legacy receiver until specific artifacts are
 ported with manifests and validation.
 
+The WASM frontend is now docked inside the umbrella through
+`apps/wasm-frontend/dist/` and published from `docs/pages/wasm/`. The frontend
+is a governed surface: ADR, Q(phi), WORM, BOB, and open-crux boundaries remain
+the source of truth.
+
 The machine-readable contract is
 `tools/foundry-connector/connector-manifest.json`.
 
@@ -46,7 +51,8 @@ README branding uses local institutional trust SVG badges under `docs/brand/`.
 | Foundry F1 receiver | `SNAPKITTYWEST/foundry-f1` | Runtime/sorry-engine receiver |
 | Primordial Foundation rebrand | `ADR-302` | Transition track active |
 | Umbrella monorepo | `ADR-303` | Main repo transition active |
-| WASM frontend ingress | `apps/wasm-frontend/` | Waiting for built artifacts |
+| WASM frontend ingress | `apps/wasm-frontend/` | Built and manifest-sealed |
+| WASM Pages dock | `docs/pages/wasm/index.html` | Published by Prolog Pages generator |
 
 ## Non-Negotiable Boundaries
 
@@ -88,5 +94,6 @@ npm install
 npm run adr:q5:fallback
 npm run connector:check
 npm run handoff:check
+npm test --workspace @veneer/wasm-frontend
 npm run verify
 ```

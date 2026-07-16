@@ -76,6 +76,7 @@ export async function loadFoundry(wasmPath) {
     // ── Math ───────────────────────────────────────────────────────────
     banachFixedPoint: (F, k)  => ex.banachFixedPoint(F, k),
     isWithinTauR:     (value) => ex.isWithinTauR(value),
+    cycle108:          ()      => ex.cycle108(),
   }
 }
 

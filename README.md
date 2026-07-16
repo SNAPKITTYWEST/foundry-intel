@@ -113,12 +113,24 @@ Expected production drop:
 apps/wasm-frontend/dist/
   index.html
   manifest.json
-  *.wasm
+  foundation.wasm
 ```
 
-The repo currently has the ingress lane and `.gitignore` exceptions ready, but
-no `.wasm` artifact is tracked yet. Add the built WASM files there, then wire
-the manifest into Pages and `tools/foundry-connector/connector-manifest.json`.
+Current production build:
+
+```text
+apps/wasm-frontend/dist/foundation.wasm
+apps/wasm-frontend/dist/loader.mjs
+apps/wasm-frontend/dist/index.html
+apps/wasm-frontend/dist/manifest.json
+docs/pages/wasm/index.html
+```
+
+The manifest records byte sizes, SHA-256 hashes, ADR-055/ADR-062 open-crux
+posture, and the `21/21 pass` frontend vector status. `npm run build` rebuilds
+the WASM workspace, `npm test --workspace @veneer/wasm-frontend` checks the
+manifest, and `npm run pages:build` copies the built frontend into
+`docs/pages/wasm/`.
 
 Language metrics are controlled by [`.gitattributes`](.gitattributes) while the
 remaining legacy Node glue is refactored into Prolog or domain-native tooling.
@@ -200,6 +212,7 @@ governance path.
 | METATRON | [`packages/metatron`](packages/metatron) | backward spine reader and SOURCE feedback | workspace tests |
 | Probe gate | [`packages/probe-gate`](packages/probe-gate) | SKW-010 probe JSON -> Datalog -> WORM | workspace tests |
 | Liquid Haskell | [`packages/lh-theorems`](packages/lh-theorems) | optional theorem-lane refinement checks | `npm run build:lh` |
+| WASM frontend | [`apps/wasm-frontend`](apps/wasm-frontend) | frontend ingress mirror compiled to `foundation.wasm` | workspace build/test |
 | Q(phi) parser | [`tools/q5-adr-parser`](tools/q5-adr-parser) | ADR-052..062 posture classification | `npm run adr:q5:fallback` |
 | Connector | [`tools/foundry-connector`](tools/foundry-connector) | bridge contract validation | `npm run connector:check` |
 | XML handoff | [`docs/handoff`](docs/handoff), [`docs/protocols`](docs/protocols) | agent prompt envelope transport | `npm run handoff:check` |
@@ -220,6 +233,7 @@ npm run verify
 Q(phi) ADR manifest generation
   -> connector validation
   -> XML handoff validation
+  -> backend Pages and WASM dock check
   -> TypeScript workspace build
   -> TypeScript lint/typecheck
   -> no-cache Jest workspace tests
@@ -383,13 +397,34 @@ Static Pages artifacts:
 - [`docs/pages/index.html`](docs/pages/index.html)
 - [`docs/pages/backend-ascii.txt`](docs/pages/backend-ascii.txt)
 - [`docs/pages/assets/backend-glitch.css`](docs/pages/assets/backend-glitch.css)
+- [`docs/pages/wasm/index.html`](docs/pages/wasm/index.html)
 - [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
 
 This is the backend aesthetics layer: deterministic ASCII/glitch governance
-signal, connector facts, Q(phi) posture, and open-crux boundaries. The frontend
-can dock to it later without taking over the ADR/WORM/BOB source of truth.
+signal, connector facts, Q(phi) posture, open-crux boundaries, and the docked
+WASM frontend. The frontend does not take over the ADR/WORM/BOB source of
+truth.
 
-### 8. Run The Liquid Haskell Lane
+### 8. Build The WASM Frontend
+
+```sh
+npm run build --workspace @veneer/wasm-frontend
+npm test --workspace @veneer/wasm-frontend
+npm run pages:build
+```
+
+Source and artifacts:
+
+- [`apps/wasm-frontend/assembly/foundation.ts`](apps/wasm-frontend/assembly/foundation.ts)
+- [`apps/wasm-frontend/tools/build_wasm.pl`](apps/wasm-frontend/tools/build_wasm.pl)
+- [`apps/wasm-frontend/dist/manifest.json`](apps/wasm-frontend/dist/manifest.json)
+- [`apps/wasm-frontend/dist/foundation.wasm`](apps/wasm-frontend/dist/foundation.wasm)
+
+The build tool is Prolog-driven. AssemblyScript remains the WASM source lane;
+browser/Node `.mjs` files are host loaders and local harnesses, marked in
+`.gitattributes` so they do not overstate JavaScript in repository metrics.
+
+### 9. Run The Liquid Haskell Lane
 
 ```sh
 npm run build:lh
@@ -414,6 +449,7 @@ README.md
   -> docs/bridge/foundry-connector.md
   -> tools/foundry-connector/connector-manifest.json
   -> docs/pages/index.html
+  -> docs/pages/wasm/index.html
   -> docs/architecture/ADR-INDEX.md
   -> docs/architecture/adr-q5-theorem-classification.md
   -> npm run connector:check

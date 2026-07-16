@@ -51,7 +51,8 @@ The GitHub repo is still `SNAPKITTYWEST/foundry-intel-2026-07-11` until an
 explicit rename is requested and performed.
 
 ADR-303 governs the umbrella-monorepo transition. The WASM frontend ingress
-path is `apps/wasm-frontend/`.
+path is `apps/wasm-frontend/`, and the published Pages dock is
+`docs/pages/wasm/`.
 
 ## Persistent Memory
 
@@ -82,7 +83,8 @@ npm run pages:check
 
 The generated static surface lives at `docs/pages/index.html`, with raw ASCII
 at `docs/pages/backend-ascii.txt`. It is backend governance aesthetics: ASCII
-signal, connector facts, Q(phi) posture, and open-crux boundaries.
+signal, connector facts, Q(phi) posture, open-crux boundaries, and a docked
+WASM frontend under `docs/pages/wasm/index.html`.
 
 ## Institutional Anchors
 
@@ -96,6 +98,7 @@ signal, connector facts, Q(phi) posture, and open-crux boundaries.
 | Trust transition map | `docs/trust/primordial-foundation-interlock.md` |
 | Umbrella migration audit | `docs/migration/primordial-foundation-umbrella-audit.md` |
 | WASM frontend ingress | `apps/wasm-frontend/README.md` |
+| WASM Pages dock | `docs/pages/wasm/index.html` |
 | Agent XML handoff | `docs/handoff/foundry-intel-agent-contract.xml` |
 | Primordial XML handoff | `docs/handoff/primordial-foundation-agent-contract.xml` |
 | Cross-repo connector | `docs/bridge/foundry-connector.md` |

@@ -28,31 +28,45 @@ monorepo for THE SHARED PRIMORDIAL FOUNDATION.
 | TypeScript package workspace | present |
 | Liquid Haskell lane | present |
 | Lean substrate lane | present, with local untracked `lean-substrate/src/Topology.lean` still not staged |
+| WASM frontend build | present and tracked under `apps/wasm-frontend/dist/` |
+| WASM Pages dock | present under `docs/pages/wasm/` |
 
 ## Frontend WASM Ingress
 
-No `.wasm` artifact is currently tracked in this repository. A recent local
-search of the repo found no WASM build artifact to import.
-
-Expected ingress path:
+Current ingress path:
 
 ```text
 apps/wasm-frontend/
   README.md
+  assembly/foundation.ts
+  tools/build_wasm.pl
   dist/
     index.html
-    *.wasm
+    loader.mjs
+    foundation.wasm
     manifest.json
 ```
 
-Before publishing the frontend:
+Current publication path:
 
-1. Put the built files under `apps/wasm-frontend/dist/`.
-2. Add a manifest with entry file, WASM file names, sizes, and hashes.
-3. Wire the Pages workflow to copy or compose the frontend with
-   `docs/pages/`.
-4. Add a validation command for manifest/hash checking.
-5. Update `tools/foundry-connector/connector-manifest.json`.
+```text
+docs/pages/wasm/
+  index.html
+  loader.mjs
+  foundation.wasm
+  manifest.json
+```
+
+Validation:
+
+1. `npm run build --workspace @veneer/wasm-frontend`
+2. `npm test --workspace @veneer/wasm-frontend`
+3. `npm run pages:build`
+4. `npm run pages:check`
+5. `npm run connector:check`
+
+The WASM manifest records the entry file, artifact byte sizes, SHA-256 hashes,
+ADR-055/ADR-062 open-crux posture, and `21/21 pass` frontend vector status.
 
 ## Old Foundry Boundary
 
@@ -68,6 +82,9 @@ Started:
 - `tools/ascii-glitch/build-pages.mjs` was replaced by
   `tools/ascii-glitch/build_pages.pl`.
 - Pages validation now runs through SWI-Prolog.
+- `apps/wasm-frontend/tools/build_wasm.pl` drives the WASM build and manifest
+  validation. Remaining `.mjs` files in the WASM app are host loaders/local
+  harnesses, not the governance source of truth.
 
 Remaining JavaScript tooling:
 

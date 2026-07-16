@@ -9,6 +9,7 @@
 | branch                          | master                           |
 | connector                       | CONNECTED                        |
 | pages                           | STATIC_READY                     |
+| WASM                            | foundation.wasm / 1170 bytes ... |
 | rebrand                         | PREPARED                         |
 | governing ADR                   | ADR-302                          |
 | Q(phi) total                    | 8 + 3*phi                        |
@@ -19,7 +20,7 @@
 GKN-LEAN-LATCH     >>== theorem anchors ==>>
        ||
        \\/
-[ FOUNDRY-INTEL ] -- ADR -- XML -- WORM -- BOB -- PAGES
+[ FOUNDRY-INTEL ] -- ADR -- XML -- WORM -- BOB -- PAGES -- WASM
        /\\
        ||
 FOUNDRY-F1-RT      <<== runtime evidence ==<<
@@ -36,9 +37,11 @@ FOUNDRY-F1-RT      <<== runtime evidence ==<<
 glitch discipline:
   0000 evidence enters       1111 silence blocks
   0101 open crux stays open  1010 WORM stays append-only
-  0110 pages render static   1001 frontend can dock later
+  0110 pages render static   1001 frontend docked live
+  1100 wasm mirror sealed    0011 manifest hashes checked
 
 do not promote:
+  WASM = foundation.wasm / 1170 bytes / db423c1bad66 / 21/21 pass
   ADR-055 = OPEN_CRUX
   ADR-062 = SILENCE_PENDING
   Q(phi) = metadata, not proof

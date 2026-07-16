@@ -47,6 +47,7 @@ pre { margin: 0; padding: 16px; overflow: auto; min-height: 420px; color: var(--
 .fact span { color: var(--muted); text-align: right; overflow-wrap: anywhere; }
 .route { margin-top: 18px; border: 1px solid var(--line); border-radius: 8px; background: #0d131a; padding: 14px; color: var(--muted); }
 .route strong { color: var(--green); }
+.route a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--cyan), transparent 50%); }
 @media (max-width: 840px) {
   .topline { flex-direction: column; }
   .grid { grid-template-columns: 1fr; }

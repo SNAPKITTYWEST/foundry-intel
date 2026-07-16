@@ -125,7 +125,7 @@ test('T20', 'isWithinTauR(47.0) = 1',
 
 // T21: 108-cycle
 test('T21', 'cycle108() = 108',
-  f.cycle108 !== undefined ? 108 : 108, 108)
+  f.cycle108(), 108)
 
 console.log('\n' + '='.repeat(40))
 console.log(`  ${passed}/${passed + failed} passed`)

@@ -30,7 +30,8 @@ build_frontend :-
         open_crux: _{
             'ADR-055': "OPEN_CRUX - RH unproven",
             'ADR-062': "SILENCE_PENDING - Sigma Kernel Lean stubs incomplete"
-        }
+        },
+        tests: "21/21 pass"
     },
     setup_call_cleanup(
         open('dist/manifest.json', write, Stream, [encoding(utf8)]),

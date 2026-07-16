@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Foundry Intel Backend ASCII Glitch</title>
-  <meta name="description" content="Static backend ASCII/glitch page for Foundry Intel governance and Primordial Foundation transition.">
+  <title>Primordial Foundation Backend ASCII + WASM</title>
+  <meta name="description" content="Static backend ASCII/glitch page and WASM frontend ingress for Foundry Intel governance and Primordial Foundation transition.">
   <link rel="stylesheet" href="assets/backend-glitch.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
       <span class="stamp">CONNECTED / PREPARED</span>
     </div>
     <h1>Backend ASCII Glitch</h1>
-    <p class="subtitle">Static Pages surface for the Foundry Intel governance hub. It renders the backend trust spine, connector state, and open-crux boundaries while the frontend can dock separately.</p>
+    <p class="subtitle">Static Pages surface for the Foundry Intel governance hub. It renders the backend trust spine, connector state, open-crux boundaries, and the docked WASM frontend ingress.</p>
     <section class="grid" aria-label="Backend page surface">
       <div class="panel">
         <h2>terminal signal</h2>
@@ -29,6 +29,7 @@
 | branch                          | master                           |
 | connector                       | CONNECTED                        |
 | pages                           | STATIC_READY                     |
+| WASM                            | foundation.wasm / 1170 bytes ... |
 | rebrand                         | PREPARED                         |
 | governing ADR                   | ADR-302                          |
 | Q(phi) total                    | 8 + 3*phi                        |
@@ -39,7 +40,7 @@
 GKN-LEAN-LATCH     &gt;&gt;== theorem anchors ==&gt;&gt;
        ||
        \\/
-[ FOUNDRY-INTEL ] -- ADR -- XML -- WORM -- BOB -- PAGES
+[ FOUNDRY-INTEL ] -- ADR -- XML -- WORM -- BOB -- PAGES -- WASM
        /\\
        ||
 FOUNDRY-F1-RT      &lt;&lt;== runtime evidence ==&lt;&lt;
@@ -56,9 +57,11 @@ FOUNDRY-F1-RT      &lt;&lt;== runtime evidence ==&lt;&lt;
 glitch discipline:
   0000 evidence enters       1111 silence blocks
   0101 open crux stays open  1010 WORM stays append-only
-  0110 pages render static   1001 frontend can dock later
+  0110 pages render static   1001 frontend docked live
+  1100 wasm mirror sealed    0011 manifest hashes checked
 
 do not promote:
+  WASM = foundation.wasm / 1170 bytes / db423c1bad66 / 21/21 pass
   ADR-055 = OPEN_CRUX
   ADR-062 = SILENCE_PENDING
   Q(phi) = metadata, not proof
@@ -71,13 +74,14 @@ end transmission.</pre>
           <div class="fact"><b>Q(phi)</b><span>8 + 3*phi</span></div>
           <div class="fact"><b>ADR-055</b><span>OPEN_CRUX</span></div>
           <div class="fact"><b>ADR-062</b><span>SILENCE_PENDING</span></div>
+          <div class="fact"><b>wasm</b><span>foundation.wasm / 1170 bytes / db423c1bad66 / 21/21 pass</span></div>
           <div class="fact"><b>rebrand</b><span>ADR-302</span></div>
           <div class="fact"><b>handoff</b><span>READY_FOR_CLAUDE</span></div>
         </div>
         <img class="map" src="../brand/foundry-intel-operating-map.svg" alt="Foundry Intel operating map">
       </aside>
     </section>
-    <div class="route"><strong>route:</strong> GKN Lean latch -&gt; Foundry Intel ADR/Q(phi)/XML/WORM/BOB -&gt; Foundry F1 receiver -&gt; evidence returns before claims become final.</div>
+    <div class="route"><strong>route:</strong> GKN Lean latch -&gt; Foundry Intel ADR/Q(phi)/XML/WORM/BOB -&gt; <a href="wasm/index.html">WASM frontend</a> -&gt; Foundry F1 receiver -&gt; evidence returns before claims become final.</div>
   </main>
 </body>
 </html>

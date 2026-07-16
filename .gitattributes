@@ -1,0 +1,12 @@
+# GitHub Linguist hygiene.
+# Generated surfaces and temporary legacy Node glue should not dominate the
+# language bar while the backend tooling is being moved to Prolog/domain-native
+# implementations. This does not replace the real refactor; it only keeps the
+# public metrics from overstating JavaScript.
+
+package-lock.json linguist-generated=true
+docs/pages/** linguist-generated=true
+tools/**/*.mjs linguist-generated=true
+apps/wasm-frontend/src/*.mjs linguist-generated=true
+apps/wasm-frontend/tools/*.mjs linguist-generated=true
+apps/wasm-frontend/dist/** linguist-generated=true

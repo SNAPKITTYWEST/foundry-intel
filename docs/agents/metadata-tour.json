@@ -17,6 +17,7 @@
     "docs/trust/primordial-foundation-interlock.md",
     "docs/migration/primordial-foundation-umbrella-audit.md",
     "apps/wasm-frontend/README.md",
+    "docs/pages/wasm/index.html",
     "docs/handoff/primordial-foundation-agent-contract.xml",
     "docs/architecture/ADR-INDEX.md"
   ],
@@ -30,6 +31,7 @@
       "connector validation",
       "XML handoff envelope validation",
       "backend ASCII Pages check",
+      "WASM frontend build and manifest check",
       "TypeScript workspace build",
       "TypeScript lint/typecheck",
       "no-cache Jest tests",
@@ -48,6 +50,7 @@
     "root": "docs/pages/index.html",
     "ascii": "docs/pages/backend-ascii.txt",
     "css": "docs/pages/assets/backend-glitch.css",
+    "wasm": "docs/pages/wasm/index.html",
     "builder": "tools/ascii-glitch/build_pages.pl",
     "workflow": ".github/workflows/pages.yml",
     "aesthetic": "backend-ascii-glitch"
@@ -61,6 +64,7 @@
     "trust_transition": "docs/trust/primordial-foundation-interlock.md",
     "umbrella_audit": "docs/migration/primordial-foundation-umbrella-audit.md",
     "wasm_frontend_ingress": "apps/wasm-frontend/README.md",
+    "wasm_frontend_pages": "docs/pages/wasm/index.html",
     "connector": "docs/bridge/foundry-connector.md",
     "xml_handoff": "docs/handoff/foundry-intel-agent-contract.xml",
     "primordial_xml_handoff": "docs/handoff/primordial-foundation-agent-contract.xml",

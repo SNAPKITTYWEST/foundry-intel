@@ -40,6 +40,12 @@
     "intel_adr_umbrella": "docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md",
     "intel_umbrella_audit": "docs/migration/primordial-foundation-umbrella-audit.md",
     "wasm_frontend_ingress": "apps/wasm-frontend/README.md",
+    "wasm_frontend_package": "apps/wasm-frontend/package.json",
+    "wasm_frontend_source": "apps/wasm-frontend/assembly/foundation.ts",
+    "wasm_frontend_build_tool": "apps/wasm-frontend/tools/build_wasm.pl",
+    "wasm_frontend_manifest": "apps/wasm-frontend/dist/manifest.json",
+    "wasm_frontend_binary": "apps/wasm-frontend/dist/foundation.wasm",
+    "wasm_frontend_pages_root": "docs/pages/wasm/index.html",
     "intel_operating_map": "docs/brand/foundry-intel-operating-map.svg",
     "intel_brand_banner": "docs/brand/veneer-institutional-trust.svg",
     "intel_brand_badges": [
@@ -105,6 +111,16 @@
     "wasm_frontend_ingress": "apps/wasm-frontend/",
     "legacy_foundry_boundary": "Foundry F1 remains an external legacy receiver until artifacts are explicitly ported."
   },
+  "wasm_frontend": {
+    "status": "BUILT",
+    "workspace": "@veneer/wasm-frontend",
+    "source": "apps/wasm-frontend/assembly/foundation.ts",
+    "manifest": "apps/wasm-frontend/dist/manifest.json",
+    "pages": "docs/pages/wasm/index.html",
+    "builder": "apps/wasm-frontend/tools/build_wasm.pl",
+    "check": "npm test --workspace @veneer/wasm-frontend",
+    "note": "WASM frontend is docked into the Pages artifact by tools/ascii-glitch/build_pages.pl."
+  },
   "pages": {
     "status": "STATIC_READY",
     "root": "docs/pages/index.html",
@@ -112,7 +128,7 @@
     "builder": "tools/ascii-glitch/build_pages.pl",
     "check": "npm run pages:check",
     "workflow": ".github/workflows/pages.yml",
-    "note": "Static backend Pages surface for governance signals; frontend may dock separately."
+    "note": "Static backend Pages surface for governance signals with the WASM frontend copied to docs/pages/wasm."
   },
   "routing": [
     {

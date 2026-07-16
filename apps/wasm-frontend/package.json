@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "swipl -q -s tools/build_wasm.pl -g main -t halt --",
-    "test": "swipl -q -s tools/build_wasm.pl -g main -t halt -- --check"
+    "test": "swipl -q -s tools/build_wasm.pl -g main -t halt -- --check && node tools/test.mjs"
   },
   "devDependencies": {
     "assemblyscript": "^0.27.0"
