@@ -70,8 +70,13 @@
     <command>npm run adr:q5:fallback</command>
     <command>npm run connector:check</command>
     <command>npm run handoff:check</command>
+    <command>npm run build</command>
+    <command>npm run lint</command>
     <command>npm test</command>
+    <command>npm run smoke</command>
+    <command>npm run verify</command>
     <note>If npm test fails because dependencies are missing, report that exactly. Do not claim tests pass.</note>
+    <note>Liquid Haskell checks are explicit optional theorem-lane commands: npm run build:lh and npm run test:lh.</note>
   </validation>
 
   <git_rules>
@@ -82,4 +87,3 @@
     <rule>Push only after local validation passes or after clearly documenting any unavailable tool.</rule>
   </git_rules>
 </agent_contract>
-

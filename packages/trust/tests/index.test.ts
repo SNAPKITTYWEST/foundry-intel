@@ -1,4 +1,4 @@
-import { TrustLevel, alpGate, TrustBoundaryEnforcer, TAU_R, CIRCUIT_BREAKER_THRESHOLD } from '../src/index'
+import { TrustLevel, alpGate, TrustBoundaryEnforcer, TAU_R, CIRCUIT_BREAKER_THRESHOLD } from '../src/index.js'
 
 describe('@veneer/trust — L4 Sedona Spine', () => {
   const ZERO_SEAL = '0'.repeat(64)

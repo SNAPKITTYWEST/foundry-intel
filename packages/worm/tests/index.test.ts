@@ -60,8 +60,9 @@ describe('@veneer/worm — SYNTH-009 + SYNTH-002', () => {
   test('verifyChain detects tampered seal at seq > 0', () => {
     let chain: WormChain = []
     const sigs = makeSigs('core')
-    ;({ chain } = appendEntry(chain, { action_id: 'tx-a', layer_from: 'L5', layer_to: 'L7', verdict: 'EVIDENCE', ...sigs }))
-    ;({ chain } = appendEntry(chain, { action_id: 'tx-b', layer_from: 'L6', layer_to: 'L7', verdict: 'EVIDENCE', ...sigs }))
+    const signed = { primary_sig: sigs.primary, secondary_sig: sigs.secondary }
+    ;({ chain } = appendEntry(chain, { action_id: 'tx-a', layer_from: 'L5', layer_to: 'L7', verdict: 'EVIDENCE', ...signed }))
+    ;({ chain } = appendEntry(chain, { action_id: 'tx-b', layer_from: 'L6', layer_to: 'L7', verdict: 'EVIDENCE', ...signed }))
 
     // Tamper: mutate the first entry's seal via spread (simulate corruption)
     const tampered: WormChain = [

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * @veneer/probe-gate — SKW-010 production wiring
  *
@@ -22,10 +23,9 @@
  *   Run: python probe_qwen_identity.py --save → probe_results/*.json
  */
 
-import crypto from 'node:crypto'
 import { pearlGate, ActionContext, GateVerdict } from '@veneer/bob-gate'
-import { appendEntry, sealVerdict, WormChain, GENESIS_SEAL } from '@veneer/worm'
-import { TAU_R, LEAN_PROOF_HASH_108_CORE } from '@veneer/source'
+import { appendEntry, sealVerdict, WormChain } from '@veneer/worm'
+import { LEAN_PROOF_HASH_108_CORE } from '@veneer/source'
 
 // ── SKW-010 Probe Types (mirrors probe_qwen_identity.py output) ───────────────
 
@@ -237,13 +237,14 @@ export function runBatchProbeGate(probeResults: ProbeResult[]): BatchProbeReport
 // Usage: node packages/probe-gate/src/index.ts <path-to-probe-result.json> [...]
 // Reads probe_results/*.json files from probe_qwen_identity.py --save
 
-import { readFileSync } from 'node:fs'
+import { readFileSync, realpathSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 function cliMain() {
   const args = process.argv.slice(2)
   if (args.length === 0) {
-    console.error('Usage: node probe-gate/src/index.ts <probe_result.json> [...]\n')
+    console.error('Usage: veneer-probe-gate <probe_result.json> [...]\n')
     console.error('  Generate probe results: python paper/probe_qwen_identity.py --save')
     process.exit(1)
   }
@@ -261,7 +262,7 @@ function cliMain() {
 
   for (const r of report.results) {
     const v = r.gate_verdict.verdict
-    const badge = v === 'EVIDENCE' ? '✓ EVIDENCE' : '✗ SILENCE '
+    const badge = v === 'EVIDENCE' ? 'EVIDENCE' : 'SILENCE '
     console.log(`\n  ${badge}  ${r.probe_model}`)
     console.log(`    classification:    ${r.classification}`)
     console.log(`    probes_positive:   ${r.probes_positive}/10`)
@@ -270,7 +271,7 @@ function cliMain() {
     console.log(`    worm_seal:         ${r.worm_seal.slice(0, 16)}...`)
     if (r.gate_verdict.failed_constraints.length > 0) {
       console.log(`    failed:`)
-      r.gate_verdict.failed_constraints.forEach(f => console.log(`      • ${f}`))
+      r.gate_verdict.failed_constraints.forEach(f => console.log(`      - ${f}`))
     }
   }
 
@@ -284,7 +285,16 @@ function cliMain() {
   console.log('='.repeat(60) + '\n')
 }
 
-// Only run CLI when invoked directly (not when imported as a module)
-if (process.argv[1] && process.argv[1].endsWith('index.ts')) {
+function isDirectRun(): boolean {
+  if (!process.argv[1]) return false
+  try {
+    return realpathSync(resolve(process.argv[1])) === realpathSync(fileURLToPath(import.meta.url))
+  } catch {
+    return false
+  }
+}
+
+// Only run CLI when invoked directly (not when imported as a module).
+if (isDirectRun()) {
   cliMain()
 }

@@ -80,9 +80,27 @@ Depth 9  @veneer/metatron       Self-recognition — reads cube backward, routes
 git clone https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11.git veneer
 cd veneer
 npm install
-npm run build
-npm test
+npm run verify
 ```
+
+`npm run verify` is the production gate for the Node Sedona Spine. It runs:
+
+- Q(phi) ADR manifest generation
+- Foundry connector validation
+- XML handoff envelope validation
+- TypeScript build for all runtime workspaces
+- TypeScript lint/typecheck
+- Jest tests for the active SYNTH packages
+- Built-package production smoke test
+
+Liquid Haskell remains available as an explicit theorem-lane check:
+
+```bash
+npm run build:lh
+npm run test:lh
+```
+
+Those commands require Cabal and the Liquid Haskell toolchain.
 
 ```typescript
 import { pearlGate } from '@veneer/bob-gate'
@@ -109,6 +127,18 @@ const verdict = pearlGate({
 console.log(verdict.verdict)  // 'EVIDENCE'
 console.log(verdict.worm_seal) // SHA-256 sealed
 ```
+
+### Probe Gate CLI
+
+After `npm run build`, users can run the SKW-010 probe ingestion pipeline
+against saved probe JSON:
+
+```bash
+npx veneer-probe-gate probe_results/example.json
+```
+
+The CLI maps probe output to `pearlGate`, seals the verdict to the WORM chain,
+and keeps RH/open-crux claims blocked as `SILENCE`.
 
 ---
 

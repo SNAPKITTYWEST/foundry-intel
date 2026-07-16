@@ -5,14 +5,14 @@
   "description": "Veneer L2 — formal proof layer: PearlInvariants stubs, SYNTH constraints as typed propositions, RH crux as open",
   "exports": {
     ".": {
-      "import": "./src/index.js",
-      "types": "./src/index.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
-  "dependencies": {
-    "@veneer/kernel": "workspace:*",
-    "@veneer/alp": "workspace:*"
-  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "node --experimental-vm-modules ../../node_modules/.bin/jest"
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --no-cache --runInBand"
   },
   "jest": {
     "preset": "ts-jest/presets/default-esm",

@@ -27,8 +27,13 @@ function requireEqual(actual, expected, label) {
 
 const connector = readJson('tools/foundry-connector/connector-manifest.json')
 const q5 = readJson('tools/q5-adr-parser/adr_manifest.json')
+const rootPackage = readJson('package.json')
 
 for (const path of [
+  'package-lock.json',
+  'tsconfig.json',
+  'tsconfig.package.json',
+  'tools/production-smoke.mjs',
   'docs/bridge/foundry-connector.md',
   'docs/protocols/xml-handoff-envelope.md',
   'docs/protocols/xml-handoff-envelope.xsd',
@@ -38,6 +43,10 @@ for (const path of [
   'tools/q5-adr-parser/adr_manifest_index.csv'
 ]) {
   requireFile(path)
+}
+
+for (const script of ['build', 'test', 'lint', 'smoke', 'verify']) {
+  if (!rootPackage.scripts?.[script]) fail(`package.json missing ${script} script`)
 }
 
 requireEqual(connector.status, 'CONNECTED', 'connector status')

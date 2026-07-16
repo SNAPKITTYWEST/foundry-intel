@@ -14,16 +14,10 @@
   "files": ["dist", "src"],
   "scripts": {
     "build": "tsc",
-    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --no-cache --runInBand",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@veneer/worm-ledger": "workspace:*",
-    "@veneer/alp-gate": "workspace:*",
-    "@veneer/constitutional": "workspace:*",
-    "@veneer/banach-field": "workspace:*",
-    "@veneer/trust-boundary": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",

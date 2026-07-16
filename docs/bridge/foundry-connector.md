@@ -58,7 +58,9 @@ Then read this Intel connector manifest and Q(phi) outputs:
 ## Local Check
 
 ```sh
+npm install
 npm run adr:q5:fallback
 npm run connector:check
 npm run handoff:check
+npm run verify
 ```

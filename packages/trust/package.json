@@ -14,12 +14,10 @@
   "files": ["dist"],
   "scripts": {
     "build": "tsc",
-    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --no-cache --runInBand",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@veneer/archivum": "workspace:^0.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",

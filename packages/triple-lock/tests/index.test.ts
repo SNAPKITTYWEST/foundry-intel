@@ -12,7 +12,7 @@ import {
   GUARDIAN_PREFIX,
   EXAMINER_PREFIX,
   MAX_RETRY_NONCE,
-} from '../src/index'
+} from '../src/index.js'
 
 const PREV_SEAL = '0'.repeat(64)
 const PRIMARY_SIG = 'test-primary-sig'

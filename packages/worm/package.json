@@ -13,12 +13,10 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --no-cache --runInBand",
     "verify-chain": "node --loader ts-node/esm -e \"import('./src/index.ts').then(m => console.log(JSON.stringify(m.verifyChain(m.WormChain.genesis()), null, 2)))\""
   },
-  "dependencies": {
-    "@veneer/core": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",

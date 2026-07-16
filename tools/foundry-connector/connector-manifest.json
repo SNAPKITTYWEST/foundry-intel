@@ -34,6 +34,10 @@
     "intel_handoff_protocol": "docs/protocols/xml-handoff-envelope.md",
     "intel_handoff_schema": "docs/protocols/xml-handoff-envelope.xsd",
     "intel_handoff_envelope": "docs/handoff/foundry-intel-agent-contract.xml",
+    "intel_production_smoke": "tools/production-smoke.mjs",
+    "intel_typescript_config": "tsconfig.json",
+    "intel_typescript_package_config": "tsconfig.package.json",
+    "intel_lockfile": "package-lock.json",
     "f1_receiver_doc": "docs/bridge/CLAUDE_HANDOFF.md",
     "f1_receiver_manifest": "docs/bridge/foundry-connector.json"
   },

@@ -5,13 +5,16 @@
   "description": "L0 constitutional validator: nine sequential checks, SYNTH-003 + SYNTH-007 enforced",
   "exports": {
     ".": {
-      "import": "./src/index.js",
-      "types": "./src/index.d.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
   "scripts": {
     "build": "tsc",
-    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --no-cache --runInBand"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",

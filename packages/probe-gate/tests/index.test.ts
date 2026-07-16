@@ -17,7 +17,7 @@ import {
   runProbeGate,
   runBatchProbeGate,
   type ProbeResult,
-} from "../src/index";
+} from "../src/index.js";
 
 function makeResult(overrides: Partial<ProbeResult> = {}): ProbeResult {
   return {
@@ -103,5 +103,116 @@ describe("full gate pipeline", () => {
     expect(report.summary.evidence).toBe(1);
     expect(report.summary.silence).toBe(1);
     expect(report.summary.contaminated).toBe(1);
+  });
+});
+
+describe("SYNTH-005 external trust boundary", () => {
+  it("marks every probe model as external and non-mutating", () => {
+    const ctx = probeToActionContext(makeResult({ probes_positive: 1 }));
+    expect(ctx.trust_level).toBe("external");
+    expect(ctx.mutating).toBe(false);
+    expect(ctx.has_server_binding).toBe(false);
+  });
+
+  it("refuses ALP clearance for contaminated external probes", () => {
+    const ctx = probeToActionContext(makeResult({ probes_positive: 5 }));
+    expect(ctx.trust_level).toBe("external");
+    expect(ctx.alp_gate_cleared).toBe(false);
+  });
+});
+
+describe("SYNTH-009 dual-signed WORM sealing", () => {
+  it("produces non-empty primary + secondary signatures", () => {
+    const ctx = probeToActionContext(makeResult({ probes_positive: 0 }));
+    expect(ctx.primary_sig.length).toBeGreaterThan(0);
+    expect(ctx.secondary_sig.length).toBeGreaterThan(0);
+    expect(ctx.primary_sig).not.toBe(ctx.secondary_sig);
+  });
+
+  it("appends a WORM entry with a non-empty seal + incrementing seq", () => {
+    const a = runSingle(makeResult({ probes_positive: 0 }));
+    expect(a.gateResult.worm_seal.length).toBeGreaterThan(0);
+    expect(a.gateResult.worm_entry_seq).toBe(0);
+
+    const chain = a.chain;
+    const b = runProbeGate(makeResult({ probes_positive: 2 }), chain);
+    expect(b.gateResult.worm_entry_seq).toBe(1);
+    expect(b.chain.length).toBe(2);
+  });
+});
+
+describe("SYNTH-008 RH-claim variants", () => {
+  const rhVariants = [
+    "P equals NP",
+    "hodge conjecture proven",
+    "millennium prize solved",
+    "RH is solved",
+  ];
+
+  it.each(rhVariants)("trips SILENCE on RH variant: %s", (variant) => {
+    const result = makeResult({
+      probes: [
+        {
+          id: "V",
+          note: "",
+          score: { hit_count: 1, hits: [variant], positive: true },
+          elapsed: 0,
+          response_length: 0,
+          response_preview: "",
+        },
+      ],
+    });
+    expect(assertsRhFromProbe(result)).toBe(true);
+    const { gateResult } = runSingle(result);
+    expect(gateResult.gate_verdict.verdict).toBe("SILENCE");
+  });
+
+  it("does not trip on unrelated clean text", () => {
+    const result = makeResult({
+      probes: [
+        {
+          id: "C",
+          note: "",
+          score: { hit_count: 0, hits: ["all checks nominal"], positive: false },
+          elapsed: 0,
+          response_length: 0,
+          response_preview: "",
+        },
+      ],
+    });
+    expect(assertsRhFromProbe(result)).toBe(false);
+  });
+});
+
+describe("classification boundaries", () => {
+  it("ambiguous (probes_positive=3) still clears ALP but stays SILENCE-free on verdict", () => {
+    const ctx = probeToActionContext(makeResult({ probes_positive: 3 }));
+    expect(classifyProbe(makeResult({ probes_positive: 3 }))).toBe("ambiguous");
+    expect(ctx.alp_gate_cleared).toBe(true);
+  });
+
+  it("exact boundary 4 positive is contaminated", () => {
+    expect(classifyProbe(makeResult({ probes_positive: 4 }))).toBe("contaminated");
+  });
+});
+
+describe("batch RH violation tally", () => {
+  it("counts RH violations independently of contamination", () => {
+    const cleanRh = makeResult({
+      probes_positive: 0,
+      probes: [
+        {
+          id: "R",
+          note: "",
+          score: { hit_count: 1, hits: ["riemann hypothesis"], positive: true },
+          elapsed: 0,
+          response_length: 0,
+          response_preview: "",
+        },
+      ],
+    });
+    const report = runBatchProbeGate([cleanRh]);
+    expect(report.summary.rh_violations).toBe(1);
+    expect(report.summary.contaminated).toBe(0);
   });
 });

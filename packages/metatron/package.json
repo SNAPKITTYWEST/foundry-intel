@@ -13,19 +13,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --no-cache --runInBand"
   },
-  "dependencies": {
-    "@veneer/l0": "workspace:*",
-    "@veneer/l1": "workspace:*",
-    "@veneer/l2": "workspace:*",
-    "@veneer/l3": "workspace:*",
-    "@veneer/l4": "workspace:*",
-    "@veneer/l5": "workspace:*",
-    "@veneer/l6": "workspace:*",
-    "@veneer/l7": "workspace:*",
-    "@veneer/l8": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",
