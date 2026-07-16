@@ -28,6 +28,7 @@ function requireEqual(actual, expected, label) {
 const connector = readJson('tools/foundry-connector/connector-manifest.json')
 const q5 = readJson('tools/q5-adr-parser/adr_manifest.json')
 const rootPackage = readJson('package.json')
+const agentTour = readJson('docs/agents/metadata-tour.json')
 
 for (const path of [
   'package-lock.json',
@@ -38,6 +39,15 @@ for (const path of [
   'tools/adr-production-tick.mjs',
   'docs/architecture/adr/ADR-301-daily-production-tick.md',
   'docs/bridge/foundry-connector.md',
+  'docs/agents/metadata-tour.md',
+  'docs/agents/metadata-tour.json',
+  'docs/brand/veneer-institutional-trust.svg',
+  'docs/brand/badge-verify.svg',
+  'docs/brand/badge-adr.svg',
+  'docs/brand/badge-trust.svg',
+  'docs/brand/badge-worm.svg',
+  'docs/brand/badge-daily-tick.svg',
+  'docs/brand/badge-crux.svg',
   'docs/protocols/xml-handoff-envelope.md',
   'docs/protocols/xml-handoff-envelope.xsd',
   'docs/handoff/foundry-intel-agent-contract.xml',
@@ -50,6 +60,15 @@ for (const path of [
 
 for (const script of ['build', 'test', 'lint', 'smoke', 'verify', 'adr:tick']) {
   if (!rootPackage.scripts?.[script]) fail(`package.json missing ${script} script`)
+}
+
+requireEqual(agentTour.id, 'FOUNDRY-INTEL-AGENT-METADATA-TOUR-20260716', 'agent tour id')
+requireEqual(agentTour.repo.name, 'SNAPKITTYWEST/foundry-intel-2026-07-11', 'agent tour repo')
+if (!agentTour.production_gate?.commands?.includes('npm run verify')) {
+  fail('agent tour must include npm run verify')
+}
+for (const boundary of ['ADR-055 remains OPEN_CRUX', 'ADR-062 remains SILENCE_PENDING']) {
+  if (!agentTour.boundaries?.includes(boundary)) fail(`agent tour missing boundary: ${boundary}`)
 }
 
 requireEqual(connector.status, 'CONNECTED', 'connector status')

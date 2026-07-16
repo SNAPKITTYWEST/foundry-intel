@@ -15,6 +15,13 @@ Agent-to-agent instructions move through XML handoff envelopes. The protocol is
 defined in `docs/protocols/xml-handoff-envelope.md`, and the active Foundry
 Intel envelope is `docs/handoff/foundry-intel-agent-contract.xml`.
 
+Incoming agents also get a committed metadata tour:
+
+- `docs/agents/metadata-tour.md`
+- `docs/agents/metadata-tour.json`
+
+README branding uses local institutional trust SVG badges under `docs/brand/`.
+
 ## Active Anchors
 
 | Engine | Anchor | Status |

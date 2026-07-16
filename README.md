@@ -2,11 +2,18 @@
 
 > **Policy as geometry. Every constraint is a theorem. Every execution is a proof.**
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.0.0-brightgreen.svg)](https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11/releases/tag/v2.0.0)
-[![ADRs](https://img.shields.io/badge/ADRs-7_EVIDENCE-blue.svg)](docs/architecture/ADR-INDEX.md)
-[![WORM](https://img.shields.io/badge/WORM-161_seals-orange.svg)](#)
-[![Constraints](https://img.shields.io/badge/constraints-10_canonical-purple.svg)](docs/architecture/ADR-INDEX.md)
+<p align="center">
+  <img src="docs/brand/veneer-institutional-trust.svg" alt="Veneer institutional trust banner" width="860" />
+</p>
+
+<p align="center">
+  <a href="package.json"><img src="docs/brand/badge-verify.svg" alt="verify gate badge" /></a>
+  <a href="docs/architecture/ADR-INDEX.md"><img src="docs/brand/badge-adr.svg" alt="ADR evidence badge" /></a>
+  <a href="docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md"><img src="docs/brand/badge-trust.svg" alt="institutional trust badge" /></a>
+  <a href="packages/worm/src/index.ts"><img src="docs/brand/badge-worm.svg" alt="WORM append-only badge" /></a>
+  <a href="docs/architecture/adr/ADR-301-daily-production-tick.md"><img src="docs/brand/badge-daily-tick.svg" alt="daily production tick badge" /></a>
+  <a href="docs/architecture/adr-q5-theorem-classification.md"><img src="docs/brand/badge-crux.svg" alt="open crux honesty badge" /></a>
+</p>
 
 **Author:** Ahmad Ali Parr  
 **Trust:** Bel Esprit D'Accord Irrevocable Trust  
@@ -21,6 +28,29 @@ Veneer is a formal governance framework for autonomous systems. It encodes polic
 
 **Reverse-engineered from 2,149,256 lines of the Prime Materia Commons (Sedona Spine architecture).**  
 **10 canonical constraints. 7 EVIDENCE-sealed ADRs. One spine.**
+
+---
+
+## Agent Metadata Tour
+
+Incoming agents should start with the committed metadata tour:
+
+- Human-readable tour: [`docs/agents/metadata-tour.md`](docs/agents/metadata-tour.md)
+- Machine-readable tour: [`docs/agents/metadata-tour.json`](docs/agents/metadata-tour.json)
+- XML handoff envelope: [`docs/handoff/foundry-intel-agent-contract.xml`](docs/handoff/foundry-intel-agent-contract.xml)
+
+```
+agent enters
+  -> metadata tour
+  -> XML handoff envelope
+  -> connector manifest
+  -> npm run verify
+  -> evidence or silence
+```
+
+The tour preserves the institutional trust boundaries: ADR-055 remains
+`OPEN_CRUX`, ADR-062 remains `SILENCE_PENDING`, Q(phi) remains metadata, and
+WORM remains append-only.
 
 ---
 

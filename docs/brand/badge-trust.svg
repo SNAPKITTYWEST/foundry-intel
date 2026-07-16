@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="190" height="28" viewBox="0 0 190 28" role="img" aria-label="institutional trust">
+  <rect width="190" height="28" rx="5" fill="#0f172a"/>
+  <rect x="1" y="1" width="188" height="26" rx="4" fill="#111827" stroke="#c4b5fd"/>
+  <text x="12" y="18" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#ede9fe">TRUST</text>
+  <text x="72" y="18" font-family="Consolas, monospace" font-size="12" fill="#ddd6fe">ADR-200/300</text>
+</svg>

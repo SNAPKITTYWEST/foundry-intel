@@ -31,6 +31,17 @@
     "intel_q5_csv": "tools/q5-adr-parser/adr_manifest_index.csv",
     "intel_q5_doc": "docs/architecture/adr-q5-theorem-classification.md",
     "intel_connector_doc": "docs/bridge/foundry-connector.md",
+    "intel_agent_tour_doc": "docs/agents/metadata-tour.md",
+    "intel_agent_tour_json": "docs/agents/metadata-tour.json",
+    "intel_brand_banner": "docs/brand/veneer-institutional-trust.svg",
+    "intel_brand_badges": [
+      "docs/brand/badge-verify.svg",
+      "docs/brand/badge-adr.svg",
+      "docs/brand/badge-trust.svg",
+      "docs/brand/badge-worm.svg",
+      "docs/brand/badge-daily-tick.svg",
+      "docs/brand/badge-crux.svg"
+    ],
     "intel_handoff_protocol": "docs/protocols/xml-handoff-envelope.md",
     "intel_handoff_schema": "docs/protocols/xml-handoff-envelope.xsd",
     "intel_handoff_envelope": "docs/handoff/foundry-intel-agent-contract.xml",

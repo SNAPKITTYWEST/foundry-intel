@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="172" height="28" viewBox="0 0 172 28" role="img" aria-label="WORM append only">
+  <rect width="172" height="28" rx="5" fill="#0f172a"/>
+  <rect x="1" y="1" width="170" height="26" rx="4" fill="#111827" stroke="#facc15"/>
+  <text x="12" y="18" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#fef9c3">WORM</text>
+  <text x="66" y="18" font-family="Consolas, monospace" font-size="12" fill="#fde68a">APPEND-ONLY</text>
+</svg>

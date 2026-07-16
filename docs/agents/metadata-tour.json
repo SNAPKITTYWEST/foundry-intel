@@ -1,0 +1,64 @@
+{
+  "id": "FOUNDRY-INTEL-AGENT-METADATA-TOUR-20260716",
+  "version": "1.0",
+  "repo": {
+    "name": "SNAPKITTYWEST/foundry-intel-2026-07-11",
+    "branch": "master",
+    "role": "Foundry Intel governance, connector, ADR, Q(phi), and production verification hub"
+  },
+  "entry_route": [
+    "README.md",
+    "docs/handoff/foundry-intel-agent-contract.xml",
+    "tools/foundry-connector/connector-manifest.json",
+    "docs/architecture/ADR-INDEX.md"
+  ],
+  "production_gate": {
+    "commands": [
+      "npm install",
+      "npm run verify"
+    ],
+    "includes": [
+      "Q(phi) ADR manifest generation",
+      "connector validation",
+      "XML handoff envelope validation",
+      "TypeScript workspace build",
+      "TypeScript lint/typecheck",
+      "no-cache Jest tests",
+      "production smoke",
+      "ADR-301 daily production tick"
+    ]
+  },
+  "user_entrypoints": [
+    {
+      "name": "probe gate CLI",
+      "command": "npx veneer-probe-gate probe_results/example.json",
+      "package": "@veneer/probe-gate"
+    }
+  ],
+  "institutional_anchors": {
+    "constitution": "docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md",
+    "trust_interlock": "docs/architecture/adr/ADR-300-grat-foundry-interlock.md",
+    "daily_tick": "docs/architecture/adr/ADR-301-daily-production-tick.md",
+    "connector": "docs/bridge/foundry-connector.md",
+    "xml_handoff": "docs/handoff/foundry-intel-agent-contract.xml"
+  },
+  "boundaries": [
+    "ADR-055 remains OPEN_CRUX",
+    "ADR-062 remains SILENCE_PENDING",
+    "Q(phi) weights are metadata classifications, not proof claims",
+    "Liquid Haskell refinements do not supersede Lean proof authority",
+    "WORM means write-once/read-many ledger semantics",
+    "Daily production tick is non-mutating"
+  ],
+  "brand": {
+    "banner": "docs/brand/veneer-institutional-trust.svg",
+    "badges": [
+      "docs/brand/badge-verify.svg",
+      "docs/brand/badge-adr.svg",
+      "docs/brand/badge-trust.svg",
+      "docs/brand/badge-worm.svg",
+      "docs/brand/badge-daily-tick.svg",
+      "docs/brand/badge-crux.svg"
+    ]
+  }
+}

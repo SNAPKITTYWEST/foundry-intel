@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="154" height="28" viewBox="0 0 154 28" role="img" aria-label="verify passing">
+  <rect width="154" height="28" rx="5" fill="#0f172a"/>
+  <rect x="1" y="1" width="152" height="26" rx="4" fill="#111827" stroke="#22c55e"/>
+  <text x="12" y="18" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#d1fae5">VERIFY</text>
+  <text x="78" y="18" font-family="Consolas, monospace" font-size="12" fill="#86efac">PASSING</text>
+</svg>
