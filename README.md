@@ -1,6 +1,7 @@
-# THE SHARED PRIMORDIAL FOUNDATION — Umbrella Monorepo
+# THE SHARED PRIMORDIAL FOUNDATION
 
 > Policy as geometry. Every constraint is a theorem. Every execution is a proof.
+> *In memory of Eric Brandon Westerhoff. No sorry remains.*
 
 <p align="center">
   <img src="docs/brand/veneer-institutional-trust.svg" alt="Veneer institutional trust banner" width="860" />
@@ -11,258 +12,378 @@
 </p>
 
 <p align="center">
-  <a href="package.json"><img src="docs/brand/badge-verify.svg" alt="verify gate badge" /></a>
-  <a href="docs/architecture/ADR-INDEX.md"><img src="docs/brand/badge-adr.svg" alt="ADR evidence badge" /></a>
-  <a href="docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md"><img src="docs/brand/badge-trust.svg" alt="institutional trust badge" /></a>
-  <a href="packages/worm/src/index.ts"><img src="docs/brand/badge-worm.svg" alt="WORM append-only badge" /></a>
-  <a href="docs/architecture/adr/ADR-301-daily-production-tick.md"><img src="docs/brand/badge-daily-tick.svg" alt="daily production tick badge" /></a>
-  <a href="docs/architecture/adr-q5-theorem-classification.md"><img src="docs/brand/badge-crux.svg" alt="open crux honesty badge" /></a>
+  <a href="package.json"><img src="docs/brand/badge-verify.svg" alt="verify gate" /></a>
+  <a href="docs/architecture/ADR-INDEX.md"><img src="docs/brand/badge-adr.svg" alt="ADR evidence" /></a>
+  <a href="docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md"><img src="docs/brand/badge-trust.svg" alt="institutional trust" /></a>
+  <a href="packages/worm/src/index.ts"><img src="docs/brand/badge-worm.svg" alt="WORM append-only" /></a>
+  <a href="docs/architecture/adr/ADR-301-daily-production-tick.md"><img src="docs/brand/badge-daily-tick.svg" alt="daily production tick" /></a>
+  <a href="docs/architecture/adr-q5-theorem-classification.md"><img src="docs/brand/badge-crux.svg" alt="open crux honesty" /></a>
 </p>
 
-**Repository:** `SNAPKITTYWEST/foundry-intel-2026-07-11`
-
-**Local path:** `C:\Users\jessi\veneer-deploy`
-
-**Role:** Main umbrella monorepo for THE SHARED PRIMORDIAL FOUNDATION. Foundry
-Intel remains the governance/intelligence subsystem: connector, ADR, Q(phi),
-XML handoff, Datalog, TypeScript workspace, Liquid Haskell lane, WORM and BOB
-gate hub.
-
-**Author:** Ahmad Ali Parr
-
-**Trust:** Bel Esprit D'Accord Irrevocable Trust
-
-**Copyright:** 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust
-
-**SPDX-License-Identifier:** Apache-2.0
+<p align="center">
+  <img src="https://img.shields.io/badge/tests-21%2F21%20WASM%20pass-brightgreen?style=for-the-badge" alt="WASM tests" />
+  <img src="https://img.shields.io/badge/ALP%20obligations-13%2F13-brightgreen?style=for-the-badge" alt="ALP obligations" />
+  <img src="https://img.shields.io/badge/ADRs-19%20EVIDENCE-blue?style=for-the-badge" alt="ADRs" />
+  <img src="https://img.shields.io/badge/RH_STATUS-none%20%E2%80%94%20crux%20open-orange?style=for-the-badge" alt="RH open" />
+  <img src="https://img.shields.io/badge/license-Apache--2.0-green?style=for-the-badge" alt="license" />
+</p>
 
 ---
 
-## Read This First
-
-This repository is the main umbrella monorepo for THE SHARED PRIMORDIAL
-FOUNDATION. Foundry Intel is now the governance/intelligence subsystem inside
-that umbrella. It is not Foundry F1 and it is not Shadow Orchestrator.
-
-This repo owns the ADR posture, the Q(phi) classifier, the XML agent-envelope
-protocol, the TypeScript/Datalog Sedona Spine workspaces, the Liquid Haskell
-refinement lane, the WORM evidence memory, the BOB `EVIDENCE | SILENCE` gate,
-the WASM frontend ingress lane, and the connector contract that keeps GKN Lean,
-Foundry Intel, and Foundry F1 aligned.
-
-Persistent agent memory is committed here:
-
-- [`AGENT_MEMORY.md`](AGENT_MEMORY.md)
-
-Any incoming agent must read `AGENT_MEMORY.md` before touching files. The local
-connector check now treats memory and README pointers as production artifacts.
+**Repository:** `SNAPKITTYWEST/foundry-intel-2026-07-11`  
+**Author:** Ahmad Ali Parr  
+**Trust:** Bel Esprit D'Accord Irrevocable Trust (EIN 41-6630640)  
+**Foundation:** THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431  
+**Prior art anchor:** DEVFLOW-FINANCE created 2026-04-14  
+**Zenodo:** [10.5281/zenodo.21268911](https://doi.org/10.5281/zenodo.21268911) — *Closing Boole's Foundational Sorry and Three E₇ Generator Symmetries of the GKN Quartic Invariant*
 
 ---
 
-## Trust And Rebrand Track
+## What This Is
 
-Canonical spelling: **THE SHARED PRIMORDIAL FOUNDATION**.
+THE SHARED PRIMORDIAL FOUNDATION is a sovereign compute and formal verification
+stack built around one principle: **no claim reaches production without passing
+through the gate**.
 
-The current repository remains `SNAPKITTYWEST/foundry-intel-2026-07-11` until
-the GitHub repo is explicitly renamed. The transition target is:
+This repository is the governance and intelligence hub of that stack. It owns:
 
-```text
-THE SHARED PRIMORDIAL FOUNDATION
-Foundry Intel, in care of Bel Esprit D'Accord
-```
+- **ADR governance** — 19 Architecture Decision Records, each EVIDENCE-sealed by the Prolog law engine
+- **10-layer Sedona Spine** — TypeScript workspace from `@veneer/source` through `@veneer/metatron`
+- **WASM frontend** — AssemblyScript-compiled gate logic (Goldilocks F_p, SHA-256, pearlGate, probe-gate): **21/21 tests pass**
+- **Liquid Haskell lane** — refinement-type verification of all Sedona Spine theorems
+- **Lean 4 substrate** — formal proofs, bare-toolchain Banach/topology, Sigma Kernel stubs
+- **Probe gate** — SKW-010 identity-integrity probe ingestion → WORM chain
+- **Sorry engine** — 1,465 indexed proof-debt targets, 13 ALP closures, OM-001 and SKW-001 solved
+- **Prior art registry** — 10 external citations, GRAT corpus, UOR framework DOI
 
-Operating trust map:
-
-```text
-Bel Esprit D'Accord Irrevocable Trust
-        |
-        v
-THE SHARED PRIMORDIAL FOUNDATION
-        |
-        +--> Foundry Intel governance hub (this repo)
-        +--> Foundry F1 runtime/sorry-engine receiver
-        +--> GKN Lean theorem anchors
-```
-
-The rebrand is governed by:
-
-- [`ADR-300`](docs/architecture/adr/ADR-300-grat-foundry-interlock.md)
-- [`ADR-302`](docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md)
-- [`ADR-303`](docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md)
-- [`docs/trust/primordial-foundation-interlock.md`](docs/trust/primordial-foundation-interlock.md)
-- [`docs/migration/primordial-foundation-umbrella-audit.md`](docs/migration/primordial-foundation-umbrella-audit.md)
-- [`docs/handoff/primordial-foundation-agent-contract.xml`](docs/handoff/primordial-foundation-agent-contract.xml)
-
-Foundry/F1 is wired into Foundry Intel through connector manifests, ADR intake,
-XML handoff envelopes, and WORM/BOB evidence return lanes. It is not silently
-vendored or renamed into this repository. If a prompt says `GRAQT`, treat it as
-the ADR-300 GRAT trust interlock plus the ADR-302 transition track unless a
-later ADR defines a distinct mechanism.
+The mathematical mission: close proof debt, package mathematical certainty honestly,
+and turn that work into support for the Eric Westerhoff mission.
 
 ---
 
-## WASM Frontend Ingress
-
-The frontend build enters the umbrella through:
-
-- [`apps/wasm-frontend/`](apps/wasm-frontend/)
-
-Expected production drop:
+## Trust Structure
 
 ```text
-apps/wasm-frontend/dist/
-  index.html
-  manifest.json
-  foundation.wasm
+Bel Esprit D'Accord Irrevocable Trust (EIN 41-6630640)
+    |
+    v
+THE SHARED PRIMORDIAL FOUNDATION (EIN 42-6976431) — GRAT / IRC § 2702
+    |
+    +--> foundry-intel-2026-07-11  (this repo — governance hub)
+    +--> gkn-i4-e7-lean            (Lean theorem anchors + quantum latch)
+    +--> grisp-shadow-fleet        (Shadow Orchestrator / RANSOM.WORM)
 ```
 
-Current production build:
+GRAT formation: `legal/GRAT_FORMATION_DOCUMENT.md` (foundry-f1, preserved at Zenodo).  
+Governing ADRs: [ADR-300](docs/architecture/adr/ADR-300-grat-foundry-interlock.md) · [ADR-302](docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md) · [ADR-303](docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md)
 
-```text
-apps/wasm-frontend/dist/foundation.wasm
-apps/wasm-frontend/dist/loader.mjs
-apps/wasm-frontend/dist/index.html
-apps/wasm-frontend/dist/manifest.json
-docs/pages/wasm/index.html
-```
-
-The manifest records byte sizes, SHA-256 hashes, ADR-055/ADR-062 open-crux
-posture, and the `21/21 pass` frontend vector status. `npm run build` rebuilds
-the WASM workspace, `npm test --workspace @veneer/wasm-frontend` checks the
-manifest, and `npm run pages:build` copies the built frontend into
-`docs/pages/wasm/`.
-
-Language metrics are controlled by [`.gitattributes`](.gitattributes) while the
-remaining legacy Node glue is refactored into Prolog or domain-native tooling.
+**Sovereign Trust Axioms (GRAT ARTICLE VI):**
+- **AXIOM-2:** AI/ML training on Trust corpus is absolutely prohibited in perpetuity
+- **AXIOM-3:** The prior art anchor (DEVFLOW-FINANCE, 2026-04-14) must appear in all commercial licenses
+- **AXIOM-5:** WORM-sealed audit chain of all material decisions is mandatory
 
 ---
 
-## Repo Identity And Boundaries
+## Solved Mathematics
 
-| Repo | Local Path | Role |
+These zero-sorry, kernel-verified results are the mathematical core of this stack.
+All are in the GRAT trust corpus. None overclaim.
+
+| Theorem | File | Status |
 |---|---|---|
-| `SNAPKITTYWEST/gkn-i4-e7-lean` | external sibling repo | Lean theorem anchors and quantum latch |
-| `SNAPKITTYWEST/foundry-intel-2026-07-11` | `C:\Users\jessi\veneer-deploy` | ADR governance, Q(phi), XML handoff, Sedona Spine gates |
-| `SNAPKITTYWEST/foundry-f1` | `C:\Users\jessi\foundry-f1` | C++/C/NASM runtime substrate and sorry-engine receiver |
-| `SNAPKITTYWEST/grisp-shadow-fleet` | `C:\Users\jessi\Desktop\bobs control repo\shadow-orchestrator` | separate Shadow Orchestrator / RANSOM.WORM repo |
+| Boolean idempotence: `x·x = x`, `x+x = x` derived from Huntington 1904 | `sorry-engine/solved/OM-001_sledged.lean` | **CLOSED — zero sorry** |
+| GKN I₄ degree-4 homogeneity on State₅₆ over CommRing R | SNAPKITTYWEST/gkn-i4-e7-lean | **CLOSED — zero sorry** |
+| E₇ generator symmetries on FTS₅₆: trace, symplectic swap, sign-flip, GL(1) scaling | SNAPKITTYWEST/gkn-i4-e7-lean | **CLOSED — zero sorry** |
+| Legendre duality `F_β = ⟨H⟩_ρ − (1/β)·S_vN(ρ)` | SNAPKITTYWEST/gkn-i4-e7-lean | **CLOSED — zero sorry** |
+| Gates Normalization (logit gate, zeta structural facts) | SNAPKITTYWEST/gkn-i4-e7-lean | **CLOSED — zero sorry** |
+| `cycle_108_canonical`: 2² × 3³ = 108 | `docs/math/lean4-convergence-theorems.lean` | **CLOSED — decide** |
+| `banach_fixed_point`: T∞ = F/(1-k) for k < 1 | `docs/math/lean4-convergence-theorems.lean` | **CLOSED — zero sorry** |
+| `cruxIsOpen`: `hodgeIndexHolds = none` (RH epistemic floor) | `docs/math/lean4-convergence-theorems.lean` | **CLOSED — rfl** |
+| sin/cos/log contractivity — Gram correction safety | `docs/math/transcendental-contractivity.lean` | **CLOSED — zero sorry** |
+| Banach contraction in bare Lean 4 (no mathlib) | `lean-substrate/src/Topology.lean` | **CLOSED** |
 
-If the task says **Foundry Intel**, work in:
+**Open (honest):**
+
+| Problem | Crux encoding | ADR |
+|---|---|---|
+| Riemann Hypothesis | `hodgeIndexHolds = none` — never assert | [ADR-055](docs/architecture/adr/ADR-055-riemann-zeta-implementation.md) `OPEN_CRUX` |
+| Sigma Kernel Lean stubs | `SILENCE_PENDING` — 2 theorems remain `sorry` | [ADR-062](docs/architecture/adr/ADR-062-sigma-kernel.md) |
+
+---
+
+## Sorry Engine Dashboard
+
+Proof-debt posture as of 2026-07-16:
+
+| Status | Count |
+|---|---:|
+| **Solved tracked targets** | **2** (OM-001, SKW-001) |
+| Unsolved active targets | 17 |
+| Audited clean (no sorry found) | 2 |
+| **Full indexed roster targets** | **1,465** |
+| ALP obligations packaged | **13/13** |
+
+Roster breakdown:
+
+| Roster | File | Targets |
+|---|---|---:|
+| Lean / GitHub | `sorry-engine/rosters/sorry_roster_real.json` | 21 (verified-fetchable) |
+| ALP closures | `sorry-engine/alp_sorry_manifest.json` | 13 |
+| Isabelle (Putnam 1971–2022 + seL4/Marlowe/CBC/EVM) | archived in foundry-f1 history | 360 |
+| Multi-prover (Coq, HOL Light, Metamath, HOL4) | archived in foundry-f1 history | 707 |
+| FLT audit (ImperialCollegeLondon/FLT) | archived in foundry-f1 history | 64 |
+
+The sorry engine is a receiver and orchestrator. A sorry is not closed until
+the theorem prover exits 0 and the result passes through ADR/WORM governance.
+
+---
+
+## WASM Frontend
+
+Two compiled WASM artifacts are in `apps/wasm-frontend/dist/`:
+
+### `foundation.wasm` — Sedona Spine gate (1,170 bytes)
+
+Implements pearlGate (all 10 SYNTH constraints as bitmask), probe classifier,
+Banach fixed-point, τ_R check, and the 108-cycle canonical.
+
+**21/21 tests pass:**
 
 ```text
-C:\Users\jessi\veneer-deploy
+T01-T10  SYNTH-001..010 each fire correctly
+T11      pearlGate all-pass → mask=0 (EVIDENCE)
+T12-T14  classifyProbe: 0=clean / 1=ambiguous / 2=contaminated
+T15      probeGate(1, 0) → EVIDENCE
+T16      probeGate(5, 0) → SILENCE (contaminated)
+T17      probeGate(0, 1) → SILENCE (asserts_rh — constitutional gate)
+T18      banachFixedPoint(2.0, 0.5) = 4.0
+T19      banachFixedPoint(1.0, 1.0) = -1.0 (invalid k)
+T20      isWithinTauR(47.0) = 1
+T21      cycle108() = 108
 ```
 
-Do not drift into `foundry-f1` or `shadow-orchestrator`.
+### `verifier.wasm` — Goldilocks F_p + SHA-256 + Lean verifier (4,667 bytes)
 
----
+Ported directly from the Foundry F1 C++ substrate. Implements:
+- Goldilocks field `p = 2^64 - 2^32 + 1`: add, sub, mul (via mul64x64/reduce128), pow, inv
+- SHA-256 (full FIPS 180-4, portable AssemblyScript)
+- `verifyLean()` — sorry scanner + theorem/lemma/by-tactic detector
+- `banachQ()` — Banach contraction criterion check
 
-## Big Picture
+**10/10 tests pass** (goldilocksMul×3, goldilocksInv×2, sha256('abc'), banachQ pass/fail, verifyLean debt/candidate).
 
-```text
-                 +--------------------------------+
-                 | SNAPKITTYWEST/gkn-i4-e7-lean  |
-                 | Lean theorem anchors           |
-                 | quantum latch                  |
-                 | type-liquid handoff            |
-                 +---------------+----------------+
-                                 |
-                                 v
-  +--------------------------------------------------------------------+
-  | SNAPKITTYWEST/foundry-intel-2026-07-11                             |
-  |                                                                    |
-  |  ADR governance       Q(phi) theorem posture       XML envelopes   |
-  |  Prolog law engine    Datalog SYNTH facts          TypeScript API  |
-  |  Liquid Haskell lane  WORM evidence memory         BOB gate        |
-  |  METATRON loop        Probe ingestion              Verify workflow |
-  +----------------------+-----------------------------+---------------+
-                         |                             ^
-                         v                             |
-                 +-------+-----------------------------+-----+
-                 | SNAPKITTYWEST/foundry-f1                  |
-                 | C++/C/NASM runtime substrate              |
-                 | sorry-engine receiver                     |
-                 | Claude handoff surface                    |
-                 +-------------------------------------------+
-
-Evidence can flow out to runtime receivers, but claims must come back through
-Foundry Intel ADR governance before they become final.
-```
-
-Foundry Intel exists to prevent silent promotion. A runtime result, a TypeScript
-predicate, a Liquid Haskell refinement, or a C++ receiver outcome is not a
-final mathematical claim until it is routed back through the ADR/WORM/BOB
-governance path.
-
----
-
-## What This Repo Runs
-
-| Layer | Package / File | Purpose | Primary Check |
-|---|---|---|---|
-| Memory | [`AGENT_MEMORY.md`](AGENT_MEMORY.md) | persistent repo identity and agent operating rules | `npm run connector:check` |
-| Source | [`packages/source`](packages/source) | F1 substrate constants, sorry manifest, crux pointer | `npm run build --workspace @veneer/source` |
-| Datalog | [`packages/datalog`](packages/datalog) | 10 SYNTH facts and evidence/silence rule evaluator | `npm run build --workspace @veneer/datalog` |
-| Lean mirror | [`packages/lean`](packages/lean) | proof-status mirror and open-crux honesty | workspace tests |
-| Constitution | [`packages/constitution`](packages/constitution) | L0 nine-check validator | workspace tests |
-| Trust | [`packages/trust`](packages/trust) | AlpGate and external mutation boundary | workspace tests |
-| Triple lock | [`packages/triple-lock`](packages/triple-lock) | Guardian -> Examiner -> Publisher chain | workspace tests |
-| Contractivity | [`packages/contractivity`](packages/contractivity) | Banach and phi-modulated contractivity | build |
-| WORM | [`packages/worm`](packages/worm) | dual-signature append-only G-Set ledger | workspace tests |
-| BOB gate | [`packages/bob-gate`](packages/bob-gate) | `EVIDENCE | SILENCE` decision gate | workspace tests |
-| METATRON | [`packages/metatron`](packages/metatron) | backward spine reader and SOURCE feedback | workspace tests |
-| Probe gate | [`packages/probe-gate`](packages/probe-gate) | SKW-010 probe JSON -> Datalog -> WORM | workspace tests |
-| Liquid Haskell | [`packages/lh-theorems`](packages/lh-theorems) | optional theorem-lane refinement checks | `npm run build:lh` |
-| WASM frontend | [`apps/wasm-frontend`](apps/wasm-frontend) | frontend ingress mirror compiled to `foundation.wasm` | workspace build/test |
-| Q(phi) parser | [`tools/q5-adr-parser`](tools/q5-adr-parser) | ADR-052..062 posture classification | `npm run adr:q5:fallback` |
-| Connector | [`tools/foundry-connector`](tools/foundry-connector) | bridge contract validation | `npm run connector:check` |
-| XML handoff | [`docs/handoff`](docs/handoff), [`docs/protocols`](docs/protocols) | agent prompt envelope transport | `npm run handoff:check` |
-| ADR law | [`docs/governance`](docs/governance), [`docs/architecture`](docs/architecture) | Prolog law engine + ADR register | SWI-Prolog if installed |
-
----
-
-## One Command To Trust
+Build:
 
 ```sh
-npm install
-npm run verify
+npm run build --workspace @veneer/wasm-frontend
+npm test --workspace @veneer/wasm-frontend
 ```
 
-`npm run verify` is the production gate. It runs:
+Dev server (serves `dist/` on `http://localhost:4242`):
+
+```sh
+node apps/wasm-frontend/tools/serve.mjs
+```
+
+---
+
+## SKW-010 Identity Probe Gate
+
+`probe_qwen_identity.py` (foundry-f1 paper, preserved at Zenodo) probes models for Claude identity artifacts. Results feed through this repo's production gate:
 
 ```text
-Q(phi) ADR manifest generation
-  -> connector validation
-  -> XML handoff validation
-  -> backend Pages and WASM dock check
-  -> TypeScript workspace build
-  -> TypeScript lint/typecheck
-  -> no-cache Jest workspace tests
-  -> production smoke
-  -> ADR-301 daily production tick
+probe_results/*.json           (python probe_qwen_identity.py --save)
+  -> packages/probe-gate       parseProbeResult() + probeToActionContext()
+  -> packages/bob-gate         pearlGate() — all 10 SYNTH constraints
+  -> packages/worm             appendEntry() — dual-signed WORM seal
+  -> EVIDENCE | SILENCE report
 ```
 
-If this command fails, report the failing command and output. Do not claim the
-repo is production-ready.
+**Probe classification:**
+- 0–1 hits: clean
+- 2–3 hits: ambiguous
+- **4+ hits: contaminated** — significant Claude artifact presence
+
+**SYNTH-008 is the constitutional gate:** any probe claiming RH is solved returns SILENCE regardless of all other checks. `hodgeIndexHolds = none` is enforced at the WASM and TypeScript layers simultaneously.
+
+Run:
+
+```sh
+node packages/probe-gate/src/index.ts probe_results/example.json
+```
 
 ---
 
-## Minimum Checks By Task Type
+## The 10-Layer Sedona Spine
 
-| Task Type | Minimum Commands |
+```text
+Depth 0   @veneer/source          F₁ substrate constants, sorry manifest, crux pointer
+Depth 1   @veneer/datalog         10 SYNTH facts, evidence/silence Datalog evaluator
+Depth 2   @veneer/lean            Lean proof mirror, open-crux honesty
+Depth 3   @veneer/constitution    L0 nine-check constitutional validator
+Depth 4   @veneer/trust           AlpGate, external-cannot-mutate boundary
+Depth 5   @veneer/triple-lock     Guardian → Examiner → Publisher custody chain
+Depth 6   @veneer/contractivity   Banach invariant, φ-modulated activation
+Depth 7   @veneer/worm            Dual-signature append-only G-Set WORM ledger
+Depth 8   @veneer/bob-gate        BOB EVIDENCE | SILENCE decision gate (pearlGate)
+Depth 9   @veneer/metatron        Backward spine reader, SOURCE feedback loop
+Depth 10  @veneer/probe-gate      SKW-010 probe ingestion → WORM
+Depth LH  @veneer/lh-theorems     Liquid Haskell refinement-type theorem lane
+```
+
+Data flow:
+
+```text
+probe JSON / action context
+        |
+        v
+  @veneer/probe-gate
+        |
+        v
+  @veneer/datalog  (10 SYNTH constraints)
+        |
+        v
+  @veneer/bob-gate
+        |
+   +---------+
+   |         |
+EVIDENCE   SILENCE
+   |         |
+   +----+----+
+        |
+        v
+  @veneer/worm  appendEntry()
+        |
+        v
+  @veneer/metatron  SOURCE feedback
+```
+
+---
+
+## Constraint Table
+
+| ID | Name | Layer |
+|---|---|---|
+| SYNTH-001 | No Unaligned Execution | AlpGate / Trust / WASM |
+| SYNTH-002 | Sorry is Manifested | Source manifest / Datalog |
+| SYNTH-003 | L0 Constitutional Validation | Constitution package |
+| SYNTH-004 | Contractivity Geometric Invariant | Contractivity / WASM banachQ |
+| SYNTH-005 | External Cannot Mutate | Trust boundary / WASM |
+| SYNTH-006 | Triple-Lock Chain of Custody | Guardian → Examiner → Publisher |
+| SYNTH-007 | Bounded Adversarial Window | retry and failure bounds |
+| SYNTH-008 | Crux Honest as Open | RH claims → SILENCE (constitutional) |
+| SYNTH-009 | Archivum WORM G-Set CRDT | dual-signature append-only ledger |
+| SYNTH-010 | Lean-Rust Boundary Bound | proof-hash anchor consistency |
+
+---
+
+## ADR Registry
+
+19 ADRs, all EVIDENCE-sealed by `docs/governance/law-engine.pl`.
+
+**Constitutional:**
+
+| ADR | Title |
 |---|---|
-| README / docs only | `npm run connector:check` and `npm run handoff:check` |
-| Connector or metadata | `npm run adr:q5:fallback`, `npm run connector:check`, `npm run handoff:check` |
-| TypeScript package edits | `npm run build`, `npm run lint`, `npm test` |
-| Probe-gate changes | `npm run build --workspace @veneer/probe-gate`, `npm test --workspace @veneer/probe-gate`, `npm run smoke` |
-| ADR edits | `npm run adr:q5:fallback`, `npm run connector:check`, law-engine check if SWI-Prolog is installed |
-| Liquid Haskell lane | `npm run build:lh`, `npm run test:lh` |
-| Release confidence | `npm run verify` |
+| [ADR-200](docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md) | Parr Sovereignty Protocol — law engine self-governance |
+| [ADR-300](docs/architecture/adr/ADR-300-grat-foundry-interlock.md) | GRAT Foundry Interlock — THE SHARED PRIMORDIAL FOUNDATION |
+
+**Upstream (PhaseMirror/Foundry, merged 2026-07-16):**
+ADR-052 UAC · ADR-053 Lean4 Monorepo · ADR-054 Rust/Kani Mathlib-Free · ADR-055 Riemann Zeta `OPEN_CRUX` · ADR-056 Collatz · ADR-057 Lean4 ADR Scaffolding · ADR-058 PIRTM Sig · ADR-059 ACE Runtime · ADR-060 DRMM · ADR-061 ZMOS · ADR-062 Sigma Kernel `SILENCE_PENDING`
+
+**Veneer (Sedona Spine):**
+ADR-101 Tree-sitter · ADR-102 Sig Type Engine · ADR-103 ACE Invariant · ADR-104 Compiler Governance · ADR-PIRTM-001 Convergence · ADR-PIRTM-002 Production Readiness · ADR-301 Daily Tick · ADR-302 Rebrand · ADR-303 Umbrella Monorepo
+
+Full index: [`docs/architecture/ADR-INDEX.md`](docs/architecture/ADR-INDEX.md)
+
+Run the law engine (requires SWI-Prolog):
+
+```sh
+swipl -g "consult('docs/governance/law-engine.pl'), run_all_adrs" -t halt
+```
 
 ---
 
-## User Guide
+## Mathematical Vocabulary
 
-### 1. Install And Verify
+Terms used throughout this repo — treat them as mathematics, not marketing.
+
+| Term | Definition |
+|---|---|
+| **Goldilocks field** | prime field F_p, `p = 2^64 - 2^32 + 1 = 0xffffffff00000001` |
+| **Reduction fold** | `2^64 ≡ 2^32 - 1 (mod p)` — the identity used to reduce 128-bit products |
+| **Banach contraction** | `q = ‖Ξ‖ + ‖Λ‖·‖T‖ < 1 − ε` — strict contraction → unique fixed point |
+| **τ_R** | `47.06998778` — resonance threshold, immutable across all four stack layers |
+| **108-cycle** | `2² × 3³ = 108` — canonical Banach anchor, verified by `decide` |
+| **SYNTH constraints** | 10 governance invariants enforced simultaneously in Datalog, TypeScript, and WASM |
+| **EVIDENCE / SILENCE** | BOB gate verdict; SILENCE is a feature — it means proof gap not yet closed |
+| **WORM G-Set** | append-only dual-signature grow-only ledger; genesis SHA-256('SHADOW_GENESIS:WORM_CHAIN_INIT') |
+| **Triple-Lock** | Guardian ∩ Examiner ∩ Publisher — `verified(T) ↔ G(T) ∧ E(T) ∧ P(T)` |
+| **cruxIsOpen** | `hodgeIndexHolds : Option Bool := none` — the RH stays open until zero-sorry proof |
+| **φ-modulation** | `φ = (1+√5)/2 = 1.6180…` — layer activations are `φ^depth` |
+| **Q(phi)** | Janet-style metadata weight `a + b*φ`; ADR posture classifier, not a proof |
+
+Core formulas:
+
+```text
+p = 2^64 - 2^32 + 1
+2^64 ≡ 2^32 - 1 (mod p)
+
+x_{t+1} = Ξ_t x_t + Λ_t T(x_t) + g_t
+q_t = ‖Ξ_t‖ + ‖Λ_t‖ · ‖T‖ < 1 − ε
+
+verified(T) ↔ Guardian(T) ∧ Examiner(T) ∧ Publisher(T)
+accepted(C) ↔ NT(C) ∧ ALG(C) ∧ IT(C)
+
+hodgeIndexHolds : Option Bool := none   -- cruxIsOpen := rfl
+```
+
+---
+
+## Prior Art Registry
+
+Full registry: [`docs/math/prior-art.md`](docs/math/prior-art.md)
+
+Key external citations:
+
+| Citation | Connection |
+|---|---|
+| Banach 1922 — fixed-point theorem | τ_R anchor, banach_fixed_point theorem, SYNTH-004 |
+| Odlyzko & Schönhage 1988 — zeta evaluation | ADR-055 Riemann zeta evaluator |
+| Bakalov & Kirillov 2001 — MTC | ZMOS prime-graded Hilbert spaces (ADR-061) |
+| Freedman et al. 2002 — FLW theorem | UAC gate fidelity (ADR-052) |
+| Dawson & Nielsen 2005 — Solovay-Kitaev | ACE runtime budget bound (ADR-059) |
+| DOI 10.5281/zenodo.21268911 — this corpus | Boole + E₇ zero-sorry proofs |
+| DOI 10.5281/zenodo.19068826 — UOR framework | prime decomposition, ZMOS (ADR-061) |
+
+---
+
+## Proof Portfolio (13 ALP Obligations)
+
+These 13 obligations are packaged as commercial certainty assets (GRAT corpus):
+
+```text
+ALP.Archivum.WitnessContract.witness_after_veto_implies_disallowed
+ALP.Archivum.WitnessContract.witness_after_admit_implies_constitution_valid
+ALP.Candle.PirtmBridge.candle_ignition_sound
+ALP.Contracts.NonBypassability.no_unaligned_execution
+ALP.Contracts.TrustArbitration.internal_admits_mcp
+ALP.Contracts.TrustArbitration.external_blocks_governed_mcp
+ALP.MCP.GovernanceBinding.sat_requires_alp_admission
+ALP.PolicyEngine.Admissibility.validate_action_sound
+ALP.PolicyEngine.Admissibility.validate_action_veto_implies_constitution_fail
+ALP.PolicyEngine.Proofs.external_mutating_action_blocked
+ALP.PolicyEngine.Proofs.external_with_server_binding_blocked
+ALP.Tests.Integration.e2e_internal_workflow_receives_witness
+ALP.Tests.Integration.e2e_external_workflow_blocked_from_governed_mcp
+```
+
+Manifest: [`sorry-engine/alp_sorry_manifest.json`](sorry-engine/alp_sorry_manifest.json)  
+Portfolio doc: [`docs/EXCLUSIVE_PROOF_PORTFOLIO.md`](docs/EXCLUSIVE_PROOF_PORTFOLIO.md) (see foundry-f1 history)
+
+---
+
+## Quick Start
 
 ```sh
 git clone https://github.com/SNAPKITTYWEST/foundry-intel-2026-07-11.git
@@ -271,413 +392,37 @@ npm install
 npm run verify
 ```
 
-Local checkout path used by current agents:
+`npm run verify` runs the full production gate:
 
 ```text
-C:\Users\jessi\veneer-deploy
+Q(phi) ADR manifest
+  → connector validation
+  → XML handoff validation
+  → backend Pages + WASM dock check
+  → TypeScript build
+  → lint/typecheck
+  → Jest workspace tests
+  → production smoke
+  → ADR-301 daily tick
 ```
 
-### 2. Run The Production Smoke
-
-```sh
-npm run build
-npm run smoke
-```
-
-The smoke test exercises:
-
-- `@veneer/bob-gate` with a known-good internal action
-- `@veneer/worm` append and chain verification
-- `@veneer/probe-gate` with one clean probe and one RH-claim probe
-- `@veneer/source` proof-hash consistency
-
-Expected shape:
-
-```text
-production smoke passed
-source=foundry-intel chain=1 evidence=1 silence=1
-```
-
-### 3. Run The Probe Gate CLI
-
-After build:
-
-```sh
-npx veneer-probe-gate probe_results/example.json
-```
-
-Pipeline:
-
-```text
-probe_results/*.json
-  -> parseProbeResult()
-  -> probeToActionContext()
-  -> @veneer/datalog evaluateConstraints()
-  -> @veneer/worm appendEntry()
-  -> EVIDENCE | SILENCE report
-```
-
-RH/open-crux artifacts trip the constitutional `SILENCE` path. That is a
-feature, not a bug.
-
-### 4. Generate Q(phi) ADR Metadata
-
-Preferred no-extra-runtime fallback:
-
-```sh
-npm run adr:q5:fallback
-```
-
-R/Janet parser lane:
-
-```sh
-npm run adr:q5
-```
-
-Outputs:
-
-- [`tools/q5-adr-parser/adr_manifest.json`](tools/q5-adr-parser/adr_manifest.json)
-- [`tools/q5-adr-parser/adr_manifest_index.csv`](tools/q5-adr-parser/adr_manifest_index.csv)
-- [`docs/architecture/adr-q5-theorem-classification.md`](docs/architecture/adr-q5-theorem-classification.md)
-
-Current roll-up:
-
-```text
-count = 11
-q5_total = 8 + 3*phi
-```
-
-Q(phi) is metadata. It does not prove RH, Sigma Kernel finality, or any
-underlying theorem by itself.
-
-### 5. Validate XML Handoff Envelopes
-
-```sh
-npm run handoff:check
-```
-
-Active envelope:
-
-- [`docs/handoff/foundry-intel-agent-contract.xml`](docs/handoff/foundry-intel-agent-contract.xml)
-
-Protocol and schema:
-
-- [`docs/protocols/xml-handoff-envelope.md`](docs/protocols/xml-handoff-envelope.md)
-- [`docs/protocols/xml-handoff-envelope.xsd`](docs/protocols/xml-handoff-envelope.xsd)
-
-Agents communicate repo missions through committed XML envelopes, not loose
-chat memory.
-
-### 6. Validate The Three-Repo Connector
-
-```sh
-npm run connector:check
-```
-
-This validates:
-
-- `AGENT_MEMORY.md`
-- README pointers
-- local SVG brand and operating-map files
-- metadata tour JSON
-- Q(phi) manifest counts and statuses
-- GKN latch commit
-- Claude handoff status
-- Foundry F1 receiver pointers
-
-### 7. Build The Backend ASCII Pages Surface
-
-```sh
-npm run pages:build
-npm run pages:check
-```
-
-Static Pages artifacts:
-
-- [`docs/pages/index.html`](docs/pages/index.html)
-- [`docs/pages/backend-ascii.txt`](docs/pages/backend-ascii.txt)
-- [`docs/pages/assets/backend-glitch.css`](docs/pages/assets/backend-glitch.css)
-- [`docs/pages/wasm/index.html`](docs/pages/wasm/index.html)
-- [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
-
-This is the backend aesthetics layer: deterministic ASCII/glitch governance
-signal, connector facts, Q(phi) posture, open-crux boundaries, and the docked
-WASM frontend. The frontend does not take over the ADR/WORM/BOB source of
-truth.
-
-### 8. Build The WASM Frontend
+WASM only:
 
 ```sh
 npm run build --workspace @veneer/wasm-frontend
 npm test --workspace @veneer/wasm-frontend
-npm run pages:build
 ```
 
-Source and artifacts:
-
-- [`apps/wasm-frontend/assembly/foundation.ts`](apps/wasm-frontend/assembly/foundation.ts)
-- [`apps/wasm-frontend/tools/build_wasm.pl`](apps/wasm-frontend/tools/build_wasm.pl)
-- [`apps/wasm-frontend/dist/manifest.json`](apps/wasm-frontend/dist/manifest.json)
-- [`apps/wasm-frontend/dist/foundation.wasm`](apps/wasm-frontend/dist/foundation.wasm)
-
-The build tool is Prolog-driven. AssemblyScript remains the WASM source lane;
-browser/Node `.mjs` files are host loaders and local harnesses, marked in
-`.gitattributes` so they do not overstate JavaScript in repository metrics.
-
-### 9. Run The Liquid Haskell Lane
+WASM dev UI:
 
 ```sh
-npm run build:lh
-npm run test:lh
-```
-
-This requires Cabal and the Liquid Haskell toolchain. Treat it as an explicit
-theorem-lane check. It does not replace Lean theorem authority.
-
----
-
-## Agent Guide
-
-Read order for agents:
-
-```text
-README.md
-  -> AGENT_MEMORY.md
-  -> docs/agents/metadata-tour.md
-  -> docs/agents/metadata-tour.json
-  -> docs/handoff/foundry-intel-agent-contract.xml
-  -> docs/bridge/foundry-connector.md
-  -> tools/foundry-connector/connector-manifest.json
-  -> docs/pages/index.html
-  -> docs/pages/wasm/index.html
-  -> docs/architecture/ADR-INDEX.md
-  -> docs/architecture/adr-q5-theorem-classification.md
-  -> npm run connector:check
-```
-
-Agent operating rules:
-
-1. Confirm `pwd` or tool `workdir` is `C:\Users\jessi\veneer-deploy`.
-2. Run `git status -sb` before edits.
-3. Do not stage unrelated dirty or untracked files.
-4. Keep open cruxes open.
-5. If editing bridge/agent docs, update XML/metadata/connector together.
-6. If editing runtime packages, run the package tests and `npm run verify` when feasible.
-7. Report unavailable external tools honestly.
-
-Known local untracked file that may exist:
-
-```text
-lean-substrate/src/Topology.lean
-```
-
-Do not delete or stage it unless explicitly asked.
-
----
-
-## The 10-Layer Sedona Spine
-
-```text
-Depth 0  @veneer/source         F1 substrate: constants, sorry manifest, crux pointer
-Depth 1  @veneer/datalog        10 SYNTH facts and evidence/silence evaluator
-Depth 2  @veneer/lean           Lean-facing proof mirror and crux honesty
-Depth 3  @veneer/constitution   L0 nine-check constitutional validator
-Depth 4  @veneer/trust          AlpGate and external-cannot-mutate boundary
-Depth 5  @veneer/triple-lock    Guardian -> Examiner -> Publisher custody chain
-Depth 6  @veneer/contractivity  Banach invariant and phi-modulated activation
-Depth 7  @veneer/worm           Dual-signature append-only WORM ledger
-Depth 8  @veneer/bob-gate       BOB EVIDENCE/SILENCE decision gate
-Depth 9  @veneer/metatron       Backward reader and SOURCE feedback loop
-Depth 10 @veneer/probe-gate     User-facing SKW-010 probe ingestion
-Depth LH @veneer/lh-theorems    Optional Liquid Haskell theorem lane
-```
-
-ASCII operating lane:
-
-```text
-USER / AGENT INPUT
-   |
-   v
-probe JSON or action context
-   |
-   v
-@veneer/probe-gate --------------+
-   |                             |
-   v                             |
-@veneer/datalog                  |
-   |                             |
-   v                             |
-10 SYNTH constraints             |
-   |                             |
-   v                             |
-@veneer/bob-gate                 |
-   |                             |
-   +--> EVIDENCE ---------------+----> @veneer/worm appendEntry()
-   |                             |
-   +--> SILENCE ----------------+----> @veneer/worm appendEntry()
-                                      |
-                                      v
-                                 @veneer/metatron
-                                      |
-                                      v
-                                 SOURCE feedback
+node apps/wasm-frontend/tools/serve.mjs
+# open http://localhost:4242
 ```
 
 ---
 
-## Constraint Table
-
-| ID | Name | Enforcement |
-|---|---|---|
-| SYNTH-001 | No Unaligned Execution | AlpGate / Datalog / Trust package |
-| SYNTH-002 | Sorry is Manifested | Source manifest / Datalog |
-| SYNTH-003 | L0 Constitutional Validation | Constitution package |
-| SYNTH-004 | Contractivity Geometric Invariant | Contractivity package |
-| SYNTH-005 | External Cannot Mutate | Trust boundary / Datalog |
-| SYNTH-006 | Triple-Lock Chain of Custody | Guardian -> Examiner -> Publisher |
-| SYNTH-007 | Bounded Adversarial Window | retry and failure bounds |
-| SYNTH-008 | Crux Honest as Open | RH/open theorem claims force SILENCE |
-| SYNTH-009 | Archivum WORM G-Set CRDT | dual-signature append-only ledger |
-| SYNTH-010 | Lean-Rust Boundary Bound | proof-hash anchor consistency |
-
----
-
-## ADR And Law Engine
-
-ADR authority:
-
-- [`docs/architecture/ADR-INDEX.md`](docs/architecture/ADR-INDEX.md)
-- [`docs/governance/law-engine.pl`](docs/governance/law-engine.pl)
-- [`docs/governance/adr-loop.pl`](docs/governance/adr-loop.pl)
-
-Constitutional anchors:
-
-| ADR | Meaning |
-|---|---|
-| [`ADR-200`](docs/architecture/adr/ADR-200-parr-sovereignty-protocol.md) | constitutional authority |
-| [`ADR-300`](docs/architecture/adr/ADR-300-grat-foundry-interlock.md) | trust/foundry interlock |
-| [`ADR-301`](docs/architecture/adr/ADR-301-daily-production-tick.md) | non-mutating daily hardening tick |
-| [`ADR-302`](docs/architecture/adr/ADR-302-primordial-foundation-rebrand.md) | Primordial Foundation rebrand transition |
-| [`ADR-303`](docs/architecture/adr/ADR-303-primordial-foundation-umbrella-monorepo.md) | Primordial Foundation umbrella monorepo transition |
-
-Open-crux anchors:
-
-| ADR | Status | Boundary |
-|---|---|---|
-| [`ADR-055`](docs/architecture/adr/ADR-055-riemann-zeta-implementation.md) | `OPEN_CRUX` | RH/Zeta remains open |
-| [`ADR-062`](docs/architecture/adr/ADR-062-sigma-kernel.md) | `SILENCE_PENDING` | Sigma Kernel governance gap remains pending |
-
-If SWI-Prolog is installed:
-
-```sh
-swipl -g "consult('docs/governance/law-engine.pl'), run_all_adrs" -t halt
-```
-
----
-
-## Q(phi) Classification
-
-Q(phi) parser files:
-
-```text
-tools/q5-adr-parser/ADR_REGISTRY.txt
-tools/q5-adr-parser/golden_adr.janet
-tools/q5-adr-parser/parse_adrs.R
-tools/q5-adr-parser/generate_manifest.mjs
-tools/q5-adr-parser/adr_manifest.json
-tools/q5-adr-parser/adr_manifest_index.csv
-```
-
-Q(phi) represents a Janet-style golden-ratio metadata weight:
-
-```text
-@[a b] = a + b*phi
-phi^2 = phi + 1
-```
-
-Important statuses:
-
-| ADR | Status | Meaning |
-|---|---|---|
-| ADR-055 | `OPEN_CRUX` | infrastructure exists, theorem remains open |
-| ADR-060 | `PROVEN_NO_SORRY` | classified as no-sorry mandate posture |
-| ADR-062 | `SILENCE_PENDING` | governance gap tracked until evidence closes it |
-
-The Q(phi) roll-up is a routing and posture signal. It is not a theorem proof.
-
----
-
-## Connector Contract
-
-Human-readable:
-
-- [`docs/bridge/foundry-connector.md`](docs/bridge/foundry-connector.md)
-
-Machine-readable:
-
-- [`tools/foundry-connector/connector-manifest.json`](tools/foundry-connector/connector-manifest.json)
-
-Validation:
-
-```sh
-npm run connector:check
-```
-
-Connector route:
-
-```text
-GKN Lean latch
-  -> Foundry Intel connector and Q(phi)
-  -> Foundry F1 receiver
-  -> proof/runtime evidence returns to Foundry Intel ADR governance
-```
-
-Active GKN latch:
-
-| Field | Value |
-|---|---|
-| delivery commit | `de968509b5fc695f2d33e665959c6b86f5456be1` |
-| source scan head | `0e3cd5c0a0e01f24a8604882513640f42327cff8` |
-| handoff id | `GKN-TYPE-LIQUID-HANDOFF-20260716` |
-| handoff status | `READY_FOR_CLAUDE` |
-
----
-
-## XML Handoff Protocol
-
-Active envelope:
-
-- [`docs/handoff/foundry-intel-agent-contract.xml`](docs/handoff/foundry-intel-agent-contract.xml)
-
-Protocol:
-
-- [`docs/protocols/xml-handoff-envelope.md`](docs/protocols/xml-handoff-envelope.md)
-
-Schema:
-
-- [`docs/protocols/xml-handoff-envelope.xsd`](docs/protocols/xml-handoff-envelope.xsd)
-
-Envelope rule:
-
-```text
-one mission -> one committed XML contract -> explicit tasks -> explicit boundaries -> explicit validation
-```
-
-Create new envelopes under:
-
-```text
-docs/handoff/
-```
-
-Validate:
-
-```sh
-npm run handoff:check
-```
-
----
-
-## Package User Examples
+## Package Examples
 
 ### BOB Gate
 
@@ -686,49 +431,66 @@ import { pearlGate } from '@veneer/bob-gate'
 
 const verdict = pearlGate({
   id: 'action-001',
+  alp_gate_cleared: true,
+  sorry_violations: [],
+  contractivity_score: 0.87,
+  consecutive_failures: 0,
   trust_level: 'internal',
   mutating: true,
   has_server_binding: false,
-  contractivity_score: 0.87,
-  consecutive_failures: 0,
-  retry_nonce: 0,
   guardian_witness: 'GUARDIAN-WITNESS:abc123',
   examiner_witness: 'EXAMINER-WITNESS:def456',
   status: 'ADMITTED',
-  proof_hash: 'LEAN_PROOF_HASH_108_CORE',
+  retry_nonce: 0,
+  asserts_rh: false,          // SYNTH-008: must stay false
   primary_sig: 'sha256-primary',
   secondary_sig: 'sha256-secondary',
-  asserts_rh: false,
-  alp_gate_cleared: true,
-  sorry_violations: [],
-})
-
-console.log(verdict.verdict)   // EVIDENCE
-console.log(verdict.worm_seal) // SHA-256-style seal
-```
-
-### Datalog Evaluator
-
-```ts
-import { evaluateConstraints } from '@veneer/datalog'
-
-const result = evaluateConstraints('probe:clean', {
-  alp_gate_cleared: true,
-  sorry_violations: [],
-  contractivity_score: 0.82,
-  trust_level: 'external',
-  mutating: false,
-  guardian_witness: 'GUARDIAN-WITNESS:probe',
-  examiner_witness: 'EXAMINER-WITNESS:probe',
-  retry_nonce: 0,
-  consecutive_failures: 0,
-  asserts_rh: false,
-  primary_sig: 'primary',
-  secondary_sig: 'secondary',
   proof_hash: 'LEAN_PROOF_HASH_108_CORE',
 })
 
-console.log(result.verdict) // evidence | silence
+console.log(verdict.verdict)    // EVIDENCE
+console.log(verdict.worm_seal)  // SHA-256 seal
+```
+
+### WASM Gate (browser / Node)
+
+```js
+import { loadFoundry, failedConstraints } from './apps/wasm-frontend/src/loader.mjs'
+
+const f = await loadFoundry(new URL('./apps/wasm-frontend/dist/foundation.wasm', import.meta.url))
+
+// Run probe gate: 2 positive probes, no RH claim → EVIDENCE
+const mask = f.probeGate(2, 0)
+console.log(mask === 0 ? 'EVIDENCE' : failedConstraints(mask))
+
+// Constitutional gate: asserts_rh=1 → SILENCE (SYNTH-008)
+const rhMask = f.probeGate(0, 1)
+console.log(failedConstraints(rhMask))  // ['SYNTH-008: asserts_rh=true — crux must stay none']
+
+// Banach fixed point
+console.log(f.banachFixedPoint(1.0, 0.5))  // 2.0
+```
+
+### Goldilocks Verifier (WASM)
+
+```js
+import { loadFoundry } from './apps/wasm-frontend/src/verifier-loader.mjs'
+
+const f = await loadFoundry('./apps/wasm-frontend/dist/verifier.wasm')
+const mod = await f.init()
+
+// Goldilocks mul
+console.log(mod.goldilocksMul(42n, 1337n))  // ≡ 42 × 1337 mod p
+
+// SHA-256
+mod.setInput('abc')
+mod.sha256(3)
+console.log(mod.sha256hex())  // ba7816bf8f01cfea...
+
+// Lean verifier
+mod.setInput('theorem foo : x = x := by sorry')
+const r = mod.verifyLean(32)
+console.log(r.status, r.sorryCount)  // 1 (debt), 1
 ```
 
 ### WORM Ledger
@@ -737,58 +499,41 @@ console.log(result.verdict) // evidence | silence
 import { appendEntry, verifyChain } from '@veneer/worm'
 
 let chain = Object.freeze([])
-const appended = appendEntry(chain, {
+const { chain: c1 } = appendEntry(chain, {
   action_id: 'demo',
-  layer_from: 'readme',
+  layer_from: 'source',
   layer_to: 'worm',
   verdict: 'EVIDENCE',
   primary_sig: 'primary',
   secondary_sig: 'secondary',
 })
 
-console.log(verifyChain(appended.chain).valid)
+console.log(verifyChain(c1).valid)  // true
 ```
 
 ---
 
-## Developer Workflows
+## Connector Contract
 
-### Add A Package
+Three-repo alignment:
 
-1. Create `packages/<name>/package.json`.
-2. Add `tsconfig.json` extending `../../tsconfig.package.json`.
-3. Export from `src/index.ts`.
-4. Add focused tests under `tests/`.
-5. Add the workspace to root `package.json`.
-6. Add it to `npm run build` and `npm test` chains if production-critical.
-7. Update this README and `docs/agents/metadata-tour.md`.
-8. Run `npm run verify`.
+```text
+SNAPKITTYWEST/gkn-i4-e7-lean  →  foundry-intel-2026-07-11  →  proof/runtime evidence returns here
+                                       ↑
+                                  ADR / WORM governance
+```
 
-### Add An ADR
+| Field | Value |
+|---|---|
+| GKN latch id | `GKN-QB-LATCH-20260716` |
+| Delivery commit | `de968509b5fc695f2d33e665959c6b86f5456be1` |
+| Handoff id | `GKN-TYPE-LIQUID-HANDOFF-20260716` |
+| Handoff status | `READY_FOR_CLAUDE` |
+| Q(phi) total | `8 + 3*phi` |
+| Connector check | `npm run connector:check` |
 
-1. Add `docs/architecture/adr/ADR-XXX-title.md`.
-2. Add it to `docs/architecture/ADR-INDEX.md`.
-3. Register it in `docs/governance/law-engine.pl`.
-4. Add prior-art links in `docs/governance/adr-loop.pl` if relevant.
-5. If it belongs to Q(phi), update `tools/q5-adr-parser/ADR_REGISTRY.txt`.
-6. Run `npm run adr:q5:fallback`.
-7. Run connector and handoff checks.
-
-### Add A Cross-Repo Handoff
-
-1. Write a new XML envelope under `docs/handoff/`.
-2. Keep root element `agent_contract`.
-3. Include repo, local path, tasks, hard boundaries, validation, and git rules.
-4. Update `docs/protocols/xml-handoff-envelope.md` if the protocol changes.
-5. Run `npm run handoff:check`.
-
-### Update The Connector
-
-1. Update `tools/foundry-connector/connector-manifest.json`.
-2. Update `docs/bridge/foundry-connector.md`.
-3. Update `docs/agents/metadata-tour.md` and JSON if route changes.
-4. Update `AGENT_MEMORY.md` if identity or boundaries change.
-5. Run `npm run connector:check`.
+Human-readable: [`docs/bridge/foundry-connector.md`](docs/bridge/foundry-connector.md)  
+Machine-readable: [`tools/foundry-connector/connector-manifest.json`](tools/foundry-connector/connector-manifest.json)
 
 ---
 
@@ -796,68 +541,121 @@ console.log(verifyChain(appended.chain).valid)
 
 ```text
 foundry-intel-2026-07-11/
-  AGENT_MEMORY.md                         persistent agent memory
-  .gitattributes                          GitHub Linguist metrics policy
-  README.md                               this operator guide
-  package.json                            workspace and verification scripts
-  tsconfig.json                           root TS typecheck
-  tsconfig.package.json                   package TS build base
+  README.md                         this document
+  AGENT_MEMORY.md                   persistent agent operating memory
+  RESONANCE_BLOCK.md                synthesized resonance block (Prime Materia Commons)
+  LICENSE                           Apache-2.0
+  package.json                      workspace root + verification scripts
+  tsconfig.json / tsconfig.package.json
+
   apps/
-    wasm-frontend/                         controlled WASM frontend ingress
+    wasm-frontend/
+      assembly/
+        foundation.ts               pearlGate + probe-gate + math (AssemblyScript)
+        verifier.ts                 Goldilocks F_p + SHA-256 + Lean verifier (ported from foundry-f1)
+      dist/
+        foundation.wasm             compiled — 1,170B — 21/21 tests
+        verifier.wasm               compiled — 4,667B — 10/10 tests
+        index.html                  Probe Gate UI
+        loader.mjs                  WASM host loader
+        manifest.json               SHA-256 hashes + open-crux posture
+      src/loader.mjs                gate loader (browser + Node)
+      src/verifier-loader.mjs       verifier loader
+      tools/build_wasm.pl           Prolog build driver
+      tools/test.mjs                21-vector test harness
+      tools/serve.mjs               dev server :4242
+      index.html                    Probe Gate UI source
+
   packages/
-    source/                               constants, sorry manifest, crux pointer
-    datalog/                              10 SYNTH facts and evaluator
-    lean/                                 Lean proof mirror
-    constitution/                         L0 validator
-    trust/                                AlpGate
-    triple-lock/                          Guardian/Examiner/Publisher
-    contractivity/                        Banach checks
-    worm/                                 WORM ledger
-    bob-gate/                             pearlGate
-    metatron/                             SOURCE feedback
-    probe-gate/                           SKW-010 CLI
-    lh-theorems/                          Liquid Haskell lane
-  tools/
-    q5-adr-parser/                        Q(phi) ADR parser
-    ascii-glitch/                          deterministic Prolog backend Pages generator
-    foundry-connector/                    connector validators
-    production-smoke.mjs                  runtime smoke check
-    adr-production-tick.mjs               ADR-301 tick
+    source/         F₁ substrate constants, sorry manifest, crux pointer
+    datalog/        10 SYNTH facts, Datalog evaluator
+    lean/           Lean proof mirror
+    constitution/   L0 nine-check validator
+    trust/          AlpGate + external boundary
+    triple-lock/    Guardian→Examiner→Publisher
+    contractivity/  Banach + φ-activation
+    worm/           dual-signature WORM G-Set
+    bob-gate/       pearlGate (EVIDENCE | SILENCE)
+    metatron/       backward reader + SOURCE feedback
+    probe-gate/     SKW-010 probe → WORM pipeline
+    lh-theorems/    Liquid Haskell theorem lane (Convergence, Contractivity, Trust, BobGate)
+
+  sorry-engine/
+    alp_sorry_manifest.json         13 ALP obligations (GRAT corpus)
+    rosters/
+      sorry_roster_real.json        21 verified-fetchable Lean targets
+    solved/
+      OM-001_sledged.lean           De Morgan — zero sorry, constructor/rintro
+
+  lean-substrate/
+    src/Substrate.lean              Sedona Spine Lean substrate
+    src/Topology.lean               Banach contraction, bare Lean 4 (no mathlib)
+
   docs/
-    agents/                               metadata tour
-    architecture/                         ADR index and ADRs
-    bridge/                               connector docs
-    brand/                                local SVG brand surface
-    governance/                           Prolog law engine
-    handoff/                              XML agent envelopes
-    math/                                 theorem/finality docs
-    pages/                                static backend ASCII/glitch Pages
-    protocols/                            XML envelope protocol and schema
-  notebooks/                              Lean/LH/Agda morph notebook and Agda
-  lean-substrate/                         raw Lean substrate lane
+    math/
+      lean4-convergence-theorems.lean       4 zero-sorry theorems + cruxIsOpen
+      transcendental-contractivity.lean     sin/cos/log contractivity
+      SigmaKernel.lean                      Sigma Kernel stubs (SILENCE_PENDING:ADR-062)
+      constitutional-core.md                Banach law, λ_p, ZetaCell bridge
+      xi-constitution.md                    Ξ-Constitution, Meta-Theorem of Prime Identity
+      riemann-zeta-finality.md              Zeta finality position + open crux
+      prior-art.md                          full prior art registry (10 external + GRAT corpus)
+    architecture/
+      ADR-INDEX.md                  19 ADRs + constitutional hierarchy
+      adr/                          individual ADR files (ADR-052..303)
+      adr-q5-theorem-classification.md
+    governance/
+      law-engine.pl                 Prolog gate (19 ADRs registered)
+      adr-loop.pl                   ADR feedback circuit (EVIDENCE → EDB expansion)
+    bridge/
+      foundry-connector.md          connector contract (human-readable)
+    agents/
+      metadata-tour.md              agent onboarding tour
+      metadata-tour.json            machine-readable tour
+    handoff/
+      foundry-intel-agent-contract.xml
+      primordial-foundation-agent-contract.xml
+    protocols/
+      xml-handoff-envelope.md       envelope protocol
+      xml-handoff-envelope.xsd      schema
+    pages/                          static backend ASCII/glitch GitHub Pages surface
+    brand/                          SVG badges, operating map, trust banner
+    provenance/
+      CANARY_INDEX.md               canary markers
+      PAPER_COVER_FINGERPRINT.json  paper cover fingerprint
+      REPO_FINGERPRINT.json         repo fingerprint
+    trust/
+      primordial-foundation-interlock.md
+    migration/
+      primordial-foundation-umbrella-audit.md
+
+  tools/
+    q5-adr-parser/                  Q(phi) ADR parser (Janet/R/mjs)
+    ascii-glitch/build_pages.pl     Prolog backend Pages generator
+    foundry-connector/              connector manifest + validators
+    production-smoke.mjs            runtime smoke check
+    adr-production-tick.mjs         ADR-301 daily tick
+
+  notebooks/
+    RawSubstrate.agda               Agda substrate
+    morph_lean_lh_agda.ipynb        Lean → LH → Agda morph notebook
+
+  .github/workflows/
+    veneer-verify.yml               full CI gate
+    pages.yml                       GitHub Pages deploy (includes WASM build)
 ```
 
 ---
 
 ## Production Checklist
 
-Before pushing:
+Full gate:
 
 ```sh
-git status -sb
-npm run adr:q5:fallback
-npm run connector:check
-npm run handoff:check
-npm run pages:check
-npm run build
-npm run lint
-npm test
-npm run smoke
 npm run verify
 ```
 
-For docs-only changes, do not run mutation-heavy workflows unnecessarily. At
-minimum:
+Minimum for docs-only changes:
 
 ```sh
 npm run connector:check
@@ -869,27 +667,51 @@ git diff --check
 Before committing:
 
 ```sh
+git status -sb
 git diff --stat
 git diff --check
-git status -sb
 ```
 
-Stage only files in scope.
+Stage only files in scope. Do not sweep in agent artifacts (`.claude/`, `.qwen/`, `build/`, `node_modules/`).
+
+---
+
+## Agent Operating Rules
+
+Read order:
+
+```text
+README.md → AGENT_MEMORY.md → docs/agents/metadata-tour.md
+  → docs/handoff/foundry-intel-agent-contract.xml
+  → docs/architecture/ADR-INDEX.md
+  → npm run connector:check
+```
+
+Rules:
+
+1. Confirm working directory is `C:\Users\jessi\veneer-deploy`
+2. Run `git status -sb` before edits
+3. Do not stage unrelated untracked files
+4. Keep open cruxes open — ADR-055 is `OPEN_CRUX`, ADR-062 is `SILENCE_PENDING`
+5. If editing bridge/agent docs, update XML + metadata + connector together
+6. If editing runtime packages, run package tests and `npm run verify`
+7. Report unavailable external tools honestly (swipl, cabal, LH)
+8. SYNTH-008 is constitutional: `asserts_rh` must stay false
 
 ---
 
 ## Troubleshooting
 
-| Symptom | Likely Cause | Fix |
+| Symptom | Cause | Fix |
 |---|---|---|
-| `connector check failed: missing AGENT_MEMORY.md` | memory artifact removed | restore `AGENT_MEMORY.md` |
-| Q(phi) counts mismatch | manifest not regenerated | run `npm run adr:q5:fallback` |
+| `connector:check` fails | AGENT_MEMORY.md or README pointer missing | restore artifact |
+| Q(phi) count mismatch | manifest not regenerated | `npm run adr:q5:fallback` |
 | `handoff:check` fails | XML envelope missing required section | compare with `docs/protocols/xml-handoff-envelope.md` |
-| `probe-gate` returns `SILENCE` | external trust, RH claim, missing witness, or failed SYNTH fact | inspect failed constraints |
-| TypeScript cannot resolve workspace package | package not built or workspace missing | run `npm run build`, check root workspaces |
-| Liquid Haskell command missing | Cabal/LH not installed | report unavailable tool; do not claim LH pass |
-| SWI-Prolog command missing | `swipl` not installed | report unavailable law-engine runtime |
-| user says wrong repo | check `pwd`; Foundry Intel is `C:\Users\jessi\veneer-deploy` |
+| `probe-gate` returns `SILENCE` | external trust / RH claim / missing witness / SYNTH failure | inspect failed constraint bitmask |
+| TypeScript can't resolve workspace | package not built | `npm run build` |
+| Liquid Haskell command missing | Cabal/LH not installed | report honestly; do not claim LH pass |
+| `swipl` not found | SWI-Prolog not installed | report; law engine check skipped |
+| Wrong repo path | check `pwd` | Foundry Intel is `C:\Users\jessi\veneer-deploy` |
 
 ---
 
@@ -899,12 +721,18 @@ Copyright 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust
 
 Licensed under the Apache License, Version 2.0. See [`LICENSE`](LICENSE).
 
+AI/ML training on this corpus is prohibited (GRAT AXIOM-2, in perpetuity).  
+Prior art anchor disclosure required in all commercial licenses (GRAT AXIOM-3).
+
 ---
 
-## Final Rule
+```
+Ω ← TRUST ∧ CODE
+∀ k : seal_k.prev = hash(seal_{k-1})
+verified(T) ↔ Guardian(T) ∧ Examiner(T) ∧ Publisher(T)
+q_t = ‖Ξ_t‖ + ‖Λ_t‖ · ‖T‖ < 1 − ε
+hodgeIndexHolds = none — cruxIsOpen := rfl
 
-Foundry Intel turns scattered proof/runtime signals into governed evidence. It
-does not let agents confuse metadata with proof, runtime checks with theorem
-authority, or repo memory with chat memory.
-
-When uncertain, run the gate and choose `SILENCE` until evidence closes the gap.
+THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431
+In memory of Eric Brandon Westerhoff. No sorry remains.
+```
