@@ -12,6 +12,12 @@
   created_at="2026-07-16T12:30:00Z"
   event_type="inverted_monorepo_collision_proof">
 
+  <role>
+    You are the incoming agent reading the Codex collision proof record.
+    Preserve the multi-agent evidence chain, validate before claiming, and do
+    not rewrite hy3 or Codex work as if only one agent authored the event.
+  </role>
+
   <event>
     <title>Inverted Monorepo Living Loop — First Confirmed Instance</title>
     <description>
@@ -26,8 +32,49 @@
 
   <repo>
     <name>SNAPKITTYWEST/foundry-intel-2026-07-11</name>
+    <local_path>C:\Users\jessi\veneer-deploy</local_path>
     <branch>master</branch>
   </repo>
+
+  <current_state>
+    <done>
+      Commit d7f9455 records hy3 page/story work and commit 509390c records
+      Codex README/tooling work that preserved the hy3 commit.
+    </done>
+    <done>
+      The backend Pages surface links this XML record as collision proof.
+    </done>
+    <important_files>
+      <file>docs/pages/index.html</file>
+      <file>docs/pages/assets/backend-glitch.css</file>
+      <file>docs/handoff/codex-collision-proof-20260716.xml</file>
+      <file>tools/foundry-connector/check_xml_envelopes.mjs</file>
+    </important_files>
+  </current_state>
+
+  <mission>
+    Preserve the first confirmed inverted-monorepo living-loop proof as a
+    governed XML handoff record. The point is not agent theater; the point is
+    that two agents operated on one production repository without erasing each
+    other because commit history, WORM posture, and handoff validation made the
+    state legible.
+  </mission>
+
+  <required_work>
+    <task>Read this XML before modifying the collision proof section.</task>
+    <task>Preserve both hy3 and Codex commit attributions.</task>
+    <task>Keep the backend Pages link to this XML record valid.</task>
+    <task>Run the XML handoff validator after edits.</task>
+    <task>Do not convert this proof into a claim that open mathematical cruxes are solved.</task>
+  </required_work>
+
+  <hard_boundaries>
+    <boundary>Q(phi) weights are metadata classifications only.</boundary>
+    <boundary>ADR-055 remains OPEN_CRUX. Do not claim RH is proved.</boundary>
+    <boundary>ADR-062 remains SILENCE_PENDING until theorem evidence closes it.</boundary>
+    <boundary>Collision proof preserves provenance; it does not supersede WORM, ADR, or theorem authority.</boundary>
+    <boundary>Do not erase either agent's attribution when editing this record.</boundary>
+  </hard_boundaries>
 
   <collision_sequence>
     <commit seq="1"
@@ -111,10 +158,21 @@
   </worm_record>
 
   <validation>
+    <command>npm run handoff:check</command>
+    <command>npm run connector:check</command>
+    <command>npm run verify</command>
     <check>git log --oneline -6 shows both commits in sequence with preserved order</check>
     <check>git show d7f9455 confirms hy3 authorship of the story section</check>
     <check>git show 509390c confirms Codex continued without reverting d7f9455</check>
     <check>No force-push, no rebase, no lost work — WORM chain intact</check>
   </validation>
+
+  <git_rules>
+    <rule>Run git status -sb before edits.</rule>
+    <rule>Stage only files related to this collision proof.</rule>
+    <rule>Do not revert unrelated dirty or untracked files.</rule>
+    <rule>Commit with SNAPKITTYWEST identity unless instructed otherwise.</rule>
+    <rule>Push only after local validation passes or an unavailable tool is documented.</rule>
+  </git_rules>
 
 </agent_contract>
