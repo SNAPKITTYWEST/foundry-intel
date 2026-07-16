@@ -1,0 +1,10 @@
+name = "substrate"
+version = "0.1.0"
+defaultTargets = ["Substrate"]
+
+# Raw Lean 4 substrate: the provable core beneath @veneer/probe-gate (TS)
+# and @veneer/lh-theorems (Liquid Haskell). Ground truth for the SYNTH
+# gate laws + Banach contractivity seed. Liquid Haskell refines this;
+# the morph notebook lifts it to Agda; datalog is the test binder.
+[[lean_lib]]
+name = "Substrate"
