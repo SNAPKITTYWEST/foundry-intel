@@ -30,6 +30,7 @@ const q5 = readJson('tools/q5-adr-parser/adr_manifest.json')
 const rootPackage = readJson('package.json')
 const agentTour = readJson('docs/agents/metadata-tour.json')
 const wasmManifest = readJson('apps/wasm-frontend/dist/manifest.json')
+const vllmIndex = readJson('docs/pages/llm/vllm-language-index.json')
 
 for (const path of [
   'AGENT_MEMORY.md',
@@ -64,6 +65,8 @@ for (const path of [
   'docs/brand/badge-worm.svg',
   'docs/brand/badge-daily-tick.svg',
   'docs/brand/badge-crux.svg',
+  'docs/brand/badge-vllm.svg',
+  'docs/brand/context-bleed-chatbox.svg',
   'docs/protocols/xml-handoff-envelope.md',
   'docs/protocols/xml-handoff-envelope.xsd',
   'docs/handoff/foundry-intel-agent-contract.xml',
@@ -71,6 +74,9 @@ for (const path of [
   'docs/pages/index.html',
   'docs/pages/backend-ascii.txt',
   'docs/pages/assets/backend-glitch.css',
+  'docs/pages/assets/bob-chat.mjs',
+  'docs/pages/llm/vllm-language-index.json',
+  'docs/pages/llm/vllm-language-index.md',
   'docs/pages/wasm/manifest.json',
   'docs/pages/wasm/foundation.wasm',
   'docs/pages/wasm/loader.mjs',
@@ -117,6 +123,8 @@ requireEqual(connector.wasm_frontend.status, 'BUILT', 'WASM frontend status')
 requireEqual(connector.wasm_frontend.workspace, '@veneer/wasm-frontend', 'WASM frontend workspace')
 requireEqual(connector.pages.status, 'STATIC_READY', 'Pages status')
 requireEqual(connector.pages.aesthetic, 'backend-ascii-glitch', 'Pages aesthetic')
+requireEqual(connector.llm_chat.status, 'STATIC_CLIENT_READY', 'BOB chat status')
+requireEqual(connector.llm_chat.language_index, 'docs/pages/llm/vllm-language-index.json', 'BOB chat language index')
 requireEqual(
   connector.artifacts.intel_handoff_rebrand_envelope,
   'docs/handoff/primordial-foundation-agent-contract.xml',
@@ -125,8 +133,14 @@ requireEqual(
 requireEqual(connector.artifacts.intel_pages_builder, 'tools/ascii-glitch/build_pages.pl', 'Pages builder artifact')
 requireEqual(connector.artifacts.wasm_frontend_manifest, 'apps/wasm-frontend/dist/manifest.json', 'WASM manifest artifact')
 requireEqual(connector.artifacts.wasm_frontend_pages_root, 'docs/pages/wasm/index.html', 'WASM Pages artifact')
+requireEqual(connector.artifacts.intel_bob_chat_runtime, 'docs/pages/assets/bob-chat.mjs', 'BOB chat runtime artifact')
+requireEqual(connector.artifacts.intel_vllm_language_index, 'docs/pages/llm/vllm-language-index.json', 'vLLM language index artifact')
 requireEqual(q5.count, connector.q5.count, 'Q(phi) ADR count')
 requireEqual(q5.q5_total, connector.q5.total, 'Q(phi) total')
+requireEqual(vllmIndex.id, 'SPF-VLLM-LANGUAGE-INDEX-20260716', 'vLLM language index id')
+if (!vllmIndex.routes?.some((route) => route.id === 'adr_status')) fail('vLLM language index missing adr_status route')
+if (!vllmIndex.routes?.some((route) => route.id === 'vllm_runtime')) fail('vLLM language index missing vllm_runtime route')
+if (!vllmIndex.guardrails?.some((guardrail) => /OPEN_CRUX/.test(guardrail))) fail('vLLM language index missing OPEN_CRUX guardrail')
 
 if (!rootPackage.workspaces?.includes('apps/wasm-frontend')) {
   fail('root package workspaces missing apps/wasm-frontend')
@@ -174,6 +188,10 @@ for (const pattern of [
   /primordial-foundation-agent-contract\.xml/,
   /docs\/pages\/index\.html/,
   /backend ASCII/i,
+  /Talk To BOB About This Repository/i,
+  /badge-vllm\.svg/,
+  /vLLM language index/i,
+  /bob-chat\.mjs/,
   /OPEN_CRUX/,
   /SILENCE_PENDING/,
   /Q\(phi\).*metadata/is,
@@ -226,9 +244,19 @@ for (const pattern of [
   /The Story Of This Repository/i,
   /Why Contribute\?/i,
   /Policy as geometry/i,
-  /WORM Chain/i
+  /WORM Chain/i,
+  /Talk To BOB About This Repository/i,
+  /vLLM \/ Ollama ready/i,
+  /context-bleed-chatbox\.svg/i,
+  /bob-chat\.mjs/i,
+  /vllm-language-index\.json/i
 ]) {
   if (!pattern.test(pagesHtml)) fail(`Pages HTML missing marker: ${pattern}`)
+}
+for (const match of pagesHtml.matchAll(/<button\b(?=[^>]*\brole="tab")(?=[^>]*\baria-controls="([^"]+)")[^>]*>/g)) {
+  const panelId = match[1]
+  const panelPattern = new RegExp(`<div\\b(?=[^>]*\\bid="${panelId}")(?=[^>]*\\brole="tabpanel")[^>]*>`)
+  if (!panelPattern.test(pagesHtml)) fail(`Pages tab missing matching panel: ${panelId}`)
 }
 if (!/BACKEND ASCII GLITCH/i.test(pagesAscii)) {
   fail('Pages ASCII missing backend ASCII glitch marker')

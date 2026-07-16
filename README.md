@@ -18,6 +18,7 @@
   <a href="packages/worm/src/index.ts"><img src="docs/brand/badge-worm.svg" alt="WORM append-only" /></a>
   <a href="docs/architecture/adr/ADR-301-daily-production-tick.md"><img src="docs/brand/badge-daily-tick.svg" alt="daily production tick" /></a>
   <a href="docs/architecture/adr-q5-theorem-classification.md"><img src="docs/brand/badge-crux.svg" alt="open crux honesty" /></a>
+  <a href="docs/pages/llm/vllm-language-index.md"><img src="docs/brand/badge-vllm.svg" alt="vLLM stream ready" /></a>
 </p>
 
 <p align="center">
@@ -36,6 +37,39 @@
 **Foundation:** THE SHARED PRIMORDIAL FOUNDATION — EIN 42-6976431  
 **Prior art anchor:** DEVFLOW-FINANCE created 2026-04-14  
 **Zenodo:** [10.5281/zenodo.21268911](https://doi.org/10.5281/zenodo.21268911) — *Closing Boole's Foundational Sorry and Three E₇ Generator Symmetries of the GKN Quartic Invariant*
+
+---
+
+## Talk To BOB About This Repository
+
+The live Pages surface includes a BOB chatbox for repository questions:
+
+[Open BOB Chat on GitHub Pages](https://snapkittywest.github.io/foundry-intel-2026-07-11/#tab-chat)
+
+```text
++-- BOB REPO CHAT ---------------------------------------------------------+
+| reader> What is ADR-055?                                                 |
+| BOB   > SILENCE on any claim that RH is solved. ADR-055 remains          |
+|         OPEN_CRUX. This repo records the crux boundary, not a proof.      |
+|                                                                         |
+| reader> Can I use vLLM or Ollama?                                        |
+| BOB   > EVIDENCE: the Pages client can stream to a browser-supplied       |
+|         vLLM OpenAI-compatible endpoint or Ollama endpoint. GitHub Pages  |
+|         remains static and hosts no model server.                         |
++-------------------------------------------------------------------------+
+```
+
+The browser-side JIT compiler maps a question into the
+[vLLM language index](docs/pages/llm/vllm-language-index.json), then either
+answers from the offline BOB route table or streams to the configured endpoint.
+The bearer key field is not saved; endpoint and model preferences stay in the
+reader's browser.
+
+Source surfaces:
+
+- [BOB chat runtime](docs/pages/assets/bob-chat.mjs)
+- [vLLM language index](docs/pages/llm/vllm-language-index.md)
+- [Pages root](docs/pages/index.html)
 
 ---
 

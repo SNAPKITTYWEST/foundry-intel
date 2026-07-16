@@ -54,8 +54,12 @@
       "docs/brand/badge-trust.svg",
       "docs/brand/badge-worm.svg",
       "docs/brand/badge-daily-tick.svg",
-      "docs/brand/badge-crux.svg"
+      "docs/brand/badge-crux.svg",
+      "docs/brand/badge-vllm.svg"
     ],
+    "intel_vllm_language_index": "docs/pages/llm/vllm-language-index.json",
+    "intel_vllm_language_index_doc": "docs/pages/llm/vllm-language-index.md",
+    "intel_bob_chat_runtime": "docs/pages/assets/bob-chat.mjs",
     "intel_handoff_protocol": "docs/protocols/xml-handoff-envelope.md",
     "intel_handoff_schema": "docs/protocols/xml-handoff-envelope.xsd",
     "intel_handoff_envelope": "docs/handoff/foundry-intel-agent-contract.xml",
@@ -128,7 +132,16 @@
     "builder": "tools/ascii-glitch/build_pages.pl",
     "check": "npm run pages:check",
     "workflow": ".github/workflows/pages.yml",
-    "note": "Static backend Pages surface for governance signals with the WASM frontend copied to docs/pages/wasm."
+    "note": "Static backend Pages surface for governance signals with the WASM frontend copied to docs/pages/wasm and BOB chat streaming to browser-supplied vLLM/Ollama endpoints."
+  },
+  "llm_chat": {
+    "status": "STATIC_CLIENT_READY",
+    "surface": "docs/pages/index.html#tab-chat",
+    "runtime": "docs/pages/assets/bob-chat.mjs",
+    "language_index": "docs/pages/llm/vllm-language-index.json",
+    "default_mode": "offline BOB JIT",
+    "optional_streaming": ["vLLM OpenAI-compatible", "Ollama"],
+    "boundary": "GitHub Pages does not host a model server; endpoints are supplied by the reader's browser."
   },
   "routing": [
     {
