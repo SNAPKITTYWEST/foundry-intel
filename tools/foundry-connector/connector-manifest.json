@@ -55,6 +55,7 @@
       "docs/brand/badge-worm.svg",
       "docs/brand/badge-daily-tick.svg",
       "docs/brand/badge-crux.svg",
+      "docs/brand/badge-prior-art.svg",
       "docs/brand/badge-vllm.svg"
     ],
     "intel_vllm_language_index": "docs/pages/llm/vllm-language-index.json",

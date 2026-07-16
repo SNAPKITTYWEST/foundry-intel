@@ -18,6 +18,7 @@
   <a href="packages/worm/src/index.ts"><img src="docs/brand/badge-worm.svg" alt="WORM append-only" /></a>
   <a href="docs/architecture/adr/ADR-301-daily-production-tick.md"><img src="docs/brand/badge-daily-tick.svg" alt="daily production tick" /></a>
   <a href="docs/architecture/adr-q5-theorem-classification.md"><img src="docs/brand/badge-crux.svg" alt="open crux honesty" /></a>
+  <a href="docs/math/prior-art.md"><img src="docs/brand/badge-prior-art.svg" alt="prior art anchor DEVFLOW-FINANCE 2026-04-14" /></a>
   <a href="docs/pages/llm/vllm-language-index.md"><img src="docs/brand/badge-vllm.svg" alt="vLLM stream ready" /></a>
 </p>
 

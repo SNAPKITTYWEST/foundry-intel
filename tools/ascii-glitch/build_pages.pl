@@ -18,6 +18,7 @@ validate_static_pages :-
     require_contains('docs/pages/index.html', 'The Story Of This Repository'),
     require_contains('docs/pages/index.html', 'Why Contribute?'),
     require_contains('docs/pages/index.html', 'Talk To BOB About This Repository'),
+    require_contains('docs/pages/index.html', 'DEVFLOW-FINANCE 2026-04-14'),
     require_contains('docs/pages/index.html', 'bob-chat.mjs'),
     require_contains('docs/pages/index.html', 'vllm-language-index.json'),
     require_contains('docs/pages/index.html', 'WASM Gate'),

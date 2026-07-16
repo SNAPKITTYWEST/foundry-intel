@@ -120,6 +120,7 @@ a:focus-visible, button:focus-visible { outline: none; box-shadow: var(--focus-r
 .badge-open     { background: var(--amber-dim);  color: var(--amber); border: 1px solid rgba(242,184,75,.3); }
 .badge-pending  { background: var(--blue-dim);   color: var(--blue);  border: 1px solid rgba(96,165,250,.3); }
 .badge-sealed   { background: var(--cyan-dim);   color: var(--cyan);  border: 1px solid rgba(77,216,200,.3); }
+.badge-prior-art { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(242,184,75,.35); }
 .badge-live     { background: rgba(139,209,124,.08); color: var(--green); border: 1px solid rgba(139,209,124,.2); }
 .badge-live::before { content: "●"; margin-right: 2px; animation: pulse 2s infinite; }
 
