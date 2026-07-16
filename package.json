@@ -33,7 +33,8 @@
     "handoff:check": "node tools/foundry-connector/check_xml_envelopes.mjs"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "@types/node": "^22.0.0"
+    "@types/node": "^22.0.0",
+    "tau-prolog": "^0.3.4",
+    "typescript": "^5.0.0"
   }
 }
