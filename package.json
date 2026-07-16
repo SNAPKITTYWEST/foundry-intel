@@ -23,7 +23,8 @@
     "lint": "tsc --noEmit",
     "adr:q5": "Rscript tools/q5-adr-parser/parse_adrs.R tools/q5-adr-parser/ADR_REGISTRY.txt tools/q5-adr-parser/adr_manifest.json tools/q5-adr-parser/golden_adr.janet",
     "adr:q5:fallback": "node tools/q5-adr-parser/generate_manifest.mjs",
-    "connector:check": "node tools/foundry-connector/check_connector.mjs"
+    "connector:check": "node tools/foundry-connector/check_connector.mjs",
+    "handoff:check": "node tools/foundry-connector/check_xml_envelopes.mjs"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

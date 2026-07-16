@@ -11,6 +11,10 @@ This document connects the scattered proof engines into one operational lane:
 The machine-readable contract is
 `tools/foundry-connector/connector-manifest.json`.
 
+Agent-to-agent instructions move through XML handoff envelopes. The protocol is
+defined in `docs/protocols/xml-handoff-envelope.md`, and the active Foundry
+Intel envelope is `docs/handoff/foundry-intel-agent-contract.xml`.
+
 ## Active Anchors
 
 | Engine | Anchor | Status |
@@ -56,5 +60,5 @@ Then read this Intel connector manifest and Q(phi) outputs:
 ```sh
 npm run adr:q5:fallback
 npm run connector:check
+npm run handoff:check
 ```
-

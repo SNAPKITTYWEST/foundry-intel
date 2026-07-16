@@ -31,6 +31,9 @@
     "intel_q5_csv": "tools/q5-adr-parser/adr_manifest_index.csv",
     "intel_q5_doc": "docs/architecture/adr-q5-theorem-classification.md",
     "intel_connector_doc": "docs/bridge/foundry-connector.md",
+    "intel_handoff_protocol": "docs/protocols/xml-handoff-envelope.md",
+    "intel_handoff_schema": "docs/protocols/xml-handoff-envelope.xsd",
+    "intel_handoff_envelope": "docs/handoff/foundry-intel-agent-contract.xml",
     "f1_receiver_doc": "docs/bridge/CLAUDE_HANDOFF.md",
     "f1_receiver_manifest": "docs/bridge/foundry-connector.json"
   },

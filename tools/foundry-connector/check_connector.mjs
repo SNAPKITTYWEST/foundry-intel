@@ -30,6 +30,9 @@ const q5 = readJson('tools/q5-adr-parser/adr_manifest.json')
 
 for (const path of [
   'docs/bridge/foundry-connector.md',
+  'docs/protocols/xml-handoff-envelope.md',
+  'docs/protocols/xml-handoff-envelope.xsd',
+  'docs/handoff/foundry-intel-agent-contract.xml',
   'docs/architecture/adr-q5-theorem-classification.md',
   'tools/q5-adr-parser/ADR_REGISTRY.txt',
   'tools/q5-adr-parser/adr_manifest_index.csv'

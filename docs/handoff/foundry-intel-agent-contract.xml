@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent_contract id="FOUNDRY_INTEL_HANDOFF_20260716" version="1.0" created_at="2026-07-16T16:10:00Z">
+  <role>
+    You are the incoming Codex or Claude agent for SNAPKITTYWEST Foundry Intel.
+    Work cleanly, verify before claiming, and do not rewrite unrelated user work.
+  </role>
+
+  <repo>
+    <name>SNAPKITTYWEST/foundry-intel-2026-07-11</name>
+    <local_path>C:\Users\jessi\veneer-deploy</local_path>
+    <branch>master</branch>
+    <current_connector_commit>2481a1571427e666fe5c23470b13a1eaf9089983</current_connector_commit>
+  </repo>
+
+  <current_state>
+    <done>
+      Foundry Intel has the Q(phi) ADR parser and connector contract pushed.
+      It links GKN quantum latch, Foundry Intel ADR governance, and Foundry F1 receiver.
+    </done>
+    <done>
+      XML handoff envelopes are now the committed cross-repo prompt transport.
+    </done>
+    <important_files>
+      <file>docs/protocols/xml-handoff-envelope.md</file>
+      <file>docs/protocols/xml-handoff-envelope.xsd</file>
+      <file>docs/handoff/foundry-intel-agent-contract.xml</file>
+      <file>tools/q5-adr-parser/</file>
+      <file>tools/q5-adr-parser/adr_manifest.json</file>
+      <file>docs/architecture/adr-q5-theorem-classification.md</file>
+      <file>docs/bridge/foundry-connector.md</file>
+      <file>tools/foundry-connector/connector-manifest.json</file>
+      <file>tools/foundry-connector/check_connector.mjs</file>
+      <file>tools/foundry-connector/check_xml_envelopes.mjs</file>
+    </important_files>
+    <known_untracked>
+      <path>packages/probe-gate/</path>
+      <instruction>Inspect before touching. It was intentionally left unstaged by the previous agent.</instruction>
+    </known_untracked>
+  </current_state>
+
+  <mission>
+    Clean and harden Foundry Intel as the governance and intelligence hub.
+    Connect remaining proof and runtime engines through explicit XML envelopes,
+    manifests, ADR references, and local validation scripts.
+  </mission>
+
+  <required_work>
+    <task>Read this XML envelope before acting.</task>
+    <task>Read docs/protocols/xml-handoff-envelope.md.</task>
+    <task>Read docs/bridge/foundry-connector.md.</task>
+    <task>Read tools/foundry-connector/connector-manifest.json.</task>
+    <task>Inspect packages/probe-gate/ and decide whether it belongs in Foundry Intel.</task>
+    <task>If probe-gate is valid, wire it into package.json workspaces and add a minimal validation path.</task>
+    <task>If probe-gate is not valid, leave it untouched and report why.</task>
+    <task>Keep Foundry Intel aligned with Foundry F1 docs/bridge/CLAUDE_HANDOFF.md.</task>
+    <task>Create new cross-repo agent prompts as XML envelopes under docs/handoff/.</task>
+    <task>Do not promote open cruxes into proof claims.</task>
+  </required_work>
+
+  <hard_boundaries>
+    <boundary>Q(phi) weights are metadata classifications only.</boundary>
+    <boundary>ADR-055 remains OPEN_CRUX. Do not claim RH is proved.</boundary>
+    <boundary>ADR-062 remains SILENCE_PENDING until theorem evidence closes it.</boundary>
+    <boundary>Liquid Haskell refinements do not supersede Lean proof authority.</boundary>
+    <boundary>WORM means write-once read-many ledger semantics, not malware.</boundary>
+    <boundary>Do not erase provenance, license, WORM, or trust-boundary language.</boundary>
+  </hard_boundaries>
+
+  <validation>
+    <command>npm run adr:q5:fallback</command>
+    <command>npm run connector:check</command>
+    <command>npm run handoff:check</command>
+    <command>npm test</command>
+    <note>If npm test fails because dependencies are missing, report that exactly. Do not claim tests pass.</note>
+  </validation>
+
+  <git_rules>
+    <rule>Run git status -sb before edits.</rule>
+    <rule>Stage only files in your scope.</rule>
+    <rule>Do not revert unrelated dirty or untracked files.</rule>
+    <rule>Commit with SNAPKITTYWEST identity unless instructed otherwise.</rule>
+    <rule>Push only after local validation passes or after clearly documenting any unavailable tool.</rule>
+  </git_rules>
+</agent_contract>
+

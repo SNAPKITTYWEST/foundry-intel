@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="agent_contract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="role" type="xs:string"/>
+        <xs:element name="repo" type="repoType"/>
+        <xs:element name="current_state" type="currentStateType"/>
+        <xs:element name="mission" type="xs:string"/>
+        <xs:element name="required_work" type="taskListType"/>
+        <xs:element name="hard_boundaries" type="boundaryListType"/>
+        <xs:element name="validation" type="validationType"/>
+        <xs:element name="git_rules" type="ruleListType"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID" use="required"/>
+      <xs:attribute name="version" type="xs:string" use="required"/>
+      <xs:attribute name="created_at" type="xs:dateTime" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="repoType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="local_path" type="xs:string"/>
+      <xs:element name="branch" type="xs:string"/>
+      <xs:element name="current_connector_commit" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="currentStateType">
+    <xs:sequence>
+      <xs:element name="done" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="important_files" type="fileListType"/>
+      <xs:element name="known_untracked" type="knownUntrackedType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fileListType">
+    <xs:sequence>
+      <xs:element name="file" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="knownUntrackedType">
+    <xs:sequence>
+      <xs:element name="path" type="xs:string"/>
+      <xs:element name="instruction" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="taskListType">
+    <xs:sequence>
+      <xs:element name="task" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="boundaryListType">
+    <xs:sequence>
+      <xs:element name="boundary" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validationType">
+    <xs:sequence>
+      <xs:element name="command" type="xs:string" maxOccurs="unbounded"/>
+      <xs:element name="note" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ruleListType">
+    <xs:sequence>
+      <xs:element name="rule" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
