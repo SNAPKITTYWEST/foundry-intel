@@ -32,6 +32,7 @@ All ADRs pass through the Law Engine (`docs/governance/law-engine.pl`) and recei
 | **[ADR-300](adr/ADR-300-grat-foundry-interlock.md)** | **GRAT Foundry Interlock — THE SHARED PRIMORDIAL FOUNDATION** | **Immutable** | **EVIDENCE** |
 | **[ADR-301](adr/ADR-301-daily-production-tick.md)** | **Daily Production Tick — Sedona Spine Hardening Clock** | **Accepted** | **EVIDENCE** |
 | **[ADR-302](adr/ADR-302-primordial-foundation-rebrand.md)** | **Primordial Foundation Rebrand — Foundry Intel in care of Bel Esprit D'Accord** | **Accepted** | **EVIDENCE** |
+| **[ADR-303](adr/ADR-303-primordial-foundation-umbrella-monorepo.md)** | **Primordial Foundation Umbrella Monorepo** | **Accepted** | **EVIDENCE** |
 
 ---
 
@@ -91,6 +92,7 @@ ADR-200 (Parr Sovereignty Protocol — Ahmad Ali Parr)
         ADR-300 (GRAT Foundry Interlock)
         ADR-301 (Daily Production Tick — non-mutating verify clock)
         ADR-302 (Primordial Foundation rebrand transition)
+        ADR-303 (Primordial Foundation umbrella monorepo transition)
             all grounded in ↓
             docs/math/ (Constitutional Core, Ξ-Constitution, Lean 4 theorems)
                 crux: hodgeIndexHolds = none (RH open, rfl witness)

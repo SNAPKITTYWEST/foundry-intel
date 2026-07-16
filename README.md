@@ -749,7 +749,7 @@ foundry-intel-2026-07-11/
     lh-theorems/                          Liquid Haskell lane
   tools/
     q5-adr-parser/                        Q(phi) ADR parser
-    ascii-glitch/                          deterministic backend Pages generator
+    ascii-glitch/                          deterministic Prolog backend Pages generator
     foundry-connector/                    connector validators
     production-smoke.mjs                  runtime smoke check
     adr-production-tick.mjs               ADR-301 tick

@@ -45,7 +45,7 @@
     "root": "docs/pages/index.html",
     "ascii": "docs/pages/backend-ascii.txt",
     "css": "docs/pages/assets/backend-glitch.css",
-    "builder": "tools/ascii-glitch/build-pages.mjs",
+    "builder": "tools/ascii-glitch/build_pages.pl",
     "workflow": ".github/workflows/pages.yml",
     "aesthetic": "backend-ascii-glitch"
   },

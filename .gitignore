@@ -5,3 +5,8 @@ dist/
 .env
 .DS_Store
 Thumbs.db
+
+!apps/
+!apps/wasm-frontend/
+!apps/wasm-frontend/dist/
+!apps/wasm-frontend/dist/**

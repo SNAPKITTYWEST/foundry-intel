@@ -98,6 +98,7 @@ The following Veneer assets are held as Trust Corpus under THE SHARED PRIMORDIAL
 | WORM Audit Chain | ADR-200 Rule 4; all SYNTH constraints |
 | Branded Marks / Source Available License v1.0 | ADR-104 (compiler governance) |
 | Foundry Intel Governance Hub | ADR-302 (Primordial Foundation transition spine) |
+| Primordial Foundation Umbrella Monorepo | ADR-303 (main repository transition) |
 
 **GRAT AXIOM-2:** AI/ML training on Trust corpus is absolutely prohibited in perpetuity.  
 **GRAT AXIOM-3:** The prior art anchor (DEVFLOW-FINANCE, 2026-04-14) must be disclosed in all commercial license agreements.  
@@ -132,6 +133,7 @@ See `ADR-300-grat-foundry-interlock.md` for the formal interlocking ADR.
 | ADR-300 (GRAT Interlock) | GRAT AXIOM-1..6, DEVFLOW-FINANCE, all above |
 | ADR-301 (Daily Production Tick) | WORM audit chain, ADR-200, ADR-300 |
 | ADR-302 (Primordial Foundation Rebrand) | Foundry Intel governance hub, ADR-200, ADR-300, ADR-301 |
+| ADR-303 (Umbrella Monorepo) | Primordial Foundation main repo transition, ADR-200, ADR-300, ADR-302 |
 
 ---
 

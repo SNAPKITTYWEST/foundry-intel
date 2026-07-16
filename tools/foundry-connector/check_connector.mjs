@@ -59,7 +59,7 @@ for (const path of [
   'docs/pages/index.html',
   'docs/pages/backend-ascii.txt',
   'docs/pages/assets/backend-glitch.css',
-  'tools/ascii-glitch/build-pages.mjs',
+  'tools/ascii-glitch/build_pages.pl',
   '.github/workflows/pages.yml',
   'docs/architecture/adr-q5-theorem-classification.md',
   'tools/q5-adr-parser/ADR_REGISTRY.txt',
@@ -102,7 +102,7 @@ requireEqual(
   'docs/handoff/primordial-foundation-agent-contract.xml',
   'Primordial Foundation XML handoff artifact'
 )
-requireEqual(connector.artifacts.intel_pages_builder, 'tools/ascii-glitch/build-pages.mjs', 'Pages builder artifact')
+requireEqual(connector.artifacts.intel_pages_builder, 'tools/ascii-glitch/build_pages.pl', 'Pages builder artifact')
 requireEqual(q5.count, connector.q5.count, 'Q(phi) ADR count')
 requireEqual(q5.q5_total, connector.q5.total, 'Q(phi) total')
 

@@ -188,6 +188,13 @@ adr('ADR-302',
     'sha256:primordial-foundation-rebrand-contract-v1',
     'worm:ADR-302-seal').
 
+adr('ADR-303',
+    'Primordial Foundation Umbrella Monorepo',
+    sentinel,
+    'sha256:primordial-foundation-umbrella-proof-v1',
+    'sha256:primordial-foundation-umbrella-contract-v1',
+    'worm:ADR-303-seal').
+
 %% ── Trust hierarchy (from sovereign_kernel.pl) ───────────────────────────
 
 trust_level(none,      0).

@@ -34,6 +34,9 @@ jobs:
           node-version: '20'
           cache: npm
 
+      - name: Install SWI-Prolog
+        run: sudo apt-get update && sudo apt-get install -y swi-prolog
+
       - name: Install
         run: npm ci
 

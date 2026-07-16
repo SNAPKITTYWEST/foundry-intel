@@ -53,7 +53,7 @@
     "intel_pages_root": "docs/pages/index.html",
     "intel_pages_ascii": "docs/pages/backend-ascii.txt",
     "intel_pages_css": "docs/pages/assets/backend-glitch.css",
-    "intel_pages_builder": "tools/ascii-glitch/build-pages.mjs",
+    "intel_pages_builder": "tools/ascii-glitch/build_pages.pl",
     "intel_pages_workflow": ".github/workflows/pages.yml",
     "intel_production_smoke": "tools/production-smoke.mjs",
     "intel_typescript_config": "tsconfig.json",
@@ -98,7 +98,7 @@
     "status": "STATIC_READY",
     "root": "docs/pages/index.html",
     "aesthetic": "backend-ascii-glitch",
-    "builder": "tools/ascii-glitch/build-pages.mjs",
+    "builder": "tools/ascii-glitch/build_pages.pl",
     "check": "npm run pages:check",
     "workflow": ".github/workflows/pages.yml",
     "note": "Static backend Pages surface for governance signals; frontend may dock separately."
