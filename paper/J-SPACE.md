@@ -1,5 +1,11 @@
 # J-Space: Born Collapse, Shadow Entropy, and the Inverted Sum
 
+> **Rigorous formal version:** `paper/jspace.tex` (LaTeX, ~40 pp.) — formal
+> definitions, theorems with proofs, the thermal-window formalism, the
+> quantum-swarm protocol spec, the `pirtm_rs` CCRE, and the Lean 4
+> verification layer. This Markdown file is the working narrative; the TeX is
+> the paper.
+
 ---
 
 ```
