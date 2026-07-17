@@ -503,6 +503,60 @@ observing whether the exchange is genuine use or evaluation.
 
 ---
 
+### 9.1 Garbled Message Encoding
+
+J-space needs a way to preserve messages that arrive damaged, partial,
+out-of-order, or semantically noisy without pretending that the damaged message
+is clean evidence. We call this **Garbled Message Encoding (GME)**.
+
+GME is not a secrecy layer and it is not an instruction channel. It is an
+evidence envelope for corrupted or high-entropy messages. The point is to
+preserve what arrived, mark the uncertainty, and prevent a downstream agent
+from silently normalizing the uncertainty away.
+
+The encoding separates four surfaces:
+
+```text
+raw_message        the exact observed bytes or transcript fragment
+garble_map         the positions, spans, or tokens whose meaning is uncertain
+decode_hypotheses  bounded candidate readings, each with evidence status
+worm_receipt       hash, timestamp, source, and verification posture
+```
+
+In J-space terms, GME preserves the shadow of the message. A normal parser
+tries to collapse a garbled string into the most likely reading. GME refuses
+that premature collapse. It keeps the uncertainty visible until evidence
+selects a reading or the system returns SILENCE.
+
+Minimal form:
+
+```json
+{
+  "encoding": "GME-1",
+  "raw_sha256": "sha256-of-observed-message",
+  "garble_class": "OCR_NOISE | HUMAN_TYPING | MODEL_DRIFT | TRANSPORT_LOSS",
+  "decoded": [
+    {
+      "candidate": "bounded candidate reading",
+      "status": "EVIDENCE | SILENCE",
+      "support": ["file", "commit", "witness", "operator confirmation"]
+    }
+  ],
+  "open_crux": true
+}
+```
+
+This is the repository-level rule:
+
+> A garbled message may be preserved. It may not be promoted. It becomes
+> executable only after the decoded candidate passes the same ADR, WORM,
+> key, and crux-honesty gates as any clean message.
+
+The protocol form is recorded in
+`docs/protocols/garbled-message-encoding.md`.
+
+---
+
 ## 10. Measurement Protocol
 
 To measure J-space:

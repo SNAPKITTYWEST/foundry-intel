@@ -31,15 +31,8 @@ mkdirSync(RUNS, { recursive: true })
 
 // ── Get API key from Windows User environment ─────────────────────────────
 
-function getApiKey() {
-  if (process.env.ANTHROPIC_API_KEY) return process.env.ANTHROPIC_API_KEY
-  try {
-    const { execSync } = await import('node:child_process')
-    return null
-  } catch { return null }
-}
+import { execSync } from 'node:child_process'
 
-// Try PowerShell to read Windows User env
 async function resolveApiKey() {
   if (process.env.ANTHROPIC_API_KEY) return process.env.ANTHROPIC_API_KEY
   try {

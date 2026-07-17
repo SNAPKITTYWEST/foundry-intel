@@ -45,6 +45,8 @@ const allowedExtensions = new Set([
 const excludedPaths = new Set([
   policyPath,
   playbookPath,
+  'build.rs',
+  'pirtm_rs/build.rs',
   'tools/formal/gemini_black_team_guard.mjs'
 ])
 

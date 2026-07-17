@@ -2,19 +2,18 @@
 name = "pirtm_rs"
 version = "0.1.0"
 edition = "2021"
-description = "CCRE / PARM / Phase Mirror — sovereign, local-first cognition core (Rust backend)"
+description = "PIRTM/PARM Phase Mirror Rust verification substrate"
+license = "Apache-2.0"
+publish = false
+build = "build.rs"
 
-[dependencies]
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
-sha2 = "0.10"
+[lib]
+name = "pirtm_rs"
+path = "src/lib.rs"
 
-# Kani is only required to run the formal proof harnesses.
-# It is an optional dependency and is never fetched during a normal `cargo build`.
-[dependencies.kani]
-version = "0.0.1"
-optional = true
+[[bin]]
+name = "pirtm-rs"
+path = "src/main.rs"
 
-[features]
-# Enables the Kani proof harness module. Requires the Kani toolchain (`cargo kani`).
-kani = ["dep:kani"]
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(kani)', 'cfg(sovereign_core)', 'cfg(sovereign_build_health_20260716)', 'cfg(sovereign_node_key_present)'] }

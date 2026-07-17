@@ -7,6 +7,7 @@ const KEY_META_PATH: &str = "docs/keys/sovereign-node-build.json";
 const EXPECTED_PUBLIC_KEY_SHA256: &str =
     "576245485b17accf4078c6507714e564311767dc15d4e1e16037949a29517123";
 const EXPECTED_FINGERPRINT: &str = "427AB4A1C0E64A7AB22B0F116ABDA4A46FDDCB60";
+const BUILD_HEALTH_MARKER: &str = "PUBLIC_KEY_VALIDATED_20260716T211343Z";
 
 fn main() {
     println!("cargo:rustc-cfg=sovereign_core");
@@ -51,6 +52,9 @@ fn main() {
     if !metadata.contains(EXPECTED_FINGERPRINT) || !metadata.contains(EXPECTED_PUBLIC_KEY_SHA256) {
         panic!("sovereign node key metadata does not match the pinned public key");
     }
+
+    println!("cargo:rustc-env=SPF_SOVEREIGN_BUILD_HEALTH={BUILD_HEALTH_MARKER}");
+    println!("cargo:rustc-cfg=sovereign_build_health_20260716");
 
     if env::var("SOVEREIGN_NODE_KEY").is_ok() {
         println!("cargo:rustc-cfg=sovereign_node_key_present");
