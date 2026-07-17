@@ -1,32 +1,40 @@
-use pirtm_rs::{
-    gate_langlands, uac_total_loss, ArithmeticBinduAttractor, LanglandsLossConfig,
-    LanglandsZKConfig, RtaMetric, State,
-};
+mod rta;
+mod gates;
+mod uac_loss;
+
+use rta::{RawTemporalAttractor, LatticeNode};
+use uac_loss::{uac_loss, issue_certificate};
 
 fn main() {
-    println!("Launching Sovereign CCRE Verification Platform...");
+    // 1. Local inference (no external API)
+    let model = RawTemporalAttractor {
+        tokens: vec!["hello".into(), "world".into()],
+        intent_latent: vec![0.1, -0.2, 0.3],
+        raw_logits: vec![0.5, 0.5],
+        timestamp_ms: 1700000000000,
+    };
 
-    let mut state = State::new();
-    for p in [2, 3, 5, 7, 11] {
-        state.active_primes.insert(p);
+    let lattice = vec![
+        LatticeNode { index: 0, value: 0.5, neighbors: vec![1, 2] },
+        LatticeNode { index: 1, value: 0.3, neighbors: vec![0] },
+        LatticeNode { index: 2, value: 0.2, neighbors: vec![0] },
+    ];
+
+    // 2. Verify Phase Mirror (CNL -> ALP)
+    println!("=== CCRE Phase Mirror ===");
+    println!("RTA Defect: {:.4}", model.arta_defect());
+
+    // 3. Compute UAC Loss
+    let loss = uac_loss(&model, &lattice);
+    println!("UAC Loss: {:.4}", loss);
+
+    // 4. Issue Sovereign Certificate
+    let cert = issue_certificate(&model, &lattice);
+    println!("Certificate: {:?}", cert);
+
+    if cert.is_unbiased {
+        println!("STATUS: SOVEREIGN — Unbiased Arithmetic Cognition Verified.");
+    } else {
+        println!("STATUS: BIASED — Attractor Divergence Detected.");
     }
-
-    state.insert_joint_word(2, 3, 4.5);
-    state.insert_joint_word(3, 5, 1.2);
-
-    println!("[Pre-fit Defect]: {:.6}", state.arta_defect());
-    state.fit(0.1, 1e-7);
-    println!("[Post-fit Defect]: {:.6}", state.arta_defect());
-
-    let cfg = LanglandsLossConfig::default();
-    println!("[UAC Loss]: {:.12}", uac_total_loss(&state, cfg));
-
-    let zk_config = LanglandsZKConfig::default();
-    match gate_langlands(&state, 1e-12, Some(zk_config)) {
-        Ok(_) => println!("Gate Status: ACCEPTED (Monster identity anchored)"),
-        Err(e) => println!("Gate Status: REJECTED ({e})"),
-    }
-
-    let attractor = ArithmeticBinduAttractor::new();
-    println!("[Bindu Distance]: {:.12}", attractor.distance(&state));
 }

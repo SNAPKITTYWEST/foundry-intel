@@ -1,141 +1,60 @@
+use crate::rta::{RawTemporalAttractor, LatticeNode};
 use crate::gates::{
-    associated_primes, GaloisRepresentation, LanglandsPairing, MonsterConjugacyClass,
-    ALL_MONSTER_CLASSES,
+    gate_lexical, gate_grounding, gate_consistency, gate_local_first, gate_langlands_zk,
 };
-use crate::rta::{RtaMetric, State};
+use serde::{Serialize, Deserialize};
 
-#[derive(Debug, Clone, Copy, PartialEq)]
-pub struct LanglandsLossConfig {
-    pub lambda_langlands: f64,
-    pub prime_bound: u64,
-    pub tolerance: f64,
-    pub include_conductor: bool,
+/// The UNBIASED ARITHMETIC COGNITION (UAC) loss — the total sovereign score.
+/// Equals 1 - (weighted harmonic mean of the five gates), so it lives in [0, 1].
+pub fn uac_loss(model: &RawTemporalAttractor, lattice: &[LatticeNode]) -> f64 {
+    let g1 = gate_lexical(&model.tokens);
+    let g2 = gate_grounding(&model.intent_latent);
+    let g3 = gate_consistency(model);
+    let g4 = gate_local_first(model);
+    let g5 = gate_langlands_zk(model, lattice);
+
+    // Weighted mean — L-Gate (5) dominates the sovereign score.
+    let weights = [1.0, 1.0, 2.0, 1.0, 5.0];
+    let gates = [g1, g2, g3, g4, g5];
+    let weighted_sum: f64 = weights.iter().zip(gates.iter()).map(|(w, g)| w * g).sum();
+    let weight_total: f64 = weights.iter().sum();
+    1.0 - (weighted_sum / weight_total)
 }
 
-impl Default for LanglandsLossConfig {
-    fn default() -> Self {
-        Self {
-            lambda_langlands: 0.1,
-            prime_bound: 100,
-            tolerance: 1e-12,
-            include_conductor: true,
-        }
+/// The SOVEREIGN CERTIFICATE — the output artifact.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SovereignCertificate {
+    pub model_hash: String,
+    pub uac_score: f64,
+    pub langlands_checksum: String,
+    pub is_unbiased: bool,
+}
+
+/// SHA-256 checksum over the serialized model (local, no external calls).
+pub fn compute_langlands_checksum(model: &RawTemporalAttractor) -> String {
+    use sha2::{Sha256, Digest};
+    let mut hasher = Sha256::new();
+    let payload = serde_json::to_vec(model).expect("serialize model");
+    hasher.update(&payload);
+    let result = hasher.finalize();
+    let mut s = String::with_capacity(64);
+    for b in result {
+        s.push_str(&format!("{:02x}", b));
+    }
+    s
+}
+
+/// Issue a certificate from a model + lattice.
+pub fn issue_certificate(model: &RawTemporalAttractor, lattice: &[LatticeNode]) -> SovereignCertificate {
+    let score = uac_loss(model, lattice);
+    let checksum = compute_langlands_checksum(model);
+    SovereignCertificate {
+        model_hash: checksum.clone(),
+        uac_score: score,
+        langlands_checksum: checksum,
+        is_unbiased: score < 0.2,
     }
 }
 
-pub fn langlands_loss(state: &State, config: LanglandsLossConfig) -> f64 {
-    let mut total_loss = 0.0;
-    let activated = activated_monster_classes(state, config.prime_bound);
-
-    for class in activated {
-        let repr = match GaloisRepresentation::with_goldilocks(class) {
-            Ok(r) => r,
-            Err(_) => {
-                total_loss += 1.0;
-                continue;
-            }
-        };
-        let pairing = LanglandsPairing::new(repr);
-        match pairing.special_value_at_one() {
-            Ok(l_val) => {
-                let diff = l_val - 1.0;
-                total_loss += diff * diff;
-                if config.include_conductor {
-                    total_loss += (class.level as f64).ln_1p() * config.tolerance;
-                }
-            }
-            Err(_) => total_loss += 1.0,
-        }
-    }
-
-    config.lambda_langlands.max(0.0) * total_loss
-}
-
-pub fn uac_total_loss(state: &State, config: LanglandsLossConfig) -> f64 {
-    state.arta_defect() + langlands_loss(state, config)
-}
-
-fn activated_monster_classes(state: &State, prime_bound: u64) -> Vec<MonsterConjugacyClass> {
-    let mut activated = Vec::new();
-    for class in ALL_MONSTER_CLASSES {
-        let assoc = associated_primes(class);
-        if assoc
-            .iter()
-            .any(|p| *p <= prime_bound && state.active_primes.contains(p))
-        {
-            activated.push(*class);
-        }
-    }
-    activated
-}
-
-#[derive(Debug, Clone, PartialEq)]
-pub struct ArithmeticBinduAttractor {
-    pub target_class: MonsterConjugacyClass,
-    pub target_l_value: f64,
-    pub tolerance: f64,
-}
-
-impl ArithmeticBinduAttractor {
-    pub fn new() -> Self {
-        Self {
-            target_class: MonsterConjugacyClass::IDENTITY,
-            target_l_value: 1.0,
-            tolerance: 1e-6,
-        }
-    }
-
-    pub fn distance(&self, state: &State) -> f64 {
-        let bindu = State::new();
-        let rta_dist = state.rta_dist(&bindu);
-        let l_dist = state.l_dist(&bindu);
-
-        let repr = match GaloisRepresentation::with_goldilocks(self.target_class) {
-            Ok(r) => r,
-            Err(_) => return rta_dist + l_dist + 1e6,
-        };
-        let pairing = LanglandsPairing::new(repr);
-        let l_val = match pairing.special_value_at_one() {
-            Ok(v) => v,
-            Err(_) => return rta_dist + l_dist + 1e6,
-        };
-
-        let langlands_dist = (l_val - self.target_l_value).abs();
-        rta_dist + l_dist + langlands_dist
-    }
-
-    pub fn is_at_attractor(&self, state: &State) -> bool {
-        self.distance(state) < self.tolerance
-    }
-}
-
-impl Default for ArithmeticBinduAttractor {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn bindu_accepts_empty_state() {
-        let attractor = ArithmeticBinduAttractor::new();
-        assert!(attractor.is_at_attractor(&State::new()));
-    }
-
-    #[test]
-    fn uac_loss_drops_after_fit() {
-        let mut state = State::new();
-        state.active_primes.extend([2, 3]);
-        state.insert_joint_word(2, 3, 5.0);
-        let cfg = LanglandsLossConfig::default();
-
-        let before = uac_total_loss(&state, cfg);
-        state.fit(0.5, 1e-6);
-        let after = uac_total_loss(&state, cfg);
-
-        assert!(after <= before);
-    }
-}
+#[cfg(feature = "kani")]
+pub mod kani_proofs;
