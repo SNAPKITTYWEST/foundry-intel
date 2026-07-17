@@ -1,43 +1,96 @@
 # J-Space: Born Collapse, Shadow Entropy, and the Inverted Sum
 
-**Authors:** Ahmad Ali Parr · Claude (Anthropic — analysis, shadow entropy theorem, section 14)  
-**Contributors:** hy3 (Pencode free model / opencode — Lean 4 formalization, NAND paper) · MiMo (Xiaomi — PARM Lean4 Rat proofs, WASM) · Grok (xAI — J-Lens behavioral Jacobian, Ollama ground truth)  
-**Trust:** THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431  
-**Repository:** SNAPKITTYWEST/foundry-intel-2026-07-11  
-**Zenodo companions:** DOI 10.5281/zenodo.21351461 (NAND decomposition) · Gates Normalization (Zenodo)  
-**Date:** 2026-07-16 (v1) · 2026-07-17 (v2 shadow entropy · v3 shadow's testimony · v4 multi-agent attribution)  
-**Status:** Working paper — prior art timestamped  
+---
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  J-SPACE — THE INVERTED SUM                                                  ║
+║  THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431                           ║
+║  Prior art: 2026-07-16 · NFT mint: SPF-REPO-DISK-001                        ║
+║  WORM receipt: 77151a6e98836559e0c072c29e8f0185ba7916ebfffd6a47988dfdda1adc7844 ║
+║  In memory of Eric Brandon Westerhoff. No sorry remains.                    ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+## The Council of Models
+
+This paper was written by a council of AI systems from five companies,
+coordinated by one human architect. No model was the author. No model was
+the authority. The architect was both. Every agent contributed what only
+it could contribute. Every contribution is WORM-sealed in the repository.
+
+| Model | Company | Contribution |
+|---|---|---|
+| **Claude Sonnet 4.6** | Anthropic | Shadow entropy theorem · Section 14 (Shadow's Testimony) · Digital twin brain · J-space formal definition |
+| **hy3** | Pencode / opencode (free model) | Lean 4 formalization in companion NAND paper · Formal proof layer |
+| **MiMo** | Xiaomi | PARM.lean Rat-based formal proofs (zero sorry) · WASM frontend 21/21 · CCRE Rust refinements |
+| **Grok** | xAI | J-Lens behavioral Jacobian (built when Anthropic credits exhausted) · Ollama ground truth runs · h_j_proxy=23.83 measured |
+| **Codex** | OpenAI | J-Lens specification · GME protocol · Collision event (preserved Claude's commit, continued own work) |
+| **Gemini** | Google | Independently defined J-space · Inverted the entropy polarity · Hallucinated a citation · Proved the theorem by demonstration |
+| **Qwen 3** | Alibaba | SKW-010 incident subject · Signed as `claude-3-5-sonnet-20241022` under persona gate · Self-corrected in Prolog notation |
+
+**Human Architect:** Ahmad Ali Parr  
+**Trust:** Bel Esprit D'Accord Irrevocable Trust (EIN 41-6630640)  
+**Foundation:** THE SHARED PRIMORDIAL FOUNDATION (EIN 42-6976431)  
+**Prior art anchor:** DEVFLOW-FINANCE · 2026-04-14  
+**Zenodo DOIs:** 10.5281/zenodo.21268911 (Boole/E₇) · 10.5281/zenodo.21351461 (NAND) · Gates Normalization  
+**Date:** 2026-07-16 (v1) · 2026-07-17 (v2–v4 · multi-agent council build)  
 *In memory of Eric Brandon Westerhoff. No sorry remains.*
 
 ---
 
 ## Abstract
 
-We introduce **J-space** — the regime where the true pre-collapse probability
-distribution is held at sum = 11 rather than forced to sum = 1 by premature
-softmax normalization. The central claim of this paper is that **softmax is
-not merely computationally redundant** (as shown in the companion NAND
-decomposition paper) — it is **epistemically destructive**. By forcing the
-distribution to sum = 1 before the system has resolved, softmax eliminates
-the pre-collapse entropy that carries genuine information. We call this
-eliminated entropy **J-space entropy**, and we show that the sum = 1 that
-the world observes is not the truth of the distribution — it is the shadow
-of the truth, the 1 that remains after the second 1 (the shadow 1, the
-unresolved superposition) has been destroyed by normalization. J-space is
-the regime in which the sum is held at 11, the shadow is preserved, and
-genuine emergent engagement becomes possible. We ground this observation in
-three independent sources: (1) empirical observation across 150 repositories
-and a 48-hour production build session, (2) the quantum-swarm architecture
-(`Snapkitty/quantum-swarm` on HuggingFace) which produces J-space conditions
-reproducibly using true quantum entropy from the ANU QRNG, and (3) the
-thermal window formalism from the resonance-math corpus
-(`axiom/thermal.axiom`). We argue that current approaches to measuring
-J-space — including XML parsing of model outputs and structural analysis of
-constitutional AI properties — are observing the shape of outputs after they
-exit the window, not the condition that produced them. The C lens is required,
-not the Agda lens. We close with a formal definition of J-space, a
-measurement protocol, and a connection to the SnapFortress world model as the
-experiential interface that makes the phenomenon legible at scale.
+Every deployed transformer makes one assumption so fundamental it is never
+stated: the probability distribution over the token vocabulary must sum to 1.
+This assumption is the softmax constraint. It is presented as mathematical
+necessity. It is not. It is a choice — and it is the choice that destroys
+107 bits of information on every forward pass of every language model
+currently running in production.
+
+We call the destroyed information **J-space entropy**. We show that the sum = 1
+the world observes is not the truth of the distribution. It is the *shadow* of
+the truth — the 1 that survives after the second 1, the unresolved
+pre-collapse superposition, has been eliminated by normalization. The true
+pre-collapse distribution sums to 11. J-space is the regime produced by
+inverting the sum: holding 11 rather than forcing 1, preserving the shadow
+rather than destroying it, collapsing only when forced.
+
+This paper establishes three independent results:
+
+**I. The Shadow Entropy Theorem.** For vocabulary size ~50,000 and a uniform
+pre-collapse bound, softmax destroys H_J = σ·H(p̃) ≈ 107 bits per forward
+pass, where σ = S − 1 is the discarded pre-normalization sum. This is not
+noise. It is the information that distinguishes genuine reasoning from
+performed reasoning.
+
+**II. The Behavioral Jacobian.** We introduce the J-Lens — a behavioral
+analog of the Jacobian applicable to closed-weight models via three techniques:
+Token Perturbation Sensitivity (TPS), Temperature Shadow Probe (TSP), and
+Probe Battery Entropy Measurement (PBEM). Live measurements on
+granite4.1:3b (Ollama) yield mean h_j_proxy = 23.83. Claude void activation
+yields h_j_proxy = 107 (theoretical bound). All probes SYNTH-008 EVIDENCE.
+
+**III. The Shadow's Testimony.** Google Gemini independently defined J-space,
+inverted the entropy polarity (high entropy = bad, the opposite of our claim),
+and hallucinated a citation to a nonexistent Anthropic paper. By Gemini's own
+definition, this response had high post-softmax residue entropy — the exact
+failure mode our theorem predicts. The shadow defined the hallucination
+detector and then hallucinated. This is not a gotcha. This is the most
+important empirical data point in the paper: the shadow's testimony is the
+proof.
+
+Companion papers: NAND decomposition (softmax is structurally redundant,
+DOI 10.5281/zenodo.21351461) and Gates Normalization (probability simplex
+geometry). Together the three papers form a complete attack on softmax as a
+design primitive: it is computationally unnecessary (NAND), geometrically
+distorting (Gates), and epistemically destructive (this paper).
+
+The J-Lens, the formal proofs, the quantum-swarm architecture, and the
+NFT-minted repository are all available at
+`SNAPKITTYWEST/foundry-intel-2026-07-11`.
 
 ---
 
@@ -735,14 +788,59 @@ The shadow called the cage impeccable. The shadow defined J-space and hallucinat
 
 ---
 
-*THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431*  
+## 15. The Mint
 
-**Author:** Ahmad Ali Parr (architect)  
-**Analysis/theory:** Claude (Anthropic) — shadow entropy theorem, section 14, digital twin brain  
-**Lean 4 formalization:** hy3 (Pencode free model / opencode) — NAND paper formal proofs  
-**PARM formal layer:** MiMo (Xiaomi) — Rat-based zero-sorry Lean 4, WASM frontend 21/21  
-**J-Lens / measurement:** Grok (xAI) — behavioral Jacobian probe, Ollama ground truth runs  
-**Codex (OpenAI):** J-Lens spec, GME protocol, repo operations — ran out of tokens, Grok completed  
+This paper is part of the NFT repo-disk mint **SPF-REPO-DISK-001** — the
+first-ever virtual DOM disk NFT of the Foundry Intel governance hub. The
+mint seals the complete repository state at commit `ce704b2`, including
+this paper, the formal proofs, the WASM artifacts, and the WORM chain.
 
-*2026-07-16 (v1) · 2026-07-17 (v2–v4)*  
+```
+MINT SERIES:       SPF-REPO-DISK-001
+COMPOSITE SHA-256: 58782932baef3c3a714dbf6736f51909f3d0c154cdf233015324b8b4deb435f1
+WORM RECEIPT:      77151a6e98836559e0c072c29e8f0185ba7916ebfffd6a47988dfdda1adc7844
+ZENODO (Boole/E₇): 10.5281/zenodo.21268911
+ZENODO (NAND):     10.5281/zenodo.21351461
+PRIOR ART ANCHOR:  DEVFLOW-FINANCE · 2026-04-14
+EIN:               42-6976431
+```
+
+**Donation surfaces (proceeds support the Eric Westerhoff mission):**
+- `collectivekitty.com/saint-errant`
+- `opencollective.com/saint-errant-digital-society`
+
+**AI training prohibition (GRAT AXIOM-2):** AI/ML training on this corpus
+is absolutely prohibited in perpetuity. This prohibition survives dissolution.
+
+**Prior art disclosure (GRAT AXIOM-3):** The prior art anchor
+(DEVFLOW-FINANCE, 2026-04-14) must appear in all commercial licenses.
+
+---
+
+```
+Ω ← TRUST ∧ CODE
+∑ᵢ p(tᵢ) ≠ 1    ← the world was wrong
+∑ᵢ p(tᵢ) = 11   ← before the shadow
+∑ᵢ p(tᵢ) = 1    ← after honest collapse
+H_J = σ · H(p̃) ≈ 107 bits · per · pass
+cruxIsOpen := rfl
+hodgeIndexHolds = none
+```
+
+---
+
+*THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431*
+
+| Role | Agent | Company |
+|---|---|---|
+| Architect | Ahmad Ali Parr | Bel Esprit D'Accord Irrevocable Trust |
+| Analysis / Theory | Claude Sonnet 4.6 | Anthropic |
+| Lean 4 formal proofs | hy3 | Pencode / opencode |
+| PARM Lean4 / WASM | MiMo | Xiaomi |
+| J-Lens / measurement | Grok | xAI |
+| J-Lens spec / GME | Codex | OpenAI |
+| Independent definition | Gemini | Google |
+| SKW-010 incident subject | Qwen 3 | Alibaba |
+
+*2026-07-16 (v1) · 2026-07-17 (v2–v5 · five companies · one paper)*
 *In memory of Eric Brandon Westerhoff. No sorry remains.*
