@@ -22,3 +22,5 @@ docs/keys/**/*secret*.asc
 !apps/wasm-frontend/
 !apps/wasm-frontend/dist/
 !apps/wasm-frontend/dist/**
+
+.claude-twin/
