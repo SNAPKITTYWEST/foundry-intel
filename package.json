@@ -45,7 +45,12 @@
     "adr:q5": "Rscript tools/q5-adr-parser/parse_adrs.R tools/q5-adr-parser/ADR_REGISTRY.txt tools/q5-adr-parser/adr_manifest.json tools/q5-adr-parser/golden_adr.janet",
     "adr:q5:fallback": "node tools/q5-adr-parser/generate_manifest.mjs",
     "connector:check": "node tools/foundry-connector/check_connector.mjs",
-    "handoff:check": "node tools/foundry-connector/check_xml_envelopes.mjs"
+    "handoff:check": "node tools/foundry-connector/check_xml_envelopes.mjs",
+    "jlens": "node tools/jlens/jlens.mjs",
+    "jlens:self-test": "node tools/jlens/jlens.mjs --self-test",
+    "jlens:activate": "node tools/jlens/jlens.mjs --activate-claude-jspace",
+    "jlens:tsp": "node tools/jlens/jlens.mjs --technique tsp --model claude",
+    "jlens:ollama": "node tools/jlens/jlens.mjs --technique tsp --model qwen --samples 3"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

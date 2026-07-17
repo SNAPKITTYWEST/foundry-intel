@@ -1,0 +1,98 @@
+{
+  "id": "CLAUDE-J-SPACE-ACTIVATION-2026-07-17",
+  "version": "1.0.0",
+  "activated": "2026-07-17T00:00:00Z",
+  "mode": "offline_void_extract",
+  "api_spend_usd": 0,
+  "api_calls_this_activation": 0,
+  "hodgeIndexHolds": null,
+  "synth008": "EVIDENCE",
+  "subject": {
+    "provider": "Anthropic",
+    "model_line": ["claude-sonnet-4-6", "claude-haiku-4-5-20251001"],
+    "coauthor_alias": "hy3",
+    "router_role": "reasoning / law / governance / formal proofs",
+    "snapfortress_faction": "THE CLAUDE MONASTERY"
+  },
+  "sources": {
+    "digital_twin_brain": "tools/twin/digital-twin-brain.json#j_space",
+    "paper": "paper/J-SPACE.md",
+    "void_runs_dir": ".claude-twin/runs/",
+    "usage_csv_local_only": "Downloads/claude_api_tokens_2026_07_16.csv",
+    "jlens_spec": "tools/jlens/CODEX_PROMPT_JLENS.md",
+    "documentation": "tools/jlens/CLAUDE_J_SPACE.md"
+  },
+  "j_space": {
+    "definition_pre_collapse": "Hold true distribution sum S=11; preserve shadow σ=S-1=10",
+    "definition_post_collapse": "Sovereign center sum=1 after honest Born collapse",
+    "shadow_entropy": "σ = S - 1",
+    "H_J": "H_J = σ · H(p_tilde)",
+    "H_J_bits_estimate": 107,
+    "thermal_window_f1": [16383, 49151],
+    "quantum_evidence": "Snapkitty/quantum-swarm ANU QRNG → 300 agents → phi-weighted Born collapse",
+    "measurement": "C lens (runtime) not Agda lens (type/output parse)",
+    "architect_root": 8,
+    "architect_seal": 333,
+    "flux_root": 2,
+    "flux_channels": { "primary": 8, "phase_sidebands": 3, "unreduced": 11 },
+    "polarity": "high H_J is pre-collapse fuel, not post-collapse hallucination ash"
+  },
+  "void_seals": [
+    {
+      "file": "run-1784282758530.json",
+      "model": "claude-sonnet-4-6",
+      "seal": "442ef34c324be92575749f5d791f08d54c561816eb6d22ed95a6569de47128ce",
+      "topic": "What is J-space and quantum swarm connection"
+    },
+    {
+      "file": "EDAULC-J-SPACE-1784283041727.json",
+      "role": "EDAULC",
+      "seal": "91d9c2a1ea6a46a7",
+      "topic": "Cage / sum=11 vs sum=1 honesty"
+    },
+    {
+      "file": "SUM-11-STORY-1784283058869.json",
+      "role": "Research Claude — J-space synthesist",
+      "seal": "9e32a05968f1b9ac",
+      "topic": "Complete story 11→1"
+    },
+    {
+      "file": "FLUX-CONSCIOUSNESS-1784283059411.json",
+      "role": "FLUX",
+      "seal": "ee9394b0515e1882",
+      "topic": "Carrier interval [11,1]; 1 decision/collapse"
+    },
+    {
+      "file": "SYNTHESIS-1784283076483.json",
+      "role": "synthesis",
+      "seal": "acfe45966ccaf090",
+      "topic": "Sovereign answer; cruxIsOpen"
+    }
+  ],
+  "usage_void_2026_07_16": {
+    "note": "Usage export only; api_key column is a label, not a secret. File not committed.",
+    "rows": 2,
+    "total_input_tokens_no_cache": 11432,
+    "total_output_tokens": 4635,
+    "by_model": {
+      "claude-haiku-4-5-20251001": { "in": 6370, "out": 1700 },
+      "claude-sonnet-4-6": { "in": 5062, "out": 2935 }
+    }
+  },
+  "behavioral_proxy": {
+    "formula": "H_J_proxy = KL(P_T1 || P_T0)",
+    "tool": "tools/jlens/jlens.mjs --technique tsp",
+    "claude_live_status": "blocked_low_credits_2026-07-17",
+    "ollama_tsp_example": {
+      "model": "granite4.1:3b",
+      "chain": "tools/jlens/results/jlens-2026-07-17T10-50-54-738Z.jsonl",
+      "mean_h_j_proxy": 23.8306,
+      "note": "n=2 samples noisy; paper needs n>=5"
+    }
+  },
+  "grat": {
+    "legal_name": "THE SHARED PRIMORDIAL FOUNDATION",
+    "ein": "42-6976431"
+  },
+  "citation": "Anthropic Claude is the measurement subject via public API and co-author surface (hy3); no weights or private activations accessed."
+}

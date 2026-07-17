@@ -24,3 +24,8 @@ docs/keys/**/*secret*.asc
 !apps/wasm-frontend/dist/**
 
 .claude-twin/
+
+# J-Lens probe results (WORM jsonl — local only; never commit raw runs)
+tools/jlens/results/*
+!tools/jlens/results/.gitkeep
+tools/jlens/results/_selftest-*
