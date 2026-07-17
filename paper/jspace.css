@@ -1,0 +1,254 @@
+/* J-Space paper — dark sovereign aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:      #080b10;
+  --bg-2:    #0c1219;
+  --panel:   #10161d;
+  --ink:     #f4f1de;
+  --muted:   #9fb3c8;
+  --dim:     #536878;
+  --cyan:    #4dd8c8;
+  --violet:  #a78bfa;
+  --amber:   #f2b84b;
+  --green:   #8bd17c;
+  --rose:    #ff5f73;
+  --blue:    #60a5fa;
+  --line:    #1e2d3d;
+  --mono:    'JetBrains Mono', 'Courier New', monospace;
+  --sans:    'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 11pt;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 0 80px;
+}
+
+/* ── Cover ─────────────────────────────────────────────────────────── */
+.cover-img {
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ── Header block ───────────────────────────────────────────────────── */
+header, .header-block {
+  padding: 32px 40px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+h1 {
+  font-family: var(--mono);
+  font-size: 18pt;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 16px;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--ink), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── WORM receipt box ────────────────────────────────────────────────── */
+pre code, pre {
+  font-family: var(--mono);
+  font-size: 8.5pt;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 16px;
+  color: var(--cyan);
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+  display: block;
+  text-shadow: 0 0 8px rgba(77,216,200,0.3);
+}
+
+/* First pre (WORM box) gets violet tint */
+pre:first-of-type code, pre:first-of-type {
+  border-color: rgba(167,139,250,0.3);
+  color: var(--violet);
+  text-shadow: 0 0 8px rgba(167,139,250,0.3);
+}
+
+/* ── Sections ────────────────────────────────────────────────────────── */
+main, article, .content {
+  padding: 0 40px;
+}
+
+h2 {
+  font-family: var(--mono);
+  font-size: 13pt;
+  font-weight: 700;
+  color: var(--amber);
+  margin: 40px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-family: var(--mono);
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--cyan);
+  margin: 28px 0 8px;
+}
+
+h4 {
+  font-family: var(--mono);
+  font-size: 10pt;
+  color: var(--violet);
+  margin: 20px 0 6px;
+}
+
+p {
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+strong {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+em {
+  color: var(--muted);
+  font-style: italic;
+}
+
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Tables ──────────────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.5pt;
+  margin: 20px 0;
+}
+
+th {
+  background: var(--bg-2);
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 8pt;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  vertical-align: top;
+}
+
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+td:first-child { color: var(--ink); }
+
+/* Council of Models table — first column bold cyan */
+table:nth-of-type(1) td:first-child,
+table:nth-of-type(2) td:first-child {
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 9pt;
+  font-weight: 600;
+}
+
+/* ── Blockquotes ────────────────────────────────────────────────────── */
+blockquote {
+  border-left: 3px solid var(--violet);
+  margin: 16px 0;
+  padding: 10px 16px;
+  background: rgba(167,139,250,0.06);
+  color: var(--muted);
+  font-style: italic;
+  border-radius: 0 4px 4px 0;
+}
+
+blockquote strong { color: var(--violet); }
+
+/* ── Lists ───────────────────────────────────────────────────────────── */
+ul, ol {
+  margin: 8px 0 14px 20px;
+  color: var(--muted);
+}
+
+li { margin-bottom: 4px; }
+li strong { color: var(--amber); }
+
+/* ── Inline code ────────────────────────────────────────────────────── */
+code {
+  font-family: var(--mono);
+  font-size: 8.5pt;
+  color: var(--cyan);
+  background: rgba(77,216,200,0.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* ── HR ──────────────────────────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 32px 0;
+}
+
+/* ── WORM receipt / mint block ──────────────────────────────────────── */
+/* The big formulae block at the end */
+pre:last-of-type {
+  border-color: rgba(77,216,200,0.4);
+  background: rgba(4,20,16,0.9);
+  font-size: 10pt;
+  color: var(--cyan);
+  text-align: center;
+  line-height: 2;
+}
+
+/* ── Final attribution table ───────────────────────────────────────── */
+table:last-of-type {
+  border: 1px solid rgba(167,139,250,0.2);
+  background: rgba(167,139,250,0.04);
+}
+
+table:last-of-type th {
+  background: rgba(167,139,250,0.08);
+  color: var(--violet);
+}
+
+/* ── Abstract section ───────────────────────────────────────────────── */
+h2:nth-of-type(1) { color: var(--cyan); }
+
+/* ── Print ───────────────────────────────────────────────────────────── */
+@media print {
+  body { background: #fff; color: #000; }
+  h1, h2, h3, code, pre { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+  pre, blockquote { border-color: #ccc; background: #f8f8f8; }
+}
+
+/* ── Page breaks for PDF ───────────────────────────────────────────── */
+h2 { page-break-before: auto; }
+table { page-break-inside: avoid; }
+pre { page-break-inside: avoid; }

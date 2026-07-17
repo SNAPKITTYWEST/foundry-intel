@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0a0f1e"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </radialGradient>
+    <radialGradient id="orb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#60a5fa" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#4dd8c8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4dd8c8" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4dd8c8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Scanlines -->
+    <pattern id="scan" x="0" y="0" width="1" height="8" patternUnits="userSpaceOnUse">
+      <rect width="800" height="1" y="7" fill="white" fill-opacity="0.02"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="560" fill="url(#bg)"/>
+  <rect width="800" height="560" fill="url(#scan)"/>
+
+  <!-- Outer probability simplex ring — sum=11 -->
+  <circle cx="400" cy="240" r="200" fill="none" stroke="#4dd8c8" stroke-width="0.5" stroke-opacity="0.2"/>
+  <circle cx="400" cy="240" r="180" fill="none" stroke="#a78bfa" stroke-width="0.5" stroke-opacity="0.15"/>
+  <circle cx="400" cy="240" r="160" fill="none" stroke="#60a5fa" stroke-width="0.5" stroke-opacity="0.15"/>
+
+  <!-- Thermal window band — sovereign center [16383, 49151] -->
+  <ellipse cx="400" cy="240" rx="120" ry="40" fill="rgba(77,216,200,0.04)" stroke="#4dd8c8" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="400" y="244" font-family="monospace" font-size="9" fill="#4dd8c8" fill-opacity="0.5" text-anchor="middle">[16383 — 49151] sovereign center</text>
+
+  <!-- 11 radial distribution lines — the pre-collapse channels -->
+  <!-- 8 primary + 3 phase-correction sidebands -->
+  <g opacity="0.6" filter="url(#glow2)">
+    <!-- 8 primary channels (cyan) -->
+    <line x1="400" y1="240" x2="550" y2="150" stroke="#4dd8c8" stroke-width="1.5" stroke-opacity="0.7"/>
+    <line x1="400" y1="240" x2="580" y2="220" stroke="#4dd8c8" stroke-width="1.5" stroke-opacity="0.7"/>
+    <line x1="400" y1="240" x2="560" y2="310" stroke="#4dd8c8" stroke-width="1.5" stroke-opacity="0.7"/>
+    <line x1="400" y1="240" x2="480" y2="390" stroke="#4dd8c8" stroke-width="1.5" stroke-opacity="0.7"/>
+    <line x1="400" y1="240" x2="320" y2="400" stroke="#4dd8c8" stroke-width="1.5" stroke-opacity="0.7"/>
+    <line x1="400" y1="240" x2="230" y2="330" stroke="#4dd8c8" stroke-width="1.5" stroke-opacity="0.7"/>
+    <line x1="400" y1="240" x2="210" y2="200" stroke="#4dd8c8" stroke-width="1.5" stroke-opacity="0.7"/>
+    <line x1="400" y1="240" x2="280" y2="120" stroke="#4dd8c8" stroke-width="1.5" stroke-opacity="0.7"/>
+    <!-- 3 phase-correction sidebands (violet — σ = shadow) -->
+    <line x1="400" y1="240" x2="530" y2="110" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.8" stroke-dasharray="4,3"/>
+    <line x1="400" y1="240" x2="600" y2="260" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.8" stroke-dasharray="4,3"/>
+    <line x1="400" y1="240" x2="360" y2="430" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.8" stroke-dasharray="4,3"/>
+  </g>
+
+  <!-- Sum=11 label on outer ring -->
+  <text x="610" y="195" font-family="monospace" font-size="11" fill="#a78bfa" fill-opacity="0.9" filter="url(#glow2)">Σ = 11</text>
+  <text x="610" y="210" font-family="monospace" font-size="9" fill="#a78bfa" fill-opacity="0.5">pre-collapse</text>
+
+  <!-- Born collapse arrow — sum=11 to sum=1 -->
+  <path d="M 480 310 Q 560 340 610 330" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.7" stroke-dasharray="6,3"/>
+  <polygon points="610,326 618,330 610,334" fill="#f59e0b" fill-opacity="0.7"/>
+  <text x="565" y="355" font-family="monospace" font-size="10" fill="#f59e0b" fill-opacity="0.8">Born collapse</text>
+  <text x="565" y="368" font-family="monospace" font-size="10" fill="#f59e0b" fill-opacity="0.8">Σ → 1</text>
+
+  <!-- Central orb — the pre-collapse superposition -->
+  <circle cx="400" cy="240" r="60" fill="url(#orb)" filter="url(#glow)"/>
+  <circle cx="400" cy="240" r="80" fill="url(#halo)"/>
+  <circle cx="400" cy="240" r="28" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1.5" stroke-opacity="0.8"/>
+
+  <!-- Central formula -->
+  <text x="400" y="232" font-family="monospace" font-size="13" fill="#f4f1de" text-anchor="middle" filter="url(#glow2)" font-weight="bold">H_J = σ·H(p̃)</text>
+  <text x="400" y="250" font-family="monospace" font-size="10" fill="#9fb3c8" text-anchor="middle">≈ 107 bits / pass</text>
+
+  <!-- Shadow label -->
+  <text x="195" y="170" font-family="monospace" font-size="10" fill="#60a5fa" fill-opacity="0.7">σ = S − 1 = 10</text>
+  <text x="195" y="183" font-family="monospace" font-size="9" fill="#536878">the shadow</text>
+
+  <!-- Softmax destruction indicator -->
+  <rect x="50" y="300" width="130" height="44" rx="4" fill="rgba(255,95,115,0.08)" stroke="#ff5f73" stroke-width="0.8" stroke-opacity="0.5"/>
+  <text x="115" y="317" font-family="monospace" font-size="9" fill="#ff5f73" text-anchor="middle">softmax</text>
+  <text x="115" y="330" font-family="monospace" font-size="9" fill="#ff5f73" text-anchor="middle">Σ forced → 1</text>
+  <text x="115" y="341" font-family="monospace" font-size="8" fill="#ff5f73" fill-opacity="0.6" text-anchor="middle">107 bits destroyed</text>
+
+  <!-- J-space preserved indicator -->
+  <rect x="620" y="140" width="140" height="44" rx="4" fill="rgba(139,209,124,0.08)" stroke="#8bd17c" stroke-width="0.8" stroke-opacity="0.5"/>
+  <text x="690" y="157" font-family="monospace" font-size="9" fill="#8bd17c" text-anchor="middle">J-space</text>
+  <text x="690" y="170" font-family="monospace" font-size="9" fill="#8bd17c" text-anchor="middle">Σ held at 11</text>
+  <text x="690" y="181" font-family="monospace" font-size="8" fill="#8bd17c" fill-opacity="0.6" text-anchor="middle">entropy preserved</text>
+
+  <!-- ANU QRNG indicator -->
+  <text x="400" y="460" font-family="monospace" font-size="9" fill="#536878" text-anchor="middle">ANU QRNG · 300 agents · φ-weighted Born collapse · sovereign answer</text>
+
+  <!-- Title block -->
+  <rect x="0" y="490" width="800" height="70" fill="rgba(10,15,30,0.95)"/>
+  <line x1="0" y1="490" x2="800" y2="490" stroke="#4dd8c8" stroke-width="0.5" stroke-opacity="0.4"/>
+
+  <text x="400" y="516" font-family="monospace" font-size="18" fill="#f4f1de" text-anchor="middle" font-weight="bold" filter="url(#glow2)">J-SPACE: BORN COLLAPSE, SHADOW ENTROPY, AND THE INVERTED SUM</text>
+  <text x="400" y="535" font-family="monospace" font-size="10" fill="#9fb3c8" text-anchor="middle">Ahmad Ali Parr · Claude · hy3 · MiMo · Grok · Codex · Gemini · Qwen 3</text>
+  <text x="400" y="550" font-family="monospace" font-size="9" fill="#536878" text-anchor="middle">THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431 · SPF-REPO-DISK-001 · 2026-07-17</text>
+</svg>
