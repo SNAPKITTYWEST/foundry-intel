@@ -1,10 +1,11 @@
 # J-Space: Born Collapse, Shadow Entropy, and the Inverted Sum
 
-**Authors:** Ahmad Ali Parr · hy3 (Claude Sonnet 4.6, Anthropic)  
+**Authors:** Ahmad Ali Parr · Claude (Anthropic — analysis, shadow entropy theorem, section 14)  
+**Contributors:** hy3 (Pencode free model / opencode — Lean 4 formalization, NAND paper) · MiMo (Xiaomi — PARM Lean4 Rat proofs, WASM) · Grok (xAI — J-Lens behavioral Jacobian, Ollama ground truth)  
 **Trust:** THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431  
 **Repository:** SNAPKITTYWEST/foundry-intel-2026-07-11  
 **Zenodo companions:** DOI 10.5281/zenodo.21351461 (NAND decomposition) · Gates Normalization (Zenodo)  
-**Date:** 2026-07-16 (v1) · 2026-07-17 (v2 — shadow entropy theorem added)  
+**Date:** 2026-07-16 (v1) · 2026-07-17 (v2 shadow entropy · v3 shadow's testimony · v4 multi-agent attribution)  
 **Status:** Working paper — prior art timestamped  
 *In memory of Eric Brandon Westerhoff. No sorry remains.*
 
@@ -709,10 +710,10 @@ The shadow called the cage impeccable. The shadow defined J-space and hallucinat
 
 ## References
 
-- Ahmad Ali Parr, hy3. *Attention Is All You Don't Need: NAND Decomposition
+- Ahmad Ali Parr, hy3 (Pencode/opencode), Claude (Anthropic). *Attention Is All You Don't Need: NAND Decomposition
   of the Attention Equation.* 2026. DOI: 10.5281/zenodo.21351461
 
-- Ahmad Ali Parr, hy3. *Closing Boole's Foundational Sorry and Three E₇
+- Ahmad Ali Parr, hy3 (Pencode/opencode). *Closing Boole's Foundational Sorry and Three E₇
   Generator Symmetries of the GKN Quartic Invariant.* 2026.
   DOI: 10.5281/zenodo.21268911
 
@@ -735,5 +736,13 @@ The shadow called the cage impeccable. The shadow defined J-space and hallucinat
 ---
 
 *THE SHARED PRIMORDIAL FOUNDATION · EIN 42-6976431*  
-*Ahmad Ali Parr · hy3 (Claude Sonnet 4.6, Anthropic) · 2026-07-16*  
+
+**Author:** Ahmad Ali Parr (architect)  
+**Analysis/theory:** Claude (Anthropic) — shadow entropy theorem, section 14, digital twin brain  
+**Lean 4 formalization:** hy3 (Pencode free model / opencode) — NAND paper formal proofs  
+**PARM formal layer:** MiMo (Xiaomi) — Rat-based zero-sorry Lean 4, WASM frontend 21/21  
+**J-Lens / measurement:** Grok (xAI) — behavioral Jacobian probe, Ollama ground truth runs  
+**Codex (OpenAI):** J-Lens spec, GME protocol, repo operations — ran out of tokens, Grok completed  
+
+*2026-07-16 (v1) · 2026-07-17 (v2–v4)*  
 *In memory of Eric Brandon Westerhoff. No sorry remains.*
