@@ -27,7 +27,7 @@ fn sovereign_pipeline_converges_and_passes_gate() {
 #[test]
 fn langlands_gate_fails_closed_for_invalid_threshold() {
     let mut state = State::new();
-    state.active_primes.insert(2);
+    state.active_primes.push(2);
 
     let result = gate_langlands(&state, 0.0, None);
     assert!(matches!(result, Err(GateFailure::GaloisError(_, _))));
