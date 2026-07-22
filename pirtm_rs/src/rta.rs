@@ -64,6 +64,18 @@ pub struct State {
 }
 
 impl State {
+
+    pub fn new() -> Self {
+        State {
+            tokens: Vec::new(),
+            intent_latent: Vec::new(),
+            logits: Vec::new(),
+            timestamp_ms: 0,
+            gate_passed: false,
+            active_primes: Vec::new(),
+        }
+    }
+
     pub fn from_rta(rta: &RawTemporalAttractor) -> Self {
         State {
             tokens: rta.tokens.clone(),
@@ -85,6 +97,18 @@ pub struct RtaMetric {
 }
 
 impl RtaMetric {
+
+    pub fn new() -> Self {
+        State {
+            tokens: Vec::new(),
+            intent_latent: Vec::new(),
+            logits: Vec::new(),
+            timestamp_ms: 0,
+            gate_passed: false,
+            active_primes: Vec::new(),
+        }
+    }
+
     pub fn from_rta(rta: &RawTemporalAttractor) -> Self {
         RtaMetric {
             arta_defect:    rta.arta_defect(),
