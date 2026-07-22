@@ -313,13 +313,4 @@ pub fn gate_local_first(_model: &crate::rta::RawTemporalAttractor) -> f64 { 1.0 
 /// Langlands ZK gate: zero-knowledge Langlands verification.
 pub fn gate_langlands_zk(model: &crate::rta::RawTemporalAttractor, _lattice: &[crate::rta::LatticeNode]) -> f64 { model.arta_defect().min(1.0) }
 
-/// ZK configuration for Langlands gate.
-#[derive(Debug, Clone)]
-pub struct LanglandsZKConfig {
-    pub tau_r: f64,
-    pub cycle_108: u64,
-}
 
-impl Default for LanglandsZKConfig {
-    fn default() -> Self { LanglandsZKConfig { tau_r: 47.06998778, cycle_108: 108 } }
-}
