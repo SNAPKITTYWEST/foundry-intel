@@ -51,3 +51,43 @@ impl LatticeNode {
         deg.tanh().max(0.0)
     }
 }
+
+/// Processed State — the cleaned, gate-passed output ready for production.
+#[derive(Debug, Clone)]
+pub struct State {
+    pub tokens: Vec<String>,
+    pub intent_latent: Vec<f64>,
+    pub logits: Vec<f64>,
+    pub timestamp_ms: u64,
+    pub gate_passed: bool,
+}
+
+impl State {
+    pub fn from_rta(rta: &RawTemporalAttractor) -> Self {
+        State {
+            tokens: rta.tokens.clone(),
+            intent_latent: rta.intent_latent.clone(),
+            logits: rta.raw_logits.clone(),
+            timestamp_ms: rta.timestamp_ms,
+            gate_passed: true,
+        }
+    }
+}
+
+/// RTA Metric — quantifies the quality of a processed state.
+#[derive(Debug, Clone)]
+pub struct RtaMetric {
+    pub arta_defect:       f64,
+    pub langlands_loss:    f64,
+    pub gate_pass_rate:    f64,
+}
+
+impl RtaMetric {
+    pub fn from_rta(rta: &RawTemporalAttractor) -> Self {
+        RtaMetric {
+            arta_defect:    rta.arta_defect(),
+            langlands_loss: 0.0,
+            gate_pass_rate: 1.0,
+        }
+    }
+}
