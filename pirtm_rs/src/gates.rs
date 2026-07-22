@@ -276,7 +276,7 @@ mod tests {
     #[test]
     fn gate_rejects_missing_zk_payload_when_enabled() {
         let mut state = State::new();
-        state.active_primes.insert(2);
+        state.active_primes.push(2);
         let result = gate_langlands(
             &state,
             1e-12,
