@@ -60,6 +60,7 @@ pub struct State {
     pub logits: Vec<f64>,
     pub timestamp_ms: u64,
     pub gate_passed: bool,
+    pub active_primes: Vec<u64>,
 }
 
 impl State {
@@ -70,6 +71,7 @@ impl State {
             logits: rta.raw_logits.clone(),
             timestamp_ms: rta.timestamp_ms,
             gate_passed: true,
+            active_primes: rta.associated_primes(),
         }
     }
 }
