@@ -290,41 +290,28 @@ mod tests {
 }
 
 /// Lexical gate: checks token count is within sovereign bounds.
-pub fn gate_lexical(state: &crate::rta::State) -> GateResult<f64> {
-    if state.tokens.is_empty() {
-        return Err(GateFailure::LVanished("lexical".to_string()));
-    }
-    Ok(1.0_f64.min(1.0 / state.tokens.len() as f64 * 16.0))
+pub fn gate_lexical(tokens: &[String]) -> f64 {
+    if tokens.is_empty() { return 0.0; }
+    (1.0_f64.min(1.0 / tokens.len() as f64 * 16.0)).max(0.0)
 }
 
 /// Grounding gate: checks intent latent is non-degenerate.
-pub fn gate_grounding(state: &crate::rta::State) -> GateResult<f64> {
-    let norm: f64 = state.intent_latent.iter().map(|x| x * x).sum::<f64>().sqrt();
-    if norm < 1e-10 {
-        return Err(GateFailure::LVanished("grounding".to_string()));
-    }
-    Ok(norm.tanh())
+pub fn gate_grounding(latent: &[f64]) -> f64 {
+    let norm: f64 = latent.iter().map(|x| x * x).sum::<f64>().sqrt();
+    norm.tanh().max(0.0)
 }
 
 /// Consistency gate: checks logit distribution is normalised.
-pub fn gate_consistency(state: &crate::rta::State) -> GateResult<f64> {
-    let sum: f64 = state.logits.iter().sum();
-    if sum.abs() < 1e-10 {
-        return Err(GateFailure::LVanished("consistency".to_string()));
-    }
-    Ok((1.0 - (sum - 1.0).abs()).max(0.0))
+pub fn gate_consistency(model: &crate::rta::RawTemporalAttractor) -> f64 {
+    let sum: f64 = model.raw_logits.iter().sum();
+    (1.0 - (sum - 1.0).abs()).max(0.0)
 }
 
 /// Local-first gate: no external calls required (always passes in sovereign mode).
-pub fn gate_local_first(_state: &crate::rta::State) -> GateResult<f64> {
-    Ok(1.0)
-}
+pub fn gate_local_first(_model: &crate::rta::RawTemporalAttractor) -> f64 { 1.0 }
 
 /// Langlands ZK gate: zero-knowledge Langlands verification.
-pub fn gate_langlands_zk(state: &crate::rta::State, config: &LanglandsZKConfig) -> GateResult<f64> {
-    let _ = config;
-    if state.gate_passed { Ok(1.0) } else { Err(GateFailure::LVanished("langlands_zk".to_string())) }
-}
+pub fn gate_langlands_zk(model: &crate::rta::RawTemporalAttractor, _lattice: &[crate::rta::LatticeNode]) -> f64 { model.arta_defect().min(1.0) }
 
 /// ZK configuration for Langlands gate.
 #[derive(Debug, Clone)]
