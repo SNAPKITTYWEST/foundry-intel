@@ -103,14 +103,20 @@ impl State {
         ((joint_mass + latent_mass) / (prime_weight + 1.0)).tanh().max(0.0)
     }
 
-    /// Gradient descent step — reduce joint-word weights toward zero at rate `lr`.
-    /// Converges when defect < `tol`.
+    /// Iterative gradient descent — reduces all weights until defect < tol.
     pub fn fit(&mut self, lr: f64, tol: f64) {
-        for w in self.joint_words.values_mut() {
-            *w *= 1.0 - lr;
-        }
-        for x in self.intent_latent.iter_mut() {
-            *x *= 1.0 - lr;
+        let max_iter = 100_000;
+        for _ in 0..max_iter {
+            if self.arta_defect() < tol {
+                self.gate_passed = true;
+                return;
+            }
+            for w in self.joint_words.values_mut() {
+                *w *= 1.0 - lr;
+            }
+            for x in self.intent_latent.iter_mut() {
+                *x *= 1.0 - lr;
+            }
         }
         if self.arta_defect() < tol {
             self.gate_passed = true;
