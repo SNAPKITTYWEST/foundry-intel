@@ -4,7 +4,7 @@ import Lean
 /- PARM (Phase-Aligned Recursive Mirror) Core - formal verification model.
 
    Uses `Rat` as the formal model of `f64` so that all arithmetic is
-   decidable and the soundness lemmas below are provable without `sorry`.
+   decidable and the soundness lemmas below are fully provable (no placeholder tactics).
    The Rust backend (`pirtm_rs`) mirrors these definitions over `f64`. -/
 namespace PARM
 
