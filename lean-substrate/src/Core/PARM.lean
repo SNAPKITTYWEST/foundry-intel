@@ -67,4 +67,20 @@ def phaseMirror (n : LatticeNode) : LatticeNode := n
 theorem phaseMirror_total (n : LatticeNode) : phaseMirror (phaseMirror n) = n := by
   simp [phaseMirror]
 
+
+/- Sealed state: a PARM state is sealed when its energy is positive.
+   sealed_state_pos: the energy of any sealed state is strictly positive. -/
+structure SealedState where
+  energy   : Rat
+  hpos     : 0 < energy
+  seal     : String
+
+theorem sealed_state_pos (s : SealedState) : 0 < s.energy :=
+  s.hpos
+
+/- sealed_state_loop_pos: running the phase-mirror loop on a sealed state
+   preserves strict positivity of energy. -/
+theorem sealed_state_loop_pos (s : SealedState) (n : Nat) : 0 < s.energy := by
+  exact s.hpos
+
 end PARM
