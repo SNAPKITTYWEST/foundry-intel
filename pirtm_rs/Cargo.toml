@@ -17,3 +17,8 @@ path = "src/main.rs"
 
 [lints.rust]
 unexpected_cfgs = { level = "allow", check-cfg = ['cfg(kani)', 'cfg(sovereign_core)', 'cfg(sovereign_build_health_20260716)', 'cfg(sovereign_node_key_present)'] }
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
