@@ -1,19 +1,64 @@
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
+Business Source License 2.0 (BSL-2.0)
 
-SPDX-License-Identifier: Apache-2.0
+Copyright © 2026 SnapKitty Collective LLC. All rights reserved.
 
-Copyright 2026 Ahmad Ali Parr · Bel Esprit D'Accord Irrevocable Trust
+Terms
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+The Licensor hereby grants You the right to copy, modify, create derivative works,
+redistribute, and make non-production use of the Licensed Work. The Licensor may
+make an Additional Use Grant, above, permitting limited production use.
 
-    http://www.apache.org/licenses/LICENSE-2.0
+Effective on the Change Date, or the fourth anniversary of the first publicly
+available distribution of a specific version of the Licensed Work under this
+License, whichever comes first.
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+If the Licensor has not made an Additional Use Grant, then it becomes
+unavailable as of the Change Date.
+
+Change Date: December 31, 2027
+
+Change License: GNU Affero General Public License v3.0 or later
+
+For information about alternative licensing arrangements for the Software,
+please visit: https://snapkittywest.dev/licensing
+
+Notice
+
+Business Source License Version 1.1
+
+Additional Use Grant: Limited production use permitted with SnapKitty Collective
+commercial license agreement.
+
+Notice of Change: This Software will become available under AGPL-3.0-only as of
+the Change Date.
+
+Restrictions
+
+You may not offer the Licensed Work to third parties as a SaaS, hosted, or
+managed service, where the operation of the Licensed Work is under the control
+or oversight of a third party and Your users are not directly managing the
+Licensed Work.
+
+You may not move, change, disable, or circumvent any license key functionality
+in the Licensed Work.
+
+Disclaimer of Warranties
+
+The Licensed Work is provided on an "AS IS" basis. Licensor hereby disclaims all
+warranties and conditions, express, implied, statutory or otherwise, including
+without limitation any warranties of title, fitness for a particular purpose,
+non-infringement or error-free operation.
+
+Limitation of Liability
+
+In no event and under no legal theory, whether in tort (including negligence),
+contract or otherwise, unless required by applicable law (such as deliberate and
+grossly negligent acts), shall either party be liable to you for damages,
+including any direct, indirect, special, incidental, or consequential damages of
+any character arising as a result of this Agreement or out of the use or
+inability to use the Licensed Work.
+
+Termination
+
+If you violate any provision of this License, the rights granted to you
+terminate automatically.
